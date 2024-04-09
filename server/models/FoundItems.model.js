@@ -16,12 +16,12 @@ const foundItemsSchema = new mongoose.Schema({
   	},	
   	location: {
 		type: {
-		type: String,
-		default: "Point",
+			type: String,
+			default: "Point",
 		},
 		coordinates: {
-		type: [Number],
-		index: "2dsphere",
+			type: [Number],
+			index: "2dsphere",
 		}, // Index for geospatial queries
   	},
   	contactInfo: {

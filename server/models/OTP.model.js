@@ -6,15 +6,18 @@ const otpSchema = new mongoose.Schema({
     	required: true,
   	},
   	email: {
-	    type: mongoose.Schema.Types.ObjectId,
-    	ref:'User',
+	    type: String,
 		required: true,
 	},
   	createdAt: {
     	type: Date,
- 	   	default: Date.now(),
+ 	   	default: new Date(),
 	   	expires: 300,
   	},
+	expiresAt: {
+		type: Date,
+		default: new Date() + 300000,
+	},
 });
 
 otpSchema.index({
