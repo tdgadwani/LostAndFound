@@ -15,7 +15,7 @@ const RewardsSchema=new mongoose.Schema({
     },
 });
 
-const Rewards=mongoose.model("Rewards",RewardsSchema)
+const Reward = mongoose.model("Rewards",RewardsSchema)
 export{
-    Rewards
+    Reward,
 };

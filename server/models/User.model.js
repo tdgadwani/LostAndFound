@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
 	},
 	coins: {
         type: Number,
-        default: 0
+        default: 1
 	},
 	lastCheckInDate: {
         type: Number,

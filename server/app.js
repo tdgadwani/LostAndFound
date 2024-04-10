@@ -1,6 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { userCheckedIn } from "./middlewares/checkIn.middleWare.js";
 
 const app = express();
 
@@ -22,7 +23,17 @@ app.use(express.static("public"));
 
 app.use(cookieParser());
 
+app.use(userCheckedIn);
+
+
 import userRouter from "./routes/user.routes.js";
-app.use("/api/v1/user",userRouter);
+import redemptionRouter from "./routes/redemption.route.js";
+import rewardHistoryRouter from "./routes/rewardHistory.route.js";
+import notificationRouter from "./routes/notification.route.js";
+
+app.use("/api/v1/user",userRouter); 
+app.use("/api/v1/redemption",redemptionRouter);
+app.use("/api/v1/reward-history",rewardHistoryRouter);
+app.use("/api/v1/notifications",notificationRouter);
 
 export default app;

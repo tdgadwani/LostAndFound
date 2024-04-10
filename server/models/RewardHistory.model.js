@@ -1,11 +1,11 @@
 import mongoose, { Schema } from "mongoose";
-import { User } from "./User.model";
 
 
 const  rewardHistorySchema=new mongoose.Schema({
     rewardType:{
         type:String,
-        required:true,
+        enum: ["lastCheckInDate","foundItem"],
+        required: true,
     },
     rewardDate:{
         type: Number ,

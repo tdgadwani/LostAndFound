@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import { addressSchema } from "./Address.model.js";
+import { contactSchema } from "./Contact.model.js";
 
 const lostItemsSchema =new mongoose.Schema({
 	userId: {
@@ -19,18 +21,12 @@ const lostItemsSchema =new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	location: {
-		type: {
-              type: String,
-              default: "Point",
-		},
-		coordinates: {
-			type: [Number],
-			index: "2dsphere",
-		}, // Index for geospatial queries
+	address: {
+		type: addressSchema,
+		required: true,
 	},
 	contactInfo: {
-		type: String,
+		type: contactSchema,
 		required: true
 	},
 	dateLost: {
