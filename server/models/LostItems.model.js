@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import { AsyncHandler } from "../utils/AsyncHandler";
+import { ApiError } from "../utils/ApiError";
+import { ApiResponse } from "../utils/ApiResponse";
 
 const lostItemsSchema =new mongoose.Schema(
     {
@@ -19,6 +22,11 @@ const lostItemsSchema =new mongoose.Schema(
           required:true,
           enum: ['Electronics', 'Clothing', 'Accessories', 'Books', 'Jewelry', 'Others'] 
         },
+        media: [
+            {
+              type: String,
+            },
+          ],
         description: {
             type: String,
             required: true
@@ -50,4 +58,3 @@ const lostItemsSchema =new mongoose.Schema(
 );
 const LostItem = mongoose.model("LostItem", lostItemsSchema);
 
-export { LostItem };

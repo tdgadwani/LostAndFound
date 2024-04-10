@@ -10,6 +10,11 @@ const foundItemsSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  media: [
+    {
+      type: String,
+    },
+  ],
   category: {
     type: String,
     required: true,
