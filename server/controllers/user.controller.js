@@ -11,7 +11,9 @@ const generateAccessAndRefreshToken = async (userId) => {
         const user = await User.findById(userId);
         const accessToken = user.generateAccessToken();
         const refreshToken = user.generateRefreshToken();
+        console.log(user.refreshToken, refreshToken);
         user.refreshToken = refreshToken;
+
         await user.save({validateBeforeSave: false});
         return {
             accessToken,
@@ -24,7 +26,14 @@ const generateAccessAndRefreshToken = async (userId) => {
 };
 
 const generateOTP = () => {
-    return Math.floor(Math.random() * 1000000);
+   let digits = "0123456789";
+   let OTP = "";
+   let len = digits.length;
+   for (let i = 0; i < 6; i++) {
+     OTP += digits[Math.floor(Math.random() * len)];
+   }
+
+   return OTP; 
 }
 
 const sendOTP = asyncHandler(async (req,res) => {
@@ -83,8 +92,9 @@ const resendOTP = asyncHandler(async(req,res) => {
 
 const signupUser = asyncHandler(async (req,res) => {
     const { userName, fullName, password, email, otp } = req.body;
-    const avatarLocalFilePath = req.files[0];
-    if([userName, fullName, email, password, otp, avatarLocalFilePath].some((field) => field.trim() === "" ))
+    const avatarLocalFilePath = req.file.path;
+    console.log(req.file);
+    if([userName, fullName, email, password, otp,avatarLocalFilePath].some((field) => field.trim() === "" ))
         throw new ApiError(401,"All fields are required");
 
     const existingUser = await User.findOne({
@@ -94,12 +104,13 @@ const signupUser = asyncHandler(async (req,res) => {
         throw new Error(403,"User already Registerd with same Email or UserName");
     const receivedOTP = await OTP.findOne({email});
     if(!receivedOTP)
-        throw new ApiError(500,"Something went Wrong");
+        throw new ApiError(500,"Something Went Wrong");
     if(receivedOTP.expiresAt > new Date())
         throw new ApiError(403, " Otp Expired");
     const avatar = await uploadOnCloudinary(avatarLocalFilePath);
+    console.log(avatar);
     if(!avatar)
-        throw new ApiError(500,"Something Went wrong while h andling Avatar Image");
+        throw new ApiError(500,"Something Went wrong while handling Avatar Image");
 
     const user = await User.create({
         email,
@@ -131,16 +142,16 @@ const loginUser = asyncHandler(async(req,res) => {
     const isPasswordValid = await user.isPasswordCorrect(password);
     if(!isPasswordValid)
         throw new ApiError(403,"Bad Credentials");
-    const { accesstoken, refreshToken } = await generateAccessAndRefreshToken(user._id);
+    const { accessToken, refreshToken } = await generateAccessAndRefreshToken(user._id);
     const loggedinUser = await User.findById(user._id).select("-paswword -refreshToken");;
     res
     .status(200)
-    .cookie("accessToken",accesstoken,OPTIONS)
+    .cookie("accessToken",accessToken,OPTIONS)
     .cookie("refreshToken",refreshToken,OPTIONS)
     .json(
         new ApiResponse(
             200,{
-                user : loggedinUser, refreshToken, accesstoken,
+                user : loggedinUser, refreshToken, accessToken,
             },"User Loggedin Successfully"
         )
     )
@@ -164,13 +175,15 @@ const logoutUser = asyncHandler(async(req,res) => {
     res 
     .status(200)
     .clearCookie("accessToken",OPTIONS)
-    .clearCookie("refresToken",OPTIONS)
+    .clearCookie("refreshToken",OPTIONS)
     .json(
         new ApiResponse(
             200,{},"User Logged out Successfully",
         )
     )
 });
+
+
 
 export {
     sendOTP,
