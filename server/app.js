@@ -23,7 +23,7 @@ app.use(express.static("public"));
 
 app.use(cookieParser());
 
-app.use(userCheckedIn);
+// app.use(userCheckedIn);
 
 
 import userRouter from "./routes/user.routes.js";

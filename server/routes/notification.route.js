@@ -4,6 +4,6 @@ import { getNotifications } from "../controllers/notifications.controller.js";
 
 const notificationRouter = express.Router();
 
-Router.route("/get-notifications").get(verifyJWT,getNotifications);
+notificationRouter.route("/get-notifications").get(verifyJWT,getNotifications);
 
 export default notificationRouter;
