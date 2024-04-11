@@ -12,6 +12,11 @@ const foundItemsSchema = new mongoose.Schema({
 		required: true,
 		enum: ['Electronics', 'Clothing', 'Accessories', 'Books', 'Jwellery', 'Others'] 
   	},
+          media: [
+            {
+              type: String,
+            },
+          ],
   	description: {
     	type: String,
     	required: true
