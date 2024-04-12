@@ -10,8 +10,6 @@ const userSchema = new mongoose.Schema({
 		lowercase: true,
 		trim: true,
 		index: true,
-   // minlength: 6,
-   // maxlength: 8,
     validate: {
       validator: (v) => v.length >= 6 && v.length <= 8,
       message: "Rollno must be between 6 and 8 characters long",
