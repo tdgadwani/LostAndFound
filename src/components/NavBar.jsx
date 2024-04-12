@@ -1,20 +1,23 @@
 import React from 'react'
 import { CgProfile } from "react-icons/cg";
+import LOGO from "../assets/LOGO.svg"
 
 const NavBar = () => {
   return (
-    <div className='flex space-x-8 bg-pink-100'>
-      <div>LOST</div>
+    <div className='flex  border-2 justify-evenly items-center font-bold'>
+      <div >LOST</div>
       <div>FOUND</div>
       <div>REDEEM</div>
-      <div>LOGO</div>
+      <div >
+        <img src={LOGO} alt=""  className='h-20'/>
+      </div>
       <div>RETREIVED</div>
       <div>NOTIFICATION</div>
-      <div className=''>
+      <div className='flex items-center'>
         <div>
             <CgProfile/>
         </div>
-        <div>
+        <div className='mx-2'>
             PROFILE
         </div>
       </div>
