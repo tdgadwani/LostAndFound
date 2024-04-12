@@ -9,13 +9,11 @@ const postLostItems = asyncHandler(async (req, res, _) => {
   const { itemName, category, description, address, contactInfo } = req.body;
   if (
     [itemName, category, description, address, contactInfo].some(
-      (field) => field?.trim() === ""
+      (field) => typeof field === 'string' && field?.trim() === ""
     )
   )
     throw new ApiError(400, "All fields are Required");
   if (!req.files) throw new ApiError(403, "Image path is required");
-  console.log(req.files.media);
-  // console.log(req.file);
   const imgUpload = async () => {
     try {
       const arr = await Promise.all(
@@ -48,22 +46,21 @@ const postLostItems = asyncHandler(async (req, res, _) => {
     category,
     description,
     media,
-    reportedBy: req.user?._id,
+    userId: req.user?._id,
     address,
     contactInfo,
   });
-  console.log(reportedBy);
   if (!Lost) throw new ApiError(500, "Unable to post lost item");
   return res
     .status(200)
     .json(new ApiResponse(200, Lost, "Lostitem posted Successfully"));
-});
+}); // tested
 
 const getLostItems = asyncHandler(async (req, res, _) => {
-  const lostitems = await LostItem.find({})
+  const lostItems = await LostItem.find({})
     .populate({
       path: "userId",
-      select: "username  contactInfo",
+      select: "rollNo  fullName",
     })
     .exec();
   if (!lostItems) {
@@ -72,7 +69,7 @@ const getLostItems = asyncHandler(async (req, res, _) => {
   return res
     .status(200)
     .json(new ApiResponse(200, lostItems, "Lost Items fetched Successfully"));
-});
+}); // tested
 
 const getLostItemsById = asyncHandler(async (req, res, _) => {
   const { id } = req.params;
@@ -95,27 +92,22 @@ const getLostItemsById = asyncHandler(async (req, res, _) => {
     console.error(error);
     return res.status(error.statusCode || 500).json({ message: error.message });
   }
-});
+}); // tested
 
 const getLostItemsByUId = asyncHandler(async (req, res, _) => {
-  const { user_id } = req.query;
-  if (!user_id) {
+  const userId = req.user._id;
+  if (!userId) {
     throw new ApiError(400, "Missing required parameter: user_id");
   }
-  try {
-    const LostItemByUId = await LostItem.find({ user_id });
+    const lostItemsByUId = await LostItem.find({ userId });
 
-    if (!LostItemByUId) {
+    if (!lostItemsByUId) {
       throw new ApiError(404, "No Lost Items found for this user");
     }
     return res
       .status(200)
-      .json(new ApiResponse(200, lostItems, "Lost Items fetched Successfully"));
-  } catch (error) {
-    console.error(error);
-    return res.status(error.statusCode || 500).json({ message: error.message });
-  }
-});
+      .json(new ApiResponse(200, lostItemsByUId, "Lost Items fetched Successfully"));
+}); // tested
 
 export { 
     postLostItems, 

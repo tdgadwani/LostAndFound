@@ -5,7 +5,7 @@ import { Redemption } from "../models/Redemptions.model.js";
 import { Reward } from "../models/Rewards.model.js";
 
 const buyReward = asyncHandler(async(req,res) => {
-    const { rewardID } = req.body;
+    const { rewardID } = req.params;
     const user = req.user;
     if(!rewardID)
         throw new ApiError(401,"Reward ID is required");

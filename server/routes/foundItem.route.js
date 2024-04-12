@@ -5,6 +5,7 @@ import {
   getFoundItemById,
   getFoundItemsByUId,
   updateFoundItem,
+  getRetrievedItems,
 } from "../controllers/foundItems.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
@@ -26,5 +27,6 @@ foundItemRouter.route("/getFoundItemsById/:id").get(
 
 foundItemRouter.route("/getFoundItemsByUId").get(verifyJWT, getFoundItemsByUId);
 foundItemRouter.route("/updateFoundItems/:id").patch(verifyJWT,updateFoundItem);
+foundItemRouter.route("/getRetreivedItems").get(verifyJWT,getRetrievedItems);
 
 export default foundItemRouter;
