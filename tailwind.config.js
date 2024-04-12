@@ -11,10 +11,11 @@ export default {
     },
     extend: {
       colors: {
-        pink: {
+        kaddu: {
           100: "#FCDDEC",
           200: "#D7FFE7",
           300: "#FBC6C6",
+          400: "#DABABA",
         },
       },
     },
