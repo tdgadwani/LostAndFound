@@ -32,6 +32,7 @@ import rewardHistoryRouter from "./routes/rewardHistory.route.js";
 import notificationRouter from "./routes/notification.route.js";
 import lostItemRouter from "./routes/lostItems.route.js";
 import foundItemRouter from "./routes/foundItem.route.js";
+import resetPasswordRouter from "./routes/resetPassword.routes.js";
 
 app.use("/api/v1/user",userRouter); 
 app.use("/api/v1/redemption",redemptionRouter);
@@ -39,5 +40,6 @@ app.use("/api/v1/reward-history",rewardHistoryRouter);
 app.use("/api/v1/notifications",notificationRouter);
 app.use("/api/v1/founditem", foundItemRouter);
 app.use("/api/v1/lostitem", lostItemRouter); 
+app.use("/api/v1/resetPassword",resetPasswordRouter);
 
 export default app;
