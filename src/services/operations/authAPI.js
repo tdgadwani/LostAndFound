@@ -63,15 +63,17 @@ const loginUser = (formData,navigate) => {
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
         try {
-            const response = await apiConnector("POST",LOGIN_URL,formData);
+            const response = await apiConnector("POST", LOGIN_URL, formData, {
+              "Content-Type": "application/x-www-form-urlencoded",
+            });
             if(!response.data.success){
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
             }
-            toast.success("User Loggedin Successfully");
+            toast.success("User Logged-In Successfully");
             dispatch(setUserData(response.data.user));
             dispatch(setToken(response.data.accessToken));
-            navigate()//to be planned
+            // navigate()//to be planned
         } catch (error) {
             console.log(error.message);
         }

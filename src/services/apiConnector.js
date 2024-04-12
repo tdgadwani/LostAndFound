@@ -8,7 +8,7 @@ const apiConnector = (method,url,bodyData,headerData,paramsData) => {
     return axiosInstance({
         method: method,
         url: `${url}`,
-        body: bodyData ? bodyData : null,
+        data: bodyData ? bodyData : null,
         headers: headerData ? headerData : null,
         params: paramsData ? paramsData : null,
     });
