@@ -91,14 +91,14 @@ const resendOTP = asyncHandler(async(req,res) => {
 });
 
 const signupUser = asyncHandler(async (req,res) => {
-    const { userName, fullName, password, email, otp } = req.body;
+    const { rollNo, fullName, password, email, otp } = req.body;
     const avatarLocalFilePath = req.file.path;
     console.log(req.file);
     if([userName, fullName, email, password, otp,avatarLocalFilePath].some((field) => field.trim() === "" ))
         throw new ApiError(401,"All fields are required");
 
     const existingUser = await User.findOne({
-        $or: [{ userName }, { email } ],
+        $or: [{ rollNo }, { email } ],
     });
     if(existingUser)
         throw new Error(403,"User already Registerd with same Email or UserName");
@@ -130,11 +130,11 @@ const signupUser = asyncHandler(async (req,res) => {
 });
 
 const loginUser = asyncHandler(async(req,res) => {
-    const { userName, email, password} = req.body;
-    if(!(userName || email))
+    const { rollNo, email, password} = req.body;
+    if(!(rollNo || email))
         throw new ApiError(400,"Email or Username is Required");
     const user = await User.findOne({
-        $or: [ { userName }, { email }],
+        $or: [ { rollNo }, { email }],
     });
     if(!user)
         throw new ApiError(403,"User not found with provided Email or Username");
