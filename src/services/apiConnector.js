@@ -6,7 +6,7 @@ const axiosInstance = axios.create({
 
 const apiConnector = (method,url,bodyData,headerData,paramsData) => {
     return axiosInstance({
-        method: method,
+        method: `${method}`,
         url: `${url}`,
         data: bodyData ? bodyData : null,
         headers: headerData ? headerData : null,

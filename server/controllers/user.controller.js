@@ -11,9 +11,7 @@ const generateAccessAndRefreshToken = async (userId) => {
         const user = await User.findById(userId);
         const accessToken = user.generateAccessToken();
         const refreshToken = user.generateRefreshToken();
-        console.log(user.refreshToken, refreshToken);
         user.refreshToken = refreshToken;
-
         await user.save({validateBeforeSave: false});
         return {
             accessToken,
@@ -143,7 +141,7 @@ const loginUser = asyncHandler(async(req,res) => {
     if(!isPasswordValid)
         throw new ApiError(403,"Bad Credentials");
     const { accessToken, refreshToken } = await generateAccessAndRefreshToken(user._id);
-    const loggedinUser = await User.findById(user._id).select("-paswword -refreshToken");;
+    const loggedinUser = await User.findById(user._id).select("-password -refreshToken");;
     res
     .status(200)
     .cookie("accessToken",accessToken,OPTIONS)

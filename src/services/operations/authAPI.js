@@ -12,7 +12,7 @@ const sendOTP = (formData,navigate) => {
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
             }
-            toast.success("OTP Sent Successfully");
+            toast.success(response.data.message);
             dispatch() // to be planned
         } catch (error) {
             console.log(error.message);
@@ -30,7 +30,7 @@ const resendOTP = (formData,navigate) => {
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
             }
-            toast.success("OTP Resent Succesfully");
+            toast.success(response.data.message);
             dispatch()//to be planned
         }catch(error) {
             console.log(error.message);
@@ -48,7 +48,7 @@ const signupUser = (formData,navigate) => {
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
             }
-            toast.success("User Registered Successfully");
+            toast.success(response.data.message);
             dispatch(setSignupData(null));
             dispatch(setToken(response.data.accessToken));
             // navigate user to dashboard
@@ -66,13 +66,15 @@ const loginUser = (formData,navigate) => {
             const response = await apiConnector("POST", LOGIN_URL, formData, {
               "Content-Type": "application/x-www-form-urlencoded",
             });
+            console.log(response);
             if(!response.data.success){
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
             }
-            toast.success("User Logged-In Successfully");
-            dispatch(setUserData(response.data.user));
-            dispatch(setToken(response.data.accessToken));
+            console.log(response.data);
+            toast.success(response.data.message);
+            dispatch(setUserData(response.data.data.user));
+            dispatch(setToken(response.data.data.accessToken));
             // navigate()//to be planned
         } catch (error) {
             console.log(error.message);
@@ -90,7 +92,7 @@ const logoutUser = (navigate) => {
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
             }
-            toast.success("User logged out Successfully");
+            toast.success(response.data.message);
             dispatch(setUserData(null));
             dispatch(setToken(null));
             navigate() // to be planned
