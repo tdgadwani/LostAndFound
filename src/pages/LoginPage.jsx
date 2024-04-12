@@ -16,10 +16,13 @@ const LoginPage = () => {
     setShowVerificationOTPPage(true);
   };
   return (
-    <div>
+    <div className='bg-kaddu-400 h-screen flex items-center jus'>
         {/* Side style to be rendered */}
+        <div className=' h-screen basis-2/3'>
+            Background
+        </div>
         
-        <div>
+        <div className='basis-1/3'>
             <Login/>
             <div>
                 <span>Forgot Password ?</span>
