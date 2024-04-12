@@ -3,7 +3,8 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 import{generateResetPasswordToken,resetPassword } from "../controllers/ResetPassword.controller.js";
 
 const resetPasswordRouter = express.Router();
-resetPasswordrouter.post("/generate-reset-token", verifyJWT, generateResetPasswordToken);
-resetPasswordrouter.post("/reset-password", verifyJWT, resetPassword); 
+
+resetPasswordRouter.post("/generate-reset-token", generateResetPasswordToken);
+resetPasswordRouter.post("/reset-password/:token", resetPassword); 
 
 export default resetPasswordRouter;

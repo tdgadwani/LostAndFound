@@ -3,8 +3,9 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { User } from "../models/User.model.js";
-import { OPTIONS } from "../constants.js";
+import { OPTIONS, OTP_SUBJECT } from "../constants.js";
 import { OTP } from "../models/OTP.model.js";
+import { mailSender } from "../utils/mailSender.js";
 
 const generateAccessAndRefreshToken = async (userId) => {
     try {
@@ -46,7 +47,7 @@ const sendOTP = asyncHandler(async (req,res) => {
     });
     if(!sentOTP)
         throw new ApiError(500,"something Went wrong While Sending OTP");
-
+    await mailSender(email,OTP_SUBJECT,`YOUR OTP IS ${otp}`)
     return res
     .status(200)
     .json(
@@ -62,7 +63,7 @@ const resendOTP = asyncHandler(async(req,res) => {
     const existingOTP = await OTP.findOne({email});
     let sentOTP;
     if(existingOTP){
-        await OTP.updateOne(
+        await OTP.findByIdAndUpdate(
             existingOTP._id,
             {
                 $set:{
@@ -83,6 +84,7 @@ const resendOTP = asyncHandler(async(req,res) => {
         });
         return res.status(200).json(new ApiResponse(200,sentOTP,"OTP sent Successfully"))
     }
+     await mailSender(email, OTP_SUBJECT, `YOUR OTP IS ${otp}`);
     return res.
     status(200).
     json(new ApiResponse(200,existingOTP,"OTP sent Successfully"))
@@ -130,7 +132,7 @@ const signupUser = asyncHandler(async (req,res) => {
 const loginUser = asyncHandler(async(req,res) => {
     const { rollNo, email, password} = req.body;
     if(!(rollNo || email))
-        throw new ApiError(400,"Email or Username is Required");
+        throw new ApiError(400,"Roll Number or Email is Required");
     const user = await User.findOne({
         $or: [ { rollNo }, { email }],
     });
