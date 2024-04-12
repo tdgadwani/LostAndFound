@@ -3,13 +3,19 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const userSchema = new mongoose.Schema({
-	userName: {
+	Rollno: {
 		type: String,
 		required: true,
 		unique: true,
 		lowercase: true,
 		trim: true,
 		index: true,
+   // minlength: 6,
+   // maxlength: 8,
+    validate: {
+      validator: (v) => v.length >= 6 && v.length <= 8,
+      message: "Rollno must be between 6 and 8 characters long",
+    },
 	},
 	email: {
 		type: String,
@@ -31,6 +37,8 @@ const userSchema = new mongoose.Schema({
 	password: {
         type: String,
         required: [true, "Password is Required"],
+        minlength: 8,
+        maxlength: 16,
 	},
 	refreshToken: {
         type: String,
