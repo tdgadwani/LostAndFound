@@ -1,4 +1,4 @@
-import { AsyncHandler, asynchandler } from "../utils/AsyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { FoundItem } from "../models/FoundItems.model.js";
 import { User } from "../models/User.model.js";

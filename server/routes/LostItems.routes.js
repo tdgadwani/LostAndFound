@@ -4,7 +4,7 @@ import {
   getLostItems,
   getLostItemsById,
   getLostItemsByUId,
-} from "../controllers/LostItems.controller";
+} from "../controllers/LostItems.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
 

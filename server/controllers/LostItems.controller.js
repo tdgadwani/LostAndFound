@@ -1,4 +1,4 @@
-import { AsyncHandler, asynchandler } from "../utils/AsyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { LostItem } from "../models/LostItems.model.js";
 import { User } from "../models/User.model.js";
@@ -16,10 +16,12 @@ const postLostItems=AsyncHandler(async(req,res,_)=>
   )
   throw new ApiError(400, "All fields are Required");
   if (!req.files) throw new ApiError(403, "Image path is required");
+  console.log(req.files.media);
+ // console.log(req.file);
   const imgUpload = async () => {
     try {
       const arr = await Promise.all(
-        req.files.map(async (imgLink) => {
+        req.files.media.map(async (imgLink) => {
           const localPath = imgLink.path;
           const imgUrl = await uploadOnCloudinary(localPath);
           if (!imgUrl) {
@@ -36,18 +38,25 @@ const postLostItems=AsyncHandler(async(req,res,_)=>
   const media = await imgUpload();
   if (!media)
     throw new ApiError(500, "Something Went Wrong While Uploading Image");
-    let Lost;
-    const user = await User.findById(req._id);
-    Lost = await LostItem.create({
-
+    
+    const user = await User.findById(req.user?._id);
+    //console.log(req.user?._id );
+    //console.log(user);
+    if(!user)
+    {
+        throw new ApiError(500,"something went wrong while fetching userid");
+    }
+   let Lost = await LostItem.create({
+      
       itemName,
       category,
       description,
       media,
-      reportedBy: req.user._id,
+      reportedBy: req.user?._id,
       address,
       contactInfo,
     });
+    console.log(reportedBy);
     if (!Lost) throw new ApiError(500, "Unable to post lost item");
     return res
       .status(200)

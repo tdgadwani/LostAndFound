@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { AsyncHandler } from "../utils/AsyncHandler";
-import { ApiError } from "../utils/ApiError";
-import { ApiResponse } from "../utils/ApiResponse";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
+import { ApiError } from "../utils/ApiError.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
 
 const lostItemsSchema =new mongoose.Schema(
     {
@@ -56,5 +56,5 @@ const lostItemsSchema =new mongoose.Schema(
     }
 
 );
-const LostItem = mongoose.model("LostItem", lostItemsSchema);
+ export const LostItem = mongoose.model("LostItem", lostItemsSchema);
 

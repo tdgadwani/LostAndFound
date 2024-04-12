@@ -4,7 +4,7 @@ import {
   getFoundItems,
   getFoundItemById,
   getFoundItemsByUId,
-} from "../controllers/FoundItems.controller";
+} from "../controllers/FoundItems.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
 
@@ -15,8 +15,8 @@ FoundItemRouter.route("/postFoundItems")
 
 FoundItemRouter.route("/getFoundItems").get(verifyJWT, getFoundItems);
 
-FoundItemRouter.route("/getFoundItemsById/:id").get(verifyJWT, getFoundItemsById);
+FoundItemRouter.route("/getFoundItemsById/:id").get(verifyJWT,getFoundItemById );
 
-FoundItemRouter.route("/getFoundItemsByUId").get(verifyJWT, getFoundItemsByUUid);
+FoundItemRouter.route("/getFoundItemsByUId").get(verifyJWT, getFoundItemsByUId);
 
 export default FoundItemRouter;
