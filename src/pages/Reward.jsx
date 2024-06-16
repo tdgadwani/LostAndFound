@@ -1,9 +1,9 @@
 import React from 'react'
 import star from "../assets/VectorLogo.svg"
 import diccount from "../assets/discount.png"
-import HeaderL from './headerLANDT';
+import HeaderL from '../components/Header';
 import {Link} from "react-router-dom"
-import Footer from './footerLANDT';
+import Footer from '../components/Footer';
 
 
 
