@@ -7,21 +7,13 @@ import PostItem from "./components/PostItem.jsx";
 import RetrievedItemCard from "./components/RetrievedItemCard.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import LostPage from "./pages/LostPage.jsx";
+import Reward from "../src/pages/Reward.jsx"
 
 function App() {
 
   return (
     <>
-      {/* <Button buttonTxt={"Login"} buttonClr={"bg-pink-100"}/> */}
-      {/* <RetrievedItemCard imgurls={""} title={""} date={""} /> */}
-      {/* <NavBar/> */}
-      {/* <PostItem/> */}
-      {/* <LoginPage/> */}
-      {/* <ItemList/> */}
-      {/* <Item></Item> */}
-      {/* <ItemDetail/>
-       */}
-       <LostPage></LostPage>
+      <Reward />
        
         
     </>
