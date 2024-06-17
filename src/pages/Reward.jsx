@@ -13,7 +13,7 @@ const Reward = () => {
     <>
        <HeaderL/>
 
-       <div className='m-16 mb-40'>
+       <div className='m-16 mb-40 from-white to-red-300'>
         
         <div>
             <div className=" font-bold text-5xl text-center">Reawrds</div>

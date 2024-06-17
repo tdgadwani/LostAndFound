@@ -8,12 +8,14 @@ import RetrievedItemCard from "./components/RetrievedItemCard.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import LostPage from "./pages/LostPage.jsx";
 import Reward from "../src/pages/Reward.jsx"
+import Leaderboard from "./pages/Leaderboard.jsx";
 
 function App() {
 
   return (
     <>
-      <Reward />
+      {/* <Reward /> */}
+      <Leaderboard />
        
         
     </>
