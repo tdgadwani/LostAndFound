@@ -9,13 +9,15 @@ import LoginPage from "./pages/LoginPage.jsx";
 import LostPage from "./pages/LostPage.jsx";
 import Reward from "../src/pages/Reward.jsx"
 import Leaderboard from "./pages/Leaderboard.jsx";
+import AddItem from "./pages/AddItem.jsx";
 
 function App() {
 
   return (
     <>
       {/* <Reward /> */}
-      <Leaderboard />
+      {/* <Leaderboard /> */}
+      <AddItem />
        
         
     </>
