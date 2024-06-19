@@ -10,6 +10,7 @@ import LostPage from "./pages/LostPage.jsx";
 import Reward from "../src/pages/Reward.jsx"
 import Leaderboard from "./pages/Leaderboard.jsx";
 import AddItem from "./pages/AddItem.jsx";
+import Edit from "./pages/Edit.jsx"
 
 function App() {
 
@@ -17,7 +18,8 @@ function App() {
     <>
       {/* <Reward /> */}
       {/* <Leaderboard /> */}
-      <AddItem />
+      {/* <AddItem /> */}
+      <Edit />
        
         
     </>

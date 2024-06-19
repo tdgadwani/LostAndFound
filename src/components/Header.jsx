@@ -11,7 +11,7 @@ const Title = () => (
 
 const HeaderL = () => {
     return (
-        <div className="flex justify-between items-center shadow-lg bg-white fixed top-0 left-0 right-0 py-2 px-4 md:px-6">
+        <div className="flex justify-between items-center shadow-2xl bg-white fixed top-0 left-0 right-0 py-2 px-4 md:px-6">
             <Title />
             <div className="flex items-center space-x-4">
                 <ul className="hidden md:flex space-x-4 font-bold text-lg">
