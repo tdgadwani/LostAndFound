@@ -19,7 +19,7 @@ function App() {
       {/* <Reward /> */}
       {/* <Leaderboard /> */}
       {/* <AddItem /> */}
-      <Edit />
+      <LoginPage />
        
         
     </>
