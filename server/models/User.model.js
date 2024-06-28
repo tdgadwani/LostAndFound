@@ -1,12 +1,13 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { stringify } from "postcss";
 
 const userSchema = new mongoose.Schema(
   {
     rollNo: {
       type: String,
-      required: true,
+      required: false,
       unique: true,
       lowercase: true,
       trim: true,
@@ -16,6 +17,7 @@ const userSchema = new mongoose.Schema(
         message: "Rollno must be 6 to 8 characters long",
       },
     },
+  
     email: {
       type: String,
       required: true,
@@ -25,13 +27,13 @@ const userSchema = new mongoose.Schema(
     },
     fullName: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
       index: true,
     },
     avatar: {
       type: String, //from cludinary
-      required: true,
+      required: false,
     },
     password: {
       type: String,
@@ -55,6 +57,31 @@ const userSchema = new mongoose.Schema(
     resetPasswordTokenExpiry: {
       type: Date,
       default: null,
+    },
+    isProfileSet:{
+      type:Boolean,
+      default:false,
+
+    },
+    mobileNo:{
+      type: Number,
+      required: false,
+      unique: true,
+      validate: {
+        validator: (v) => v.length >= 10 && v.length <= 10,
+        message: "mobile no must be 10 characters long",
+      },
+    },
+    college:{
+      type:String,
+      required:false,
+
+    },
+    graduationMonth:{
+      type:String,
+    },
+    graduationYear:{
+      type:Number
     }
   },
   {

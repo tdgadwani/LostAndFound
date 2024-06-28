@@ -5,7 +5,7 @@ import ItemList from "./components/ItemList.jsx";
 import NavBar from "./components/NavBar.jsx";
 import PostItem from "./components/PostItem.jsx";
 import RetrievedItemCard from "./components/RetrievedItemCard.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
+import LoginPage from "./pages/CreateAccout.jsx";
 import LostPage from "./pages/LostPage.jsx";
 import Reward from "../src/pages/Reward.jsx"
 import Leaderboard from "./pages/Leaderboard.jsx";

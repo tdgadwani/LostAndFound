@@ -94,30 +94,30 @@ const signupUser = asyncHandler(async (req,res) => {
     const { rollNo, fullName, password, email, otp } = req.body;
     const avatarLocalFilePath = req.file.path;
     console.log(req.file);
-    if([userName, fullName, email, password, otp,avatarLocalFilePath].some((field) => field.trim() === "" ))
+    if([ email, password, otp].some((field) => field.trim() === "" ))
         throw new ApiError(401,"All fields are required");
 
     const existingUser = await User.findOne({
-        $or: [{ rollNo }, { email } ],
+        $or: [{ email } ],
     });
     if(existingUser)
-        throw new Error(403,"User already Registerd with same Email or UserName");
+        throw new Error(403,"User already Registerd with same Email");
     const receivedOTP = await OTP.findOne({email});
     if(!receivedOTP)
         throw new ApiError(500,"Something Went Wrong");
     if(receivedOTP.expiresAt > new Date())
         throw new ApiError(403, " Otp Expired");
-    const avatar = await uploadOnCloudinary(avatarLocalFilePath);
-    console.log(avatar);
-    if(!avatar)
-        throw new ApiError(500,"Something Went wrong while handling Avatar Image");
+    // const avatar = await uploadOnCloudinary(avatarLocalFilePath);
+    // console.log(avatar);
+    // if(!avatar)
+    //     throw new ApiError(500,"Something Went wrong while handling Avatar Image");
 
     const user = await User.create({
         email,
-        userName,
-        fullName,
+        // userName,
+        // fullName,
         password,
-        avatar: avatar.secure_url,
+        // avatar: avatar.secure_url,
     });
     const createdUser = await User.findById(user._id).select("-password -refreshToken");
     if(!createdUser)
@@ -143,7 +143,7 @@ const loginUser = asyncHandler(async(req,res) => {
     if(!isPasswordValid)
         throw new ApiError(403,"Bad Credentials");
     const { accessToken, refreshToken } = await generateAccessAndRefreshToken(user._id);
-    const loggedinUser = await User.findById(user._id).select("-password -refreshToken");;
+    const loggedinUser = await User.findById(user._id).select("-password -refreshToken");
     res
     .status(200)
     .cookie("accessToken",accessToken,OPTIONS)
@@ -183,7 +183,39 @@ const logoutUser = asyncHandler(async(req,res) => {
     )
 });
 
+const editProfile = asyncHandler(async(req,res)=>{
+  const {rollNo, mobileNo, firstName, lastName,collageName, graduationMonth, graduationYear} = req.body;
+  const{isProfileSet}=req.user;
+  if(isProfileSet==false && !rollNo){
+    throw new ApiError(400,"please set your profile by adding roll number");
+  }
 
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $set: {
+        
+        rollNo,
+        mobileNo,
+        fullName: firstName + lastName,
+        collageName,
+        graduationMonth,
+        graduationYear, 
+        isProfileSet:true
+
+      },
+    },
+    { new: true, runValidators: false, }
+  );
+  if(!updatedUser){
+    throw new ApiError(500, "unable to update profile, please try again later");
+  }
+
+  return res
+  .status(200)
+  .json(new ApiResponse(200,{},"profile updated"));
+
+});
 
 export {
     sendOTP,
@@ -191,4 +223,5 @@ export {
     resendOTP,
     loginUser,
     logoutUser,
+    editProfile
 }
