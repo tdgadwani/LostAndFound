@@ -11,6 +11,8 @@ import Reward from "../src/pages/Reward.jsx"
 import Leaderboard from "./pages/Leaderboard.jsx";
 import AddItem from "./pages/AddItem.jsx";
 import Edit from "./pages/Edit.jsx"
+import HomePage from "./pages/Home.jsx"
+
 
 function App() {
 
@@ -19,7 +21,8 @@ function App() {
       {/* <Reward /> */}
       {/* <Leaderboard /> */}
       {/* <AddItem /> */}
-      <LoginPage />
+      {/* <LoginPage /> */}
+      <HomePage/>
        
         
     </>
