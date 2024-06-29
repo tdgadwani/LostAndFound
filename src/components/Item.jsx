@@ -1,25 +1,30 @@
 import React from 'react'
 import lostImage from "../assets/lostSample_1.png"
-import ItemDetailPopup from './ItemDetailPopup'
-import { useState } from 'react'
+import LocationIcon from "../assets/location.svg"
+import RightIcon from "../assets/RightIcon.svg"
+import { IMG_CDN_URL } from "../constants.js"
 
-const Item = () => {
-  const[isPopup, setIsPopup]= useState(false)
+
+const Item = ({cloudinaryImageId,name,type,address,time}) => {
+
+  const hours = 0;  //curr time - addTime
+  
+
   return (
     <>
-   
-      <div className=' bg-kaddu-200  w-1/6 flex flex-col justify-center items-center' onClick ={()=>setIsPopup(true)}>
-        <div className='bg-kaddu-600 w-56 h-56'>
-          <img src={lostImage} alt="" />
+    <div className='h-60 w-60 bg-slate-200 m-2 p-2'>
+        <div className='h-20 bg-red-500 rounded-lg m-2'>
+             <img className='h-4 w-4  top-0 right-0' src={RightIcon} />
+             <img src={ IMG_CDN_URL + cloudinaryImageId }></img>
         </div>
-        <div className='flex justify-between items-center'>
-
-          <div>
-            White Sonata Watch
-          </div>
-          <div>
-            Lost
-          </div>
+        <div className='m-2'>
+            <div className='flex justify-between'>
+                <h1>{name} </h1>
+                <button className='bg-red-400 rounded-lg text-sm p-1'>{type}</button>
+            </div>
+            <div className='flex text-sm'>
+                <p><img src={LocationIcon} alt="" className='h-6 w-6 ' /> {address} | {hours} Hr ago</p>
+            </div>
         </div>
         
       </div>
