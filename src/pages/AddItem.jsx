@@ -1,25 +1,39 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Header from "../components/Header"
 import Footer from '../components/Footer';
+import { postFoundItem } from '../services/operations/foundItemsAPI';
+import { useNavigate } from 'react-router-dom';
+import { postLostItem } from '../services/operations/lostItemsAPI';
 // import ImageIcon from "../assets/ImageIcon.svg"
 
 const AddItem = () => {
-  const [itemName, setItemName] = useState('');
-  const [locationFound, setLocationFound] = useState('');
-  const [category, setCategory] = useState('');
-  const [details, setDetails] = useState('');
-  const [image, setImage] = useState(null);
-  const [isLost, setIsLost] = useState(true); // toggle
+    const itemName = useRef(null);
+    const locationFound = useRef(null);
+    const category = useRef(null);
+    const details = useRef(null);
+    const [image, setImage] = useState(null);
+    const [isLost, setIsLost] = useState(true); 
 
-  const handleImageChange = (e) => {
-    setImage(URL.createObjectURL(e.target.files[0]));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-   
-    console.log({ itemName, locationFound, category, details, image, isLost });
-  };
+    const handleImageChange = (e) => {
+        setImage(URL.createObjectURL(e.target.files[0]));
+    };
+    const navigate = useNavigate();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = {
+          itemName: itemName.current.value,
+          category: category.current.value,
+          description: details.current.value,
+          address: locationFound.current.value,
+        //   contactInfo
+        };
+        if(isLost) {
+            postLostItem(formData,navigate);
+        } else {
+            postFoundItem(formData,navigate)
+        }
+        
+    };
 
   return (
     <>
@@ -72,7 +86,7 @@ const AddItem = () => {
                   type="text"
                   placeholder="Item Name"
                   value={itemName}
-                  onChange={(e) => setItemName(e.target.value)}
+                  ref={itemName}
                   className="w-full p-2 rounded border border-gray-300"
                 />
                 <div className="flex text-sm flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3">
@@ -80,12 +94,12 @@ const AddItem = () => {
                     type="text"
                     placeholder="Location Found"
                     value={locationFound}
-                    onChange={(e) => setLocationFound(e.target.value)}
+                    ref={locationFound}
                     className="w-full md:w-1/2 p-2 rounded border border-gray-300"
                   />
                   <select
                     value={category}
-                    onChange={(e) => setCategory(e.target.value)}
+                    ref={category}
                     className="w-full md:w-1/2 p-2 rounded border border-gray-300"
                   >
                     <option value="" disabled>Select Category</option>
@@ -98,7 +112,7 @@ const AddItem = () => {
                 <textarea
                   placeholder="Add Details"
                   value={details}
-                  onChange={(e) => setDetails(e.target.value)}
+                  ref={details}
                   className="w-full p-2 rounded border border-gray-300"
                   rows="3"
                 ></textarea>

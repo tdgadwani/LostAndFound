@@ -1,6 +1,6 @@
 import { setSignupData, setToken, setUserData } from "../../slices/authSlice.js";
 import { apiConnector } from "../apiConnector.js";
-import { SEND_OTP_URL, RESEND_OTP_URL, SIGNUP_URL, LOGIN_URL, LOGOUT_URL, } from "../apis.js";
+import { SEND_OTP_URL, RESEND_OTP_URL, SIGNUP_URL, LOGIN_URL, LOGOUT_URL, EDIT_PROFILE, } from "../apis.js";
 import { toast } from "react-hot-toast";
 
 const sendOTP = (formData,navigate) => {
@@ -60,6 +60,8 @@ const signupUser = (formData,navigate) => {
 };
 
 const loginUser = (formData,navigate) => {
+
+    
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
         try {
@@ -100,6 +102,23 @@ const logoutUser = (navigate) => {
             console.log(error.message);
         }
     }
+};
+
+const editProfile = (formData,navigate) => {
+    return async(dispatch) => {
+        const toastId = toast.loading("Loading");
+        try {
+            const response = await apiConnector("POST",EDIT_PROFILE,formData);
+            if(!response.data.success) {
+                throw new Error(response.data.message);
+            }
+            toast.success(response.data.message);
+            dispatch(); // to be planned
+        } catch (error) {
+            toast.error(error.message);
+        }
+        toast.dismiss(toastId);
+    }
 }
 
 export {
@@ -108,4 +127,5 @@ export {
     signupUser,
     loginUser,
     logoutUser,
-}
+    editProfile,
+};

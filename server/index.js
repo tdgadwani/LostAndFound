@@ -8,7 +8,7 @@ const PORT = 3000 || process.env.PORT;
     try {
         await connectDB();
         app.on("error", (error) => {
-            console.log(error.message);
+            console.log("Error While Connect the DataBase ", error.message);
             throw error;
         })
         app.listen(PORT, () => {

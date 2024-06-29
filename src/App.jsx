@@ -1,29 +1,21 @@
-import Button from "./components/Button.jsx";
-import Item from "./components/Item.jsx";
-import ItemDetail from "./components/ItemDetail.jsx";
-import ItemList from "./components/ItemList.jsx";
-import NavBar from "./components/NavBar.jsx";
-import PostItem from "./components/PostItem.jsx";
-import RetrievedItemCard from "./components/RetrievedItemCard.jsx";
-import LoginPage from "./pages/CreateAccout.jsx";
-import LostPage from "./pages/LostPage.jsx";
-import Reward from "../src/pages/Reward.jsx"
-import Leaderboard from "./pages/Leaderboard.jsx";
-import AddItem from "./pages/AddItem.jsx";
-import Edit from "./pages/Edit.jsx"
-import HomePage from "./pages/Home.jsx"
-
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import LoginAccount from "./pages/LoginAccount";
 
 function App() {
 
   return (
     <>
+    <Routes>
+		<Route path="/" element={<Home/>} />
+		<Route path="/login" element={<LoginAccount/>}/>
+    </Routes>
       {/* <Reward /> */}
       {/* <Leaderboard /> */}
       {/* <AddItem /> */}
       {/* <LoginPage /> */}
-      <HomePage/>
-       
+      {/* <HomePage/> */}
         
     </>
   )
