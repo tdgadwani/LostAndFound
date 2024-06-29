@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import cross from '../assets/cross.svg'; 
 
 const OTPPopup = ({onClose}) => {
+    
     const [otp, setOtp] = useState(['', '', '', '']);
 
     const handleChange = (e, index) => {
@@ -21,13 +22,13 @@ const OTPPopup = ({onClose}) => {
         }
     };
 
-    // const handleSubmit = (e) => {
-    //     // e.preventDefault();
-    //     const OTPnew = otp.join('');
-    //     console.log(OTPnew)
-    //     // onSubmit(otp.join(''));
+    const handleSubmit = (e) => {
+        // e.preventDefault();
+        const OTPnew = otp.join('');
+        console.log(OTPnew)
+        // onSubmit(otp.join(''));
         
-    // };
+    };
 
     return (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>

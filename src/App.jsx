@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import LoginAccount from "./pages/LoginAccount";
 import Item from "./components/ItemCard";
+import CreateAccount from "./pages/CreateAccout";
+import ItemCard from "./components/ItemCard";
 
 function App() {
 
@@ -17,7 +19,9 @@ function App() {
       {/* <AddItem /> */}
       {/* <LoginPage /> */}
       {/* <HomePage/> */}
-      <Item />
+      {/* <CreateAccount/> */}
+
+      <ItemCard/>
         
     </>
   )
