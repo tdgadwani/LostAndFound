@@ -12,6 +12,7 @@ import Leaderboard from "./pages/Leaderboard.jsx";
 import AddItem from "./pages/AddItem.jsx";
 import Edit from "./pages/Edit.jsx"
 import HomePage from "./pages/Home.jsx"
+import CreateAccount from "./pages/CreateAccout.jsx";
 
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
       {/* <Leaderboard /> */}
       {/* <AddItem /> */}
       {/* <LoginPage /> */}
-      <HomePage/>
+      <LostPage/>
+      {/* <Item /> */}
        
         
     </>
