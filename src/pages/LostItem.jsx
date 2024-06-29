@@ -1,9 +1,10 @@
 import { useState ,useEffect} from "react";
 import Shimmer from "../components/Shimmer";
+import ItemCard from "../components/Item.jsx"
 
 const LostItem = () => {
     const typeItem = "Lost";
-    const [allItem,setAllItemt] = useState([]);
+    const [allItem,setAllItem] = useState([]);
     
     
     useEffect(()=>{
@@ -16,15 +17,15 @@ const LostItem = () => {
   
         const json = await data.json() ;
     
-        setAllItemt(json)
+        setAllItem(json)
        
   
         // console.log(allItem)
       }
       
 
-      if(!allItem)
-        return null;
+    if(!allItem)
+    return null;
 
 
     return allItem?.length === 0 ?<Shimmer/> :  (
@@ -33,9 +34,9 @@ const LostItem = () => {
                   <div><h1>{typeItem} Items</h1></div>
                   <div className="flex flex-wrap bg-pink-200">
                         {
-                        setAllItemt.map((item) =>{
+                        allItem.map((item) =>{
                             return (
-                            <Link to = {"/ItemInfo/" + item.id} key = {item.id}><ReastuarantCard {...item}  /></Link>);
+                            <Link to = {"/ItemInfo/" + item._id} key = {item._id}><ItemCard{...item}  /></Link>);
                         }
                         ) }
                  </div>

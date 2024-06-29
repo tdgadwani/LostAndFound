@@ -5,25 +5,28 @@ import RightIcon from "../assets/RightIcon.svg"
 import { IMG_CDN_URL } from "../constants.js"
 
 
-const Item = ({cloudinaryImageId,name,type,address,time}) => {
+// const Item = ({cloudinaryImageId,itemName,type,address,dateFound}) => {
 
+  const Item = () => {
+    const itemName = "White Laptop Charger";const type="Lost";const address = "Near Library";
   const hours = 0;  //curr time - addTime
   
 
   return (
     <>
-    <div className='h-60 w-60 bg-slate-200 m-2 p-2'>
-        <div className='h-20 bg-red-500 rounded-lg m-2'>
-             <img className='h-4 w-4  top-0 right-0' src={RightIcon} />
-             <img src={ IMG_CDN_URL + cloudinaryImageId }></img>
+    <div className='h-72 w-64 bg-slate-200 m-2 p-2 rounded-md'>
+        <div className='h-44 bg-red-500 rounded-lg p-2'>
+             <img className='h-8 w-8 relative top-0 right-0' src={RightIcon} />
+             {/* <img src={ IMG_CDN_URL + cloudinaryImageId } /> */}
         </div>
-        <div className='m-2'>
+        <div className='my-2 p-2'>
             <div className='flex justify-between'>
-                <h1>{name} </h1>
-                <button className='bg-red-400 rounded-lg text-sm p-1'>{type}</button>
+                <h1 className='font-bold text-black'>{itemName} </h1>
+                <button className='bg-red-500 rounded-lg text-sm p-1 font-bold text-white'>{type}</button>
             </div>
-            <div className='flex text-sm'>
-                <p><img src={LocationIcon} alt="" className='h-6 w-6 ' /> {address} | {hours} Hr ago</p>
+            <div className='flex  text-sm'>
+                <img src={LocationIcon} alt="" className='h-6 w-6 ' />
+                <p>{address} | {hours} Hr ago</p> 
             </div>
         </div>
     </div>
