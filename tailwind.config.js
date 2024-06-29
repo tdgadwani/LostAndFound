@@ -13,7 +13,7 @@ export default {
       colors: {
         kaddu: {
           100: "#FCDDEC",
-          200: "#D7FFE7",
+          200: "#EDEDED",
           300: "#FBC6C6",
           400: "#FF9898",
           500:"#FF5656",

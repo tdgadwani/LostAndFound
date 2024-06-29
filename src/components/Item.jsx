@@ -1,28 +1,29 @@
 import React from 'react'
 import lostImage from "../assets/lostSample_1.png"
-import mapIcon from "../assets/Map_Icon.svg"
+import ItemDetailPopup from './ItemDetailPopup'
+import { useState } from 'react'
+
 const Item = () => {
+  const[isPopup, setIsPopup]= useState(false)
   return (
     <>
-    <div className='flex justify-evenly items-center'>
-        <div className='h-48 w-48'>
-            <img src={lostImage}></img>
+   
+      <div className=' bg-kaddu-200  w-1/6 flex flex-col justify-center items-center' onClick ={()=>setIsPopup(true)}>
+        <div className='bg-kaddu-600 w-56 h-56'>
+          <img src={lostImage} alt="" />
         </div>
-        <div>
+        <div className='flex justify-between items-center'>
+
           <div>
-            <h1>White Charger : IPhone
-            </h1>
-            </div>
-            <div className='flex items-center justify-evenly'>
-              <div>
-          <img src={mapIcon} alt="" className='h-10 w-10 ' />
+            White Sonata Watch
           </div>
           <div>
-            Library, NIT Patna
-            </div>
-            </div>
+            Lost
+          </div>
         </div>
-    </div>
+        
+      </div>
+     {isPopup &&  <ItemDetailPopup onClose={()=>setIsPopup(false)}/>}
     </>
   )
 }
