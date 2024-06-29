@@ -9,7 +9,7 @@ const Title = () => (
     </a>
 );
 
-const HeaderL = () => {
+const Header = () => {
     return (
         <div className="flex justify-between items-center shadow-2xl bg-white fixed top-0 left-0 right-0 py-2 px-4 md:px-6">
             <Title />
@@ -28,4 +28,4 @@ const HeaderL = () => {
     );
 };
 
-export default HeaderL;
+export default Header;
