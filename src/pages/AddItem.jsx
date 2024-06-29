@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import { postFoundItem } from '../services/operations/foundItemsAPI';
 import { useNavigate } from 'react-router-dom';
 import { postLostItem } from '../services/operations/lostItemsAPI';
+import { CONSTANTS } from '../utils/constants';
 // import ImageIcon from "../assets/ImageIcon.svg"
 
 const AddItem = () => {
@@ -11,123 +12,176 @@ const AddItem = () => {
     const locationFound = useRef(null);
     const category = useRef(null);
     const details = useRef(null);
-    const [image, setImage] = useState(null);
     const [isLost, setIsLost] = useState(true); 
-
-    const handleImageChange = (e) => {
-        setImage(URL.createObjectURL(e.target.files[0]));
+    const [uploadedFiles, setUploadedFiles] = useState([]);
+    const [fileLimit, setFieLimit] = useState(false);
+    
+    const handleUploadFiles = (files) => {
+      const uploaded = [...uploadedFiles];
+      let limitExceeded = false;
+      files.some((file) => {
+        if (uploaded.findIndex((f) => f.name === file.name) === -1) {
+          uploaded.push(file);
+          if (uploaded.length === MAX_COUNT) setFieLimit(true);
+          if (uploaded.length > MAX_COUNT) {
+            toast.error(`You can only add upto ${MAX_COUNT} files`);
+            setFieLimit(false);
+            limitExceeded = true;
+            return true;
+          }
+        }
+      });
+      if (!limitExceeded) setUploadedFiles(uploaded);
     };
+
+    const handleFiles = (e) => {
+      const chosenFiles = Array.prototype.slice.call(e.target.files);
+      handleUploadFiles(chosenFiles);
+    };
+
     const navigate = useNavigate();
-    const handleSubmit = (e) => {
+     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = {
-          itemName: itemName.current.value,
-          category: category.current.value,
-          description: details.current.value,
-          address: locationFound.current.value,
-        //   contactInfo
+            title: titleRef.current.value,
+            description: descriptionRef.current.value,
+            location: placeRef.current.value,
+            category: categoryRef.current.value,
+            media: uploadedFiles,
         };
+        titleRef.current.value = '';
+        descriptionRef.current.value = '';
+        placeRef.current.value = '';
+        categoryRef.current.value = '';
+
         if(isLost) {
             postLostItem(formData,navigate);
         } else {
             postFoundItem(formData,navigate)
         }
-        
-    };
+
+    }
 
   return (
     <>
-        <Header />
-       
-        <div className="min-h-screen bg-gradient-to-b from-white to-red-200 p-2 md:p-4 mt-10">
-            <div className="max-w-xl mx-auto bg-white shadow-2xl rounded-lg p-4 md:p-6">
-                <h1 className="text-6xl md:text-3xl font-bold text-center mb-4 md:mb-6">Add Item</h1>
+      <Header />
 
-                
-        <div className="flex justify-center mb-2 md:mb-4 ">
-          <div className="flex items-center space-x-2 md:space-x-3">
-            <button
-              onClick={() => setIsLost(true)}
-              className={`px-2 md:px-3 py-1 md:py-2 rounded ${isLost ? 'bg-red-500 text-white' : 'bg-gray-300'}`}
-            >
-              Lost
-            </button>
-            <button
-              onClick={() => setIsLost(false)}
-              className={`px-2 md:px-3 py-1 md:py-2 rounded ${!isLost ? 'bg-green-500 text-white' : 'bg-gray-300'}`}
-            >
-              Found
-            </button>
-          </div>
-        </div>
+      <div className="min-h-screen bg-gradient-to-b from-white to-red-200 p-2 md:p-4 mt-10">
+        <div className="max-w-xl mx-auto bg-white shadow-2xl rounded-lg p-4 md:p-6">
+          <h1 className="text-6xl md:text-3xl font-bold text-center mb-4 md:mb-6">
+            Add Item
+          </h1>
 
-        <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
-          <div className="flex flex-col md:flex-row justify-between space-y-3 md:space-y-0 md:space-x-3">
-            <div className="w-full md:w-1/2 flex flex-col items-center space-y-3 bg-gray-300 p-3 rounded-lg">
-              <div className="w-full h-40 bg-gray-100 flex items-center justify-center rounded-lg overflow-hidden">
-                {image ? (
-                  <img src={image} alt="Item" className="object-cover w-full h-full" />
-                ) : (
-                  <div className="text-gray-500">
-                    {/* <img src={ImageIcon} alt="img" /> */}
-                    No Image Selected
-                  </div>
-                )}
-              </div>
-              <input type="file" onChange={handleImageChange} className="hidden" id="upload-image" />
-              <label htmlFor="upload-image" className="bg-gray-100 py-2 px-3 rounded cursor-pointer hover:bg-gray-400 text-center w-full">
-                Add Image
-              </label>
+          <div className="flex justify-center mb-2 md:mb-4 ">
+            <div className="flex items-center space-x-2 md:space-x-3">
+              <button
+                onClick={() => setIsLost(true)}
+                className={`px-2 md:px-3 py-1 md:py-2 rounded ${
+                  isLost ? "bg-red-500 text-white" : "bg-gray-300"
+                }`}
+              >
+                Lost
+              </button>
+              <button
+                onClick={() => setIsLost(false)}
+                className={`px-2 md:px-3 py-1 md:py-2 rounded ${
+                  !isLost ? "bg-green-500 text-white" : "bg-gray-300"
+                }`}
+              >
+                Found
+              </button>
             </div>
-            <div className="w-full md:w-1/2 bg-gray-300 p-3 rounded-lg">
-              <h2 className="text-lg md:text-xl font-bold mb-3">Description</h2>
-              <div className="space-y-3">
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
+            <div className="flex flex-col md:flex-row justify-between space-y-3 md:space-y-0 md:space-x-3">
+              <div className="w-full md:w-1/2 flex flex-col items-center space-y-3 bg-gray-300 p-3 rounded-lg">
+                <div className="w-full h-40 bg-gray-100 flex items-center justify-center rounded-lg overflow-hidden">
+                  {image ? (
+                    <img
+                      src={image}
+                      alt="Item"
+                      className="object-cover w-full h-full"
+                    />
+                  ) : (
+                    <div className="text-gray-500">
+                      {/* <img src={ImageIcon} alt="img" /> */}
+                      No Image Selected
+                    </div>
+                  )}
+                </div>
+
                 <input
-                  type="text"
-                  placeholder="Item Name"
-                  value={itemName}
-                  ref={itemName}
-                  className="w-full p-2 rounded border border-gray-300"
+                  multiple
+                  type="file"
+                  onChange={handleFiles}
+                  disabled={fileLimit}
+                  className="hidden"
+                  id="upload-image"
                 />
-                <div className="flex text-sm flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3">
+                <label
+                  htmlFor="upload-image"
+                  className="bg-gray-100 py-2 px-3 rounded cursor-pointer hover:bg-gray-400 text-center w-full"
+                >
+                  Add Image
+                </label>
+              </div>
+              <div className="w-full md:w-1/2 bg-gray-300 p-3 rounded-lg">
+                <h2 className="text-lg md:text-xl font-bold mb-3">
+                  Description
+                </h2>
+                <div className="space-y-3">
                   <input
                     type="text"
-                    placeholder="Location Found"
-                    value={locationFound}
-                    ref={locationFound}
-                    className="w-full md:w-1/2 p-2 rounded border border-gray-300"
+                    placeholder="Item Name"
+                    value={itemName}
+                    ref={itemName}
+                    className="w-full p-2 rounded border border-gray-300"
                   />
-                  <select
-                    value={category}
-                    ref={category}
-                    className="w-full md:w-1/2 p-2 rounded border border-gray-300"
-                  >
-                    <option value="" disabled>Select Category</option>
-                    <option value="electronics">Electronics</option>
-                    <option value="clothing">Clothing</option>
-                    <option value="accessories">Accessories</option>
-                    <option value="other">Other</option>
-                  </select>
+                  <div className="flex text-sm flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3">
+                    <input
+                      type="text"
+                      placeholder="Location Found"
+                      value={locationFound}
+                      ref={locationFound}
+                      className="w-full md:w-1/2 p-2 rounded border border-gray-300"
+                    />
+                    <select
+                      value={category}
+                      ref={category}
+                      className="w-full md:w-1/2 p-2 rounded border border-gray-300"
+                    >
+                      {CONSTANTS.map((constant, index) => {
+                        return (
+                          <option value={constant} key={index}>
+                            {constant}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                  <textarea
+                    placeholder="Add Details"
+                    value={details}
+                    ref={details}
+                    className="w-full p-2 rounded border border-gray-300"
+                    rows="3"
+                  ></textarea>
                 </div>
-                <textarea
-                  placeholder="Add Details"
-                  value={details}
-                  ref={details}
-                  className="w-full p-2 rounded border border-gray-300"
-                  rows="3"
-                ></textarea>
               </div>
             </div>
-          </div>
-          <div className="flex justify-center mt-3">
-            <button type="submit" className="bg-red-500 text-white py-2 px-6 rounded-full font-bold hover:bg-red-600">
-              Submit
-            </button>
-          </div>
-        </form>
+            <div className="flex justify-center mt-3">
+              <button
+                type="submit"
+                className="bg-red-500 text-white py-2 px-6 rounded-full font-bold hover:bg-red-600"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-    <Footer />
+      <Footer />
     </>
   );
 };

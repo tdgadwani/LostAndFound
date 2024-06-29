@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import cross from '../assets/cross.svg'; 
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { signupUser } from '../services/operations/authAPI';
 
-const OTPPopup = ({onClose}) => {
+const OTPPopup = ({ onClose, email }) => {
     const [otp, setOtp] = useState(['', '', '', '']);
 
     const handleChange = (e, index) => {
@@ -20,14 +23,14 @@ const OTPPopup = ({onClose}) => {
             document.getElementById(`otp-input-${index + 1}`).focus();
         }
     };
+    
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const formData = useSelector((store) => store?.auth?.userData);
 
-    // const handleSubmit = (e) => {
-    //     // e.preventDefault();
-    //     const OTPnew = otp.join('');
-    //     console.log(OTPnew)
-    //     // onSubmit(otp.join(''));
-        
-    // };
+    const handleSubmit = () => {
+        dispatch(signupUser(formData,navigate));
+    }
 
     return (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
@@ -37,7 +40,7 @@ const OTPPopup = ({onClose}) => {
                 </button>
                 <div className='text-center mb-6'>
                     <h2 className='text-2xl font-bold'>Enter OTP</h2>
-                    <p className='text-gray-600'>We have sent an OTP to your phone</p>
+                    <p className='text-gray-600'>We have sent an OTP to your Email {email}</p>
                 </div>
                 <form   className='flex flex-col items-center'>
                     <div className='flex space-x-2 mb-6'>
@@ -56,7 +59,7 @@ const OTPPopup = ({onClose}) => {
                     </div>
                     <button
                         type="submit"
-                        onClick={handleSubmit()}
+                        onClick={handleSubmit}
                         className='bg-blue-500 text-white py-2 px-6 rounded font-semibold'
                     >
                         Submit
