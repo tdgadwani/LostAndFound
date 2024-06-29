@@ -2,20 +2,22 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import LoginAccount from "./pages/LoginAccount";
+import Item from "./components/Item";
 
 function App() {
 
   return (
     <>
-    <Routes>
+    {/* <Routes>
 		<Route path="/" element={<Home/>} />
 		<Route path="/login" element={<LoginAccount/>}/>
-    </Routes>
+    </Routes> */}
       {/* <Reward /> */}
       {/* <Leaderboard /> */}
       {/* <AddItem /> */}
       {/* <LoginPage /> */}
       {/* <HomePage/> */}
+      <Item />
         
     </>
   )
