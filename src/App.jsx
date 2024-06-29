@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import LoginAccount from "./pages/LoginAccount";
-import Item from "./components/Item";
+import Item from "./components/ItemCard";
 
 function App() {
 

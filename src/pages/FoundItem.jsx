@@ -22,8 +22,6 @@ const LostItem = () => {
     
         setAllItem(json)
        
-  
-        // console.log(allItem)
       }
       
 
@@ -48,4 +46,4 @@ const LostItem = () => {
     )
 };
 
-export default LostItem;
+export default FoundItem;
