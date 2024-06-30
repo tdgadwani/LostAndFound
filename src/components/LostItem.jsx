@@ -1,11 +1,11 @@
 import { useState ,useEffect} from "react";
-import Shimmer from "../components/Shimmer";
+import Shimmer from "../components/Shimmer.jsx";
 import ItemCard from "../components/ItemCard.jsx"
 import HeaderL from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx"
 
 
-const LostItem = () => {
+const LostItemComp = () => {
     const typeItem = "Lost";
     const [allItem,setAllItem] = useState([]);
     
@@ -22,13 +22,15 @@ const LostItem = () => {
     
         setAllItem(json)
        
+  
+        // console.log(allItem)
       }
       
 
 
     return (
         <>
-           <HeaderL />
+          
            allItem?.length === 0 ?<Shimmer/> :  
            (<div>
                   <div><h1>{typeItem} Items</h1></div>
@@ -41,9 +43,9 @@ const LostItem = () => {
                         ) }
                  </div>
            </div>)
-           <Footer />
+        
         </>
     )
 };
 
-export default FoundItem;
+export default LostItemComp;

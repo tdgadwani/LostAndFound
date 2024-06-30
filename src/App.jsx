@@ -3,6 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import LoginAccount from "./pages/LoginAccount";
 import Item from "./components/ItemCard";
+import CreateAccount from "./pages/CreateAccout";
+import AddItem from "./pages/AddItemPage";
+import EditProfile from "./pages/EditProfilePage";
+import Leaderboard from "./pages/Leaderboard";
+import Reward from "./pages/Reward";
 
 function App() {
 
@@ -17,7 +22,10 @@ function App() {
       {/* <AddItem /> */}
       {/* <LoginPage /> */}
       {/* <HomePage/> */}
-      <Item />
+      {/* <Item /> */}
+      <CreateAccount />
+      {/* <EditProfile /> */}
+      {/* <Leaderboard /> */}
         
     </>
   )

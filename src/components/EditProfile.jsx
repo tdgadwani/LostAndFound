@@ -7,8 +7,7 @@ import avatar3 from '../assets/avatar3.png';
 import avatar4 from '../assets/avatar4.png';
 import avatar5 from '../assets/avatar5.png';
 import avatar6 from '../assets/avatar6.png';
-import HeaderL from '../components/Header';
-import Footer from '../components/Footer';
+
 
 const avatarMap = {
   avatar0: avatar0,
@@ -20,7 +19,7 @@ const avatarMap = {
   avatar6: avatar6
 };
 
-const EditProfile = () => {
+const EditProfileComp = () => {
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -55,8 +54,7 @@ const EditProfile = () => {
 
   return (
     <>
-      <HeaderL />
-
+     
       <div className="min-h-screen bg-gradient-to-b from-white to-red-200">
         <main className="py-16">
           <div className="text-center">
@@ -215,9 +213,8 @@ const EditProfile = () => {
         </main>
       </div>
 
-      <Footer />
     </>
   );
 };
 
-export default EditProfile;
+export default EditProfileComp;

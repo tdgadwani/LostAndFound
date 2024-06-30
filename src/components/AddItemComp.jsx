@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
-import Header from "../components/Header"
-import Footer from '../components/Footer';
+import Header from "./Header"
+import Footer from './Footer';
 import { postFoundItem } from '../services/operations/foundItemsAPI';
 import { useNavigate } from 'react-router-dom';
 import { postLostItem } from '../services/operations/lostItemsAPI';
 // import ImageIcon from "../assets/ImageIcon.svg"
 
-const AddItem = () => {
+const AddItemComp = () => {
     const itemName = useRef(null);
     const locationFound = useRef(null);
     const category = useRef(null);
@@ -37,8 +37,6 @@ const AddItem = () => {
 
   return (
     <>
-        <Header />
-       
         <div className="min-h-screen bg-gradient-to-b from-white to-red-200 p-2 md:p-4 mt-10">
             <div className="max-w-xl mx-auto bg-white shadow-2xl rounded-lg p-4 md:p-6">
                 <h1 className="text-6xl md:text-3xl font-bold text-center mb-4 md:mb-6">Add Item</h1>
@@ -127,12 +125,11 @@ const AddItem = () => {
         </form>
       </div>
     </div>
-    <Footer />
     </>
   );
 };
 
-export default AddItem;
+export default AddItemComp;
 
 
 //Multiple images'
