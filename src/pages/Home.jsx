@@ -5,14 +5,13 @@ import NavBar from '../components/NavBar';
 import { useState } from 'react';
 
 
-const Home = () => {
-    const[name,setName] = useState("Kush")
+const Home = ({ userName }) => {
   return (
     <>
     <NavBar></NavBar>
     <div className='ml-20'>
         <div className='text-9xl'>
-            HI <span className='text-kaddu-400'>{name}</span>
+            HI <span className='text-kaddu-400'>{userName}</span>
         </div>
         <div className='text-8xl my-9'>
             what's your plan for today?

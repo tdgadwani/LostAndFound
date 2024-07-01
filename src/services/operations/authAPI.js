@@ -44,6 +44,9 @@ const signupUser = (formData,navigate) => {
         const toastId = toast.loading("Loading...");
         try {
             const response = await apiConnector("POST",SIGNUP_URL,formData);
+            setTimeout(() => {
+                console.log("Dummy Timer");
+            },10000);
             if(!response.data.success){
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
@@ -51,7 +54,7 @@ const signupUser = (formData,navigate) => {
             toast.success(response.data.message);
             dispatch(setSignupData(null));
             dispatch(setToken(response.data.accessToken));
-            // navigate user to dashboard
+            navigate("/home");
         } catch (error) {
             console.log(error.message);
         }
