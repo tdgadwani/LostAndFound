@@ -8,6 +8,7 @@ import AddItem from "./pages/AddItemPage";
 import EditProfile from "./pages/EditProfilePage";
 import Leaderboard from "./pages/Leaderboard";
 import Reward from "./pages/Reward";
+import ItemCard from "./components/ItemCard";
 
 function App() {
 
@@ -22,10 +23,9 @@ function App() {
       {/* <AddItem /> */}
       {/* <LoginPage /> */}
       {/* <HomePage/> */}
-      {/* <Item /> */}
-      <CreateAccount />
-      {/* <EditProfile /> */}
-      {/* <Leaderboard /> */}
+      {/* <CreateAccount/> */}
+
+      <ItemCard/>
         
     </>
   )

@@ -6,7 +6,10 @@ import googleLogo from '../assets/googleLogin.svg'
 import appleLogo from '../assets/appleLogin.svg'
 import { sendOTP } from '../services/operations/authAPI';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
+import { useRef } from 'react';
+import OTPPopup from '../components/otpPopup.jsx';
+
 
 const CreateAccount = () => {
     const [showOTPWindow, setShowOTPWindow] = useState(false);
@@ -20,6 +23,7 @@ const CreateAccount = () => {
     dispatch(sendOTP(formData,navigate));
     setShowOTPWindow(true);
 	}
+
 	const emailRef = useRef("");
 	const passwordRef = useRef("");
   
@@ -51,7 +55,7 @@ const CreateAccount = () => {
                         <input type="text" placeholder='password'  ref={passwordRef}  className=' border-2 py-2 px-10 mt-2'  />
                     </div>
                     <div>
-                        <button className='bg-kaddu-500 p-3 w-full border-2 mt-2 font-bold text-xl' onSubmit={submitHandler}>
+                        <button className='bg-kaddu-500 p-3 w-full border-2 mt-2 font-bold text-xl' onClick={()=> setShowOTPWindow(true)}>
                             create Account
                         </button>
                     </div>
@@ -78,6 +82,7 @@ const CreateAccount = () => {
 
       </div>
     </div>
+    {showOTPWindow && <OTPPopup onClose={()=> setShowOTPWindow(false)}/>}
     </>
   )
 }
