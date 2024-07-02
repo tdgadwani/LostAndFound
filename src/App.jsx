@@ -19,9 +19,9 @@ function App() {
       {/* <AddItem /> */}
       {/* <LoginPage /> */}
       {/* <HomePage/> */}
-      {/* <CreateAccount/> */}
+      <CreateAccount/>
 
-      <ItemCard/>
+      {/* <ItemCard/> */}
         
     </>
   )
