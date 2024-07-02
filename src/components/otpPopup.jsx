@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { signupUser } from '../services/operations/authAPI';
 
 const OTPPopup = ({ onClose, email }) => {
-    const [otp, setOtp] = useState(['', '', '', '']);
+    const [otp, setOtp] = useState(['', '', '', '', '', '']);
 
     const handleChange = (e, index) => {
         const { value } = e.target;
@@ -19,16 +19,23 @@ const OTPPopup = ({ onClose, email }) => {
     const handleKeyUp = (e, index) => {
         if (e.key === 'Backspace' && !otp[index] && index > 0) {
             document.getElementById(`otp-input-${index - 1}`).focus();
-        } else if (index < 3 && otp[index]) {
+        } else if (index < 5 && otp[index]) {
             document.getElementById(`otp-input-${index + 1}`).focus();
         }
     };
     
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const formData = useSelector((store) => store?.auth?.userData);
+    const formData = useSelector((store) => store?.auth?.signupData);
 
     const handleSubmit = () => {
+        const numberString = otp.join(""); 
+        const otpNumber = /^\d+$/.test(numberString) ? Number(numberString) : NaN;
+        formData.otp = otpNumber;
+        console.log(`Formdata ${formData} otp ${otp}`);
+        setTimeout(() => {
+            console.log("DummyTimer");
+        },1000000);
         dispatch(signupUser(formData,navigate));
     }
 

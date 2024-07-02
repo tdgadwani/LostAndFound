@@ -1,13 +1,13 @@
 import React, { useRef, useState } from 'react';
-import Header from "../components/Header"
-import Footer from '../components/Footer';
+import Header from "./Header"
+import Footer from './Footer';
 import { postFoundItem } from '../services/operations/foundItemsAPI';
 import { useNavigate } from 'react-router-dom';
 import { postLostItem } from '../services/operations/lostItemsAPI';
 import { CONSTANTS } from '../utils/constants';
 // import ImageIcon from "../assets/ImageIcon.svg"
 
-const AddItem = () => {
+const AddItemComp = () => {
     const itemName = useRef(null);
     const locationFound = useRef(null);
     const category = useRef(null);
@@ -186,7 +186,7 @@ const AddItem = () => {
   );
 };
 
-export default AddItem;
+export default AddItemComp;
 
 
 //Multiple images'

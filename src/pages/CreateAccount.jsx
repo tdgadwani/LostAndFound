@@ -1,26 +1,42 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import BGImage from "../assets/SignIn_Page.svg";
 import CreateAcc from "../assets/Create_Account.svg";
 import Logo from "../assets/LOGO.svg";
 import googleLogo from "../assets/googleLogin.svg";
 import appleLogo from "../assets/appleLogin.svg";
+import { sendOTP } from "../services/operations/authAPI.js";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../services/operations/authAPI";
+import { useDispatch, useSelector } from "react-redux";
+import OTPPopup from "../components/otpPopup.jsx";
+import { setSignupData } from "../slices/authSlice.js";
 
-const LoginPage = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const emailRef = useRef(null);
-    const passwordRef = useRef(null);
-    const submitHandler = (e) => {
-        e.preventDefault();
-        const formData = {
-            email: emailRef.curren.value,
-            password: passwordRef.current.value,
-        };
-        dispatch(loginUser(formData,navigate));
+const CreateAccount = () => {
+  const [showOTPWindow, setShowOTPWindow] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+  let email = "";
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    dispatch(
+      setSignupData({
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      })
+    );
+    const formData = {
+      email: emailRef.current.value,
     };
+    email = emailRef.current.value;
+    dispatch(sendOTP(formData, navigate));
+    emailRef.current.value = "";
+    passwordRef.current.value = "";
+    setShowOTPWindow(true);
+  };
+
+
   return (
     <>
       <div
@@ -48,41 +64,39 @@ const LoginPage = () => {
                 <input
                   type="text"
                   placeholder="email"
-                  className=" border-2 py-2 px-10"
                   ref={emailRef}
+                  className=" border-2 py-2 px-10"
                 />
               </div>
               <div>
                 <input
                   type="text"
                   placeholder="password"
-                  className=" border-2 py-2 px-10 mt-2"
                   ref={passwordRef}
+                  className=" border-2 py-2 px-10 mt-2"
                 />
               </div>
               <div>
                 <button
                   className="bg-kaddu-500 p-3 w-full border-2 mt-2 font-bold text-xl"
-                  onSubmit={submitHandler}
+                  onClick={submitHandler}
                 >
-                  Login
+                  create Account
                 </button>
               </div>
             </div>
-            <div className="my-2"> or signin with</div>
-            <div className="flex items-center justify-between my-2">
+            <div className="my-2">or signin with</div>
+            {/* <div className="flex items-center justify-between my-2">
               <div className="mr-7">
                 <img src={googleLogo} />
               </div>
               <div>
-                {" "}
                 <img src={appleLogo} alt="" />
               </div>
               <div className="ml-7">
-                {" "}
                 <img src={appleLogo} alt="" />
               </div>
-            </div>
+            </div> */}
             <div className="my-2">
               By creating account you agree to Relink <br></br>
               Terms of Services and Privacy Policy
@@ -91,16 +105,23 @@ const LoginPage = () => {
 
           <div>
             <div>
-              Don't have an account?{" "}
-              <Link to="/signup">
-                <span className="text-kaddu-600">Create Now </span>
-              </Link>
+              Have an account?{" "}
+              <Link to="/login" className="text-kaddu-600">
+                {" "}
+                login
+              </Link>{" "}
             </div>
           </div>
         </div>
       </div>
+      {showOTPWindow && (
+        <OTPPopup
+          onClose={() => setShowOTPWindow(false)}
+          email={email}
+        />
+      )}
     </>
   );
 };
 
-export default LoginPage;
+export default CreateAccount;
