@@ -54,12 +54,16 @@ const AddItemComp = ({isLost}) => {
 
      const handleSubmit = (e) => {
         e.preventDefault();
+        const fileFormData = new FormData();
+        for(let i=0;i < uploadedFiles.length; i++) {
+          fileFormData.append("media", uploadedFiles[i]);
+        }
         const formData = {
             itemName: itemName.current.value,
             description: description.current.value,
             address: locationFound.current.value,
             category: category.current.value,
-            media: uploadedFiles,
+            media: fileFormData,
         };
         console.log("sdgf", formData, uploadedFiles);
         itemName.current.value = '';
