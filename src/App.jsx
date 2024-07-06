@@ -12,7 +12,7 @@ function App() {
   const { userData } = useSelector((store) => store.auth);
   return (
     <>
-      <Routes>
+      {/* <Routes>
         <Route
           path="/"
           element={
@@ -45,7 +45,9 @@ function App() {
             </PrivateRoute>
           }
         />
-      </Routes>
+      </Routes> */}
+      {/* <CreateAccount /> */}
+      <LoginAccount />
     </>
   );
 }
