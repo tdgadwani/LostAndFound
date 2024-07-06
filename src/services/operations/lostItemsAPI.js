@@ -11,13 +11,16 @@ const postLostItem = (formData,navigate) => {
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
         try {
-            const response = await apiConnector("POST",POST_LOST_ITEM,formData);
+            const response = await apiConnector("POST",POST_LOST_ITEM,formData,{
+                "Content-Type": "multipart/form-data",
+            });
             if(!response.data.success){
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
             }
             toast.success(response.data.message);
             //  navigate logic
+            navigate("/lost-items")
         } catch (error) {
             toast.error(error.message);
         }
