@@ -14,27 +14,16 @@ import { useNavigate } from 'react-router-dom';
 
 
 const avatarMap = {
-  avatar0: avatar0,
-  avatar1: avatar1,
-  avatar2: avatar2,
-  avatar3: avatar3,
-  avatar4: avatar4,
-  avatar5: avatar5,
-  avatar6: avatar6
+  avatar0: AVATAR_URLS[0],
+  avatar1: AVATAR_URLS[1],
+  avatar2: AVATAR_URLS[2],
+  avatar3: AVATAR_URLS[3],
+  avatar4: AVATAR_URLS[4],
+  avatar5: AVATAR_URLS[5],
+  avatar6: AVATAR_URLS[5]
 };
 
 const EditProfileComp = () => {
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    rollNo: "",
-    phoneNo: "",
-    email: "",
-    college: "",
-    gradMonth: "",
-    gradYear: "",
-    avatar: "avatar0",
-  });
 
   const firstName = useRef(null);
   const lastName  = useRef(null);
@@ -80,7 +69,7 @@ const EditProfileComp = () => {
                 <div
                   className={`w-32 h-32 rounded-full cursor-pointer`}
                   style={{
-                    backgroundImage: `url(${avatarMap[form.avatar]})`,
+                    backgroundImage: `url(${avatarMap[avatar]})`,
                     backgroundSize: "cover",
                   }}
                 ></div>
@@ -88,9 +77,9 @@ const EditProfileComp = () => {
                 <div className="flex space-x-2 mt-4">
                   <div
                     className={`w-16 h-16 rounded-full cursor-pointer ${
-                      form.avatar === "avatar1" ? "ring-4 ring-red-500" : ""
+                      avatar === "avatar1" ? "ring-4 ring-red-500" : ""
                     }`}
-                    onClick={() => handleAvatarSelect("avatar1")}
+                    onClick={() => setAvatar("avatar1")}
                     style={{
                       backgroundImage: `url(${AVATAR_URLS[0]})`,
                       backgroundSize: "cover",
@@ -98,9 +87,9 @@ const EditProfileComp = () => {
                   ></div>
                   <div
                     className={`w-16 h-16 rounded-full cursor-pointer ${
-                      form.avatar === "avatar2" ? "ring-4 ring-red-500" : ""
+                      avatar === "avatar2" ? "ring-4 ring-red-500" : ""
                     }`}
-                    onClick={() => handleAvatarSelect("avatar2")}
+                    onClick={() => setAvatar("avatar2")}
                     style={{
                       backgroundImage: `url(${avatar2})`,
                       backgroundSize: "cover",
@@ -108,9 +97,9 @@ const EditProfileComp = () => {
                   ></div>
                   <div
                     className={`w-16 h-16 rounded-full cursor-pointer ${
-                      form.avatar === "avatar3" ? "ring-4 ring-red-500" : ""
+                      avatar === "avatar3" ? "ring-4 ring-red-500" : ""
                     }`}
-                    onClick={() => handleAvatarSelect("avatar3")}
+                    onClick={() => setAvatar("avatar3")}
                     style={{
                       backgroundImage: `url(${avatar3})`,
                       backgroundSize: "cover",
@@ -120,9 +109,9 @@ const EditProfileComp = () => {
                 <div className="flex space-x-2 mt-4">
                   <div
                     className={`w-16 h-16 rounded-full cursor-pointer ${
-                      form.avatar === "avatar4" ? "ring-4 ring-red-500" : ""
+                      avatar === "avatar4" ? "ring-4 ring-red-500" : ""
                     }`}
-                    onClick={() => handleAvatarSelect("avatar4")}
+                    onClick={() => setAvatar("avatar4")}
                     style={{
                       backgroundImage: `url(${avatar4})`,
                       backgroundSize: "cover",
@@ -130,9 +119,9 @@ const EditProfileComp = () => {
                   ></div>
                   <div
                     className={`w-16 h-16 rounded-full cursor-pointer ${
-                      form.avatar === "avatar5" ? "ring-4 ring-red-500" : ""
+                      avatar === "avatar5" ? "ring-4 ring-red-500" : ""
                     }`}
-                    onClick={() => handleAvatarSelect("avatar5")}
+                    onClick={() => setAvatar("avatar5")}
                     style={{
                       backgroundImage: `url(${avatar5})`,
                       backgroundSize: "cover",
@@ -140,9 +129,9 @@ const EditProfileComp = () => {
                   ></div>
                   <div
                     className={`w-16 h-16 rounded-full cursor-pointer ${
-                      form.avatar === "avatar6" ? "ring-4 ring-red-500" : ""
+                      avatar === "avatar6" ? "ring-4 ring-red-500" : ""
                     }`}
-                    onClick={() => handleAvatarSelect("avatar6")}
+                    onClick={() => setAvatar("avatar6")}
                     style={{
                       backgroundImage: `url(${avatar6})`,
                       backgroundSize: "cover",
