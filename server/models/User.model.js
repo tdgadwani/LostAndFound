@@ -8,10 +8,10 @@ const userSchema = new mongoose.Schema(
     rollNo: {
       type: String,
       required: false,
-      unique: true,
+      // unique: true,
       lowercase: true,
       trim: true,
-      index: true,
+      // index: true,
       validate: {
         validator: (v) => v.length >= 6 && v.length <= 8,
         message: "Rollno must be 6 to 8 characters long",
@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: false,
       trim: true,
-      index: true,
+      // index: true,
     },
     avatar: {
       type: String, //from cludinary
@@ -66,7 +66,7 @@ const userSchema = new mongoose.Schema(
     mobileNo:{
       type: Number,
       required: false,
-      unique: true,
+      // unique: true,
       validate: {
         validator: (v) => v.length >= 10 && v.length <= 10,
         message: "mobile no must be 10 characters long",
