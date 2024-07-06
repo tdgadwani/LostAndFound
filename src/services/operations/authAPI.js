@@ -13,7 +13,7 @@ const sendOTP = (formData,navigate) => {
                 throw new Error(response.data.message);
             }
             toast.success(response.data.message);
-            dispatch() // to be planned
+            // dispatch() // to be planned
         } catch (error) {
             console.log(error.message);
         }
@@ -31,7 +31,7 @@ const resendOTP = (formData,navigate) => {
                 throw new Error(response.data.message);
             }
             toast.success(response.data.message);
-            dispatch()//to be planned
+            // dispatch()//to be planned
         }catch(error) {
             console.log(error.message);
         }
@@ -39,53 +39,53 @@ const resendOTP = (formData,navigate) => {
     }
 }
 
-const signupUser = (formData,navigate) => {
-    return async(dispatch) => {
-        const toastId = toast.loading("Loading...");
-        try {
-            const response = await apiConnector("POST",SIGNUP_URL,formData);
-            setTimeout(() => {
-                console.log("Dummy Timer");
-            },10000);
-            if(!response.data.success){
-                toast.error(response.data.message);
-                throw new Error(response.data.message);
-            }
-            toast.success(response.data.message);
-            dispatch(setSignupData(null));
-            dispatch(setToken(response.data.accessToken));
-            navigate("/home");
-        } catch (error) {
-            console.log(error.message);
-        }
-        toast.dismiss(toastId);
+const signupUser = (formData, navigate) => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
+    try {
+      const response = await apiConnector("POST", SIGNUP_URL, formData);
+      
+      if (!response.data.success) {
+        toast.error(response.data.message);
+        throw new Error(response.data.message);
+      }
+      toast.success(response.data.message);
+    //   console.log(response.data);
+      dispatch(setSignupData(null)); 
+      dispatch(setToken(response.data.accessToken)); 
+
+      navigate("/");
+    } catch (error) {
+      console.log(error.message); 
+    } finally {
+      toast.dismiss(toastId);
     }
+  };
 };
 
-const loginUser = (formData,navigate) => {
 
-    
-    return async(dispatch) => {
-        const toastId = toast.loading("Loading...");
-        try {
-            const response = await apiConnector("POST", LOGIN_URL, formData, {
-              "Content-Type": "application/x-www-form-urlencoded",
-            });
-            console.log(response);
-            if(!response.data.success){
-                toast.error(response.data.message);
-                throw new Error(response.data.message);
-            }
-            console.log(response.data);
-            toast.success(response.data.message);
-            dispatch(setUserData(response.data.data.user));
-            dispatch(setToken(response.data.data.accessToken));
-            // navigate()//to be planned
-        } catch (error) {
-            console.log(error.message);
-        }
-        toast.dismiss(toastId);
+const loginUser = (formData, navigate) => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
+    try {
+      const response = await apiConnector("POST", LOGIN_URL, formData, {
+        "Content-Type": "application/x-www-form-urlencoded",
+      });
+      if (!response.data.success) {
+        toast.error(response.data.message);
+        throw new Error(response.data.message);
+      }
+      toast.success(response.data.message);
+      dispatch(setUserData(response.data.data.user));
+      dispatch(setToken(response.data.data.accessToken));
+      navigate("/");
+    } catch (error) {
+      console.error(error.message);
+      toast.error("Login failed. Please try again.");
+    } finally {
+      toast.dismiss(toastId);
     }
+  };
 };
 
 const logoutUser = (navigate) => {
@@ -100,7 +100,7 @@ const logoutUser = (navigate) => {
             toast.success(response.data.message);
             dispatch(setUserData(null));
             dispatch(setToken(null));
-            navigate() // to be planned
+            navigate("/login"); // to be planned
         } catch (error) {
             console.log(error.message);
         }
@@ -116,7 +116,7 @@ const editProfile = (formData,navigate) => {
                 throw new Error(response.data.message);
             }
             toast.success(response.data.message);
-            dispatch(); // to be planned
+            dispatch("/"); // to be planned
         } catch (error) {
             toast.error(error.message);
         }
