@@ -7,7 +7,8 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 
 const postFoundItems = asyncHandler(async (req, res, _) => {
   const { itemName, category, description, address, contactInfo } = req.body;
-  console.log(req.body)
+  
+  console.log(req.files)
  if (
    [itemName, category, description, address, contactInfo].some(
      (field) => typeof field === "string" && field.trim() === ""

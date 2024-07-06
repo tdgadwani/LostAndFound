@@ -7,6 +7,7 @@ import PrivateRoute from "./components/Auth/PrivateRoute";
 import OpenRoute from "./components/Auth/OpenRoute";
 import { useSelector } from "react-redux";
 import AddItem from "./pages/AddItemPage";
+import EditProfile from "./pages/EditProfilePage";
 
 function App() {
   const { userData } = useSelector((store) => store.auth);
@@ -45,6 +46,15 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/editprofile"
+          element={
+            <PrivateRoute>
+              <EditProfile/>
+            </PrivateRoute>
+          }
+        />
+      </Routes>
       </Routes> */}
       {/* <CreateAccount /> */}
       <LoginAccount />

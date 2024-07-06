@@ -35,7 +35,7 @@ const foundItemsSchema = new mongoose.Schema(
     },
     contactInfo: {
       type: contactSchema,
-      required: true,
+      // required: true,
     },
     dateFound: {
       type: Date,

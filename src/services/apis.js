@@ -14,6 +14,7 @@ export const SIGNUP_URL = USER_URL + "/signup";
 export const LOGIN_URL = USER_URL + "/login";
 export const LOGOUT_URL = USER_URL + "/logout";
 export const EDIT_PROFILE = USER_URL + "/edit-profile";
+export const LEADERBOARD_URL = USER_URL + "/leaderboard";
 
 
 export const POST_FOUND_ITEM = FOUND_ITEM_URL + "/postFoundItem";
