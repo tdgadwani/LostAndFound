@@ -4,7 +4,7 @@ import Footer from './Footer';
 import { postFoundItem } from '../services/operations/foundItemsAPI';
 import { useNavigate } from 'react-router-dom';
 import { postLostItem } from '../services/operations/lostItemsAPI';
-import { CONSTANTS } from '../utils/constants';
+import { CONSTANTS, MAX_COUNT } from '../utils/constants';
 import { useDispatch } from 'react-redux';
 import { FaFile } from 'react-icons/fa';
 import { IoImageOutline } from 'react-icons/io5';
@@ -18,7 +18,6 @@ const AddItemComp = ({isLost}) => {
     const [uploadedFiles, setUploadedFiles] = useState([]);
     const [fileLimit, setFileLimit] = useState(false);
     const [fileReaders,setFileReaders] = useState([]);
-    const MAX_COUNT = 4;
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -54,17 +53,14 @@ const AddItemComp = ({isLost}) => {
 
      const handleSubmit = (e) => {
         e.preventDefault();
-        const fileFormData = new FormData();
+        const formData = new FormData();
         for(let i=0;i < uploadedFiles.length; i++) {
-          fileFormData.append("media", uploadedFiles[i]);
+          formData.append("media", uploadedFiles[i]);
         }
-        const formData = {
-            itemName: itemName.current.value,
-            description: description.current.value,
-            address: locationFound.current.value,
-            category: category.current.value,
-            media: fileFormData,
-        };
+        formData.append("itemName", itemName.current.value);
+        formData.append("description", description.current.value);
+        formData.append("address[buildingName]", locationFound.current.value);
+        formData.append("category", category.current.value);
         console.log("sdgf", formData, uploadedFiles);
         itemName.current.value = '';
         description.current.value = '';

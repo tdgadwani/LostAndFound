@@ -116,7 +116,7 @@ const editProfile = (formData,navigate) => {
                 throw new Error(response.data.message);
             }
             toast.success(response.data.message);
-            dispatch("/"); // to be planned
+            navigate("/");
         } catch (error) {
             toast.error(error.message);
         }
