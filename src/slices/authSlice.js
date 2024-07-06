@@ -13,6 +13,9 @@ const authSlice = createSlice({
         setSignupData(state,value) {
             state.signupData = value.payload;
         },
+        setUpdataSignupData(state,value) {
+            state.signupData.otp = value.payload;
+        },
         setToken(state,value) {
             state.token = value.payload;
         },
@@ -26,6 +29,7 @@ export const {
     setSignupData,
     setToken,
     setUserData,
+    setUpdataSignupData
     
 } = authSlice.actions
 
