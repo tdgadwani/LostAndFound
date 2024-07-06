@@ -63,11 +63,11 @@ const userSchema = new mongoose.Schema(
 
     },
     mobileNo:{
-      type: Number,
+      type: String,
       required: false,
       // unique: true,
       validate: {
-        validator: (v) => v.length >= 10 && v.length <= 10,
+        validator: (v) => v.length === 10,
         message: "mobile no must be 10 characters long",
       },
     },
