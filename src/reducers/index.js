@@ -3,6 +3,8 @@ import { combineReducers } from "@reduxjs/toolkit";
 import foundItemSlice from "../slices/foundItemSlice";
 import lostItemSlice from "../slices/lostItemSlice";
 import claimedItemSlice from "../slices/claimedItemSlice";
+import persistReducer from "redux-persist/es/persistReducer";
+import storage from "redux-persist/lib/storage";
 
 const rootReducer = combineReducers({
   auth: authSlice,
@@ -11,4 +13,11 @@ const rootReducer = combineReducers({
   claimedItems: claimedItemSlice,
 });
 
-export default rootReducer;
+const persistConfig = {
+  key: "root",
+  storage
+}
+
+const persistedReducer = persistReducer(persistConfig,rootReducer);
+
+export default persistedReducer;

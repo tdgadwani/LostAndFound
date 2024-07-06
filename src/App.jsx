@@ -6,6 +6,7 @@ import CreateAccount from "./pages/CreateAccount";
 import PrivateRoute from "./components/Auth/PrivateRoute";
 import OpenRoute from "./components/Auth/OpenRoute";
 import { useSelector } from "react-redux";
+import AddItem from "./pages/AddItemPage";
 
 function App() {
   const { userData } = useSelector((store) => store.auth);
@@ -34,6 +35,14 @@ function App() {
             <OpenRoute>
               <CreateAccount />
             </OpenRoute>
+          }
+        />
+        <Route
+          path="/additem"
+          element={
+            <PrivateRoute>
+              <AddItem/>
+            </PrivateRoute>
           }
         />
       </Routes>
