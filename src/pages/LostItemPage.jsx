@@ -1,18 +1,18 @@
 import { useState ,useEffect} from "react";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx"
-import LostItemComp from "../components/LostItem.jsx";
+import AllItemsComponent from "../components/LostItem.jsx";
 
-const LostItem = () => {
+const AllItems = ({itemType}) => {
     
 
     return (
         <>
            <Header />
-           <LostItemComp/>
+           <AllItemsComponent itemType={itemType} />
            <Footer />
         </>
     )
 };
 
-export default LostItem;
+export default AllItems;

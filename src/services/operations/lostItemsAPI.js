@@ -6,6 +6,7 @@ import {
     GET_LOST_ITEMS_BY_USER_ID,
 } from "../apis.js";
 import { apiConnector } from "../apiConnector.js";
+import { setLostItems } from "../../slices/lostItemSlice.js";
 
 const postLostItem = (formData,navigate) => {
     return async(dispatch) => {
@@ -28,7 +29,7 @@ const postLostItem = (formData,navigate) => {
     }
 };
 
-const getLostItems = (navigate) => {
+const getLostItems = () => {
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
         try {
@@ -37,8 +38,8 @@ const getLostItems = (navigate) => {
             toast.error(response.data.message);
             throw new Error(response.data.message);
           }
+          dispatch(setLostItems(response.data.lostItems));
           toast.success(response.data.message);
-          //  navigate logic
         } catch (error) {
             toast.error(error.message);
         }
