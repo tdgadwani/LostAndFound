@@ -8,6 +8,7 @@ import OpenRoute from "./components/Auth/OpenRoute";
 import { useSelector } from "react-redux";
 import AddItem from "./pages/AddItemPage";
 import EditProfile from "./pages/EditProfilePage";
+import AllItems from "./pages/LostItemPage";
 
 function App() {
   const { userData } = useSelector((store) => store.auth);
@@ -51,6 +52,30 @@ function App() {
           element={
             <PrivateRoute>
               <EditProfile/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/lostitems"
+          element={
+            <PrivateRoute>
+              <AllItems itemType={"Lost"}/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/founditems"
+          element={
+            <PrivateRoute>
+              <AllItems itemType={"Found"}/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/claimedtems"
+          element={
+            <PrivateRoute>
+              <AllItems itemType={"Claimed"}/>
             </PrivateRoute>
           }
         />

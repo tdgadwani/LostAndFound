@@ -1,7 +1,8 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import lostImage from '../assets/lostSample_1.png';
 import cross from '../assets/cross.svg';
 import RollNoPopup from './RollNoPopup';
+import { useDispatch } from 'react-redux';
 
 const ItemDetailPopup = ({ onClose }) => {
     const [isrollNoPopUp, setIsRollNoPopUp] = useState(false)
@@ -9,7 +10,10 @@ const ItemDetailPopup = ({ onClose }) => {
     const location = "SAC staircase";
     const category = "Watch";
     const description = "found this white sonata watch, near SAC building, it is a women's watch, with roman digits in the dial";
-
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(get)
+    },[]);
     return (
         <>
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
