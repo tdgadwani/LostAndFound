@@ -17,7 +17,7 @@ const ItemCard = () => {
     return (
         <>
         <div
-            className="h-72 w-64 bg-slate-200 m-2 p-2 rounded-md"
+            className="h-72 w-64 bg-slate-200 m-2 p-2 rounded-md z-0"
             onClick={() => setShowItemDetailPopup(true)}
         >
             <div className="h-44 bg-red-500 rounded-lg p-2">
