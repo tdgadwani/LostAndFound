@@ -8,6 +8,8 @@ import {
     UPDATE_FOUND_ITEMS,
     GET_RETREIVED__ITEMS,
 } from "../apis.js";
+import { setFoundItems } from "../../slices/foundItemSlice.js";
+import { setClaimedItems } from "../../slices/claimedItemSlice.js";
 
 const postFoundItem = (formData,navigate) => {
     return async (dispatch) => {
@@ -27,7 +29,7 @@ const postFoundItem = (formData,navigate) => {
     }
 };
 
-const getFoundItems = (navigate) => {
+const getFoundItems = () => {
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
         try {
@@ -36,8 +38,8 @@ const getFoundItems = (navigate) => {
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
             }
+            dispatch(setFoundItems(response.data.foundItems));
             toast.success(response.data.message);
-            // navigate logic
         } catch (error) {
             toast.error(error.message);
         }
@@ -98,7 +100,7 @@ const updateFoundItem = (formData,navigate) => {
     }
 };
 
-const getRetreivedItems = (navigate) => {
+const getRetreivedItems = () => {
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
         try {
@@ -107,6 +109,7 @@ const getRetreivedItems = (navigate) => {
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
             }
+            dispatch(setClaimedItems(response.data.retrivedItems));
         } catch (error) {
             toast.error(error.message);
         }
