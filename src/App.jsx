@@ -6,12 +6,16 @@ import CreateAccount from "./pages/CreateAccount";
 import PrivateRoute from "./components/Auth/PrivateRoute";
 import OpenRoute from "./components/Auth/OpenRoute";
 import { useSelector } from "react-redux";
+ import LostItem from "./pages/LostItemPage.jsx"
 
+ import ItemList from "./components/ItemList.jsx";
+
+import ItemCard from "./components/ItemCard.jsx";
 function App() {
   const { userData } = useSelector((store) => store.auth);
   return (
     <>
-      <Routes>
+      {/* <Routes>
         <Route
           path="/"
           element={
@@ -36,7 +40,15 @@ function App() {
             </OpenRoute>
           }
         />
-      </Routes>
+      </Routes> */}
+       
+      {/* <Home/> */}
+      <ItemCard/>
+      
+       {/* <ItemList/> */}
+      
+
+       {/* <LostItem/> */}
     </>
   );
 }

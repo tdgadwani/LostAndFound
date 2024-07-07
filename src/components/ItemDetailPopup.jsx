@@ -3,12 +3,18 @@ import lostImage from '../assets/lostSample_1.png';
 import cross from '../assets/cross.svg';
 import RollNoPopup from './RollNoPopup';
 
+import Carousel from './Carousel.jsx';
+
 const ItemDetailPopup = ({ onClose }) => {
     const [isrollNoPopUp, setIsRollNoPopUp] = useState(false)
     const name = "white sonata watch";
     const location = "SAC staircase";
     const category = "Watch";
     const description = "found this white sonata watch, near SAC building, it is a women's watch, with roman digits in the dial";
+
+    const images = [lostImage,lostImage,lostImage];
+ 
+
 
     return (
         <>
@@ -18,10 +24,17 @@ const ItemDetailPopup = ({ onClose }) => {
                     <img src={cross} alt="Close" className='w-6 h-6' />
                 </button>
                 <div className='flex justify-evenly items-center'>
-                    <div className='flex flex-col items-center'>
-                        <div>
-                            <img src={lostImage} alt="Lost Item" className='w-48 h-auto' />
-                        </div>
+                    <div className='flex flex-col items-center w-52'>
+                        <Carousel autoSlide={true} >
+                        {
+                        
+                            images.map((d)=>(
+                                    
+                                    <img src={d} />
+                            ))
+                        }
+                       
+                        </Carousel >
                         <div className='mt-4'>
                             <button className='bg-blue-500 text-white py-2 px-4 rounded' onClick={()=> setIsRollNoPopUp(true)}>Claim</button>
                         </div>
