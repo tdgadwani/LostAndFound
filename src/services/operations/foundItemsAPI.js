@@ -38,12 +38,14 @@ const getFoundItems = () => {
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
             }
-            dispatch(setFoundItems(response.data.foundItems));
+            console.log("tgadwani ", response.data.data);
+            dispatch(setFoundItems(response.data.data));
             toast.success(response.data.message);
         } catch (error) {
             toast.error(error.message);
+        }finally{
+            toast.dismiss(toastId);
         }
-        toast.dismiss(toastId);
     }
 }
 
@@ -109,7 +111,7 @@ const getRetreivedItems = () => {
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
             }
-            dispatch(setClaimedItems(response.data.retrivedItems));
+            dispatch(setClaimedItems(response.data.data));
         } catch (error) {
             toast.error(error.message);
         }

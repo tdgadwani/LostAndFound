@@ -38,7 +38,11 @@ const lostItemsSchema =new mongoose.Schema({
 		type: Date,
 		required: true,
 		default: Date.now
-	}
+	},
+	isLost: {
+		type: Boolean,
+		default: true,
+	},
 },
     {
         timestamps: true,

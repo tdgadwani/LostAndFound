@@ -15,10 +15,10 @@ const Header = () => {
             <Title />
             <div className="flex items-center space-x-4">
                 <ul className="hidden md:flex space-x-4 font-bold text-lg">
-                    <li><Link to="/" className="hover:text-gray-600 text-sm md:text-lg">Lost</Link></li>
-                    <li><Link to="/" className="hover:text-gray-600 text-sm md:text-lg">Found</Link></li>
-                    <li><Link to="/" className="hover:text-gray-600 text-sm md:text-lg">Claimed</Link></li>
-                    <li><Link to="/" className="hover:text-gray-600 text-sm md:text-lg">Rewards</Link></li>
+                    <li><Link to="/lostitems" className="hover:text-gray-600 text-sm md:text-lg">Lost</Link></li>
+                    <li><Link to="/founditems" className="hover:text-gray-600 text-sm md:text-lg">Found</Link></li>
+                    <li><Link to="/claaimeditems" className="hover:text-gray-600 text-sm md:text-lg">Claimed</Link></li>
+                    <li><Link to="/rewards" className="hover:text-gray-600 text-sm md:text-lg">Rewards</Link></li>
                 </ul>
                 <div>
                     <img src={profile} className="h-10 w-10 rounded-full" alt="profile" />

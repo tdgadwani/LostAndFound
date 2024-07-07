@@ -3,14 +3,14 @@ import { combineReducers } from "@reduxjs/toolkit";
 import foundItemSlice from "../slices/foundItemSlice";
 import lostItemSlice from "../slices/lostItemSlice";
 import claimedItemSlice from "../slices/claimedItemSlice";
-import persistReducer from "redux-persist/es/persistReducer";
+import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const rootReducer = combineReducers({
-  auth: authSlice,
-  lostItems: lostItemSlice,
-  foundItems: foundItemSlice,
-  claimedItems: claimedItemSlice,
+  auth: authSlice.reducer,
+  lostItem: lostItemSlice.reducer,
+  foundItems: foundItemSlice.reducer,
+  claimedItems: claimedItemSlice.reducer,
 });
 
 const persistConfig = {
