@@ -1,9 +1,13 @@
 import { useState ,useEffect} from "react";
-import Shimmer from "../components/Shimmer";
+import Shimmer from "../components/Shimmer.jsx";
+import ItemCard from "../components/ItemCard.jsx"
+import HeaderL from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx"
 
-const LostItem = () => {
+
+const LostItemComp = () => {
     const typeItem = "Lost";
-    const [allItem,setAllItemt] = useState([]);
+    const [allItem,setAllItem] = useState([]);
     
     
     useEffect(()=>{
@@ -16,32 +20,32 @@ const LostItem = () => {
   
         const json = await data.json() ;
     
-        setAllItemt(json)
+        setAllItem(json)
        
   
         // console.log(allItem)
       }
       
 
-      if(!allItem)
-        return null;
 
-
-    return allItem?.length === 0 ?<Shimmer/> :  (
+    return (
         <>
-           <div>
+          
+           allItem?.length === 0 ?<Shimmer/> :  
+           (<div>
                   <div><h1>{typeItem} Items</h1></div>
                   <div className="flex flex-wrap bg-pink-200">
                         {
-                        setAllItemt.map((item) =>{
+                        allItem.map((item) =>{
                             return (
-                            <Link to = {"/ItemInfo/" + item.id} key = {item.id}><ReastuarantCard {...item}  /></Link>);
+                            <Link to = {"/ItemInfo/" + item._id} key = {item._id}><ItemCard{...item}  /></Link>);
                         }
                         ) }
                  </div>
-           </div>
+           </div>)
+        
         </>
     )
 };
 
-export default LostItem;
+export default LostItemComp;

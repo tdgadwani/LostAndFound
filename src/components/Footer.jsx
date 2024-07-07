@@ -8,7 +8,7 @@ import sideArrow from "../assets/sideArrow.svg";
 
 const Footer = () => {
   return (
-    <div className="bg-black text-white py-2 px-2 fixed bottom-0 left-0 right-0">
+    <div className="bg-black text-white py-2 px-2 bottom-0">
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         
        

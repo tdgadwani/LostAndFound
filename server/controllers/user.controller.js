@@ -36,23 +36,35 @@ const generateOTP = () => {
 }
 
 const sendOTP = asyncHandler(async (req,res) => {
-    const { email } = req.body;
-    if(!email)
-        throw new ApiError(401,"Email Id is Required");
-
-    const otp = generateOTP();
-    const sentOTP = await OTP.create({
-        email,
-        otp,
-    });
-    if(!sentOTP)
-        throw new ApiError(500,"something Went wrong While Sending OTP");
-    await mailSender(email,OTP_SUBJECT,`YOUR OTP IS ${otp}`)
-    return res
-    .status(200)
-    .json(
-        new ApiResponse(200,sentOTP,`OTP Sent Successfully on mail ${email}`)
-    )
+    try {
+        const { email } = req.body;
+        console.log(`Sending otp to ${email}`);
+        if(!email)
+            throw new ApiError(401,"Email Id is Required");
+        const user = await User.findOne({email: email});
+        if(user)
+            throw new ApiError(403,"User Already registered");
+        const otp = generateOTP();
+        const sentOTP = await OTP.create({
+            email,
+            otp,
+        });
+        if(!sentOTP)
+            throw new ApiError(500,"something Went wrong While Sending OTP");
+        console.log(`Sending email with otp ${otp}`);
+        try {
+            await mailSender(email,OTP_SUBJECT,`YOUR OTP IS ${otp}`);
+        } catch (error) {
+            throw new ApiError(501,error.message);
+        }
+        return res
+        .status(200)
+        .json(
+            new ApiResponse(200,sentOTP,`OTP Sent Successfully on mail ${email}`)
+        )
+    } catch (error) {
+        new ApiError(501,`Error at Server Side ${error}`);
+    }
 });
 
 const resendOTP = asyncHandler(async(req,res) => {
@@ -91,9 +103,9 @@ const resendOTP = asyncHandler(async(req,res) => {
 });
 
 const signupUser = asyncHandler(async (req,res) => {
-    const { rollNo, fullName, password, email, otp } = req.body;
-    const avatarLocalFilePath = req.file.path;
-    console.log(req.file);
+    const { password, email, otp } = req.body;
+    // const avatarLocalFilePath = req.file.path;
+    console.log(password, email,otp);
     if([ email, password, otp].some((field) => field.trim() === "" ))
         throw new ApiError(401,"All fields are required");
 
@@ -104,20 +116,12 @@ const signupUser = asyncHandler(async (req,res) => {
         throw new Error(403,"User already Registerd with same Email");
     const receivedOTP = await OTP.findOne({email});
     if(!receivedOTP)
-        throw new ApiError(500,"Something Went Wrong");
+        throw new ApiError(500,"Something Went Wrong"); // otp message 
     if(receivedOTP.expiresAt > new Date())
         throw new ApiError(403, " Otp Expired");
-    // const avatar = await uploadOnCloudinary(avatarLocalFilePath);
-    // console.log(avatar);
-    // if(!avatar)
-    //     throw new ApiError(500,"Something Went wrong while handling Avatar Image");
-
     const user = await User.create({
         email,
-        // userName,
-        // fullName,
         password,
-        // avatar: avatar.secure_url,
     });
     const createdUser = await User.findById(user._id).select("-password -refreshToken");
     if(!createdUser)

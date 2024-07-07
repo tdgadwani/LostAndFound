@@ -2,25 +2,55 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import LoginAccount from "./pages/LoginAccount";
-import CreateAccount from "./pages/CreateAccout";
+import CreateAccount from "./pages/CreateAccount";
+import PrivateRoute from "./components/Auth/PrivateRoute";
+import OpenRoute from "./components/Auth/OpenRoute";
+import { useSelector } from "react-redux";
+ import LostItem from "./pages/LostItemPage.jsx"
 
+ import ItemList from "./components/ItemList.jsx";
+
+import ItemCard from "./components/ItemCard.jsx";
 function App() {
-
+  const { userData } = useSelector((store) => store.auth);
   return (
     <>
-    <Routes>
-		<Route path="/" element={<CreateAccount/>} />
-		<Route path="/login" element={<LoginAccount/>}/>
-    </Routes>
-    
-      {/* <Reward /> */}
-      {/* <Leaderboard /> */}
-      {/* <AddItem /> */}
-      {/* <LoginPage /> */}
-      {/* <HomePage/> */}
-        
+      {/* <Routes>
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Home userName={userData?.email} />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <OpenRoute>
+              <LoginAccount />
+            </OpenRoute>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <OpenRoute>
+              <CreateAccount />
+            </OpenRoute>
+          }
+        />
+      </Routes> */}
+       
+      {/* <Home/> */}
+      <ItemCard/>
+      
+       {/* <ItemList/> */}
+      
+
+       {/* <LostItem/> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
