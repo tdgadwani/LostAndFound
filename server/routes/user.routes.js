@@ -1,5 +1,5 @@
 import express from "express";
-import { editProfile, loginUser, logoutUser, resendOTP, sendOTP, signupUser } from "../controllers/user.controller.js";
+import { editProfile, getLeaderBoardData, loginUser, logoutUser, resendOTP, sendOTP, signupUser } from "../controllers/user.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
 
@@ -10,6 +10,7 @@ userRouter.route("/resend-otp").post(resendOTP);
 userRouter.route("/signup").post(upload.single("avatar"),signupUser);
 userRouter.route("/login").post(loginUser);
 userRouter.route("/edit-profile").post(verifyJWT,editProfile);
+userRouter.route("/leaderboard").get(verifyJWT, getLeaderBoardData);
 userRouter.route("/logout").post(verifyJWT,logoutUser);
 
 

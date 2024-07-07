@@ -1,51 +1,45 @@
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import Shimmer from "../components/Shimmer.jsx";
-import ItemCard from "../components/ItemCard.jsx"
-import HeaderL from "../components/Header.jsx";
-import Footer from "../components/Footer.jsx"
+import ItemCard from "../components/ItemCard.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { getLostItems } from "../services/operations/lostItemsAPI.js";
+import { getFoundItems, getRetreivedItems } from "../services/operations/foundItemsAPI.js";
 
+const AllItemsComponent = ({ itemType }) => {
+    const [allItems, setAllItems] = useState([]);
+    const dispatch = useDispatch();
 
-const LostItemComp = () => {
-    const typeItem = "Lost";
-    const [allItem,setAllItem] = useState([]);
-    
-    
-    useEffect(()=>{
-        getItem();
-       },[]);
-
-    async function getItem(){
-       
-        const data = await fetch("https://food-api-sable.vercel.app/swiggy");
-  
-        const json = await data.json() ;
-    
-        setAllItem(json)
-       
-  
-        // console.log(allItem)
-      }
-      
-
+    useEffect(() => {
+        if (itemType === "Lost") {
+            dispatch(getLostItems());
+            setAllItems(useSelector((store) => store.lostItems.lostItems))
+        } else if (itemType === "Found") {
+            dispatch(getFoundItems());
+            setAllItems(useSelector((store) => store.foundItems.foundItems));
+        } else if (itemType === "Claimed") {
+            dispatch(getRetreivedItems());
+            setAllItems(useSelector((store) => store.claimedItems.claimedItems));
+        }
+    }, []);
 
     return (
-        <>
-          
-           allItem?.length === 0 ?<Shimmer/> :  
-           (<div>
-                  <div><h1>{typeItem} Items</h1></div>
-                  <div className="flex flex-wrap bg-pink-200">
-                        {
-                        allItem.map((item) =>{
-                            return (
-                            <Link to = {"/ItemInfo/" + item._id} key = {item._id}><ItemCard{...item}  /></Link>);
-                        }
-                        ) }
-                 </div>
-           </div>)
-        
-        </>
-    )
+        <div>
+        <div>
+            <h1>{itemType} Items</h1>
+        </div>
+        <div className="flex flex-wrap bg-pink-200">
+            {allItems?.length === 0 ? (
+            <Shimmer />
+            ) : (
+            allItems.map((item) => (
+                <Link to={`/ItemInfo/${item._id}`} key={item._id}>
+                <ItemCard {...item} />
+                </Link>
+            ))
+            )}
+        </div>
+        </div>
+    );
 };
 
-export default LostItemComp;
+export default AllItemsComponent;

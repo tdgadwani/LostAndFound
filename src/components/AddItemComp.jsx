@@ -4,28 +4,39 @@ import Footer from './Footer';
 import { postFoundItem } from '../services/operations/foundItemsAPI';
 import { useNavigate } from 'react-router-dom';
 import { postLostItem } from '../services/operations/lostItemsAPI';
-import { CONSTANTS } from '../utils/constants';
+import { CONSTANTS, MAX_COUNT } from '../utils/constants';
+import { useDispatch } from 'react-redux';
+import { FaFile } from 'react-icons/fa';
+import { IoImageOutline } from 'react-icons/io5';
 // import ImageIcon from "../assets/ImageIcon.svg"
 
-const AddItemComp = () => {
+const AddItemComp = ({isLost}) => {
     const itemName = useRef(null);
     const locationFound = useRef(null);
     const category = useRef(null);
-    const details = useRef(null);
-    const [isLost, setIsLost] = useState(true); 
+    const description = useRef(null); 
     const [uploadedFiles, setUploadedFiles] = useState([]);
-    const [fileLimit, setFieLimit] = useState(false);
-    
+    const [fileLimit, setFileLimit] = useState(false);
+    const [fileReaders,setFileReaders] = useState([]);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const handleUploadFiles = (files) => {
       const uploaded = [...uploadedFiles];
+      const reader = [...fileReaders];
       let limitExceeded = false;
       files.some((file) => {
         if (uploaded.findIndex((f) => f.name === file.name) === -1) {
           uploaded.push(file);
-          if (uploaded.length === MAX_COUNT) setFieLimit(true);
+          const fileReader = new FileReader();
+          fileReader.onloadend = () => {
+            reader.push(fileReader.result);
+          };
+          fileReader.readAsDataURL(file);
+          setFileReaders(reader);
+          if (uploaded.length === MAX_COUNT) setFileLimit(true);
           if (uploaded.length > MAX_COUNT) {
-            toast.error(`You can only add upto ${MAX_COUNT} files`);
-            setFieLimit(false);
+            // Handle file limit exceeded error
             limitExceeded = true;
             return true;
           }
@@ -34,30 +45,32 @@ const AddItemComp = () => {
       if (!limitExceeded) setUploadedFiles(uploaded);
     };
 
+
     const handleFiles = (e) => {
       const chosenFiles = Array.prototype.slice.call(e.target.files);
       handleUploadFiles(chosenFiles);
     };
 
-    const navigate = useNavigate();
      const handleSubmit = (e) => {
         e.preventDefault();
-        const formData = {
-            title: titleRef.current.value,
-            description: descriptionRef.current.value,
-            location: placeRef.current.value,
-            category: categoryRef.current.value,
-            media: uploadedFiles,
-        };
-        titleRef.current.value = '';
-        descriptionRef.current.value = '';
-        placeRef.current.value = '';
-        categoryRef.current.value = '';
+        const formData = new FormData();
+        for(let i=0;i < uploadedFiles.length; i++) {
+          formData.append("media", uploadedFiles[i]);
+        }
+        formData.append("itemName", itemName.current.value);
+        formData.append("description", description.current.value);
+        formData.append("address[buildingName]", locationFound.current.value);
+        formData.append("category", category.current.value);
+        console.log("sdgf", formData, uploadedFiles);
+        itemName.current.value = '';
+        description.current.value = '';
+        locationFound.current.value = '';
+        category.current.value = '';
 
         if(isLost) {
-            postLostItem(formData,navigate);
+            dispatch(postLostItem(formData,navigate));
         } else {
-            postFoundItem(formData,navigate)
+            dispatch(postFoundItem(formData,navigate));
         }
 
     }
@@ -97,16 +110,19 @@ const AddItemComp = () => {
             <div className="flex flex-col md:flex-row justify-between space-y-3 md:space-y-0 md:space-x-3">
               <div className="w-full md:w-1/2 flex flex-col items-center space-y-3 bg-gray-300 p-3 rounded-lg">
                 <div className="w-full h-40 bg-gray-100 flex items-center justify-center rounded-lg overflow-hidden">
-                  {image ? (
-                    <img
-                      src={image}
-                      alt="Item"
-                      className="object-cover w-full h-full"
-                    />
+                  {fileReaders.length > 0 ? (
+                    fileReaders.map((imageData, index) => (
+                      <img
+                        src={imageData}
+                        key={index}
+                        alt="Item"
+                        className="object-cover w-full h-full"
+                      />
+                    ))
                   ) : (
                     <div className="text-gray-500">
-                      {/* <img src={ImageIcon} alt="img" /> */}
-                      No Image Selected
+                      {/* Placeholder text or image when no images are selected */}
+                      <IoImageOutline/>
                     </div>
                   )}
                 </div>
@@ -134,7 +150,6 @@ const AddItemComp = () => {
                   <input
                     type="text"
                     placeholder="Item Name"
-                    value={itemName}
                     ref={itemName}
                     className="w-full p-2 rounded border border-gray-300"
                   />
@@ -142,12 +157,10 @@ const AddItemComp = () => {
                     <input
                       type="text"
                       placeholder="Location Found"
-                      value={locationFound}
                       ref={locationFound}
                       className="w-full md:w-1/2 p-2 rounded border border-gray-300"
                     />
                     <select
-                      value={category}
                       ref={category}
                       className="w-full md:w-1/2 p-2 rounded border border-gray-300"
                     >
@@ -162,8 +175,7 @@ const AddItemComp = () => {
                   </div>
                   <textarea
                     placeholder="Add Details"
-                    value={details}
-                    ref={details}
+                    ref={description}
                     className="w-full p-2 rounded border border-gray-300"
                     rows="3"
                   ></textarea>
@@ -181,7 +193,6 @@ const AddItemComp = () => {
           </form>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
