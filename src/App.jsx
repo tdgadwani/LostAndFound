@@ -8,8 +8,11 @@ import OpenRoute from "./components/Auth/OpenRoute";
 import { useSelector } from "react-redux";
 import AddItem from "./pages/AddItemPage";
 import EditProfile from "./pages/EditProfilePage";
-import AllItems from "./pages/LostItemPage";
+import AllItems from "./pages/AllItems.jsx";
 
+import ItemCard from "./components/ItemCard.jsx";
+import ItemList from "./components/ItemList.jsx";
+import Reward from "./pages/Reward.jsx";
 function App() {
  
   return (
@@ -77,6 +80,14 @@ function App() {
           element={
             <PrivateRoute>
               <AllItems itemType={"Claimed"} />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/rewards"
+          element={
+            <PrivateRoute>
+              <Reward/>
             </PrivateRoute>
           }
         />

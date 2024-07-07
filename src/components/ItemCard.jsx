@@ -7,12 +7,8 @@ import ItemDetailPopup from "./ItemDetailPopup.jsx";
 
 // const Item = ({cloudinaryImageId,itemName,type,address,dateFound}) => {
 
-const ItemCard = () => {
+const ItemCard = ({isLost, itemName, category, media, description, address, dateFound}) => {
     const [showItemDetailPopup, setShowItemDetailPopup] = useState(false);
-    const itemName = "White Laptop Charger";
-    const type = "Lost";
-    const address = "Near Library";
-    const hours = 0; //curr time - addTime
 
     return (
         <>

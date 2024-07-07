@@ -56,8 +56,12 @@ const foundItemsSchema = new mongoose.Schema(
       ref: "User",
     },
     retrivedDate: {
-		type: Date,
-	},
+      type: Date,
+    },
+    isLost: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
@@ -65,7 +69,7 @@ const foundItemsSchema = new mongoose.Schema(
 );
 
 foundItemsSchema.index({
-  location: "2dsphere"
+  location: "2dsphere",
 });
 
 const FoundItem = mongoose.model("FoundItem", foundItemsSchema);
