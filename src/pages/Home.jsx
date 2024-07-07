@@ -7,13 +7,16 @@ import { Link } from "react-router-dom";
 import HomeLeaderBoardSVG from '../assets/Home_LeaderBoard.svg'
 import HomeShareCard from '../assets/Home_share.svg'
 import HomeFollow from '../assets/Home_follow.svg'
-
+import ItemCard from "../components/ItemCard.jsx";
+import Slider from "../components/Slider.jsx"
 import Footer from '../components/Footer.jsx';
 
 
 
 
 const Home = ({ userName }) => {
+
+  const array = [1,2,3,4,5,6,7,8,9]
   return (
     <>
     <Header className="fixed"/>
@@ -36,8 +39,14 @@ const Home = ({ userName }) => {
           </div>
         </div>
 
-        <div>
-            SLIDER
+        <div className="">
+            <Slider autoSlide={true}>
+                {array.map((i, index) => (
+                    <div key={i} className=''>
+                        <ItemCard/>
+                    </div>
+                ))}
+            </Slider>
         </div>
         <div className='flex items-center justify-evenly my-20'>
             <div>

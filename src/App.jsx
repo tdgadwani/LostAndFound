@@ -11,6 +11,7 @@ import EditProfile from "./pages/EditProfilePage";
 import AllItems from "./pages/LostItemPage";
 
 import ItemCard from "./components/ItemCard.jsx";
+import ItemList from "./components/ItemList.jsx";
 function App() {
   const { userData } = useSelector((store) => store.auth);
   return (
@@ -85,6 +86,8 @@ function App() {
       {/* <ItemCard></ItemCard>
        */}
        <Home></Home>
+       
+        {/* <ItemList></ItemList> */}
     </>
   );
 }
