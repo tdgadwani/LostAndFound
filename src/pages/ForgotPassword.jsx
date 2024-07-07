@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/operations/authAPI";
 import BGImage from "../assets/SignIn_Page.svg";
-import Logo from "../assets/LOGO.svg";
+import Logo from "../assets/LogoMain.svg";
 import { Link } from "react-router-dom";
 import ForgotPasswordIcon from "../assets/ForgotPassword.svg"
 

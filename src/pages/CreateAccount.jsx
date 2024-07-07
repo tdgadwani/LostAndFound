@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import BGImage from "../assets/SignIn_Page.svg";
 import CreateAcc from "../assets/Create_Account.svg";
-import Logo from "../assets/LOGO.svg";
+// import Logo from "../assets/LOGO.svg";
 import googleLogo from "../assets/googleLogin.svg";
 import appleLogo from "../assets/appleLogin.svg";
 import { sendOTP } from "../services/operations/authAPI.js";
@@ -9,6 +9,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import OTPPopup from "../components/otpPopup.jsx";
 import { setSignupData } from "../slices/authSlice.js";
+import LogoMain from "../assets/LogoMain.svg"
+import Header from "../components/Header.jsx";
 
 const CreateAccount = () => {
   const [showOTPWindow, setShowOTPWindow] = useState(false);
@@ -52,7 +54,7 @@ const CreateAccount = () => {
         <div className="w-2/5 m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl">
           <div>
             <div>
-              <img src={Logo} alt="" />
+              <img src={LogoMain} alt="" />
             </div>
           </div>
 

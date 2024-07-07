@@ -1,11 +1,12 @@
 import React from 'react';
-import caption from "../assets/caption.svg";
 import { Link } from "react-router-dom";
 import profile from "../assets/profileImage.png";
+import DropDown from './dropdown';
+import Logo from "../assets/LogoMain.svg"
 
 const Title = () => (
     <a href="/">
-        <img className="m-1 h-6 w-40 md:w-auto" alt="logo" src={caption} />
+        <img className="m-1 h-7 w-48 md:w-auto" alt="logo" src={Logo} />
     </a>
 );
 
@@ -20,9 +21,8 @@ const Header = () => {
                     <li><Link to="/" className="hover:text-gray-600 text-sm md:text-lg">Claimed</Link></li>
                     <li><Link to="/" className="hover:text-gray-600 text-sm md:text-lg">Rewards</Link></li>
                 </ul>
-                <div>
-                    <img src={profile} className="h-10 w-10 rounded-full" alt="profile" />
-                </div>
+                <DropDown />
+                
             </div>
         </div>
     );
