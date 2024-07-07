@@ -5,19 +5,17 @@ import { loginUser } from "../services/operations/authAPI";
 import BGImage from "../assets/SignIn_Page.svg";
 import Logo from "../assets/LOGO.svg";
 import { Link } from "react-router-dom";
-import LoginAct from "../assets/LoginAccount.svg";
+import ForgotPasswordIcon from "../assets/ForgotPassword.svg"
 
-const LoginAccount = () => {
+const ForgotPassword = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const emailRef = useRef(null);
-  const passwordRef = useRef(null);
 
   const submitHandler = (e) => {
     e.preventDefault();
     const formData = {
       email: emailRef.current.value,
-      password: passwordRef.current.value,
     };
     dispatch(loginUser(formData, navigate));
   };
@@ -35,7 +33,8 @@ const LoginAccount = () => {
       <div className="w-2/5 m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl">
         <img src={Logo} alt="Logo" />
         <div className="flex flex-col justify-evenly items-center">
-          <img src={LoginAct} alt="Create Account" className="my-2" />
+          <img src={ForgotPasswordIcon} alt="Create Account" className="my-2" />
+          <div className="my-4 text-xl">Enetr the Email address you used to create account</div>
           <form onSubmit={submitHandler}>
             <div className="my-2 flex flex-col justify-evenly items-center">
               <input
@@ -44,30 +43,19 @@ const LoginAccount = () => {
                 className="border-2 py-2 px-10"
                 ref={emailRef}
               />
-              <input
-                type="password"
-                placeholder="password"
-                className="border-2 py-2 px-10 mt-2"
-                ref={passwordRef}
-              />
               <button
                 type="submit"
-                className="bg-kaddu-500 p-3 w-full border-2 mt-2 font-bold text-xl"
+                className="bg-kaddu-500 p-3 w-full border-2 mt-2 font-bold text-xl "
               >
-                Login
+                Send Email
               </button>
             </div>
           </form>
-            <div className="my-2">
-              <Link to="/signup">
-                <span className="text-kaddu-600 font-bold">Forgot Pawword  </span>
-              </Link>
-            </div>
         </div>
         <div>
-          Don't have an account? 
+          Remember Password ? 
           <Link to="/signup">
-            <span className="text-kaddu-600"> Create Now </span>
+            <span className="text-kaddu-600"> Login </span>
           </Link>
         </div>
       </div>
@@ -75,4 +63,4 @@ const LoginAccount = () => {
   );
 };
 
-export default LoginAccount;
+export default ForgotPassword;

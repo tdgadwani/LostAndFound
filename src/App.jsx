@@ -10,18 +10,17 @@ import AddItem from "./pages/AddItemPage";
 import EditProfile from "./pages/EditProfilePage";
 import AllItems from "./pages/LostItemPage";
 
-import ItemCard from "./components/ItemCard.jsx";
-import ItemList from "./components/ItemList.jsx";
 function App() {
-  const { userData } = useSelector((store) => store.auth);
+ 
   return (
     <>
-       {/* <Routes>
+      
+      <Routes>
         <Route
           path="/"
           element={
             <PrivateRoute>
-              <Home userName={userData?.email} />
+              <Home />
             </PrivateRoute>
           }
         />
@@ -45,7 +44,7 @@ function App() {
           path="/additem"
           element={
             <PrivateRoute>
-              <AddItem/>
+              <AddItem />
             </PrivateRoute>
           }
         />
@@ -53,7 +52,7 @@ function App() {
           path="/editprofile"
           element={
             <PrivateRoute>
-              <EditProfile/>
+              <EditProfile />
             </PrivateRoute>
           }
         />
@@ -61,7 +60,7 @@ function App() {
           path="/lostitems"
           element={
             <PrivateRoute>
-              <AllItems itemType={"Lost"}/>
+              <AllItems itemType={"Lost"} />
             </PrivateRoute>
           }
         />
@@ -69,7 +68,7 @@ function App() {
           path="/founditems"
           element={
             <PrivateRoute>
-              <AllItems itemType={"Found"}/>
+              <AllItems itemType={"Found"} />
             </PrivateRoute>
           }
         />
@@ -77,17 +76,11 @@ function App() {
           path="/claimedtems"
           element={
             <PrivateRoute>
-              <AllItems itemType={"Claimed"}/>
+              <AllItems itemType={"Claimed"} />
             </PrivateRoute>
           }
         />
-      </Routes> */}
-
-      {/* <ItemCard></ItemCard>
-       */}
-       <Home></Home>
-       
-        {/* <ItemList></ItemList> */}
+      </Routes>
     </>
   );
 }

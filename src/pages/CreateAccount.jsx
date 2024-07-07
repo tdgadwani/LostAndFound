@@ -17,6 +17,7 @@ const CreateAccount = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   let email = "";
+  const fullname = useRef("");  // fullname field data
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -60,6 +61,14 @@ const CreateAccount = () => {
               <img src={CreateAcc} />
             </div>
             <div className="my-2">
+                <div className="w-full">
+                  <input
+                    type="text"
+                    placeholder="fullname"
+                    ref={fullname}
+                    className=" border-2 py-2 px-10 "
+                  />
+                </div>
               <div className="w-full">
                 <input
                   type="text"
@@ -85,7 +94,6 @@ const CreateAccount = () => {
                 </button>
               </div>
             </div>
-            <div className="my-2">or signin with</div>
             {/* <div className="flex items-center justify-between my-2">
               <div className="mr-7">
                 <img src={googleLogo} />
@@ -97,9 +105,15 @@ const CreateAccount = () => {
                 <img src={appleLogo} alt="" />
               </div>
             </div> */}
-            <div className="my-2">
-              By creating account you agree to Relink <br></br>
-              Terms of Services and Privacy Policy
+              <div className="my-2">
+              By creating account you agree to Relink <br />
+                <Link to="/signup">
+                  <span className="text-kaddu-600">Terms of Services  </span>
+                </Link>
+                and 
+                <Link to="/signup">
+                  <span className="text-kaddu-600"> Privacy Policy </span>
+              </Link>
             </div>
           </div>
 
