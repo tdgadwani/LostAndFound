@@ -17,7 +17,7 @@ function App() {
  
   return (
     <>
-      
+{/*       
       <Routes>
         <Route
           path="/"
@@ -91,7 +91,9 @@ function App() {
             </PrivateRoute>
           }
         />
-      </Routes>
+      </Routes> */}
+      <Home/>
+      {/* <ItemCard/> */}
     </>
   );
 }

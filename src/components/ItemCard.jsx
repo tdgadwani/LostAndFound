@@ -9,11 +9,13 @@ import ItemDetailPopup from "./ItemDetailPopup.jsx";
 
 const ItemCard = ({isLost, itemName, category, media, description, address, dateFound}) => {
     const [showItemDetailPopup, setShowItemDetailPopup] = useState(false);
+    const type = "lost"
+    const hours =11
 
     return (
         <>
         <div
-            className="h-72 w-64 bg-slate-200 m-2 p-2 rounded-md z-0"
+            className="h-72 w-64 bg-kaddu-800 m-2 p-2 border-2 rounded-xl z-0"
             onClick={() => setShowItemDetailPopup(true)}
         >
             <div className="h-44 bg-red-500 rounded-lg p-2">

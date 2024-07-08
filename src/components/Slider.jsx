@@ -15,7 +15,7 @@ const Slider= ({ children: slides, autoSlide = false, autoSlideInterval = 3000 }
     }, [curr])
 
     return (
-        <div className='overflow-hidden flex-wrap relative'>
+        <div className='overflow-hidden relative'>
             <div className='flex transition-transform ease-out duration-500' style={{ transform: `translateX(-${curr * 100 / slidesPerView}%)` }}>
                 {slides.map((slide, index) => (
                     <div key={index} className='min-w-[25%] flex-shrink-0'>
