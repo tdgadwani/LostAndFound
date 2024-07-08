@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import BGImage from "../assets/SignIn_Page.svg";
 import CreateAcc from "../assets/Create_Account.svg";
-import Logo from "../assets/LOGO.svg";
+// import Logo from "../assets/LOGO.svg";
 import googleLogo from "../assets/googleLogin.svg";
 import appleLogo from "../assets/appleLogin.svg";
 import { sendOTP } from "../services/operations/authAPI.js";
@@ -9,6 +9,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import OTPPopup from "../components/otpPopup.jsx";
 import { setSignupData } from "../slices/authSlice.js";
+import LogoMain from "../assets/LogoMain.svg"
+import Header from "../components/Header.jsx";
 
 const CreateAccount = () => {
   const [showOTPWindow, setShowOTPWindow] = useState(false);
@@ -17,6 +19,7 @@ const CreateAccount = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   let email = "";
+  const fullname = useRef("");  // fullname field data
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -51,7 +54,7 @@ const CreateAccount = () => {
         <div className="w-2/5 m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl">
           <div>
             <div>
-              <img src={Logo} alt="" />
+              <img src={LogoMain} alt="" />
             </div>
           </div>
 
@@ -60,6 +63,14 @@ const CreateAccount = () => {
               <img src={CreateAcc} />
             </div>
             <div className="my-2">
+                <div className="w-full">
+                  <input
+                    type="text"
+                    placeholder="fullname"
+                    ref={fullname}
+                    className=" border-2 py-2 px-10 "
+                  />
+                </div>
               <div className="w-full">
                 <input
                   type="text"
@@ -85,7 +96,6 @@ const CreateAccount = () => {
                 </button>
               </div>
             </div>
-            <div className="my-2">or signin with</div>
             {/* <div className="flex items-center justify-between my-2">
               <div className="mr-7">
                 <img src={googleLogo} />
@@ -97,9 +107,15 @@ const CreateAccount = () => {
                 <img src={appleLogo} alt="" />
               </div>
             </div> */}
-            <div className="my-2">
-              By creating account you agree to Relink <br></br>
-              Terms of Services and Privacy Policy
+              <div className="my-2">
+              By creating account you agree to Relink <br />
+                <Link to="/signup">
+                  <span className="text-kaddu-600">Terms of Services  </span>
+                </Link>
+                and 
+                <Link to="/signup">
+                  <span className="text-kaddu-600"> Privacy Policy </span>
+              </Link>
             </div>
           </div>
 
