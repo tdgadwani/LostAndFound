@@ -7,7 +7,7 @@ import ItemDetailPopup from "./ItemDetailPopup.jsx";
 
 // const Item = ({cloudinaryImageId,itemName,type,address,dateFound}) => {
 
-const ItemCard = ({isLost, itemName, category, media, description, address, dateFound}) => {
+const ItemCard = ({isLost, itemName, category, media, type, description, address, dateFound}) => {
     const [showItemDetailPopup, setShowItemDetailPopup] = useState(false);
 
     return (
@@ -31,7 +31,7 @@ const ItemCard = ({isLost, itemName, category, media, description, address, date
             <div className="flex  text-sm">
                 <img src={LocationIcon} alt="" className="h-6 w-6 " />
                 <p>
-                {address} | {hours} Hr ago
+                {address} | {dateFound} Hr ago
                 </p>
             </div>
             </div>
