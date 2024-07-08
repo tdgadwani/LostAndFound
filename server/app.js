@@ -3,6 +3,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { userCheckedIn } from "./middlewares/checkIn.middleWare.js";
 
+
+
 const app = express();
 
 app.use(express.json({
@@ -42,4 +44,9 @@ app.use("/api/v1/founditem", foundItemRouter);
 app.use("/api/v1/lostitem", lostItemRouter); 
 app.use("/api/v1/resetPassword",resetPasswordRouter);
 
+
+app.get("/",(req,res) =>{
+    return res.status(200).json({"message": "service is running fine."
+    });
+});
 export default app;
