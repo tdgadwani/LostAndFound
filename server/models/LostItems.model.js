@@ -32,13 +32,17 @@ const lostItemsSchema =new mongoose.Schema({
 	},
 	contactInfo: {
 		type: contactSchema,
-		required: true
+		// required: true
 	},
 	dateLost: {
 		type: Date,
 		required: true,
 		default: Date.now
-	}
+	},
+	isLost: {
+		type: Boolean,
+		default: true,
+	},
 },
     {
         timestamps: true,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import outline from '../assets/pencil1.png';
 import avatar0 from '../assets/avatar0.png';
 import avatar1 from '../assets/avatar1.png'; 
@@ -7,54 +7,56 @@ import avatar3 from '../assets/avatar3.png';
 import avatar4 from '../assets/avatar4.png';
 import avatar5 from '../assets/avatar5.png';
 import avatar6 from '../assets/avatar6.png';
+import { COLLEGES, MONTHS, YEARS, AVATAR_URLS } from "../utils/constants";
+import { editProfile } from '../services/operations/authAPI';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 const avatarMap = {
-  avatar0: avatar0,
-  avatar1: avatar1,
-  avatar2: avatar2,
-  avatar3: avatar3,
-  avatar4: avatar4,
-  avatar5: avatar5,
-  avatar6: avatar6
+  avatar0: AVATAR_URLS[0],
+  avatar1: AVATAR_URLS[1],
+  avatar2: AVATAR_URLS[2],
+  avatar3: AVATAR_URLS[3],
+  avatar4: AVATAR_URLS[4],
+  avatar5: AVATAR_URLS[5],
+  avatar6: AVATAR_URLS[5]
 };
 
 const EditProfileComp = () => {
-  const [form, setForm] = useState({
-    firstName: '',
-    lastName: '',
-    rollNo: '',
-    phoneNo: '',
-    email: '',
-    college: '',
-    gradMonth: '',
-    gradYear: '',
-    avatar: 'avatar0',
-  });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
-
-  const handleAvatarSelect = (avatar) => {
-    setForm({ ...form, avatar });
-  };
+  const firstName = useRef(null);
+  const lastName  = useRef(null);
+  const rollNo = useRef(null);
+  const phoneNo = useRef(null);
+  const email = useRef(null);
+  const college = useRef(null);
+  const gradMonth = useRef(null);
+  const gradYear = useRef(null);
+  const [avatar, setAvatar] = useState(AVATAR_URLS[0]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(form);
+    let num = 123;
+    num.toFixed()
+    const formData = {
+      rollNo: rollNo.current.value,
+      mobileNo: phoneNo.current.value.toString(),
+      firstName: firstName.current.value,
+      lastName: lastName.current.value,
+      collageName: college.current.value,
+      graduationMonth: gradMonth.current.value,
+      graduationYear: gradYear.current.value,
+      avatar,
+    };
+    dispatch(editProfile(formData,navigate));
   };
 
-  const handleEdit = (e) => {
-    e.preventDefault();
-    console.log("Edit button is working");
-  };
 
   return (
     <>
-     
       <div className="min-h-screen bg-gradient-to-b from-white to-red-200">
         <main className="py-16">
           <div className="text-center">
@@ -66,63 +68,99 @@ const EditProfileComp = () => {
               <div className="flex flex-col items-center">
                 <div
                   className={`w-32 h-32 rounded-full cursor-pointer`}
-                  style={{ backgroundImage: `url(${avatarMap[form.avatar]})`, backgroundSize: 'cover' }}
+                  style={{
+                    backgroundImage: `url(${avatarMap[avatar]})`,
+                    backgroundSize: "cover",
+                  }}
                 ></div>
 
                 <div className="flex space-x-2 mt-4">
                   <div
-                    className={`w-16 h-16 rounded-full cursor-pointer ${form.avatar === 'avatar1' ? 'ring-4 ring-red-500' : ''}`}
-                    onClick={() => handleAvatarSelect('avatar1')}
-                    style={{ backgroundImage: `url(${avatar1})`, backgroundSize: 'cover' }}
+                    className={`w-16 h-16 rounded-full cursor-pointer ${
+                      avatar === "avatar1" ? "ring-4 ring-red-500" : ""
+                    }`}
+                    onClick={() => setAvatar("avatar1")}
+                    style={{
+                      backgroundImage: `url(${AVATAR_URLS[0]})`,
+                      backgroundSize: "cover",
+                    }}
                   ></div>
                   <div
-                    className={`w-16 h-16 rounded-full cursor-pointer ${form.avatar === 'avatar2' ? 'ring-4 ring-red-500' : ''}`}
-                    onClick={() => handleAvatarSelect('avatar2')}
-                    style={{ backgroundImage: `url(${avatar2})`, backgroundSize: 'cover' }}
+                    className={`w-16 h-16 rounded-full cursor-pointer ${
+                      avatar === "avatar2" ? "ring-4 ring-red-500" : ""
+                    }`}
+                    onClick={() => setAvatar("avatar2")}
+                    style={{
+                      backgroundImage: `url(${avatar2})`,
+                      backgroundSize: "cover",
+                    }}
                   ></div>
                   <div
-                    className={`w-16 h-16 rounded-full cursor-pointer ${form.avatar === 'avatar3' ? 'ring-4 ring-red-500' : ''}`}
-                    onClick={() => handleAvatarSelect('avatar3')}
-                    style={{ backgroundImage: `url(${avatar3})`, backgroundSize: 'cover' }}
+                    className={`w-16 h-16 rounded-full cursor-pointer ${
+                      avatar === "avatar3" ? "ring-4 ring-red-500" : ""
+                    }`}
+                    onClick={() => setAvatar("avatar3")}
+                    style={{
+                      backgroundImage: `url(${avatar3})`,
+                      backgroundSize: "cover",
+                    }}
                   ></div>
                 </div>
                 <div className="flex space-x-2 mt-4">
                   <div
-                    className={`w-16 h-16 rounded-full cursor-pointer ${form.avatar === 'avatar4' ? 'ring-4 ring-red-500' : ''}`}
-                    onClick={() => handleAvatarSelect('avatar4')}
-                    style={{ backgroundImage: `url(${avatar4})`, backgroundSize: 'cover' }}
+                    className={`w-16 h-16 rounded-full cursor-pointer ${
+                      avatar === "avatar4" ? "ring-4 ring-red-500" : ""
+                    }`}
+                    onClick={() => setAvatar("avatar4")}
+                    style={{
+                      backgroundImage: `url(${avatar4})`,
+                      backgroundSize: "cover",
+                    }}
                   ></div>
                   <div
-                    className={`w-16 h-16 rounded-full cursor-pointer ${form.avatar === 'avatar5' ? 'ring-4 ring-red-500' : ''}`}
-                    onClick={() => handleAvatarSelect('avatar5')}
-                    style={{ backgroundImage: `url(${avatar5})`, backgroundSize: 'cover' }}
+                    className={`w-16 h-16 rounded-full cursor-pointer ${
+                      avatar === "avatar5" ? "ring-4 ring-red-500" : ""
+                    }`}
+                    onClick={() => setAvatar("avatar5")}
+                    style={{
+                      backgroundImage: `url(${avatar5})`,
+                      backgroundSize: "cover",
+                    }}
                   ></div>
                   <div
-                    className={`w-16 h-16 rounded-full cursor-pointer ${form.avatar === 'avatar6' ? 'ring-4 ring-red-500' : ''}`}
-                    onClick={() => handleAvatarSelect('avatar6')}
-                    style={{ backgroundImage: `url(${avatar6})`, backgroundSize: 'cover' }}
+                    className={`w-16 h-16 rounded-full cursor-pointer ${
+                      avatar === "avatar6" ? "ring-4 ring-red-500" : ""
+                    }`}
+                    onClick={() => setAvatar("avatar6")}
+                    style={{
+                      backgroundImage: `url(${avatar6})`,
+                      backgroundSize: "cover",
+                    }}
                   ></div>
                 </div>
               </div>
-              <div className="text-center mt-4 font-bold">Choose Your Avatar</div>
+              <div className="text-center mt-4 font-bold">
+                Choose Your Avatar
+              </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="w-full md:w-1/3 ml-0 md:ml-7 font-semibold">
+            <form
+              onSubmit={handleSubmit}
+              className="w-full md:w-1/3 ml-0 md:ml-7 font-semibold"
+            >
               <div className="grid grid-cols-1 gap-2">
                 <div className="flex flex-col md:flex-row">
                   <input
                     type="text"
                     name="firstName"
-                    value={form.firstName}
-                    onChange={handleInputChange}
+                    ref={firstName}
                     placeholder="First Name"
                     className="p-2 mr-0 md:mr-2 border rounded w-full bg-gray-300 mb-2 md:mb-0 "
                   />
                   <input
                     type="text"
                     name="lastName"
-                    value={form.lastName}
-                    onChange={handleInputChange}
+                    ref={lastName}
                     placeholder="Last Name"
                     className="p-2 ml-0 md:ml-2 border rounded w-full bg-gray-300"
                   />
@@ -130,77 +168,74 @@ const EditProfileComp = () => {
                 <input
                   type="text"
                   name="rollNo"
-                  value={form.rollNo}
-                  onChange={handleInputChange}
+                  ref={rollNo}
                   placeholder="Roll No."
                   className="p-2 border rounded w-full bg-gray-300"
                 />
                 <input
                   type="text"
                   name="phoneNo"
-                  value={form.phoneNo}
-                  onChange={handleInputChange}
+                  ref={phoneNo}
                   placeholder="Phone No."
                   className="p-2 border rounded w-full bg-gray-300"
                 />
                 <input
                   type="email"
                   name="email"
-                  value={form.email}
-                  onChange={handleInputChange}
+                  ref={email}
                   placeholder="E-mail"
                   className="p-2 border rounded w-full bg-gray-300"
                 />
                 <select
                   name="college"
-                  value={form.college}
-                  onChange={handleInputChange}
+                  ref={college}
                   className="p-2 border rounded w-full bg-gray-300"
                 >
-                  <option value="">Choose College</option>
-                  <option value="college1">College 1</option>
-                  <option value="college2">College 2</option>
-                  <option value="college3">College 3</option>
+                  {COLLEGES.map((college, index) => {
+                    return (
+                      <option value={college} key={index}>
+                        {college}
+                      </option>
+                    );
+                  })}
                 </select>
                 <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mt-2">
-                  <div className="font-semibold bg-gray-300 p-2 rounded">Year Of Graduation</div>
+                  <div className="font-semibold bg-gray-300 p-2 rounded">
+                    Year Of Graduation
+                  </div>
                   <select
                     name="gradMonth"
-                    value={form.gradMonth}
-                    onChange={handleInputChange}
+                    ref={gradMonth}
                     className="p-2 border rounded w-full bg-gray-300"
                   >
-                    <option value="">Month</option>
-                    <option value="January">January</option>
-                    <option value="February">February</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="August">August</option>
-                    <option value="September">September</option>
-                    <option value="October">October</option>
-                    <option value="November">November</option>
-                    <option value="December">December</option>
+                    {MONTHS.map((month, index) => {
+                      return (
+                        <option value={month} key={index}>
+                          {month}
+                        </option>
+                      );
+                    })}
                   </select>
                   <select
                     name="gradYear"
-                    value={form.gradYear}
-                    onChange={handleInputChange}
+                    ref={gradYear}
                     className="p-2 border rounded w-full bg-gray-300"
                   >
-                    <option value="">Year</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
+                    {YEARS.map((year, index) => {
+                      return (
+                        <option value={year} key={index}>
+                          {year}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
               </div>
               <div className="text-center mt-8 mb-40">
-                <button type="submit" className="bg-red-600 text-white py-2 px-10 rounded-3xl ">
+                <button
+                  type="submit"
+                  className="bg-red-600 text-white py-2 px-10 rounded-3xl "
+                >
                   Save
                 </button>
               </div>
@@ -208,11 +243,14 @@ const EditProfileComp = () => {
           </div>
 
           <div className="flex justify-end mb-16 mr-10 fixed bottom-16 right-4 ">
-            <img src={outline} alt="Edit" className="w-14 h-14 cursor-pointer" onClick={handleEdit} />
+            <img
+              src={outline}
+              alt="Edit"
+              className="w-14 h-14 cursor-pointer"
+            />
           </div>
         </main>
       </div>
-
     </>
   );
 };
