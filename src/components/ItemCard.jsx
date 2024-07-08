@@ -24,14 +24,14 @@ const ItemCard = ({isLost, itemName, category, media, description, address, date
             <div className="flex justify-between">
                 <h1 className="font-bold text-black">{itemName} </h1>
                 <button className="bg-red-500 rounded-lg text-sm p-1 font-bold text-white">
-                {type}
+                {isLost}
                 </button>
             </div>
 
             <div className="flex  text-sm">
                 <img src={LocationIcon} alt="" className="h-6 w-6 " />
                 <p>
-                {address} | {hours} Hr ago
+                {address} | {dateFound} Hr ago
                 </p>
             </div>
             </div>
