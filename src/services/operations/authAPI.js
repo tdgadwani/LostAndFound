@@ -88,7 +88,7 @@ const loginUser = (formData, navigate) => {
   };
 };
 
-const logoutUser = (navigate) => {
+const logoutUser = () => {
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
         try {
@@ -100,7 +100,7 @@ const logoutUser = (navigate) => {
             toast.success(response.data.message);
             dispatch(setUserData(null));
             dispatch(setToken(null));
-            navigate("/login"); // to be planned
+            // navigate("/login"); // to be planned
         } catch (error) {
             console.log(error.message);
         }
