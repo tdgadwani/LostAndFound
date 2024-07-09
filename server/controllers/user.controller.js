@@ -127,6 +127,15 @@ const signupUser = asyncHandler(async (req, res) => {
     throw new ApiError(501, "Something went wrong while registering the user");
   return res
     .status(200)
+    .cookie("accessToken", accessToken, OPTIONS)
+    .cookie("refreshToken", refreshToken, OPTIONS)
+    .cookie("lastCheckedIn", today, {
+      path: "/",
+      httpOnly: true,
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "None",
+    })
     .json(new ApiResponse(200, createdUser, "User Registered Successfully"));
 });
 
@@ -148,10 +157,18 @@ const loginUser = asyncHandler(async (req, res) => {
   const loggedinUser = await User.findById(user._id).select(
     "-password -refreshToken"
   );
+  const today = new Date().toISOString().split("T")[0];
   res
     .status(200)
     .cookie("accessToken", accessToken, OPTIONS)
     .cookie("refreshToken", refreshToken, OPTIONS)
+    .cookie("lastCheckedIn", today,{
+            path: "/",
+            httpOnly: true,
+            secure: true,
+            maxAge: 24 * 60 * 60 * 1000,
+            sameSite: "None",
+          })
     .json(
       new ApiResponse(
         200,

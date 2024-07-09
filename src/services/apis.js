@@ -1,4 +1,4 @@
-const BASE_URL = "https://lostandfound-jgbr.onrender.com:3000";
+const BASE_URL = "https://lostandfound-jgbr.onrender.com";
 
 const USER_URL = BASE_URL + "/api/v1/user";
 const LOST_ITEMS_URL = BASE_URL + "/api/v1/lostitem";

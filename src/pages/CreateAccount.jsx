@@ -1,15 +1,13 @@
 import React, { useState, useRef } from "react";
 import BGImage from "../assets/SignIn_Page.svg";
 import CreateAcc from "../assets/Create_Account.svg";
-// import Logo from "../assets/LOGO.svg";
 import googleLogo from "../assets/googleLogin.svg";
 import appleLogo from "../assets/appleLogin.svg";
 import { sendOTP } from "../services/operations/authAPI.js";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import OTPPopup from "../components/otpPopup.jsx";
-import { setSignupData } from "../slices/authSlice.js";
-import LogoMain from "../assets/LogoMain.svg"
+import LogoMain from "../assets/LogoMain.svg";
 import Header from "../components/Header.jsx";
 
 const CreateAccount = () => {
@@ -18,27 +16,21 @@ const CreateAccount = () => {
   const dispatch = useDispatch();
   const emailRef = useRef("");
   const passwordRef = useRef("");
-  let email = "";
-  const fullname = useRef("");  // fullname field data
+  const fullnameRef = useRef("");
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    dispatch(
-      setSignupData({
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-      })
-    );
     const formData = {
       email: emailRef.current.value,
+      password: passwordRef.current.value,
     };
-    email = emailRef.current.value;
     dispatch(sendOTP(formData, navigate));
+    setShowOTPWindow(true);
+    // Clear input fields after submission
     emailRef.current.value = "";
     passwordRef.current.value = "";
-    setShowOTPWindow(true);
+    fullnameRef.current.value = "";
   };
-
 
   return (
     <>
@@ -46,95 +38,66 @@ const CreateAccount = () => {
         className="bg-kaddu-500 flex h-screen justify-between"
         style={{
           backgroundImage: `url(${BGImage})`,
-          backgroundSize: "contain",
+          backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="w-1/2"></div>
-        <div className="w-2/5 m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl">
-          <div>
-            <div>
-              <img src={LogoMain} alt="" />
-            </div>
-          </div>
-
-          <div className=" flex flex-col justify-evenly items-center ">
+        <div className="hidden md:block w-1/2"></div>
+        <div className="w-full md:w-2/5 m-4 md:m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl p-4 md:p-10">
+          <img src={LogoMain} alt="Logo" className="w-32 md:w-48 lg:w-64" />
+          <div className="flex flex-col justify-evenly items-center w-full">
             <div className="my-2">
-              <img src={CreateAcc} />
+              <img src={CreateAcc} alt="Create Account"  className="my-2 w-3/4 md:w-auto"/>
             </div>
-            <div className="my-2">
-                <div className="w-full">
-                  <input
-                    type="text"
-                    placeholder="fullname"
-                    ref={fullname}
-                    className=" border-2 py-2 px-10 "
-                  />
-                </div>
-              <div className="w-full">
+            <form onSubmit={submitHandler} className="w-full">
+              <div className="my-2 flex flex-col justify-evenly items-center w-full">
                 <input
                   type="text"
-                  placeholder="email"
+                  placeholder="Full Name"
+                  ref={fullnameRef}
+                 className="border-2 py-2 px-4 md:px-10 w-full"
+                />
+                <input
+                  type="text"
+                  placeholder="Email"
                   ref={emailRef}
-                  className=" border-2 py-2 px-10"
+                  className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
                 />
-              </div>
-              <div>
                 <input
-                  type="text"
-                  placeholder="password"
+                  type="password"
+                  placeholder="Password"
                   ref={passwordRef}
-                  className=" border-2 py-2 px-10 mt-2"
+                  className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
                 />
-              </div>
-              <div>
                 <button
                   className="bg-kaddu-500 p-3 w-full border-2 mt-2 font-bold text-xl"
                   onClick={submitHandler}
                 >
-                  create Account
+                  Create Account
                 </button>
               </div>
-            </div>
-            {/* <div className="flex items-center justify-between my-2">
-              <div className="mr-7">
-                <img src={googleLogo} />
-              </div>
-              <div>
-                <img src={appleLogo} alt="" />
-              </div>
-              <div className="ml-7">
-                <img src={appleLogo} alt="" />
-              </div>
-            </div> */}
-              <div className="my-2">
-              By creating account you agree to Relink <br />
-                <Link to="/signup">
-                  <span className="text-kaddu-600">Terms of Services  </span>
-                </Link>
-                and 
-                <Link to="/signup">
-                  <span className="text-kaddu-600"> Privacy Policy </span>
+            </form>
+            <div className="my-2 text-center">
+              By creating an account, you agree to Relink{" "}
+              <Link to="/terms" className="text-kaddu-600">
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link to="/privacy" className="text-kaddu-600">
+                Privacy Policy
               </Link>
             </div>
-          </div>
-
-          <div>
-            <div>
-              Have an account?{" "}
+            <div className="my-2 text-center">
+              Already have an account?{" "}
               <Link to="/login" className="text-kaddu-600">
-                {" "}
-                login
-              </Link>{" "}
+                Login here
+              </Link>
             </div>
           </div>
         </div>
       </div>
       {showOTPWindow && (
-        <OTPPopup
-          onClose={() => setShowOTPWindow(false)}
-          email={email}
-        />
+        <OTPPopup onClose={() => setShowOTPWindow(false)} email={emailRef.current.value} />
       )}
     </>
   );

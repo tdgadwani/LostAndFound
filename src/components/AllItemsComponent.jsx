@@ -4,6 +4,8 @@ import ItemCard from "./ItemCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { getLostItems } from "../services/operations/lostItemsAPI.js";
 import { getFoundItems, getRetreivedItems } from "../services/operations/foundItemsAPI.js";
+import { Link } from "react-router-dom";
+
 
 const AllItemsComponent = ({ itemType }) => {
     const [allItems, setAllItems] = useState([]);
@@ -34,6 +36,7 @@ const AllItemsComponent = ({ itemType }) => {
             allItems?.map((item) => (
                 <Link to={`/ItemInfo/${item._id}`} key={item._id}>
                 <ItemCard {...item} />
+                {/* <ItemCard/> */}
                 </Link>
             ))
                 

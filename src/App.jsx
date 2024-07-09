@@ -13,6 +13,8 @@ import AllItems from "./pages/AllItems.jsx";
 import ItemCard from "./components/ItemCard.jsx";
 import ItemList from "./components/ItemList.jsx";
 import Reward from "./pages/Reward.jsx";
+import AddItemPage from "./pages/AddItemPage.jsx"
+import Test from "./components/Test.jsx"
 function App() {
  
   return (
@@ -92,8 +94,14 @@ function App() {
           }
         />
       </Routes> */}
-      <Home/>
+      {/* <Home/> */}
       {/* <ItemCard/> */}
+      {/* <AddItemPage></AddItemPage> */}
+      {/* <Test/> */}
+      {/* <LoginAccount/> */}
+      {/* <CreateAccount/> */}
+
+      <AllItems></AllItems>
     </>
   );
 }
