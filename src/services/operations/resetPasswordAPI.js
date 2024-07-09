@@ -5,7 +5,7 @@ import {
 } from "../apis.js";
 import { apiConnector } from "../apiConnector.js";
 
-const resetPasswordToken = (formData,) => { 
+const resetPasswordToken = (formData, navigate) => { 
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
         try {
@@ -16,6 +16,7 @@ const resetPasswordToken = (formData,) => {
             }
             toast.success(response.data.message);
             //  navigate logic
+            navigate("/login");
         } catch (error) {
             toast.error(error.message);
         } finally {
