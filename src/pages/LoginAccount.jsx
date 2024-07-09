@@ -31,23 +31,23 @@ const LoginAccount = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="w-1/2"></div>
-      <div className="w-2/5 m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl">
-        <img src={Logo} alt="Logo" />
-        <div className="flex flex-col justify-evenly items-center">
-          <img src={LoginAct} alt="Create Account" className="my-2" />
-          <form onSubmit={submitHandler}>
-            <div className="my-2 flex flex-col justify-evenly items-center">
+      <div className="hidden md:block w-1/2"></div>
+      <div className="w-full md:w-2/5 m-4 md:m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl p-4 md:p-10">
+        <img src={Logo} alt="Logo" className="w-32 md:w-48 lg:w-64" />
+        <div className="flex flex-col justify-evenly items-center w-full">
+          <img src={LoginAct} alt="Create Account" className="my-2 w-3/4 md:w-auto" />
+          <form onSubmit={submitHandler} className="w-full">
+            <div className="my-2 flex flex-col justify-evenly items-center w-full">
               <input
                 type="text"
                 placeholder="email"
-                className="border-2 py-2 px-10"
+                className="border-2 py-2 px-4 md:px-10 w-full"
                 ref={emailRef}
               />
               <input
                 type="password"
                 placeholder="password"
-                className="border-2 py-2 px-10 mt-2"
+                className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
                 ref={passwordRef}
               />
               <button
@@ -58,13 +58,13 @@ const LoginAccount = () => {
               </button>
             </div>
           </form>
-            <div className="my-2">
-              <Link to="/signup">
-                <span className="text-kaddu-600 font-bold">Forgot Pawword  </span>
-              </Link>
-            </div>
+          <div className="my-2">
+            <Link to="/signup">
+              <span className="text-kaddu-600 font-bold">Forgot Password</span>
+            </Link>
+          </div>
         </div>
-        <div>
+        <div className="text-center">
           Don't have an account? 
           <Link to="/signup">
             <span className="text-kaddu-600"> Create Now </span>

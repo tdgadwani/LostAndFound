@@ -1,9 +1,10 @@
 export const DB_NAME = "FOUNDiFY";
 
 export const OPTIONS = {
-    httpOnly: true,
-    secure: true,
-}
+  httpOnly: true,
+  secure: true,
+  sameSite: "None",
+};
 
 export const RESET_PASSWORD_SUBJECT = "RESET PASSWORD MAIL";
 

@@ -23,11 +23,12 @@ const dailyCheckIn = asyncHandler(async(req,res) => {
 
         return res
           .status(200)
-          .cookie("lastCheckedIn",today,{
+          .cookie("lastCheckedIn", today, {
             path: "/",
             httpOnly: true,
             secure: true,
             maxAge: 24 * 60 * 60 * 1000,
+            sameSite: "None",
           })
           .json(
             new ApiResponse(200, {}, "User Successfully checkenin for today")
