@@ -29,7 +29,11 @@ const resetPassword = (formData,token,navigate) => {
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
         try {
-          const response = await apiConnector("POST", `${RESET_PASSWORD}/${token}`, formData);
+          const response = await apiConnector(
+            "POST",
+            `${RESET_PASSWORD}/${token}`,
+            formData
+          );
           if (!response.data.success) {
             toast.error(response.data.message);
             throw new Error(response.data.message);
@@ -38,9 +42,10 @@ const resetPassword = (formData,token,navigate) => {
           //  navigate logic
           navigate("/login");
         } catch (error) {
-            toast.error(error.message);
+          toast.error(error.message);
+        } finally {
+          toast.dismiss(toastId);
         }
-        toast.dismiss(toastId);
     }
 }
 

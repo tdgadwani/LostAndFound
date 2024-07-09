@@ -23,6 +23,7 @@ const CreateAccount = () => {
     const formData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
+      fullName: fullnameRef.current.value,
     };
     dispatch(sendOTP(formData, navigate));
     setShowOTPWindow(true);
