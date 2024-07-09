@@ -125,16 +125,6 @@ const AddItemComp = ({ isLost }) => {
               <div className="w-full md:w-1/2 flex flex-col items-center space-y-3 bg-gray-300 p-3 rounded-lg">
                 <div className="w-full h-40 bg-gray-100 flex items-center justify-center rounded-lg overflow-hidden">
                   {previewUrls.length > 0 ? (
-                    // <Carousel autoSlide={true}>
-                    //   {fileReaders.map((imageData, index) => (
-                    //     <img
-                    //       src={imageData}
-                    //       key={index}
-                    //       alt="Item"
-                    //       className="object-cover w-full h-full"
-                    //     />
-                    //   ))}
-                    // </Carousel>
                     <Carousel autoSlide={true}>
                       {previewUrls.map((url) => (
                         <img key={url} src={url} alt="" />

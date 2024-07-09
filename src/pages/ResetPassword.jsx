@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { loginUser } from "../services/operations/authAPI";
 import BGImage from "../assets/SignIn_Page.svg";
 import Logo from "../assets/LogoMain.svg";
 import { Link } from "react-router-dom";
 import ResetP from "../assets/ResetP.svg"
+import { resetPassword } from "../services/operations/resetPasswordAPI";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -13,23 +14,14 @@ const ResetPassword = () => {
   const emailRef = useRef("");
   const newpasswordRef = useRef("");
   const confirmpasswordRef = useRef("");
-  
+  const { token } = useParams();
   const submitHandler = async (e) => {
     e.preventDefault();
-    // dispatch(
-    //   setSignupData({
-    //     email: emailRef.current.value,
-    //     password: passwordRef.current.value,
-    //   })
-    // );
-    // const formData = {
-    //   email: emailRef.current.value,
-    // };
-    // email = emailRef.current.value;
-    // dispatch(sendOTP(formData, navigate));
-    // emailRef.current.value = "";
-    // passwordRef.current.value = "";
-    // setShowOTPWindow(true);
+    const formData = {
+      password: newpasswordRef.current.value,
+      cpassword: confirmpasswordRef.current.value,
+    };
+    dispatch(resetPassword(formData,token,navigate));
   };
 
   const username = "Ravi";

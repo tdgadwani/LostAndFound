@@ -59,7 +59,7 @@ const LoginAccount = () => {
             </div>
           </form>
           <div className="my-2">
-            <Link to="/signup">
+            <Link to="/reset-password">
               <span className="text-kaddu-600 font-bold">Forgot Password</span>
             </Link>
           </div>

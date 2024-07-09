@@ -22,7 +22,7 @@ const generateResetPasswordToken = asyncHandler(async (req, res, _) => {
   await user.save();
 
   
-  const response = await mailSender(email,RESET_PASSWORD_SUBJECT,`${resetPasswordToken}`);
+  const response = await mailSender(email,RESET_PASSWORD_SUBJECT,`${process.env.CORS_ORIGIN}/reset-password/${resetPasswordToken}`);
 //   console.log(response);
 //     if(!response)
 //         throw new ApiError(501,"Unable to Send Mail. Please try after Sometime");
