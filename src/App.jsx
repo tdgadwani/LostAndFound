@@ -19,8 +19,8 @@ function App() {
  
   return (
     <>
-{/*       
-      <Routes>
+      
+      {/* <Routes>
         <Route
           path="/"
           element={
@@ -95,13 +95,14 @@ function App() {
         />
       </Routes> */}
       {/* <Home/> */}
-      {/* <ItemCard/> */}
+      {/* <ItemCard/> */} 
       {/* <AddItemPage></AddItemPage> */}
       {/* <Test/> */}
       {/* <LoginAccount/> */}
       {/* <CreateAccount/> */}
 
-      <AllItems></AllItems>
+      {/* <AllItems></AllItems> */}
+      <EditProfile/>
     </>
   );
 }

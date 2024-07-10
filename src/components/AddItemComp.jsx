@@ -158,6 +158,7 @@ const AddItemComp = ({ isLost }) => {
                   type="file"
                   // id="inputFotos"
                   multiple
+                  disabled={fileLimit}
                   onChange={handleChange}
                   className="hidden"
                   id="upload-image"

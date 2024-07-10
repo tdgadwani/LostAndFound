@@ -77,11 +77,21 @@ const EditProfileComp = () => {
                 <div className="flex space-x-2 mt-4">
                   <div
                     className={`w-16 h-16 rounded-full cursor-pointer ${
+                      avatar === "avatar0" ? "ring-4 ring-red-500" : ""
+                    }`}
+                    onClick={() => setAvatar("avatar0")}
+                    style={{
+                      backgroundImage: `url(${avatar1})`,
+                      backgroundSize: "cover",
+                    }}
+                  ></div>
+                  <div
+                    className={`w-16 h-16 rounded-full cursor-pointer ${
                       avatar === "avatar1" ? "ring-4 ring-red-500" : ""
                     }`}
                     onClick={() => setAvatar("avatar1")}
                     style={{
-                      backgroundImage: `url(${AVATAR_URLS[0]})`,
+                      backgroundImage: `url(${avatar2})`,
                       backgroundSize: "cover",
                     }}
                   ></div>
@@ -91,16 +101,6 @@ const EditProfileComp = () => {
                     }`}
                     onClick={() => setAvatar("avatar2")}
                     style={{
-                      backgroundImage: `url(${avatar2})`,
-                      backgroundSize: "cover",
-                    }}
-                  ></div>
-                  <div
-                    className={`w-16 h-16 rounded-full cursor-pointer ${
-                      avatar === "avatar3" ? "ring-4 ring-red-500" : ""
-                    }`}
-                    onClick={() => setAvatar("avatar3")}
-                    style={{
                       backgroundImage: `url(${avatar3})`,
                       backgroundSize: "cover",
                     }}
@@ -109,11 +109,21 @@ const EditProfileComp = () => {
                 <div className="flex space-x-2 mt-4">
                   <div
                     className={`w-16 h-16 rounded-full cursor-pointer ${
+                      avatar === "avatar3" ? "ring-4 ring-red-500" : ""
+                    }`}
+                    onClick={() => setAvatar("avatar3")}
+                    style={{
+                      backgroundImage: `url(${avatar4})`,
+                      backgroundSize: "cover",
+                    }}
+                  ></div>
+                  <div
+                    className={`w-16 h-16 rounded-full cursor-pointer ${
                       avatar === "avatar4" ? "ring-4 ring-red-500" : ""
                     }`}
                     onClick={() => setAvatar("avatar4")}
                     style={{
-                      backgroundImage: `url(${avatar4})`,
+                      backgroundImage: `url(${avatar5})`,
                       backgroundSize: "cover",
                     }}
                   ></div>
@@ -122,16 +132,6 @@ const EditProfileComp = () => {
                       avatar === "avatar5" ? "ring-4 ring-red-500" : ""
                     }`}
                     onClick={() => setAvatar("avatar5")}
-                    style={{
-                      backgroundImage: `url(${avatar5})`,
-                      backgroundSize: "cover",
-                    }}
-                  ></div>
-                  <div
-                    className={`w-16 h-16 rounded-full cursor-pointer ${
-                      avatar === "avatar6" ? "ring-4 ring-red-500" : ""
-                    }`}
-                    onClick={() => setAvatar("avatar6")}
                     style={{
                       backgroundImage: `url(${avatar6})`,
                       backgroundSize: "cover",

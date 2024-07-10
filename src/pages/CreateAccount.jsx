@@ -38,7 +38,7 @@ const CreateAccount = () => {
         className="bg-kaddu-500 flex h-screen justify-between"
         style={{
           backgroundImage: `url(${BGImage})`,
-          backgroundSize: "cover",
+          backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
         }}
       >

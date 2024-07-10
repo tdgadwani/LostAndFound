@@ -22,10 +22,10 @@ const Carousel = ({ children: slides, autoSlide = false, autoSlideInterval = 300
                 {slides}
             </div>
             <div className="absolute inset-0 flex items-center justify-between p-4">
-                <button onClick={prev} className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white'>
+                <button onClick={prev} type='button' className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white'>
                     <ChevronLeft/>
                 </button>
-                <button onClick={next} className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white'>
+                <button onClick={next} type='button' className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white'>
                     <ChevronRight  />
                 </button>
             </div>
