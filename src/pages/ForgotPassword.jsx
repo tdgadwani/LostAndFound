@@ -6,6 +6,7 @@ import BGImage from "../assets/SignIn_Page.svg";
 import Logo from "../assets/LogoMain.svg";
 import { Link } from "react-router-dom";
 import ForgotPasswordIcon from "../assets/ForgotPassword.svg"
+import { resetPasswordToken } from "../services/operations/resetPasswordAPI";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const ForgotPassword = () => {
     const formData = {
       email: emailRef.current.value,
     };
-    dispatch(loginUser(formData, navigate));
+    dispatch(resetPasswordToken(formData, navigate));
   };
 
   return (

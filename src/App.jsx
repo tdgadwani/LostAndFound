@@ -15,12 +15,13 @@ import ItemList from "./components/ItemList.jsx";
 import Reward from "./pages/Reward.jsx";
 import AddItemPage from "./pages/AddItemPage.jsx"
 import Test from "./components/Test.jsx"
+import ForgotPassword from "./pages/ForgotPassword.jsx";
+import ResetPassword from "./pages/ResetPassword.jsx";
 function App() {
  
   return (
-    <>
-      
-      {/* <Routes>
+    <>      
+      <Routes>
         <Route
           path="/"
           element={
@@ -34,6 +35,22 @@ function App() {
           element={
             <OpenRoute>
               <LoginAccount />
+            </OpenRoute>
+          }
+        />
+        <Route
+          path="/reset-password"
+          element={
+            <OpenRoute>
+              <ForgotPassword/>
+            </OpenRoute>
+          }
+        />
+        <Route
+          path="/reset-password/:token"
+          element={
+            <OpenRoute>
+              <ResetPassword/>
             </OpenRoute>
           }
         />
@@ -93,16 +110,16 @@ function App() {
             </PrivateRoute>
           }
         />
-      </Routes> */}
+      </Routes> 
       {/* <Home/> */}
-      {/* <ItemCard/> */} 
+      {/* <ItemCard/> */}
       {/* <AddItemPage></AddItemPage> */}
       {/* <Test/> */}
       {/* <LoginAccount/> */}
       {/* <CreateAccount/> */}
+      {/* <EditProfile/> */}
 
       {/* <AllItems></AllItems> */}
-      <EditProfile/>
     </>
   );
 }

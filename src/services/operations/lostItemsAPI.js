@@ -41,9 +41,10 @@ const getLostItems = () => {
           dispatch(setLostItems([response.data.data]));
           toast.success(response.data.message);
         } catch (error) {
-            toast.error(error.message);
+          toast.error(error.message);
+        } finally {
+          toast.dismiss(toastId);
         }
-        toast.dismiss(toastId);
     }
 };
 
@@ -62,9 +63,10 @@ const getLostItemsById = (id,navigate) => {
           toast.success(response.data.message);
           //  navigate logic
         } catch (error) {
-            toast.error(error.message);
+          toast.error(error.message);
+        } finally {
+          toast.dismiss(toastId);
         }
-        toast.dismiss(toastId);
     }
 };
 
@@ -80,9 +82,10 @@ const getLostItemsForUser = (navigate) => {
           toast.success(response.data.message);
           //  navigate logic
         } catch (error) {
-            toast.error(error.message);
+          toast.error(error.message);
+        } finally {
+          toast.dismiss(toastId);
         }
-        toast.dismiss(toastId);
     }
 }
 

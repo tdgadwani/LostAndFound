@@ -16,8 +16,9 @@ const sendOTP = (formData,navigate) => {
             // dispatch() // to be planned
         } catch (error) {
             console.log(error.message);
+        } finally { 
+          toast.dismiss(toastId);
         }
-        toast.dismiss(toastId);
     }
 };
 
@@ -34,8 +35,9 @@ const resendOTP = (formData,navigate) => {
             // dispatch()//to be planned
         }catch(error) {
             console.log(error.message);
+        } finally {
+          toast.dismiss(toastId);
         }
-        toast.dismiss(toastId);
     }
 }
 
@@ -103,6 +105,8 @@ const logoutUser = () => {
             // navigate("/login"); // to be planned
         } catch (error) {
             console.log(error.message);
+        } finally {
+          toast.dismiss(toastId);
         }
     }
 };
@@ -119,8 +123,9 @@ const editProfile = (formData,navigate) => {
             navigate("/");
         } catch (error) {
             toast.error(error.message);
+        } finally {
+          toast.dismiss(toastId);
         }
-        toast.dismiss(toastId);
     }
 }
 

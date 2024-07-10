@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { userCheckedIn } from "./middlewares/checkIn.middleWare.js";
 
-
+console.log("tgadwani ", process.env.CORS_ORIGIN);
 
 const app = express();
 
@@ -20,6 +20,15 @@ app.use(cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true,
 }));
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", `${process.env.CORS_ORIGIN}`);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 app.use(express.static("public"));
 

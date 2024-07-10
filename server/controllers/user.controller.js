@@ -101,7 +101,7 @@ const resendOTP = asyncHandler(async (req, res) => {
 });
 
 const signupUser = asyncHandler(async (req, res) => {
-  const { password, email, otp } = req.body;
+  const { password, email, otp, fullName } = req.body;
   // const avatarLocalFilePath = req.file.path;
   console.log(password, email, otp);
   if ([email, password, otp].some((field) => field.trim() === ""))
@@ -119,6 +119,7 @@ const signupUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     email,
     password,
+    fullName,
   });
   const createdUser = await User.findById(user._id).select(
     "-password -refreshToken"

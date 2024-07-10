@@ -5,7 +5,7 @@ import {
 } from "../apis.js";
 import { apiConnector } from "../apiConnector.js";
 
-const resetPasswordToken = (formData,navigate) => {
+const resetPasswordToken = (formData, navigate) => { 
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
         try {
@@ -16,10 +16,12 @@ const resetPasswordToken = (formData,navigate) => {
             }
             toast.success(response.data.message);
             //  navigate logic
+            navigate("/login");
         } catch (error) {
             toast.error(error.message);
+        } finally {
+            toast.dismiss(toastId);
         }
-        toast.dismiss(toastId);
     }
 };
 
@@ -27,17 +29,23 @@ const resetPassword = (formData,token,navigate) => {
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
         try {
-          const response = await apiConnector("POST", `${RESET_PASSWORD}/${token}`, formData);
+          const response = await apiConnector(
+            "POST",
+            `${RESET_PASSWORD}/${token}`,
+            formData
+          );
           if (!response.data.success) {
             toast.error(response.data.message);
             throw new Error(response.data.message);
           }
           toast.success(response.data.message);
           //  navigate logic
+          navigate("/login");
         } catch (error) {
-            toast.error(error.message);
+          toast.error(error.message);
+        } finally {
+          toast.dismiss(toastId);
         }
-        toast.dismiss(toastId);
     }
 }
 

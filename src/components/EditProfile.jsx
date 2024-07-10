@@ -63,8 +63,8 @@ const EditProfileComp = () => {
             <h1 className="font-bold text-5xl">Edit Profile</h1>
           </div>
 
-          <div className="flex justify-center mt-8 flex-wrap">
-            <div className="flex flex-col items-center w-full md:w-1/3 mb-8 md:mb-0">
+          <div className="flex justify-center mt-8 pt-10 flex-wrap ">
+            <div className="flex flex-col items-center w-full md:w-1/3 mb-8 md:mb-0 ">
               <div className="flex flex-col items-center">
                 <div
                   className={`w-32 h-32 rounded-full cursor-pointer`}
@@ -143,103 +143,104 @@ const EditProfileComp = () => {
                 Choose Your Avatar
               </div>
             </div>
-
-            <form
-              onSubmit={handleSubmit}
-              className="w-full md:w-1/3 ml-0 md:ml-7 font-semibold"
-            >
-              <div className="grid grid-cols-1 gap-2">
-                <div className="flex flex-col md:flex-row">
-                  <input
-                    type="text"
-                    name="firstName"
-                    ref={firstName}
-                    placeholder="First Name"
-                    className="p-2 mr-0 md:mr-2 border rounded w-full bg-gray-300 mb-2 md:mb-0 "
-                  />
-                  <input
-                    type="text"
-                    name="lastName"
-                    ref={lastName}
-                    placeholder="Last Name"
-                    className="p-2 ml-0 md:ml-2 border rounded w-full bg-gray-300"
-                  />
-                </div>
-                <input
-                  type="text"
-                  name="rollNo"
-                  ref={rollNo}
-                  placeholder="Roll No."
-                  className="p-2 border rounded w-full bg-gray-300"
-                />
-                <input
-                  type="text"
-                  name="phoneNo"
-                  ref={phoneNo}
-                  placeholder="Phone No."
-                  className="p-2 border rounded w-full bg-gray-300"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  ref={email}
-                  placeholder="E-mail"
-                  className="p-2 border rounded w-full bg-gray-300"
-                />
-                <select
-                  name="college"
-                  ref={college}
-                  className="p-2 border rounded w-full bg-gray-300"
-                >
-                  {COLLEGES.map((college, index) => {
-                    return (
-                      <option value={college} key={index}>
-                        {college}
-                      </option>
-                    );
-                  })}
-                </select>
-                <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mt-2">
-                  <div className="font-semibold bg-gray-300 p-2 rounded">
-                    Year Of Graduation
+            <div className=' flex text-center justify-center'>
+              <form
+                onSubmit={handleSubmit}
+                className="w-full ml-0 md:ml-7 font-semibold  "
+              >
+                <div className="grid grid-cols-1 gap-2">
+                  <div className="flex flex-col md:flex-row">
+                    <input
+                      type="text"
+                      name="firstName"
+                      ref={firstName}
+                      placeholder="First Name"
+                      className="p-2 mr-0 md:mr-2 border rounded-2xl w-full bg-gray-300 mb-2 md:mb-0 "
+                    />
+                    <input
+                      type="text"
+                      name="lastName"
+                      ref={lastName}
+                      placeholder="Last Name"
+                      className="p-2 ml-0 md:ml-2 border rounded-2xl w-full bg-gray-300"
+                    />
                   </div>
+                  <input
+                    type="text"
+                    name="rollNo"
+                    ref={rollNo}
+                    placeholder="Roll No."
+                    className="p-2 border rounded-2xl w-full bg-gray-300"
+                  />
+                  <input
+                    type="text"
+                    name="phoneNo"
+                    ref={phoneNo}
+                    placeholder="Phone No."
+                    className="p-2 border rounded-2xl w-full bg-gray-300"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    ref={email}
+                    placeholder="E-mail"
+                    className="p-2 border rounded-2xl w-full bg-gray-300"
+                  />
                   <select
-                    name="gradMonth"
-                    ref={gradMonth}
-                    className="p-2 border rounded w-full bg-gray-300"
+                    name="college"
+                    ref={college}
+                    className="p-2 border rounded-2xl w-full bg-gray-300"
                   >
-                    {MONTHS.map((month, index) => {
+                    {COLLEGES.map((college, index) => {
                       return (
-                        <option value={month} key={index}>
-                          {month}
+                        <option value={college} key={index}>
+                          {college}
                         </option>
                       );
                     })}
                   </select>
-                  <select
-                    name="gradYear"
-                    ref={gradYear}
-                    className="p-2 border rounded w-full bg-gray-300"
-                  >
-                    {YEARS.map((year, index) => {
-                      return (
-                        <option value={year} key={index}>
-                          {year}
-                        </option>
-                      );
-                    })}
-                  </select>
+                  <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mt-2">
+                    <div className="font-semibold  p-2 rounded">
+                      Year Of Graduation
+                    </div>
+                    <select
+                      name="gradMonth"
+                      ref={gradMonth}
+                      className="p-2 border rounded-2xl w-full bg-gray-300"
+                    >
+                      {MONTHS.map((month, index) => {
+                        return (
+                          <option value={month} key={index}>
+                            {month}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <select
+                      name="gradYear"
+                      ref={gradYear}
+                      className="p-2 border rounded-2xl w-full bg-gray-300"
+                    >
+                      {YEARS.map((year, index) => {
+                        return (
+                          <option value={year} key={index}>
+                            {year}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div className="text-center mt-8 mb-40">
-                <button
-                  type="submit"
-                  className="bg-red-600 text-white py-2 px-10 rounded-3xl "
-                >
-                  Save
-                </button>
-              </div>
-            </form>
+                <div className="text-center mt-8  ">
+                  <button
+                    type="submit"
+                    className="bg-red-600 text-white py-2 px-10 rounded-3xl "
+                  >
+                    Save
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
 
           <div className="flex justify-end mb-16 mr-10 fixed bottom-16 right-4 ">
