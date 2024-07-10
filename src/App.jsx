@@ -17,13 +17,14 @@ import AddItemPage from "./pages/AddItemPage.jsx"
 import Test from "./components/Test.jsx"
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
+import { ROUTES } from "./utils/constants.js";
 function App() {
  
   return (
     <>      
       <Routes>
         <Route
-          path="/"
+          path={ROUTES.HOME}
           element={
             <PrivateRoute>
               <Home />
@@ -31,7 +32,7 @@ function App() {
           }
         />
         <Route
-          path="/login"
+          path={ROUTES.LOGIN}
           element={
             <OpenRoute>
               <LoginAccount />
@@ -39,7 +40,7 @@ function App() {
           }
         />
         <Route
-          path="/reset-password"
+          path={ROUTES.RESETPASSWORD}
           element={
             <OpenRoute>
               <ForgotPassword/>
@@ -47,7 +48,7 @@ function App() {
           }
         />
         <Route
-          path="/reset-password/:token"
+          path={ROUTES.RESETPASSWORTOKEN}
           element={
             <OpenRoute>
               <ResetPassword/>
@@ -55,7 +56,7 @@ function App() {
           }
         />
         <Route
-          path="/signup"
+          path={ROUTES.SIGNUP}
           element={
             <OpenRoute>
               <CreateAccount />
@@ -63,7 +64,7 @@ function App() {
           }
         />
         <Route
-          path="/additem"
+          path={ROUTES.ADDITEM}
           element={
             <PrivateRoute>
               <AddItem />
@@ -71,7 +72,7 @@ function App() {
           }
         />
         <Route
-          path="/editprofile"
+          path={ROUTES.EDITPROFILE}
           element={
             <PrivateRoute>
               <EditProfile />
@@ -79,7 +80,7 @@ function App() {
           }
         />
         <Route
-          path="/lostitems"
+          path={ROUTES.LOSTITEMS}
           element={
             <PrivateRoute>
               <AllItems itemType={"Lost"} />
@@ -87,7 +88,7 @@ function App() {
           }
         />
         <Route
-          path="/founditems"
+          path={ROUTES.FOUNDITEMS}
           element={
             <PrivateRoute>
               <AllItems itemType={"Found"} />
@@ -95,7 +96,7 @@ function App() {
           }
         />
         <Route
-          path="/claimedtems"
+          path={ROUTES.CLAIMEDITEMS}
           element={
             <PrivateRoute>
               <AllItems itemType={"Claimed"} />
@@ -103,7 +104,7 @@ function App() {
           }
         />
         <Route
-          path="/rewards"
+          path={ROUTES.REWARDS}
           element={
             <PrivateRoute>
               <Reward/>
@@ -111,15 +112,6 @@ function App() {
           }
         />
       </Routes> 
-      {/* <Home/> */}
-      {/* <ItemCard/> */}
-      {/* <AddItemPage></AddItemPage> */}
-      {/* <Test/> */}
-      {/* <LoginAccount/> */}
-      {/* <CreateAccount/> */}
-      {/* <EditProfile/> */}
-
-      {/* <AllItems></AllItems> */}
     </>
   );
 }

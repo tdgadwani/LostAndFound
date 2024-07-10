@@ -1,4 +1,5 @@
 import { setSignupData, setToken, setUserData } from "../../slices/authSlice.js";
+import { ROUTES } from "../../utils/constants.js";
 import { apiConnector } from "../apiConnector.js";
 import { SEND_OTP_URL, RESEND_OTP_URL, SIGNUP_URL, LOGIN_URL, LOGOUT_URL, EDIT_PROFILE, } from "../apis.js";
 import { toast } from "react-hot-toast";
@@ -56,7 +57,7 @@ const signupUser = (formData, navigate) => {
       dispatch(setSignupData(null)); 
       dispatch(setToken(response.data.accessToken)); 
 
-      navigate("/");
+      navigate(ROUTES.HOME);
     } catch (error) {
       console.log(error.message); 
     } finally {
@@ -80,7 +81,7 @@ const loginUser = (formData, navigate) => {
       toast.success(response.data.message);
       dispatch(setUserData(response.data.data.user));
       dispatch(setToken(response.data.data.accessToken));
-      navigate("/");
+      navigate(ROUTES.HOME);
     } catch (error) {
       console.error(error.message);
       toast.error("Login failed. Please try again.");
@@ -120,7 +121,7 @@ const editProfile = (formData,navigate) => {
                 throw new Error(response.data.message);
             }
             toast.success(response.data.message);
-            navigate("/");
+            navigate(ROUTES.HOME);
         } catch (error) {
             toast.error(error.message);
         } finally {
