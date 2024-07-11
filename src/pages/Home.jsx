@@ -11,6 +11,7 @@ import Footer from "../components/Footer.jsx";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLostItems } from "../services/operations/lostItemsAPI.js";
 import { getFoundItems } from "../services/operations/foundItemsAPI.js";
