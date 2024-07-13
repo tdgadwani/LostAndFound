@@ -14,26 +14,41 @@ const otpTemp = (name,otp) => {
                         background-color: #f8f8f8;
                         margin: 0;
                         padding: 0;
+                        height: 100vh;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                     }
                     .email-container {
-                        max-width: 600px;
-                        margin: 0 auto;
+                        width: 100%;
+                        max-width: 400px;
                         padding: 20px;
-                        background: linear-gradient(to bottom right, #ffffff, #fcdedc);
+                        background: linear-gradient(to bottom, white, #fdba74);
                         border-radius: 10px;
                         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        height: 100%; /* Full height */
                     }
                     .logo {
                         text-align: center;
                         margin-bottom: 20px;
                     }
                     .logo img {
-                        max-width: 100px;
+                        width: 250px;
+                    }
+                    .heading {
+                        font-size: 24px;
+                        font-weight: bold;
+                        text-align: center;
                     }
                     .content {
                         font-size: 16px;
+                        font-weight: bold;
                         color: #333;
                         line-height: 1.5;
+                        text-align: center;
                     }
                     .otp {
                         font-size: 24px;
@@ -42,8 +57,9 @@ const otpTemp = (name,otp) => {
                         margin: 20px 0;
                     }
                     .footer {
-                        font-size: 12px;
-                        color: #999;
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: #5f5e5e;
                         text-align: center;
                         margin-top: 20px;
                     }
@@ -52,13 +68,13 @@ const otpTemp = (name,otp) => {
             <body>
                 <div class="email-container">
                     <div class="logo">
-                        <img src="${Logo}" alt="Foundify Logo">
+                        <img src="https://res.cloudinary.com/dlgrwtkck/image/upload/v1720550354/dla8f3ol18a5agsekawy.svg" alt="Foundify Logo">
                     </div>
                     <div class="content">
-                        <p>Hi ${name},</p>
+                        <p class="heading">Hi ${name},</p>
                         <p>To complete your sign-in, please use the following One-Time Password (OTP):</p>
-                        <p class="otp">${otp}</p>
-                        <p>*This OTP is valid for the next 10 minutes. Do not share this code with anyone.<br>
+                        <p class="otp">[ ${otp} ]</p>
+                        <p>This OTP is valid for the next <span style="color: red; font-weight: bold; font-size: 24px;">5</span> minutes. Do not share this code with anyone.<br>
                         If you did not request this code, please ignore this email or contact our support team immediately.</p>
                     </div>
                     <div class="footer">
@@ -66,7 +82,7 @@ const otpTemp = (name,otp) => {
                     </div>
                 </div>
             </body>
-        </html>`
+            </html>`
     ;
 };
 
