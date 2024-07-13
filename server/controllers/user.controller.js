@@ -126,6 +126,7 @@ const signupUser = asyncHandler(async (req, res) => {
   );
   if (!createdUser)
     throw new ApiError(501, "Something went wrong while registering the user");
+  const today = new Date().toISOString().split("T")[0];
   return res
     .status(200)
     .cookie("accessToken", accessToken, OPTIONS)
@@ -149,8 +150,16 @@ const loginUser = asyncHandler(async (req, res) => {
   });
   if (!user)
     throw new ApiError(403, "User not found with provided Email or Username");
-
+  const { lastCheckInDate } = user;
+  const date = new Date(lastCheckInDate).toISOString().split("T")[0];
+  const today = new Date().toISOString().split("T")[0];
+  console.log("tgadwani ", today, date);
   const isPasswordValid = await user.isPasswordCorrect(password);
+  if(today > date) {
+    user.coins += 5;
+    user.lastCheckInDate = Date.now()
+    await user.save();
+  }
   if (!isPasswordValid) throw new ApiError(403, "Bad Credentials");
   const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
     user._id
@@ -158,13 +167,11 @@ const loginUser = asyncHandler(async (req, res) => {
   const loggedinUser = await User.findById(user._id).select(
     "-password -refreshToken"
   );
-  const today = new Date().toISOString().split("T")[0];
   res
     .status(200)
     .cookie("accessToken", accessToken, OPTIONS)
     .cookie("refreshToken", refreshToken, OPTIONS)
     .cookie("lastCheckedIn", today, {
-      path: "/",
       httpOnly: true,
       secure: true,
       maxAge: 24 * 60 * 60 * 1000,
@@ -201,6 +208,12 @@ const logoutUser = asyncHandler(async (req, res) => {
     .status(200)
     .clearCookie("accessToken", OPTIONS)
     .clearCookie("refreshToken", OPTIONS)
+    .clearCookie("lastCheckedIn", {
+      httpOnly: true,
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "None",
+    })
     .json(new ApiResponse(200, {}, "User Logged out Successfully"));
 });
 
