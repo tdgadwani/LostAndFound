@@ -23,7 +23,7 @@ const AllItemsComponent = ({ itemType }) => {
         }
         // dispatch(getFoundItems());
     }, []);
-    console.log("tgadwani ", allItems);
+    console.log("tgadwani  hello boys and waht is up",allItems );
     return (
         <div>
         <div>
