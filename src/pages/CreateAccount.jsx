@@ -17,9 +17,24 @@ const CreateAccount = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const fullnameRef = useRef("");
+  
+  // const validate = () => {
+  //   const errors = {};
+  //   if (formData.username.length < 3) {
+  //     errors.username = 'Username must be at least 3 characters long.';
+  //   }
+  //   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   if (!emailPattern.test(formData.email)) {
+  //     errors.email = 'Please enter a valid email address.';
+  //   }
+  //   return errors;
+  // };
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    // const errors = validate();
+
     const formData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -27,6 +42,7 @@ const CreateAccount = () => {
     };
     dispatch(sendOTP(formData, navigate));
     setShowOTPWindow(true);
+    
     // Clear input fields after submission
     emailRef.current.value = "";
     passwordRef.current.value = "";
@@ -57,18 +73,21 @@ const CreateAccount = () => {
                   placeholder="Full Name"
                   ref={fullnameRef}
                  className="border-2 py-2 px-4 md:px-10 w-full"
+                 required
                 />
                 <input
                   type="text"
                   placeholder="Email"
                   ref={emailRef}
                   className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
+                  required
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   ref={passwordRef}
                   className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
+                  required
                 />
                 <button
                   className="bg-kaddu-500 p-3 w-full border-2 mt-2 font-bold text-xl"
