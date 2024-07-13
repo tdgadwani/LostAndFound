@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import OTPPopup from "../components/otpPopup.jsx";
 import LogoMain from "../assets/LogoMain.svg";
 import Header from "../components/Header.jsx";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 const CreateAccount = () => {
   const [showOTPWindow, setShowOTPWindow] = useState(false);
@@ -17,6 +19,16 @@ const CreateAccount = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const fullnameRef = useRef("");
+
+  const [typetext, setTypetext] = useState('password');
+
+  const handleToggle = () => {
+    if (type==='password'){
+      setTypetext('text')
+    } else {
+      setTypetext('password')
+    }
+ }
   
   // const validate = () => {
   //   const errors = {};
@@ -48,7 +60,7 @@ const CreateAccount = () => {
     passwordRef.current.value = "";
     fullnameRef.current.value = "";
   };
-
+  
   return (
     <>
       <div
@@ -66,29 +78,40 @@ const CreateAccount = () => {
             <div className="my-2">
               <img src={CreateAcc} alt="Create Account"  className="my-2 w-3/4 md:w-auto"/>
             </div>
-            <form onSubmit={submitHandler} className="w-full">
-              <div className="my-2 flex flex-col justify-evenly items-center w-full">
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  ref={fullnameRef}
-                 className="border-2 py-2 px-4 md:px-10 w-full"
-                 required
-                />
-                <input
-                  type="text"
-                  placeholder="Email"
-                  ref={emailRef}
-                  className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
+            <form onSubmit={submitHandler} className="w-full ">
+              <div className="my-2 flex flex-col justify-evenly items-center w-full ">
+                  <div className="w-full mt-8">
+                    <input
+                    type="text"
+                    placeholder="Full Name"
+                    ref={fullnameRef}
+                  className="border-2 py-2 px-4 md:px-10 w-full"
                   required
-                />
+                  />
+                  </div>
+                <div className="w-full">
+                  <input
+                    type="text"
+                    placeholder="Email"
+                    ref={emailRef}
+                    className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
+                    required
+                  />
+                </div>
+               <div className="flex justify-center w-full  mb-8">
                 <input
-                  type="password"
-                  placeholder="Password"
-                  ref={passwordRef}
-                  className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
-                  required
-                />
+                    type={typetext}
+                    placeholder="Password"
+                    ref={passwordRef}
+                    className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
+                    required
+                  />
+                  <div className="flex justify-center p-1 ">
+                    <button className="btn btn-outline-primary" onClick={handleToggle}>
+                      { typetext==="password"? <FaRegEye className="size-8"/> :<FaRegEyeSlash className="size-8"/> }
+                      </button>
+                  </div>
+                </div>
                 <button
                   className="bg-kaddu-500 p-3 w-full border-2 mt-2 font-bold text-xl"
                   onClick={submitHandler}
