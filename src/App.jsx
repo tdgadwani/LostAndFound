@@ -21,7 +21,7 @@ function App() {
  
   return (
     <>      
-      <Routes>
+      {/* <Routes>
         <Route
           path="/"
           element={
@@ -110,10 +110,10 @@ function App() {
             </PrivateRoute>
           }
         />
-      </Routes> 
+      </Routes>  */}
       {/* <Home/> */}
       {/* <ItemCard/> */}
-      
+      <AllItems  itemType={"Lost"}/>
       {/* <AddItemPage></AddItemPage> */}
       {/* <Test/> */}
       {/* <LoginAccount/> */}
