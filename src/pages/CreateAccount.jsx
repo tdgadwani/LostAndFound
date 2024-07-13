@@ -23,7 +23,7 @@ const CreateAccount = () => {
   const [typetext, setTypetext] = useState('password');
 
   const handleToggle = () => {
-    if (type==='password'){
+    if (typetext==='password'){
       setTypetext('text')
     } else {
       setTypetext('password')
