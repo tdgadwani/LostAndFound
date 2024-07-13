@@ -4,13 +4,21 @@ import LocationIcon from "../assets/location.svg";
 import RightIcon from "../assets/RightIcon.svg";
 import { IMG_CDN_URL } from "../constants.js";
 import ItemDetailPopup from "./ItemDetailPopup.jsx";
+import ExtractDate from "../utils/ExtractDate.js";
 
 // const Item = ({cloudinaryImageId,itemName,type,address,dateFound}) => {
 
-const ItemCard = ({isLost, itemName, category, media, type, description, address, dateFound}) => {
+const ItemCard = ({isLost, itemName, category, media, type="Lost", description, address, dateFound='2024-07-11T08:47:50.070+00:00'}) => {
     const [showItemDetailPopup, setShowItemDetailPopup] = useState(false);
-   
+    var color="red";
+    if(type =="Found"){
+        color = "blue"
+    }
+    if(type =="Claimed"){
+        color = "green"
+    }
 
+    const time = ExtractDate(dateFound);
     return (
         <>
         <div
@@ -24,15 +32,15 @@ const ItemCard = ({isLost, itemName, category, media, type, description, address
             <div className="my-2 p-2">
             <div className="flex justify-between">
                 <h1 className="font-bold text-black">{itemName} </h1>
-                <button className="bg-red-500 rounded-lg text-sm p-1 font-bold text-white">
-                {isLost}
-                </button>
+                <div className={`bg-${color}-500 rounded-lg text-sm p-1 font-bold text-white`}>
+                {type}
+                </div>
             </div>
 
             <div className="flex  text-sm">
                 <img src={LocationIcon} alt="" className="h-6 w-6 " />
                 <p>
-                {address} | {dateFound} Hr ago
+                {address} | {time}
                 </p>
             </div>
             </div>

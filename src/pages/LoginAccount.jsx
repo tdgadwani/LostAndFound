@@ -43,12 +43,14 @@ const LoginAccount = () => {
                 placeholder="email"
                 className="border-2 py-2 px-4 md:px-10 w-full"
                 ref={emailRef}
+                required
               />
               <input
                 type="password"
                 placeholder="password"
                 className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
                 ref={passwordRef}
+                required
               />
               <button
                 type="submit"

@@ -43,6 +43,7 @@ const ForgotPassword = () => {
                 placeholder="email"
                 className="border-2 py-2 px-10"
                 ref={emailRef}
+                required
               />
               <button
                 type="submit"
