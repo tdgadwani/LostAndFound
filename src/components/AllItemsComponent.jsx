@@ -49,23 +49,28 @@ const AllItemsComponent = ({ itemType }) => {
   }, [itemType, lostItems, foundItems, claimedItems]);
 
   console.log("tgadwani ", allItems);
+//   const item={
+//     isLost:
+//   }
 
   return (
     <div>
       <div>
         <h1>{itemType} Items</h1>
       </div>
-      {/* <div className="flex flex-wrap bg-pink-200">
+      <div className="flex flex-wrap bg-pink-200">
         {allItems?.length === 0 ? (
           <Shimmer />
         ) : (
           allItems?.map((item) => (
-            <Link to={`/ItemInfo/${item._id}`} key={item._id}>
+            
+    
               <ItemCard {...item} />
-            </Link>
+           
           ))
         )}
-      </div> */}
+      </div>
+     
     </div>
   );
 };

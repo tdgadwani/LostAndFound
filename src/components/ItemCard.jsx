@@ -8,17 +8,21 @@ import ExtractDate from "../utils/ExtractDate.js";
 
 // const Item = ({cloudinaryImageId,itemName,type,address,dateFound}) => {
 
-const ItemCard = ({isLost, itemName, category, media, type="Lost", description, address, dateFound='2024-07-11T08:47:50.070+00:00'}) => {
+const ItemCard = (item) => {
     const [showItemDetailPopup, setShowItemDetailPopup] = useState(false);
     var color="red";
-    if(type =="Found"){
-        color = "blue"
+    var type = "Lost";
+    if(item.isRetrieved){
+        type="Claimed";
+        color ="green"
     }
-    if(type =="Claimed"){
-        color = "green"
+    else if(!item.isLost){
+        type="Found";
+        color="blue"
     }
+   
 
-    const time = ExtractDate(dateFound);
+    const time = ExtractDate(item.dateFound);
     return (
         <>
         <div
@@ -28,10 +32,11 @@ const ItemCard = ({isLost, itemName, category, media, type="Lost", description, 
             <div className="h-52 bg-red-500 rounded-lg p-2" onClick={() => setShowItemDetailPopup(true)}>
             <img className="h-8 w-8 relative top-0 right-0" src={RightIcon} />
             {/* <img src={ IMG_CDN_URL + cloudinaryImageId } /> */}
+            <img src={item.media[0]} alt="" />
             </div>
             <div className="my-2 p-2">
             <div className="flex justify-between">
-                <h1 className="font-bold text-black">{itemName} </h1>
+                <h1 className="font-bold text-black">{item.itemName} </h1>
                 <div className={`bg-${color}-500 rounded-lg text-sm p-1 font-bold text-white`}>
                 {type}
                 </div>
@@ -40,13 +45,16 @@ const ItemCard = ({isLost, itemName, category, media, type="Lost", description, 
             <div className="flex  text-sm">
                 <img src={LocationIcon} alt="" className="h-6 w-6 " />
                 <p>
-                {address} | {time}
+                {item.address.buildingName} | {time} <br></br>
+                {
+                    item.address.collegeName
+                }
                 </p>
             </div>
             </div>
         </div>
         {showItemDetailPopup && (
-            <ItemDetailPopup onClose={() => setShowItemDetailPopup(false)} />
+            <ItemDetailPopup onClose={() => setShowItemDetailPopup(false)} item={item}  />
         )}
         </>
     );

@@ -6,17 +6,18 @@ import RollNoPopup from './RollNoPopup';
 import Carousel from './Carousel.jsx';
 import { useDispatch } from 'react-redux';
 
-const ItemDetailPopup = ({ onClose }) => {
+const ItemDetailPopup = ({ onClose ,item}) => {
     const [isrollNoPopUp, setIsRollNoPopUp] = useState(false)
-    const name = "white sonata watch";
-    const location = "SAC staircase";
-    const category = "Watch";
-    const description = "found this white sonata watch, near SAC building, it is a women's watch, with roman digits in the dial";
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(get)
-    // },[]);
+    // const name = "white sonata watch";
+    // const location = "SAC staircase";
+    // const category = "Watch";
+    // const description = "found this white sonata watch, near SAC building, it is a women's watch, with roman digits in the dial";
+    // // const dispatch = useDispatch();
+    // // useEffect(() => {
+    // //     dispatch(get)
+    // // },[]);
     const images = [lostImage,lostImage,lostImage];
+    console.log("hello",item)
  
 
 
@@ -32,7 +33,7 @@ const ItemDetailPopup = ({ onClose }) => {
                         <Carousel autoSlide={true} >
                         {
                         
-                            images.map((d)=>(
+                            item.media.map((d)=>(
                                     
                                     <img src={d} />
                             ))
@@ -45,16 +46,16 @@ const ItemDetailPopup = ({ onClose }) => {
                     </div>
                     <div className='flex flex-col justify-center w-1/2 ml-4'>
                         <div className='text-lg font-bold mb-4 text-center'>Item Details</div>
-                        <div className='bg-gray-100 p-3 mb-4 w-full'>{name}</div>
+                        <div className='bg-gray-100 p-3 mb-4 w-full'>{item.itemName}</div>
                         <div className='my-4 w-full'>
                             <span className='font-semibold'>Location:</span> 
-                            <span className='bg-gray-100 p-3 w-full'>{location}</span>
+                            <span className='bg-gray-100 p-3 w-full'>{item.address.buildingName} | {item.address.collegeName}</span>
                         </div>
                         <div className='my-4 w-full'>
                             <span className='font-semibold'>Category:</span> 
-                            <span className='bg-gray-100 p-3 w-full'>{category}</span>
+                            <span className='bg-gray-100 p-3 w-full'>{item.category}</span>
                         </div>
-                        <div className='bg-gray-100 p-3 w-full my-4 max-h-32 overflow-y-auto'>{description}</div>
+                        <div className='bg-gray-100 p-3 w-full my-4 max-h-32 overflow-y-auto'>{item.description}</div>
                     </div>
                 </div>
             </div>
