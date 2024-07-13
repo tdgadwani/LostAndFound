@@ -163,13 +163,13 @@ const loginUser = asyncHandler(async (req, res) => {
     .status(200)
     .cookie("accessToken", accessToken, OPTIONS)
     .cookie("refreshToken", refreshToken, OPTIONS)
-    .cookie("lastCheckedIn", today,{
-            path: "/",
-            httpOnly: true,
-            secure: true,
-            maxAge: 24 * 60 * 60 * 1000,
-            sameSite: "None",
-          })
+    .cookie("lastCheckedIn", today, {
+      path: "/",
+      httpOnly: true,
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "None",
+    })
     .json(
       new ApiResponse(
         200,
@@ -213,7 +213,7 @@ const editProfile = asyncHandler(async (req, res) => {
     collageName,
     graduationMonth,
     graduationYear,
-    media
+    media,
   } = req.body;
   const { isProfileSet } = req.user;
   if (isProfileSet == false && !rollNo) {
@@ -226,7 +226,7 @@ const editProfile = asyncHandler(async (req, res) => {
       $set: {
         rollNo,
         mobileNo,
-        fullName: firstName +" " + lastName,
+        fullName: firstName + " " + lastName,
         collageName,
         graduationMonth,
         graduationYear,
@@ -265,4 +265,12 @@ const getLeaderBoardData = asyncHandler(async (req, res) => {
   );
 });
 
-export { sendOTP, signupUser, resendOTP, loginUser, logoutUser, editProfile, getLeaderBoardData };
+export {
+  sendOTP,
+  signupUser,
+  resendOTP,
+  loginUser,
+  logoutUser,
+  editProfile,
+  getLeaderBoardData,
+};

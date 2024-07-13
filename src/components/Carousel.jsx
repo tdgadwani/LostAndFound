@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { ChevronLeft, ChevronRight } from "react-feather"
+import React, { useState, useEffect } from 'react';
+import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 // import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 const Carousel = ({ children: slides, autoSlide = false, autoSlideInterval = 3000 }) => {
@@ -23,10 +23,10 @@ const Carousel = ({ children: slides, autoSlide = false, autoSlideInterval = 300
             </div>
             <div className="absolute inset-0 flex items-center justify-between p-4">
                 <div onClick={prev} className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white'>
-                    <ChevronLeft/>
+                    <BiChevronLeft/>
                 </div>
                 <div onClick={next} className='p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white'>
-                    <ChevronRight  />
+                    <BiChevronRight  />
                 </div>
             </div>
             <div className='absolute bottom-4 right-0 left-0'>
