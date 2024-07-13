@@ -1,6 +1,6 @@
 
 
-// const CDN_URLS = () =>{
+// const CDN_URLS = {
 //     arrow : "https://console.cloudinary.com/pm/c-5419a50136dfee906249458d06afc0/media-explorer?assetId=02cce1d903c17c8a527d3b190c849ef4",
 //     createAccount : "",
 //     discount : "https://res.cloudinary.com/dlgrwtkck/image/upload/v1720549366/oasy1y1atacneziqj6dk.png",
