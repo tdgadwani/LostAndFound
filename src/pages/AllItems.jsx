@@ -7,12 +7,12 @@ const AllItems = ({itemType}) => {
     
 
     return (
-        <>
-           <Header />
-           <AllItemsComponent itemType={itemType} />
-           <Footer />
-        </>
-    )
+      <>
+        <Header className="fixed w-full" />
+        <AllItemsComponent itemType={itemType} />
+        <Footer />
+      </>
+    );
 };
 
 export default AllItems;

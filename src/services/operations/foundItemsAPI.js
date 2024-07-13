@@ -10,6 +10,7 @@ import {
 } from "../apis.js";
 import { setFoundItems } from "../../slices/foundItemSlice.js";
 import { setClaimedItems } from "../../slices/claimedItemSlice.js";
+import { ROUTES } from "../../utils/constants.js";
 
 const postFoundItem = (formData,navigate) => {
     return async (dispatch) => {
@@ -25,7 +26,7 @@ const postFoundItem = (formData,navigate) => {
             throw new Error(response.data.message);
           }
           toast.success(response.data.message);
-          // navigate
+          navigate(ROUTES.FOUNDITEMS);
         } catch (error) {
           toast.error(error.message);
         } finally {
