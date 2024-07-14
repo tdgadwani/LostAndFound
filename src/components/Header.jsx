@@ -5,11 +5,12 @@ import DropDown from './dropdown';
 import Logo from "../assets/LogoMain.svg"
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../services/operations/authAPI';
+import { ROUTES } from '../utils/constants';
 
 const Title = () => (
-    <a href="/">
+    <Link to={ROUTES.HOME}>
         <img className="m-1 h-7 w-48 md:w-auto" alt="logo" src={Logo} />
-    </a>
+    </Link>
 );
 
 const Header = () => {
@@ -30,7 +31,7 @@ const Header = () => {
           <ul className="hidden md:flex space-x-4 font-bold text-lg">
             <li>
               <Link
-                to="/lostitems"
+                to={ROUTES.LOSTITEMS}
                 className="hover:text-gray-600 text-sm md:text-lg"
               >
                 Lost
@@ -38,7 +39,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to="/founditems"
+                to={ROUTES.FOUNDITEMS}
                 className="hover:text-gray-600 text-sm md:text-lg"
               >
                 Found
@@ -46,7 +47,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to="/claaimeditems"
+                to={ROUTES.CLAIMEDITEMS}
                 className="hover:text-gray-600 text-sm md:text-lg"
               >
                 Claimed
@@ -54,7 +55,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to="/rewards"
+                to={ROUTES.REWARDS}
                 className="hover:text-gray-600 text-sm md:text-lg"
               >
                 Rewards
@@ -71,10 +72,10 @@ const Header = () => {
           {/* <DropDown /> */}
           {showList && (
             <div className="bg-kaddu-800 absolute z-60 right-0 top-10 min-w-[170px] pt-2 border border-gray-900 rounded-md">
-              <Link to="/profile" className="flex items-center px-4 py-2 gap-3 text-xs text-kaddu-90000 hover:text-white" >
+              <Link to={ROUTES.YOURPROFILE} className="flex items-center px-4 py-2 gap-3 text-xs text-kaddu-90000 hover:text-white" >
                 <div className="title">Your Profile</div>
               </Link>
-              <Link to="/edit-profile" className="flex items-center px-4 py-2 gap-3 text-xs text-kaddu-900 hover:text-white" >
+              <Link to={ROUTES.EDITPROFILE} className="flex items-center px-4 py-2 gap-3 text-xs text-kaddu-900 hover:text-white" >
                 <div className="title">Settings</div>
               </Link>
               <div className="flex items-center px-4 py-2  text-sm text-kaddu-1000 hover:text-kaddu-500">

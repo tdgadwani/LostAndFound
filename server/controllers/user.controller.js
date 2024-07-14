@@ -6,6 +6,7 @@ import { User } from "../models/User.model.js";
 import { OPTIONS, OTP_SUBJECT } from "../constants.js";
 import { OTP } from "../models/OTP.model.js";
 import { mailSender } from "../utils/mailSender.js";
+import OtpTemp from "../mailTemplates/otpTemplate.js";
 
 const generateAccessAndRefreshToken = async (userId) => {
   try {
@@ -37,9 +38,9 @@ const generateOTP = () => {
 
 const sendOTP = asyncHandler(async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, fullName } = req.body;
     console.log(`Sending otp to ${email}`);
-    if (!email) throw new ApiError(401, "Email Id is Required");
+    if (!email.trim() || !fullName.trim()) throw new ApiError(401, "Email Id is Required");
     const user = await User.findOne({ email: email });
     if (user) throw new ApiError(403, "User Already registered");
     const otp = generateOTP();
@@ -50,8 +51,9 @@ const sendOTP = asyncHandler(async (req, res) => {
     if (!sentOTP)
       throw new ApiError(500, "something Went wrong While Sending OTP");
     console.log(`Sending email with otp ${otp}`);
+    const name = fullName.split(" ")[0];
     try {
-      await mailSender(email, OTP_SUBJECT, `YOUR OTP IS ${otp}`);
+      await mailSender(email, OTP_SUBJECT,OtpTemp(name, otp));
     } catch (error) {
       throw new ApiError(501, error.message);
     }
@@ -126,6 +128,7 @@ const signupUser = asyncHandler(async (req, res) => {
   );
   if (!createdUser)
     throw new ApiError(501, "Something went wrong while registering the user");
+  const today = new Date().toISOString().split("T")[0];
   return res
     .status(200)
     .cookie("accessToken", accessToken, OPTIONS)
@@ -149,8 +152,16 @@ const loginUser = asyncHandler(async (req, res) => {
   });
   if (!user)
     throw new ApiError(403, "User not found with provided Email or Username");
-
+  const { lastCheckInDate } = user;
+  const date = new Date(lastCheckInDate).toISOString().split("T")[0];
+  const today = new Date().toISOString().split("T")[0];
+  console.log("tgadwani ", today, date);
   const isPasswordValid = await user.isPasswordCorrect(password);
+  if(today > date) {
+    user.coins += 5;
+    user.lastCheckInDate = Date.now()
+    await user.save();
+  }
   if (!isPasswordValid) throw new ApiError(403, "Bad Credentials");
   const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
     user._id
@@ -158,18 +169,16 @@ const loginUser = asyncHandler(async (req, res) => {
   const loggedinUser = await User.findById(user._id).select(
     "-password -refreshToken"
   );
-  const today = new Date().toISOString().split("T")[0];
   res
     .status(200)
     .cookie("accessToken", accessToken, OPTIONS)
     .cookie("refreshToken", refreshToken, OPTIONS)
-    .cookie("lastCheckedIn", today,{
-            path: "/",
-            httpOnly: true,
-            secure: true,
-            maxAge: 24 * 60 * 60 * 1000,
-            sameSite: "None",
-          })
+    .cookie("lastCheckedIn", today, {
+      httpOnly: true,
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "None",
+    })
     .json(
       new ApiResponse(
         200,
@@ -201,6 +210,12 @@ const logoutUser = asyncHandler(async (req, res) => {
     .status(200)
     .clearCookie("accessToken", OPTIONS)
     .clearCookie("refreshToken", OPTIONS)
+    .clearCookie("lastCheckedIn", {
+      httpOnly: true,
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "None",
+    })
     .json(new ApiResponse(200, {}, "User Logged out Successfully"));
 });
 
@@ -213,7 +228,7 @@ const editProfile = asyncHandler(async (req, res) => {
     collageName,
     graduationMonth,
     graduationYear,
-    media
+    media,
   } = req.body;
   const { isProfileSet } = req.user;
   if (isProfileSet == false && !rollNo) {
@@ -226,7 +241,7 @@ const editProfile = asyncHandler(async (req, res) => {
       $set: {
         rollNo,
         mobileNo,
-        fullName: firstName +" " + lastName,
+        fullName: firstName + " " + lastName,
         collageName,
         graduationMonth,
         graduationYear,
@@ -265,4 +280,12 @@ const getLeaderBoardData = asyncHandler(async (req, res) => {
   );
 });
 
-export { sendOTP, signupUser, resendOTP, loginUser, logoutUser, editProfile, getLeaderBoardData };
+export {
+  sendOTP,
+  signupUser,
+  resendOTP,
+  loginUser,
+  logoutUser,
+  editProfile,
+  getLeaderBoardData,
+};
