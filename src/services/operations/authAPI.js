@@ -1,7 +1,7 @@
-import { setSignupData, setToken, setUserData } from "../../slices/authSlice.js";
+import { setLeaderBoardData, setSignupData, setToken, setUserData } from "../../slices/authSlice.js";
 import { ROUTES } from "../../utils/constants.js";
 import { apiConnector } from "../apiConnector.js";
-import { SEND_OTP_URL, RESEND_OTP_URL, SIGNUP_URL, LOGIN_URL, LOGOUT_URL, EDIT_PROFILE, } from "../apis.js";
+import { SEND_OTP_URL, RESEND_OTP_URL, SIGNUP_URL, LOGIN_URL, LOGOUT_URL, EDIT_PROFILE, LEADERBOARD_URL, } from "../apis.js";
 import { toast } from "react-hot-toast";
 
 const sendOTP = (formData,navigate) => {
@@ -75,7 +75,6 @@ const loginUser = (formData, navigate) => {
         "Content-Type": "application/x-www-form-urlencoded",
       });
       if (!response.data.success) {
-        toast.error(response.data.message);
         throw new Error(response.data.message);
       }
       toast.success(response.data.message);
@@ -83,8 +82,7 @@ const loginUser = (formData, navigate) => {
       dispatch(setToken(response.data.data.accessToken));
       navigate(ROUTES.HOME);
     } catch (error) {
-      console.error(error.message);
-      toast.error("Login failed. Please try again.");
+      toast.error(error.message);
     } finally {
       toast.dismiss(toastId);
     }
@@ -130,6 +128,25 @@ const editProfile = (formData,navigate) => {
     }
 }
 
+const getLeaderBoardData = () => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
+    try {
+      const response = await apiConnector("GET",LEADERBOARD_URL);
+      if(!response.data.success) {
+        throw new Error(response.data.message);
+      }
+      console.log("rrgrsf ", response);
+      dispatch(setLeaderBoardData(response.data.data.leaderBoardData));
+      toast.success(response.data.message);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      toast.dismiss(toastId);
+    }
+  }
+}
+
 export {
     sendOTP,
     resendOTP,
@@ -137,4 +154,5 @@ export {
     loginUser,
     logoutUser,
     editProfile,
+    getLeaderBoardData,
 };

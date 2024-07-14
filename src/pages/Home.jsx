@@ -17,6 +17,7 @@ import { getLostItems } from "../services/operations/lostItemsAPI.js";
 import { getFoundItems } from "../services/operations/foundItemsAPI.js";
 import { getRandomElements } from "../utils/utils.js";
 import { setItems } from "../slices/lostItemSlice.js";
+import { ROUTES } from "../utils/constants.js";
 
 const Home = () => {
   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -91,12 +92,20 @@ const Home = () => {
         <div className="flex flex-col md:flex-row justify-evenly">
           <div className="mb-5 md:mb-0">
             <Link to="/additem" state={{ isLost: true }}>
-              <img src={LostItem} alt="Lost Item" className="w-full md:w-auto" />
+              <img
+                src={LostItem}
+                alt="Lost Item"
+                className="w-full md:w-auto"
+              />
             </Link>
           </div>
           <div>
             <Link to="/additem" state={{ isLost: false }}>
-              <img src={FoundItem} alt="Found Item" className="w-full md:w-auto" />
+              <img
+                src={FoundItem}
+                alt="Found Item"
+                className="w-full md:w-auto"
+              />
             </Link>
           </div>
         </div>
@@ -113,11 +122,21 @@ const Home = () => {
 
         <div className="flex flex-col md:flex-row items-center justify-evenly my-20">
           <div className="mb-5 md:mb-0">
-            <img src={HomeLeaderBoardSVG} alt="Leaderboard" className="w-full md:w-auto" />
+            <Link to={ROUTES.LEADERBOARD}>
+              <img
+                src={HomeLeaderBoardSVG}
+                alt="Leaderboard"
+                className="w-full md:w-auto"
+              />
+            </Link>
           </div>
           <div className="flex flex-col justify-between items-center">
             <div className="mb-5 md:mb-0">
-              <img src={HomeShareCard} alt="Share" className="w-full md:w-auto" />
+              <img
+                src={HomeShareCard}
+                alt="Share"
+                className="w-full md:w-auto"
+              />
             </div>
             <div>
               <img src={HomeFollow} alt="Follow" className="w-full md:w-auto" />

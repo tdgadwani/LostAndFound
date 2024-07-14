@@ -14,7 +14,7 @@
     const currDay = today.getDate();
     const currHours =today.getHours();
     const currMin = today.getMinutes();
-    console.log(currHours, hours)
+    // console.log(currHours, hours)
 
     if(year!=currYear){
         return `${currYear-year} years ago`;

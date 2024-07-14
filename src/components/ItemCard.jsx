@@ -32,7 +32,7 @@ const ItemCard = (item) => {
             <div className="h-52 bg-red-500 rounded-lg p-2" onClick={() => setShowItemDetailPopup(true)}>
             <img className="h-8 w-8 relative top-0 right-0" src={RightIcon} />
             {/* <img src={ IMG_CDN_URL + cloudinaryImageId } /> */}
-            <img src={item.media[0]} alt="" />
+            {/* <img src={item.media[0]} alt="" /> */}
             </div>
             <div className="my-2 p-2">
             <div className="flex justify-between">
@@ -44,12 +44,12 @@ const ItemCard = (item) => {
 
             <div className="flex  text-sm">
                 <img src={LocationIcon} alt="" className="h-6 w-6 " />
-                <p>
+                {/* <p>
                 {item.address.buildingName} | {time} <br></br>
                 {
                     item.address.collegeName
                 }
-                </p>
+                </p> */}
             </div>
             </div>
         </div>

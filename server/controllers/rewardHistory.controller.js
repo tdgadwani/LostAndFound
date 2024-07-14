@@ -11,7 +11,7 @@ const dailyCheckIn = asyncHandler(async(req,res) => {
         if(user.lastCheckInDate === today)
             return res.status(200).json(new ApiResponse(200,{},"User already Checked In for Today"))
         user.coins += 5;
-        // user.lastCheckInDate = today;
+        user.lastCheckInDate = Date.now();
         await user.save();
         
         const rewardHistory = await RewardHistory.create({

@@ -4,6 +4,7 @@ const initialState = {
     signupData: null,
     token: null,
     userData: null,
+    leaderBoardData: null,
 }
 
 const authSlice = createSlice({
@@ -22,6 +23,9 @@ const authSlice = createSlice({
         setUserData(state,value) {
             state.userData = value.payload;
         },
+        setLeaderBoardData(state, value) {
+            state.leaderBoardData = value.payload;
+        }
     }
 });
 
@@ -29,7 +33,8 @@ export const {
     setSignupData,
     setToken,
     setUserData,
-    setUpdataSignupData
+    setUpdataSignupData,
+    setLeaderBoardData
     
 } = authSlice.actions
 
