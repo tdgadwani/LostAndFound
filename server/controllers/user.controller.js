@@ -6,6 +6,7 @@ import { User } from "../models/User.model.js";
 import { OPTIONS, OTP_SUBJECT } from "../constants.js";
 import { OTP } from "../models/OTP.model.js";
 import { mailSender } from "../utils/mailSender.js";
+import OtpTemp from "../mailTemplates/otpTemplate.js";
 
 const generateAccessAndRefreshToken = async (userId) => {
   try {
@@ -37,9 +38,9 @@ const generateOTP = () => {
 
 const sendOTP = asyncHandler(async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, fullName } = req.body;
     console.log(`Sending otp to ${email}`);
-    if (!email) throw new ApiError(401, "Email Id is Required");
+    if (!email.trim() || !fullName.trim()) throw new ApiError(401, "Email Id is Required");
     const user = await User.findOne({ email: email });
     if (user) throw new ApiError(403, "User Already registered");
     const otp = generateOTP();
@@ -50,8 +51,9 @@ const sendOTP = asyncHandler(async (req, res) => {
     if (!sentOTP)
       throw new ApiError(500, "something Went wrong While Sending OTP");
     console.log(`Sending email with otp ${otp}`);
+    const name = fullName.split(" ")[0];
     try {
-      await mailSender(email, OTP_SUBJECT, `YOUR OTP IS ${otp}`);
+      await mailSender(email, OTP_SUBJECT,OtpTemp(name, otp));
     } catch (error) {
       throw new ApiError(501, error.message);
     }
