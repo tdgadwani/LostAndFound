@@ -21,7 +21,7 @@ function App() {
  
   return (
     <>      
-      <Routes>
+      {/* <Routes>
         <Route
           path="/"
           element={
@@ -110,7 +110,7 @@ function App() {
             </PrivateRoute>
           }
         />
-      </Routes> 
+      </Routes>  */}
       {/* <Home/> */}
       {/* <ItemCard/> */}
       
@@ -119,7 +119,8 @@ function App() {
       {/* <LoginAccount/> */}
       {/* <CreateAccount/> */}
       {/* <EditProfile/> */}
-      
+      {/* <ResetPassword /> */}
+      <ForgotPassword />
       {/* <AllItems></AllItems> */}
     </>
   );

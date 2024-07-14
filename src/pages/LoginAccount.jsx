@@ -6,6 +6,7 @@ import BGImage from "../assets/SignIn_Page.svg";
 import Logo from "../assets/LogoMain.svg";
 import { Link } from "react-router-dom";
 import LoginAct from "../assets/LoginAccount.svg";
+import TogglePassword from "../components/TogglePassword";
 
 const LoginAccount = () => {
   const navigate = useNavigate();
@@ -15,6 +16,9 @@ const LoginAccount = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    // console.log(passwordRef.current.value);
+
     const formData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -41,17 +45,13 @@ const LoginAccount = () => {
               <input
                 type="text"
                 placeholder="email"
-                className="border-2 py-2 px-4 md:px-10 w-full"
+                className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-3 py-2 rounded-md"
                 ref={emailRef}
                 required
               />
-              <input
-                type="password"
-                placeholder="password"
-                className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
-                ref={passwordRef}
-                required
-              />
+
+              <TogglePassword passwordRef={passwordRef} />
+
               <button
                 type="submit"
                 className="bg-kaddu-500 p-3 w-full border-2 mt-2 font-bold text-xl"
