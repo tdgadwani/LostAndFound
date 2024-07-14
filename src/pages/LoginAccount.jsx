@@ -7,6 +7,7 @@ import Logo from "../assets/LogoMain.svg";
 import { Link } from "react-router-dom";
 import LoginAct from "../assets/LoginAccount.svg";
 import TogglePassword from "../components/TogglePassword";
+import { ROUTES } from "../utils/constants";
 
 const LoginAccount = () => {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const LoginAccount = () => {
                 required
               />
 
-              <TogglePassword passwordRef={passwordRef} />
+              <TogglePassword passwordRef={passwordRef} passwordType={"Password"}/>
 
               <button
                 type="submit"
@@ -61,14 +62,14 @@ const LoginAccount = () => {
             </div>
           </form>
           <div className="my-2">
-            <Link to="/reset-password">
+            <Link to={ROUTES.RESETPASSWORD}>
               <span className="text-kaddu-600 font-bold">Forgot Password</span>
             </Link>
           </div>
         </div>
         <div className="text-center">
           Don't have an account? 
-          <Link to="/signup">
+          <Link to={ROUTES.SIGNUP}>
             <span className="text-kaddu-600"> Create Now </span>
           </Link>
         </div>

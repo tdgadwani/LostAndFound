@@ -49,8 +49,8 @@ const ResetPassword = () => {
           <form onSubmit={submitHandler} className="w-full">
             <div className="my-2 flex flex-col justify-evenly items-center w-full">
 
-            <TogglePassword passwordRef={newpasswordRef} passwordType={"newPassword"} />
-            <TogglePassword passwordRef={confirmpasswordRef}  passwordType={"confirmNewPassword"}/>
+            <TogglePassword passwordRef={newpasswordRef} passwordType={"New Password"} />
+            <TogglePassword passwordRef={confirmpasswordRef}  passwordType={"Confirm Password"}/>
 
               <button
                 type="submit"

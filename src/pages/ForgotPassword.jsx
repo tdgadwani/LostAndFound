@@ -7,6 +7,7 @@ import Logo from "../assets/LogoMain.svg";
 import { Link } from "react-router-dom";
 import ForgotPasswordIcon from "../assets/ForgotPassword.svg"
 import { resetPasswordToken } from "../services/operations/resetPasswordAPI";
+import { ROUTES } from "../utils/constants";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const ForgotPassword = () => {
         </div>
         <div>
           Remember Password ? 
-          <Link to="/signup">
+          <Link to={ROUTES.LOGIN}>
             <span className="text-kaddu-600"> Login </span>
           </Link>
         </div>

@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../slices/authSlice";
 import Cookies from "js-cookie";
+import { ROUTES } from "../../utils/constants";
 
 const PrivateRoute = ({ children }) => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const PrivateRoute = ({ children }) => {
       dispatch(setToken(null));
     }
   }
-  return token ? children : <Navigate to="/login" />;
+  return token ? children : <Navigate to={ROUTES.LOGIN} />;
 };
 
 export default PrivateRoute;

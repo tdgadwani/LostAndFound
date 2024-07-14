@@ -91,7 +91,7 @@ const Home = () => {
 
         <div className="flex flex-col md:flex-row justify-evenly">
           <div className="mb-5 md:mb-0">
-            <Link to="/additem" state={{ isLost: true }}>
+            <Link to={ROUTES.ADDITEM} state={{ isLost: true }}>
               <img
                 src={LostItem}
                 alt="Lost Item"
@@ -100,7 +100,7 @@ const Home = () => {
             </Link>
           </div>
           <div>
-            <Link to="/additem" state={{ isLost: false }}>
+            <Link to={ROUTES.ADDITEM} state={{ isLost: false }}>
               <img
                 src={FoundItem}
                 alt="Found Item"

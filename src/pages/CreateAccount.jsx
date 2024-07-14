@@ -10,6 +10,7 @@ import OTPPopup from "../components/otpPopup.jsx";
 import LogoMain from "../assets/LogoMain.svg";
 import Header from "../components/Header.jsx";
 import TogglePassword from "../components/TogglePassword.jsx";
+import { ROUTES } from "../utils/constants.js";
 
 const CreateAccount = () => {
   const [showOTPWindow, setShowOTPWindow] = useState(false);
@@ -86,7 +87,7 @@ const CreateAccount = () => {
                     required
                   />
                   
-                  <TogglePassword passwordRef={passwordRef} />
+                  <TogglePassword passwordRef={passwordRef} passwordType={"Password "} />
                 
                 <button
                   className="bg-kaddu-500 p-3 w-full border-2 mt-8 font-bold text-xl "
@@ -108,7 +109,7 @@ const CreateAccount = () => {
             </div>
             <div className="my-2 text-center">
               Already have an account?{" "}
-              <Link to="/login" className="text-kaddu-600">
+              <Link to={ROUTES.LOGIN} className="text-kaddu-600">
                 Login here
               </Link>
             </div>
