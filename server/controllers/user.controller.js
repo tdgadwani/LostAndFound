@@ -228,7 +228,7 @@ const editProfile = asyncHandler(async (req, res) => {
     collageName,
     graduationMonth,
     graduationYear,
-    media,
+    avatar,
   } = req.body;
   const { isProfileSet } = req.user;
   if (isProfileSet == false && !rollNo) {

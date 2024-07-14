@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import BGImage from "../assets/SignIn_Page.svg";
 import CreateAcc from "../assets/Create_Account.svg";
 import googleLogo from "../assets/googleLogin.svg";
@@ -10,7 +10,8 @@ import OTPPopup from "../components/otpPopup.jsx";
 import LogoMain from "../assets/LogoMain.svg";
 import Header from "../components/Header.jsx";
 import TogglePassword from "../components/TogglePassword.jsx";
-import { ROUTES } from "../utils/constants.js";
+import { PASSWORDERRORMESSAGE, ROUTES } from "../utils/constants.js";
+import toast from "react-hot-toast";
 
 const CreateAccount = () => {
   const [showOTPWindow, setShowOTPWindow] = useState(false);
@@ -20,23 +21,25 @@ const CreateAccount = () => {
   const passwordRef = useRef("");
   const fullnameRef = useRef("");
   
-  // const validate = () => {
-  //   const errors = {};
-  //   if (formData.username.length < 3) {
-  //     errors.username = 'Username must be at least 3 characters long.';
-  //   }
-  //   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   if (!emailPattern.test(formData.email)) {
-  //     errors.email = 'Please enter a valid email address.';
-  //   }
-  //   return errors;
-  // };
-
+  const [showError, setShowError] = useState(false);
   const submitHandler = async (e) => {
     e.preventDefault();
-
-    // const errors = validate();
-
+    if(fullnameRef.current.value.trim() === "") {
+      toast.error("Full Name is Required", {
+        duration: 4000,
+      })
+    }
+    const email = emailRef.current.value;
+    const regex = new RegExp(/^[\w.-]+@[\w-]+\.[\w.]{2,}$/i);
+    const result = regex.test(email);
+    if(result === false) {
+      toast.error("Please enter Valid Email address.", { duration: 4000});
+      return;
+    }
+    if(passwordRef.current.value.length < 8) {
+      setShowError(true);
+      return;
+    }
     const formData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -44,15 +47,10 @@ const CreateAccount = () => {
     };
     dispatch(sendOTP(formData, navigate));
     setShowOTPWindow(true);
-     
-  //  console.log(passwordRef.current.value);
-
-    // Clear input fields after submission
     emailRef.current.value = "";
     passwordRef.current.value = "";
     fullnameRef.current.value = "";
   };
-  
   return (
     <>
       <div
@@ -88,7 +86,7 @@ const CreateAccount = () => {
                   />
                   
                   <TogglePassword passwordRef={passwordRef} passwordType={"Password "} />
-                
+                  {showError && <span className="text-xs m-0">{PASSWORDERRORMESSAGE}</span> }
                 <button
                   className="bg-kaddu-500 p-3 w-full border-2 mt-8 font-bold text-xl "
                   onClick={submitHandler}

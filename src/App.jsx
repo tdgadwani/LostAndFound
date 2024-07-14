@@ -18,6 +18,7 @@ import ForgotPassword from "./pages/ForgotPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
 import { ROUTES } from "./utils/constants.js";
 import Leaderboard from "./pages/Leaderboard.jsx";
+import YourProfile from "./pages/YourProfile.jsx";
 
 function App() {
  
@@ -119,6 +120,14 @@ function App() {
           element={
             <PrivateRoute>
               <Leaderboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={ROUTES.YOURPROFILE}
+          element={
+            <PrivateRoute>
+              <YourProfile/>
             </PrivateRoute>
           }
         />
