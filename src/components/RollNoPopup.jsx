@@ -20,7 +20,7 @@ const RollNoPopup = ({ id, onClose }) => {
     };
 
     return (
-        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
+        <div className='fixed inset-0 flex z-50 items-center justify-center bg-black bg-opacity-50'>
             <div className='relative bg-white p-8 rounded-lg shadow-lg w-96'>
                 <button onClick={onClose} className='absolute top-2 right-2'>
                     <img src={cross} alt="Close" className='w-6 h-6' />

@@ -28,49 +28,40 @@ const AllItemsComponent = ({ itemType }) => {
 
   useEffect(() => {
     if (itemType === "Lost") {
-        if(lostItems === undefined){
-            setAllItems([]);
-        } else {
-            setAllItems(lostItems);
-        }
+      if (lostItems === undefined) {
+        setAllItems([]);
+      } else {
+        setAllItems(lostItems);
+      }
     } else if (itemType === "Found") {
-        if (foundItems === undefined) {
-            setAllItems([]);
-        } else {
-            setAllItems(foundItems);
-        }
+      if (foundItems === undefined) {
+        setAllItems([]);
+      } else {
+        setAllItems(foundItems);
+      }
     } else if (itemType === "Claimed") {
-        if (claimedItems === undefined) {
-            setAllItems([]);
-        } else {
-            setAllItems(claimedItems);
-        }
+      if (claimedItems === undefined) {
+        setAllItems([]);
+      } else {
+        setAllItems(claimedItems);
+      }
     }
   }, [itemType, lostItems, foundItems, claimedItems]);
 
   console.log("tgadwani ", allItems);
-//   const item={
-//     isLost:
-//   }
 
   return (
-    <div>
-      <div>
-        <h1>{itemType} Items</h1>
-      </div>
-      <div className="flex flex-wrap bg-pink-200">
+    <div className="flex flex-col min-h-screen pt-32 bg-gradient-to-r from-kaddu-100 via-transparent to-kaddu-100">
+      <h1 className="text-6xl text-center">{itemType} Items</h1>
+      <div className="flex flex-wrap pt-20">
         {allItems?.length === 0 ? (
           <Shimmer />
         ) : (
           allItems?.map((item) => (
-            
-    
-              <ItemCard {...item} />
-           
+            <ItemCard {...item} key={item.id} />
           ))
         )}
       </div>
-     
     </div>
   );
 };

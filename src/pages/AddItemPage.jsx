@@ -32,9 +32,15 @@ const AddItem = () => {
 
   return (
     <>
+    <div>
+      <div className="fixed">
       <Header />
-      <AddItemComp isLost={isLost} />
-      <Footer />
+      </div>
+        
+        <AddItemComp isLost={isLost} />
+        <Footer />
+
+        </div>
     </>
   );
 };
