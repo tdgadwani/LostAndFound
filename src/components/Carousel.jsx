@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
-// import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 const Carousel = ({ children: slides, autoSlide = false, autoSlideInterval = 3000 }) => {
     const [curr, setCurr] = useState(0)

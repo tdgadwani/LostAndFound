@@ -23,7 +23,7 @@ export const POST_FOUND_ITEM = FOUND_ITEM_URL + "/postFoundItem";
 export const GET_FOUND_ITEMS = FOUND_ITEM_URL + "/getFoundItems";
 export const GET_FOUND_ITEM_BY_ID = FOUND_ITEM_URL + "/getFoundItemsById";
 export const GET_FOUND_ITEMS_BY_USER_ID = FOUND_ITEM_URL + "/getFoundItemsByUId";
-export const UPDATE_FOUND_ITEMS = FOUND_ITEM_URL + "/updateFoundItems";
+export const UPDATE_FOUND_ITEMS = FOUND_ITEM_URL + "/updateFoundItems/";
 export const GET_RETREIVED__ITEMS = FOUND_ITEM_URL + "/getRetreivedItems";
 
 
