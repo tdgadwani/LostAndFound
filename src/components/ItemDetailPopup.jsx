@@ -20,9 +20,14 @@ const ItemDetailPopup = ({ onClose, item }) => {
                                     <img key={index} src={d} alt={`Slide ${index}`} className='w-full h-full object-contain' />
                                 ))}
                             </Carousel>
-                            <div className='mt-4'>
+                            {
+                                item.isLost?(
+                                    <div className='mt-4'>
                                 <button className='bg-blue-500 text-white py-2 px-4 rounded' onClick={() => setIsRollNoPopUp(true)}>Claim</button>
                             </div>
+                                ):(<div></div>)
+                            }
+                            
                         </div>
                         <div className='flex flex-col justify-center w-full md:w-1/2 mt-4 md:mt-0 md:ml-4'>
                             <div className='text-lg font-bold mb-4 text-center'>Item Details</div>
