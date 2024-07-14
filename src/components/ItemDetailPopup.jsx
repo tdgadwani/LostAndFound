@@ -42,7 +42,7 @@ const ItemDetailPopup = ({ onClose, item }) => {
 
             </div>
             
-            {isRollNoPopUp && <RollNoPopup onClose={() => setIsRollNoPopUp(false)} />}
+            {isRollNoPopUp && <RollNoPopup id={item._id} onClose={() => setIsRollNoPopUp(false)} />}
         </>
     );
 }

@@ -16,7 +16,7 @@ const mailSender = async (email, subject, body) => {
       from: `mailtrap@demomailtrap.com`,
       to: email,
       subject: subject,
-      html: body,
+      html: `${body}`,
     });
   } catch (error) {
     console.error("Error occurred:", error);

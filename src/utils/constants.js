@@ -83,4 +83,5 @@ export const ROUTES = Object.freeze({
   RESETPASSWORD: "/reset-password",
   REWARDS: "/rewards",
   YOURPROFILE: "/profile",
+  LEADERBOARD: "/leader-board"
 });

@@ -1,8 +1,5 @@
-import Logo from "../../src/assets/LogoMain.svg"
-
-const otpTemp = (name,otp) => {
-    return
-          `<!DOCTYPE html>
+const OtpTemp = (name,otp) => {
+    return `<!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -73,8 +70,8 @@ const otpTemp = (name,otp) => {
                     <div class="content">
                         <p class="heading">Hi ${name},</p>
                         <p>To complete your sign-in, please use the following One-Time Password (OTP):</p>
-                        <p class="otp">[ ${otp} ]</p>
-                        <p>This OTP is valid for the next <span style="color: red; font-weight: bold; font-size: 24px;">5</span> minutes. Do not share this code with anyone.<br>
+                        <p class="otp">${otp}</p>
+                        <p>This OTP is valid for the next <span style="color: red; font-weight: bold; font-size: 24px;">5</span> minutes. Do not share this code with anyone.
                         If you did not request this code, please ignore this email or contact our support team immediately.</p>
                     </div>
                     <div class="footer">
@@ -86,4 +83,4 @@ const otpTemp = (name,otp) => {
     ;
 };
 
-export default otpTemp ;
+export default OtpTemp ;

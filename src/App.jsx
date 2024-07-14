@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import LoginAccount from "./pages/LoginAccount";
@@ -9,20 +9,21 @@ import { useSelector } from "react-redux";
 import AddItem from "./pages/AddItemPage";
 import EditProfile from "./pages/EditProfilePage";
 import AllItems from "./pages/AllItems.jsx";
-
-import ItemCard from "./components/ItemCard.jsx";
-import ItemList from "./components/ItemList.jsx";
-import Reward from "./pages/Reward.jsx";
+// const AllItems = React.lazy(() => {import("./pages/AllItems.jsx")});
+// import Reward from "./pages/Reward.jsx";
+const Reward = React.lazy(() => import("./pages/Reward.jsx"));
 import AddItemPage from "./pages/AddItemPage.jsx"
 import Test from "./components/Test.jsx"
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
 import { ROUTES } from "./utils/constants.js";
+import Leaderboard from "./pages/Leaderboard.jsx";
+
 function App() {
  
   return (
-    <>      
-       <Routes>
+    <>
+      <Routes>
         <Route
           path={ROUTES.HOME}
           element={
@@ -43,7 +44,7 @@ function App() {
           path={ROUTES.RESETPASSWORD}
           element={
             <OpenRoute>
-              <ForgotPassword/>
+              <ForgotPassword />
             </OpenRoute>
           }
         />
@@ -51,7 +52,7 @@ function App() {
           path={ROUTES.RESETPASSWORTOKEN}
           element={
             <OpenRoute>
-              <ResetPassword/>
+              <ResetPassword />
             </OpenRoute>
           }
         />
@@ -106,8 +107,18 @@ function App() {
         <Route
           path={ROUTES.REWARDS}
           element={
+            <Suspense>
+              <PrivateRoute>
+                <Reward />
+              </PrivateRoute>
+            </Suspense>
+          }
+        />
+        <Route
+          path={ROUTES.LEADERBOARD}
+          element={
             <PrivateRoute>
-              <Reward/>
+              <Leaderboard />
             </PrivateRoute>
           }
         />

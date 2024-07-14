@@ -7,6 +7,7 @@ const userCheckedIn = async(req,res,next) => {
     if(!token)
         throw new ApiError(403,"Invalid Token");
     const cookieExpiration = new Date(token?.expiration);
+    console.log("tgadwani cookieExpiration", cookieExpiration);
     if (cookieExpiration < new Date()) {
         res.redirect("/api/v1/reward-history/check-in");
     }

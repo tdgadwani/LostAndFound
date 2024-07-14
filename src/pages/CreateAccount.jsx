@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import OTPPopup from "../components/otpPopup.jsx";
 import LogoMain from "../assets/LogoMain.svg";
 import Header from "../components/Header.jsx";
+import TogglePassword from "../components/TogglePassword.jsx";
+import { ROUTES } from "../utils/constants.js";
 
 const CreateAccount = () => {
   const [showOTPWindow, setShowOTPWindow] = useState(false);
@@ -42,13 +44,15 @@ const CreateAccount = () => {
     };
     dispatch(sendOTP(formData, navigate));
     setShowOTPWindow(true);
-    
+     
+  //  console.log(passwordRef.current.value);
+
     // Clear input fields after submission
     emailRef.current.value = "";
     passwordRef.current.value = "";
     fullnameRef.current.value = "";
   };
-
+  
   return (
     <>
       <div
@@ -66,31 +70,27 @@ const CreateAccount = () => {
             <div className="my-2">
               <img src={CreateAcc} alt="Create Account"  className="my-2 w-3/4 md:w-auto"/>
             </div>
-            <form onSubmit={submitHandler} className="w-full">
-              <div className="my-2 flex flex-col justify-evenly items-center w-full">
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  ref={fullnameRef}
-                 className="border-2 py-2 px-4 md:px-10 w-full"
-                 required
-                />
-                <input
-                  type="text"
-                  placeholder="Email"
-                  ref={emailRef}
-                  className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
+            <form onSubmit={submitHandler} className="w-full ">
+              <div className="my-2 flex flex-col justify-evenly items-center w-full ">
+                    <input
+                    type="text"
+                    placeholder="Full Name"
+                    ref={fullnameRef}
+                  className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-3 py-2 rounded-md mt-2 mb-2"
                   required
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  ref={passwordRef}
-                  className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
-                  required
-                />
+                  />
+                  <input
+                    type="text"
+                    placeholder="Email"
+                    ref={emailRef}
+                    className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-3 py-2 rounded-md mt-2 mb-2"
+                    required
+                  />
+                  
+                  <TogglePassword passwordRef={passwordRef} passwordType={"Password "} />
+                
                 <button
-                  className="bg-kaddu-500 p-3 w-full border-2 mt-2 font-bold text-xl"
+                  className="bg-kaddu-500 p-3 w-full border-2 mt-8 font-bold text-xl "
                   onClick={submitHandler}
                 >
                   Create Account
@@ -109,7 +109,7 @@ const CreateAccount = () => {
             </div>
             <div className="my-2 text-center">
               Already have an account?{" "}
-              <Link to="/login" className="text-kaddu-600">
+              <Link to={ROUTES.LOGIN} className="text-kaddu-600">
                 Login here
               </Link>
             </div>
@@ -124,3 +124,13 @@ const CreateAccount = () => {
 };
 
 export default CreateAccount;
+
+
+
+// <input
+// type={typetext}
+// placeholder="Password"
+// ref={passwordRef}
+// className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
+// required
+// />

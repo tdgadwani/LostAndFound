@@ -32,7 +32,7 @@ const ItemCard = (item) => {
             <div className="h-52 bg-kaddu-500 rounded-lg p-2" onClick={() => setShowItemDetailPopup(true)}>
             <img className="h-8 w-8 relative top-0 right-0" src={RightIcon} />
             {/* <img src={ IMG_CDN_URL + cloudinaryImageId } /> */}
-            <img src={item.media[0]} alt="" className="pt-2"/>
+            {/* <img src={item.media[0]} alt="" className="pt-2"/> */}
             </div>
             <div className="my-2 ">
             <div className="flex justify-between">

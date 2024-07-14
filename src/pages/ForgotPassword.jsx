@@ -7,6 +7,7 @@ import Logo from "../assets/LogoMain.svg";
 import { Link } from "react-router-dom";
 import ForgotPasswordIcon from "../assets/ForgotPassword.svg"
 import { resetPasswordToken } from "../services/operations/resetPasswordAPI";
+import { ROUTES } from "../utils/constants";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -36,18 +37,18 @@ const ForgotPassword = () => {
         <div className="flex flex-col justify-evenly items-center">
           <img src={ForgotPasswordIcon} alt="Create Account" className="my-2" />
           <div className="my-4 text-xl">Enetr the Email address you used to create account</div>
-          <form onSubmit={submitHandler}>
+          <form onSubmit={submitHandler} className="w-full">
             <div className="my-2 flex flex-col justify-evenly items-center">
               <input
                 type="text"
                 placeholder="email"
-                className="border-2 py-2 px-10"
+                className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-3 py-2 rounded-md"
                 ref={emailRef}
                 required
               />
               <button
                 type="submit"
-                className="bg-kaddu-500 p-3 w-full border-2 mt-2 font-bold text-xl "
+                className="bg-kaddu-500 p-3 w-full border-2 mt-6 font-bold text-xl "
               >
                 Send Email
               </button>
@@ -56,7 +57,7 @@ const ForgotPassword = () => {
         </div>
         <div>
           Remember Password ? 
-          <Link to="/signup">
+          <Link to={ROUTES.LOGIN}>
             <span className="text-kaddu-600"> Login </span>
           </Link>
         </div>

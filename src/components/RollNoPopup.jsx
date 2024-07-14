@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import cross from '../assets/cross.svg';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { updateFoundItem } from '../services/operations/foundItemsAPI';
 
-const RollNoPopup = ({ onClose }) => {
-
+const RollNoPopup = ({ id, onClose }) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [rollNo, setRollNo] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
+        const formData = {
+          isRetrieved: true ,
+          retrievedByUser: rollNo,
+        };
+        dispatch(updateFoundItem(formData,id, navigate));
         console.log('Submitted Roll No:', rollNo);
         
     };
