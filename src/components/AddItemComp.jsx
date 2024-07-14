@@ -96,7 +96,6 @@ const AddItemComp = ({ isLost }) => {
 
   return (
     <>
-      <Header />
       <div className="min-h-screen bg-gradient-to-b from-white to-red-200 p-2 md:p-4 mt-10">
         <div className="max-w-xl mx-auto bg-white shadow-2xl rounded-lg p-4 md:p-6">
           <h1 className="text-6xl md:text-3xl font-bold text-center mb-4 md:mb-6">
@@ -211,7 +210,6 @@ const AddItemComp = ({ isLost }) => {
           </form>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

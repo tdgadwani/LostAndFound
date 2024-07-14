@@ -69,3 +69,19 @@ const DUMMY_OBJ = {
   updatedAt: "2024-07-06T09:45:24.710Z",
   __v: 0,
 };
+
+export const ROUTES = Object.freeze({
+  HOME: "/",
+  SIGNUP: "/signup",
+  LOGIN: "/login",
+  ADDITEM: "/additem",
+  EDITPROFILE: "/editprofile",
+  CLAIMEDITEMS: "/claimedtems",
+  FOUNDITEMS: "/founditems",
+  LOSTITEMS: "/lostitems",
+  RESETPASSWORTOKEN: "/reset-password/:token",
+  RESETPASSWORD: "/reset-password",
+  REWARDS: "/rewards",
+  YOURPROFILE: "/profile",
+  LEADERBOARD: "/leader-board"
+});

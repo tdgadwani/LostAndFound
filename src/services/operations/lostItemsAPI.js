@@ -7,6 +7,7 @@ import {
 } from "../apis.js";
 import { apiConnector } from "../apiConnector.js";
 import { setLostItems } from "../../slices/lostItemSlice.js";
+import { ROUTES } from "../../utils/constants.js";
 
 const postLostItem = (formData,navigate) => {
     return async(dispatch) => {
@@ -21,7 +22,7 @@ const postLostItem = (formData,navigate) => {
             }
             toast.success(response.data.message);
             //  navigate logic
-            navigate("/lost-items")
+            navigate(ROUTES.LOSTITEMS);
         } catch (error) {
             toast.error(error.message);
         }

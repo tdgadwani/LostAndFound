@@ -4,6 +4,7 @@ import {
     RESET_PASSWORD,
 } from "../apis.js";
 import { apiConnector } from "../apiConnector.js";
+import { ROUTES } from "../../utils/constants.js";
 
 const resetPasswordToken = (formData, navigate) => { 
     return async(dispatch) => {
@@ -16,7 +17,7 @@ const resetPasswordToken = (formData, navigate) => {
             }
             toast.success(response.data.message);
             //  navigate logic
-            navigate("/login");
+            navigate(ROUTES.LOGIN);
         } catch (error) {
             toast.error(error.message);
         } finally {
@@ -40,7 +41,7 @@ const resetPassword = (formData,token,navigate) => {
           }
           toast.success(response.data.message);
           //  navigate logic
-          navigate("/login");
+          navigate(ROUTES.LOGIN);
         } catch (error) {
           toast.error(error.message);
         } finally {
