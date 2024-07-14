@@ -112,9 +112,6 @@ function App() {
           }
         />
       </Routes> 
-      
-
-
 
     </>
   );

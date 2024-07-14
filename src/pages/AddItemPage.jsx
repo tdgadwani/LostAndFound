@@ -10,9 +10,15 @@ const AddItem = () => {
   const { isLost } = location.state || {};
   return (
     <>
-        <Header />
+    <div>
+      <div className="fixed">
+      <Header />
+      </div>
+        
         <AddItemComp isLost={isLost} />
         <Footer />
+
+        </div>
     </>
   );
 };
