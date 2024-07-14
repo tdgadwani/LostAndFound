@@ -18,6 +18,7 @@ import Test from "./components/Test.jsx"
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
 import { ROUTES } from "./utils/constants.js";
+import Error from "./components/Error.jsx";
 function App() {
  
   return (
@@ -111,11 +112,10 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="*" element={<Error />} />
+
       </Routes> 
-      
-
-
-
+    
     </>
   );
 }
