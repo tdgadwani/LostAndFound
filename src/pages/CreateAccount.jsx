@@ -24,7 +24,7 @@ const CreateAccount = () => {
   const [showError, setShowError] = useState(false);
   const submitHandler = async (e) => {
     e.preventDefault();
-    if(fullnameRef.current.value.trim() === "") {
+    if(fullnameRef.current.value.trim() === ""){
       toast.error("Full Name is Required", {
         duration: 4000,
       })
@@ -66,7 +66,7 @@ const CreateAccount = () => {
           <img src={LogoMain} alt="Logo" className="w-32 md:w-48 lg:w-64" />
           <div className="flex flex-col justify-evenly items-center w-full">
             <div className="my-2">
-              <img src={CreateAcc} alt="Create Account"  className="my-2 w-3/4 md:w-auto"/>
+              <img src={CreateAcc} alt="Create Account"  className="mb-2 w-3/4 md:w-auto"/>
             </div>
             <form onSubmit={submitHandler} className="w-full ">
               <div className="my-2 flex flex-col justify-evenly items-center w-full ">
@@ -74,28 +74,28 @@ const CreateAccount = () => {
                     type="text"
                     placeholder="Full Name"
                     ref={fullnameRef}
-                  className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-3 py-2 rounded-md mt-2 mb-2"
+                  className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-2 py-1 rounded-md mt-1 mb-1"
                   required
                   />
                   <input
                     type="text"
                     placeholder="Email"
                     ref={emailRef}
-                    className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-3 py-2 rounded-md mt-2 mb-2"
+                    className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-2 py-1 rounded-md mt-1 mb-1"
                     required
                   />
                   
                   <TogglePassword passwordRef={passwordRef} passwordType={"Password "} />
                   {showError && <span className="text-xs m-0">{PASSWORDERRORMESSAGE}</span> }
                 <button
-                  className="bg-kaddu-500 p-3 w-full border-2 mt-8 font-bold text-xl "
+                  className="bg-kaddu-500 p-2 w-full border-2 mt-3 font-bold text-xl "
                   onClick={submitHandler}
                 >
                   Create Account
                 </button>
               </div>
             </form>
-            <div className="my-2 text-center">
+            <div className="my-1 text-center">
               By creating an account, you agree to Relink{" "}
               <Link to="/terms" className="text-kaddu-600">
                 Terms of Service
@@ -105,7 +105,7 @@ const CreateAccount = () => {
                 Privacy Policy
               </Link>
             </div>
-            <div className="my-2 text-center">
+            <div className="my-1 text-center">
               Already have an account?{" "}
               <Link to={ROUTES.LOGIN} className="text-kaddu-600">
                 Login here
