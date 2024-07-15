@@ -20,8 +20,6 @@ import { ROUTES } from "./utils/constants.js";
 import Leaderboard from "./pages/Leaderboard.jsx";
 import YourProfile from "./pages/YourProfile.jsx";
 
-
-import ShimmerHome from "./components/ShimmerHome.jsx";
 function App() {
  
   return (
@@ -134,7 +132,6 @@ function App() {
           }
         />
       </Routes>
-
 
     </>
   );

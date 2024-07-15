@@ -1,17 +1,11 @@
 import React from 'react'
+import HeaderShimmer from "../Shimmer/HeaderShimmer.jsx"
+import FooterShimmer from './FooterShimmer.jsx'
 
 const ShimmerHome = () => {
   return (
     <>
-    <div className='flex justify-between p-5'>
-        <div className='bg-kaddu-123 h-8 w-1/4'>
-
-        </div>
-        <div className='flex justify-evenly w-1/2 pl-10 '>
-            <div className='bg-kaddu-123 h-8 w-2/5 '></div>
-            <div className='bg-kaddu-123 w-8 h-8 rounded-full'></div>
-        </div>
-    </div>
+    <HeaderShimmer/>
 
     <div className='mx-20 mt-10 mb-4 p-8 h-12 w-2/3 flex justify-center bg-kaddu-123'></div>
     <div className='mx-20 my-4 p-8 h-12 w-4/5 flex justify-center items-center bg-kaddu-123'></div>
@@ -63,7 +57,7 @@ const ShimmerHome = () => {
 
     <div className='m-20 bg-kaddu-123 h-96'></div>
     
-
+   <FooterShimmer/>
 
     </>
   )
