@@ -4,10 +4,10 @@ const TogglePassword = ({passwordRef,passwordType}) => {
 const [showPassword, setShowPassword] = useState(false);
 return (
 <>
-<div className="mt-2 mb-2 w-full">
+<div className="mt-1 mb-1 w-full">
             <div className="relative">
                 <input
-                className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-3 py-2 rounded-md"
+                className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-2 py-1 rounded-md"
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder={passwordType}

@@ -31,8 +31,8 @@ const ForgotPassword = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="w-1/2"></div>
-      <div className="w-2/5 m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl">
+      <div className="hidden md:block w-1/2"></div>
+      <div className="w-full md:w-2/5 m-4 md:m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl p-4 md:p-10">
         <img src={Logo} alt="Logo" />
         <div className="flex flex-col justify-evenly items-center">
           <img src={ForgotPasswordIcon} alt="Create Account" className="my-2" />

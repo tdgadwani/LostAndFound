@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import BGImage from "../assets/SignIn_Page.svg";
 import CreateAcc from "../assets/Create_Account.svg";
 import googleLogo from "../assets/googleLogin.svg";
@@ -10,7 +10,8 @@ import OTPPopup from "../components/otpPopup.jsx";
 import LogoMain from "../assets/LogoMain.svg";
 import Header from "../components/Header.jsx";
 import TogglePassword from "../components/TogglePassword.jsx";
-import { ROUTES } from "../utils/constants.js";
+import { PASSWORDERRORMESSAGE, ROUTES } from "../utils/constants.js";
+import toast from "react-hot-toast";
 
 const CreateAccount = () => {
   const [showOTPWindow, setShowOTPWindow] = useState(false);
@@ -19,9 +20,26 @@ const CreateAccount = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const fullnameRef = useRef("");
-
+  
+  const [showError, setShowError] = useState(false);
   const submitHandler = async (e) => {
     e.preventDefault();
+    if(fullnameRef.current.value.trim() === ""){
+      toast.error("Full Name is Required", {
+        duration: 4000,
+      })
+    }
+    const email = emailRef.current.value;
+    const regex = new RegExp(/^[\w.-]+@[\w-]+\.[\w.]{2,}$/i);
+    const result = regex.test(email);
+    if(result === false) {
+      toast.error("Please enter Valid Email address.", { duration: 4000});
+      return;
+    }
+    if(passwordRef.current.value.length < 8) {
+      setShowError(true);
+      return;
+    }
     const formData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -33,7 +51,7 @@ const CreateAccount = () => {
     passwordRef.current.value = "";
     fullnameRef.current.value = "";
   };
-
+  
   return (
     <>
       <div
@@ -59,15 +77,17 @@ const CreateAccount = () => {
                   ref={fullnameRef}
                   className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-3 py-2 rounded-md mt-2 mb-2"
                   required
-                />
-                <input
-                  type="text"
-                  placeholder="Email"
-                  ref={emailRef}
-                  className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-3 py-2 rounded-md mt-2 mb-2"
-                  required
-                />
-                <TogglePassword passwordRef={passwordRef} passwordType={"Password "} />
+                  />
+                  <input
+                    type="text"
+                    placeholder="Email"
+                    ref={emailRef}
+                    className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-2 py-1 rounded-md mt-1 mb-1"
+                    required
+                  />
+                  
+                  <TogglePassword passwordRef={passwordRef} passwordType={"Password "} />
+                  {showError && <span className="text-xs m-0">{PASSWORDERRORMESSAGE}</span> }
                 <button
                   className="bg-kaddu-500 p-3 w-full border-2 mt-8 font-bold text-xl"
                   onClick={submitHandler}
@@ -76,7 +96,7 @@ const CreateAccount = () => {
                 </button>
               </div>
             </form>
-            <div className="my-2 text-center">
+            <div className="my-1 text-center">
               By creating an account, you agree to Relink{" "}
               <Link to="/terms" className="text-kaddu-600">
                 Terms of Service
@@ -86,7 +106,7 @@ const CreateAccount = () => {
                 Privacy Policy
               </Link>
             </div>
-            <div className="my-2 text-center">
+            <div className="my-1 text-center">
               Already have an account?{" "}
               <Link to={ROUTES.LOGIN} className="text-kaddu-600">
                 Login here
