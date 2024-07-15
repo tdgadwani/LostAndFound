@@ -32,19 +32,33 @@ const ItemCard = (item) => {
             <div className="h-52 bg-kaddu-500 rounded-lg p-2" onClick={() => setShowItemDetailPopup(true)}>
             <img className="h-8 w-8 relative top-0 right-0" src={RightIcon} />
             {/* <img src={ IMG_CDN_URL + cloudinaryImageId } /> */}
-            <img src={item.media[0]} alt="" className="pt-2"/>
+            {(item && item.media)?(
+                <img src={item.media[0]} alt="" className="pt-2"/>
+            ):
+             
+            (<div></div>)
+            }
+            
             </div>
             <div className="my-2 ">
             <div className="flex justify-between">
                 <div className="flex flex-col">
-                     <h1 className="font-bold text-black">{item.itemName} </h1>
+                     <h1 className="font-bold text-black">{item.itemName || "Item"} </h1>
                     <div className="flex text-sm ">
                         <img src={LocationIcon} alt="" className="h-6 w-6 " />
-                        <p>
-                        {item.address.buildingName} | {time}
-                        
-                        </p>
-                        <p>hh</p>
+                        {
+                            (item && item.address && item.address.buildingName)?(
+                                <p>
+                                {item.address.buildingName} | {time}
+                                
+                                </p>
+                            ):(
+                                <p>hh</p>
+                                
+                            )
+                        }
+                    
+                       
                     </div>
                 </div>
                 

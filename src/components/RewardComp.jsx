@@ -12,7 +12,7 @@ const RewardComp = () => {
   return (
     <>
       
-       <div className='m-16 mb-40 from-white to-red-300'>
+       <div className='p-16 mb-40 from-white to-red-300'>
         
         <div>
             <div className=" font-bold text-5xl text-center">Reawrds</div>
@@ -22,9 +22,9 @@ const RewardComp = () => {
             </div>
         </div>
 
-        <div className="flex h-96 text-white m-2">
+        <div className="flex flex-col md:flex-row items-center  text-white m-2">
 
-          <div className="w-1/3 bg-black m-2 p-2 rounded-xl">
+          <div className=" w-60 sm:w-2/3 lg:w-1/3 h-80 bg-black m-2 p-2 rounded-xl">
                 <div className='bg-white flex m-1 p-1 text-black rounded-md w-16 text-sm '>
                     <img src={star} className='size-5' />
                     <p className='px-1'>350</p>
@@ -32,7 +32,7 @@ const RewardComp = () => {
               <div className='  m-1 p-1 text-white'>flipcart coupan</div>
           </div> 
 
-          <div className='w-1/3  m-2 p-2'>
+          <div className='w-60 sm:w-2/3 lg:w-1/3 h-80 m-2 p-2 mb-8'>
               <div className='bg-black h-1/2 rounded-xl'>
                     <div className='bg-white flex m-1 p-1 text-black rounded-md w-16 text-sm '>
                         <img src={star} className='size-5' />
@@ -58,7 +58,7 @@ const RewardComp = () => {
               </div>
           </div>
 
-          <div className="w-1/3 bg-black m-2 p-2 rounded-xl">
+          <div className="w-60 sm:w-2/3 lg:w-1/3 h-80 bg-black mt-6 lg:m-2 p-2 rounded-xl">
             <div className='bg-white flex m-1 p-1 text-black rounded-md w-16 text-sm '>
                         <img src={star} className='size-5' />
                         <p className='px-1'>350</p>
@@ -73,7 +73,7 @@ const RewardComp = () => {
         <div>
                <div className='font-bold text-5xl text-center mt-14 '><h1>Reedemed</h1></div>
                
-               <div className='flex place-content-center m-8'>
+               <div className='flex  flex-col items-center md:flex-row place-content-center m-8'>
                     <div className=' m-2 p-2 bg-black text-white font-bold w-60 h-60 rounded-lg '>
                          <div className=' m-1 p-1 bg-slate-800 rounded-2xl'>
                             <img src={diccount} />

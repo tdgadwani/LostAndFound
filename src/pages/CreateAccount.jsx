@@ -19,24 +19,9 @@ const CreateAccount = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const fullnameRef = useRef("");
-  
-  // const validate = () => {
-  //   const errors = {};
-  //   if (formData.username.length < 3) {
-  //     errors.username = 'Username must be at least 3 characters long.';
-  //   }
-  //   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   if (!emailPattern.test(formData.email)) {
-  //     errors.email = 'Please enter a valid email address.';
-  //   }
-  //   return errors;
-  // };
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
-    // const errors = validate();
-
     const formData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -44,19 +29,15 @@ const CreateAccount = () => {
     };
     dispatch(sendOTP(formData, navigate));
     setShowOTPWindow(true);
-     
-  //  console.log(passwordRef.current.value);
-
-    // Clear input fields after submission
     emailRef.current.value = "";
     passwordRef.current.value = "";
     fullnameRef.current.value = "";
   };
-  
+
   return (
     <>
       <div
-        className="bg-kaddu-500 flex h-screen justify-between"
+        className="bg-kaddu-500 flex min-h-screen justify-between"
         style={{
           backgroundImage: `url(${BGImage})`,
           backgroundSize: "contain",
@@ -64,33 +45,31 @@ const CreateAccount = () => {
         }}
       >
         <div className="hidden md:block w-1/2"></div>
-        <div className="w-full md:w-2/5 m-4 md:m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl p-4 md:p-10">
+        <div className="w-full md:w-2/5 m-4 md:m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl p-4 md:p-10 overflow-y-auto">
           <img src={LogoMain} alt="Logo" className="w-32 md:w-48 lg:w-64" />
           <div className="flex flex-col justify-evenly items-center w-full">
             <div className="my-2">
-              <img src={CreateAcc} alt="Create Account"  className="my-2 w-3/4 md:w-auto"/>
+              <img src={CreateAcc} alt="Create Account" className="my-2 w-3/4 md:w-auto" />
             </div>
-            <form onSubmit={submitHandler} className="w-full ">
-              <div className="my-2 flex flex-col justify-evenly items-center w-full ">
-                    <input
-                    type="text"
-                    placeholder="Full Name"
-                    ref={fullnameRef}
+            <form onSubmit={submitHandler} className="w-full">
+              <div className="my-2 flex flex-col justify-evenly items-center w-full">
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  ref={fullnameRef}
                   className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-3 py-2 rounded-md mt-2 mb-2"
                   required
-                  />
-                  <input
-                    type="text"
-                    placeholder="Email"
-                    ref={emailRef}
-                    className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-3 py-2 rounded-md mt-2 mb-2"
-                    required
-                  />
-                  
-                  <TogglePassword passwordRef={passwordRef} passwordType={"Password "} />
-                
+                />
+                <input
+                  type="text"
+                  placeholder="Email"
+                  ref={emailRef}
+                  className="w-full bg-transparent border-2 border-gray-700 dark:border-gray-200 px-3 py-2 rounded-md mt-2 mb-2"
+                  required
+                />
+                <TogglePassword passwordRef={passwordRef} passwordType={"Password "} />
                 <button
-                  className="bg-kaddu-500 p-3 w-full border-2 mt-8 font-bold text-xl "
+                  className="bg-kaddu-500 p-3 w-full border-2 mt-8 font-bold text-xl"
                   onClick={submitHandler}
                 >
                   Create Account
@@ -124,13 +103,3 @@ const CreateAccount = () => {
 };
 
 export default CreateAccount;
-
-
-
-// <input
-// type={typetext}
-// placeholder="Password"
-// ref={passwordRef}
-// className="border-2 py-2 px-4 md:px-10 mt-2 w-full"
-// required
-// />
