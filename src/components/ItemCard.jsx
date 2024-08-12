@@ -8,7 +8,9 @@ import ExtractDate from "../utils/ExtractDate.js";
 
 // const Item = ({cloudinaryImageId,itemName,type,address,dateFound}) => {
 
-const ItemCard = (item) => {
+const ItemCard = ({item}) => {
+    console.log("tgadwasZz", item);
+    
     const [showItemDetailPopup, setShowItemDetailPopup] = useState(false);
     var color="red";
     var type = "Lost";

@@ -5,7 +5,7 @@ const FooterShimmer = () => {
         <>
             <div className='flex justify-between p-5 bg-blue-gray-100'>
                     <div className='grid grid-cols-1 w-1/5  '>
-                        <div mt-1>
+                        <div className="mt-1">
                             <div className='bg-kaddu-123  h-4 w-2/3 m-2'></div>
                             <div className='bg-kaddu-123  h-4 w-2/3 m-2'></div>
                         </div>

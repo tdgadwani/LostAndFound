@@ -39,7 +39,7 @@ const getLostItems = () => {
             toast.error(response.data.message);
             throw new Error(response.data.message);
           }
-          dispatch(setLostItems([response.data.data]));
+          dispatch(setLostItems(response.data.data));
           toast.success(response.data.message);
         } catch (error) {
           toast.error(error.message);

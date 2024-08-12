@@ -15,6 +15,7 @@ const AddItemComp = ({ isLost }) => {
   const locationFound = useRef(null);
   const category = useRef(null);
   const description = useRef(null);
+  // const [image,setImage] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [fileReaders, setFileReaders] = useState([]);
   const [fileLimit, setFileLimit] = useState(false);
@@ -24,6 +25,8 @@ const AddItemComp = ({ isLost }) => {
   const [previewUrls, setPreviewUrls] = useState([]);
 
   const handleChange = (e) => {
+    // setImage(URL.createObjectURL(e.target.files[0]))
+    handleFiles(e);
     setPreviewUrls((prev) =>
       prev.concat(
         Array.from(e.target.files ?? []).map((f) =>
@@ -41,6 +44,7 @@ const AddItemComp = ({ isLost }) => {
   }, [previewUrls]);
 
   const handleUploadFiles = (files) => {
+    console.log(files,"yash tuhsar loda")
     const uploaded = [...uploadedFiles];
     const readers = [];
     let limitExceeded = false;
@@ -74,6 +78,7 @@ const AddItemComp = ({ isLost }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
+    console.log(uploadedFiles, "gendu tushar ")
     for (let i = 0; i < uploadedFiles.length; i++) {
       formData.append("media", uploadedFiles[i]);
     }
@@ -96,7 +101,6 @@ const AddItemComp = ({ isLost }) => {
 
   return (
     <>
-      <Header />
       <div className="min-h-screen bg-gradient-to-b from-white to-red-200 p-2 md:p-4 mt-10">
         <div className="max-w-xl mx-auto bg-white shadow-2xl rounded-lg p-4 md:p-6">
           <h1 className="text-6xl md:text-3xl font-bold text-center mb-4 md:mb-6">
@@ -152,7 +156,7 @@ const AddItemComp = ({ isLost }) => {
                   onChange={handleChange}
                   className="hidden"
                   id="upload-image"
-                  accept=".png, .jpg, .raw"
+                  accept=".png, .jpg, .raw .jpeg"
                 />
                 <label
                   htmlFor="upload-image"

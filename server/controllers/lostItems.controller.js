@@ -16,8 +16,11 @@ const postLostItems = asyncHandler(async (req, res, _) => {
   if (!req.files) throw new ApiError(403, "Image path is required");
   const imgUpload = async () => {
     try {
+      console.log("hgsfgjyr ", req.files, req.file);
+      
       const arr = await Promise.all(
         req.files.media.map(async (imgLink) => {
+          console.log(imgLink,"tushar gendu",req.files, "gendu tushar",req.file)
           const localPath = imgLink.path;
           const imgUrl = await uploadOnCloudinary(localPath);
           if (!imgUrl) {

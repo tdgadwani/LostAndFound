@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer.jsx";
+import LostItemShimmer from "../Shimmer/LostItemShimmer.jsx"
 import ItemCard from "./ItemCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { getLostItems } from "../services/operations/lostItemsAPI.js";
@@ -7,12 +8,12 @@ import {
   getFoundItems,
   getRetreivedItems,
 } from "../services/operations/foundItemsAPI.js";
-import { Link } from "react-router-dom";
 
-const AllItemsComponent = ({ itemType }) => {
+const AllItemsComponent = ({itemType}) => {
+  console.log("bitches ",itemType)
   const [allItems, setAllItems] = useState([]);
   const dispatch = useDispatch();
-  const lostItems = useSelector((store) => store?.lostItems?.lostItems);
+  const lostItems = useSelector((store) => store?.lostItem?.lostItems);  
   const foundItems = useSelector((store) => store?.foundItems?.foundItems);
   const claimedItems = useSelector((store) => store?.claimedItems?.claimedItems);
 
@@ -31,6 +32,8 @@ const AllItemsComponent = ({ itemType }) => {
       if (lostItems === undefined) {
         setAllItems([]);
       } else {
+        console.log("lost ", lostItems);
+        
         setAllItems(lostItems);
       }
     } else if (itemType === "Found") {
@@ -43,6 +46,7 @@ const AllItemsComponent = ({ itemType }) => {
       if (claimedItems === undefined) {
         setAllItems([]);
       } else {
+        console.log("claimed", claimedItems);
         setAllItems(claimedItems);
       }
     }
@@ -54,13 +58,12 @@ const AllItemsComponent = ({ itemType }) => {
     <div className="flex flex-col min-h-screen pt-32 bg-gradient-to-r from-kaddu-100 via-transparent to-kaddu-100">
       <h1 className="text-6xl text-center">{itemType} Items</h1>
       <div className="flex flex-wrap pt-20">
-        {allItems?.length === 0 ? (
-          <Shimmer />
-        ) : (
-          allItems?.map((item) => (
-            <ItemCard {...item} key={item.id} />
-          ))
-        )}
+        {allItems?.length === 0 ? 
+          <LostItemShimmer/>
+         :
+          (allItems?.map((item) => {
+            return <ItemCard item={item} key={item.id} />
+}))}
       </div>
     </div>
   );
