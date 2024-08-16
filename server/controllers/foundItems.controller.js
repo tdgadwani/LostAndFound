@@ -126,7 +126,7 @@ const getFoundItemsByUId = asyncHandler(async (req, res, _) => {
 });// tested
 
 const updateFoundItem = asyncHandler(async (req, res, _) => {
-  const { id } = req.params;
+  const { id } = req.params; 
   const { isRetrieved, retrievedByUser } = req.body;
   console.log(typeof isRetrieved, req.body);
   if (!id) {
@@ -135,7 +135,8 @@ const updateFoundItem = asyncHandler(async (req, res, _) => {
   if(!isRetrieved || !retrievedByUser)
     throw new ApiError(401,"All Fields are Required");
 
-  const retrievedBy = await User.findOne({rollNo:retrievedByUser}).select("_id");
+  const retrievedBy = await User.findOne({rollNo:retrievedByUser}).select("_id"); //?:Have fix (rollno data is not avilabal in database)
+  // const retrievedBy = await User.findOne({email:retrievedByUser}).select("_id"); 
   console.log(retrievedBy);
   if(!retrievedBy)
     throw new ApiError(403,"User with given Roll No. Not found"); 

@@ -3,6 +3,7 @@ import lostImage from "../assets/lostSample_1.png"
 import LocationIcon from "../assets/location.svg"
 import RightIcon from "../assets/RightIcon.svg"
 import { IMG_CDN_URL } from "../constants.js"
+import ItemDetailPopup from './ItemDetailPopup.jsx'
 
 
 const Item = ({cloudinaryImageId,name,type,address,time}) => {
@@ -33,4 +34,4 @@ const Item = ({cloudinaryImageId,name,type,address,time}) => {
   )
 }
 
-export default Item
+export default Item;

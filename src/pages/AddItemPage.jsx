@@ -36,11 +36,9 @@ const AddItem = () => {
       <div className="fixed">
       <Header />
       </div>
-        
-        <AddItemComp isLost={isLost} />
-        <Footer />
-
-        </div>
+      <AddItemComp isLost={isLost} />
+      <Footer />
+    </div>
     </>
   );
 };

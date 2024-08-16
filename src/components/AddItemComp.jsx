@@ -15,6 +15,10 @@ const AddItemComp = ({ isLost }) => {
   const locationFound = useRef(null);
   const category = useRef(null);
   const description = useRef(null);
+
+
+  const PhoneNumber=useRef(null)
+  const Emailref=useRef(null)
   // const [image,setImage] = useState([]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [fileReaders, setFileReaders] = useState([]);
@@ -44,7 +48,7 @@ const AddItemComp = ({ isLost }) => {
   }, [previewUrls]);
 
   const handleUploadFiles = (files) => {
-    console.log(files,"yash tuhsar loda")
+    // console.log(files,"yash tuhsar loda")
     const uploaded = [...uploadedFiles];
     const readers = [];
     let limitExceeded = false;
@@ -77,26 +81,39 @@ const AddItemComp = ({ isLost }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    console.log(uploadedFiles, "gendu tushar ")
-    for (let i = 0; i < uploadedFiles.length; i++) {
-      formData.append("media", uploadedFiles[i]);
+
+    if (!Emailref.current.value && !PhoneNumber.current.value) {
+      alert("Please provide either an email or a phone number.");
+      return;
     }
+    const formData = new FormData();
+    uploadedFiles.forEach((file) => {
+      formData.append("media", file);
+    });
+
     formData.append("itemName", itemName.current.value);
     formData.append("description", description.current.value);
     formData.append("address[buildingName]", locationFound.current.value);
     formData.append("category", category.current.value);
+
+    if (Emailref.current.value) {
+      formData.append("contactInfo[email]", Emailref.current.value);
+    }
+    if (PhoneNumber.current.value) {
+      formData.append("contactInfo[mobileNumber]", PhoneNumber.current.value);
+    }
 
     itemName.current.value = '';
     description.current.value = '';
     locationFound.current.value = '';
     category.current.value = '';
 
+    
     if (isLost) {
       dispatch(postLostItem(formData, navigate));
     } else {
       dispatch(postFoundItem(formData, navigate));
-    }
+    }  
   };
 
   return (
@@ -174,6 +191,18 @@ const AddItemComp = ({ isLost }) => {
                     type="text"
                     placeholder="Item Name"
                     ref={itemName}
+                    className="w-full p-2 rounded border border-gray-300"
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    ref={PhoneNumber}
+                    className="w-full p-2 rounded border border-gray-300"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    ref={Emailref}
                     className="w-full p-2 rounded border border-gray-300"
                   />
                   <div className="flex text-sm flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3">

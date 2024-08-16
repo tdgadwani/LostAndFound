@@ -7,9 +7,9 @@ const userCheckedIn = async(req,res,next) => {
     if(!token)
         throw new ApiError(403,"Invalid Token");
     const cookieExpiration = new Date(token?.expiration);
-    console.log("tgadwani cookieExpiration", cookieExpiration);
+    console.log("tgadwani cookieExpiration", cookieExpiration);    //? Have to fix the code cookieExpiration = Invalid date
     if (cookieExpiration < new Date()) {
-        res.redirect("/api/v1/reward-history/check-in");
+        res.redirect("/api/v1/reward-history/check-in");     //**Have ask how it works */
     }
     next();
 }; 

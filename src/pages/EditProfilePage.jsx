@@ -7,12 +7,9 @@ const EditProfile = () => {
   
   return (
     <>
-      <Header />
+      <Header/>
       <EditProfileComp />
-      <div className='fixed bottom-0 w-full'>
-
       <Footer/>
-      </div>
     </>
   );
 };

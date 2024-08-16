@@ -15,6 +15,7 @@ const sendOTP = (formData,navigate) => {
             }
             toast.success(response.data.message);
             // dispatch() // to be planned
+            dispatch(setSignupData(formData))
         } catch (error) {
             console.log(error.message);
         } finally { 
@@ -78,10 +79,14 @@ const loginUser = (formData, navigate) => {
         throw new Error(response.data.message);
       }
       toast.success(response.data.message);
+      console.log(response.data);
+      
       dispatch(setUserData(response.data.data.user));
       dispatch(setToken(response.data.data.accessToken));
       navigate(ROUTES.HOME);
     } catch (error) {
+      console.log(error.message);
+      
       toast.error(error.message);
     } finally {
       toast.dismiss(toastId);

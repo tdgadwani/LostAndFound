@@ -131,8 +131,8 @@ const signupUser = asyncHandler(async (req, res) => {
   const today = new Date().toISOString().split("T")[0];
   return res
     .status(200)
-    .cookie("accessToken", accessToken, OPTIONS)
-    .cookie("refreshToken", refreshToken, OPTIONS)
+    .cookie("accessToken", createdUser.accessToken, OPTIONS)
+    .cookie("refreshToken", createdUser.refreshToken, OPTIONS)
     .cookie("lastCheckedIn", today, {
       path: "/",
       httpOnly: true,
@@ -144,22 +144,52 @@ const signupUser = asyncHandler(async (req, res) => {
 });
 
 const loginUser = asyncHandler(async (req, res) => {
-  const { rollNo, email, password } = req.body;
+  const { rollNo, email, password } = req.body;  
   if (!(rollNo || email))
     throw new ApiError(400, "Roll Number or Email is Required");
-  const user = await User.findOne({
-    $or: [{ rollNo }, { email }],
-  });
+  // const user = await User.findOne({
+  //   $or: [{ rollNo }, { email }],
+  // });  //?: Bug:  Code always find another email
+ 
+  const user = await User.findOne({ email });
+
+  
   if (!user)
     throw new ApiError(403, "User not found with provided Email or Username");
   const { lastCheckInDate } = user;
-  const date = new Date(lastCheckInDate).toISOString().split("T")[0];
-  const today = new Date().toISOString().split("T")[0];
+  // const date = new Date(lastCheckInDate).toISOString().split("T")[0];
+  // const today = new Date().toISOString().split("T")[0];
+  const date = new Date(lastCheckInDate)
+  const today = new Date()
   console.log("tgadwani ", today, date);
   const isPasswordValid = await user.isPasswordCorrect(password);
-  if(today > date) {
-    user.coins += 5;
-    user.lastCheckInDate = Date.now()
+
+  console.log(" :",password);
+  
+  // if(today > date) {
+  //   user.coins += 5;
+  //   user.lastCheckInDate = Date.now()
+  //   await user.save();
+  // }
+
+  if(date.getFullYear()===today.getFullYear()){
+    if(date.getMonth()===today.getMonth()){
+      if(date.getDate()<today.getDate()){
+        user.coins+=5;
+        user.lastCheckInDate=Date.now();
+        await user.save();
+      }
+    }
+    else if(date.getMonth()<today.getMonth()){
+      user.coins+=5;
+      user.lastCheckInDate=Date.now();
+      await user.save();
+
+    }
+  }
+  else if(date.getFullYear()<today.getFullYear()){
+    user.coins+=5;
+    user.lastCheckInDate=Date.now();
     await user.save();
   }
   if (!isPasswordValid) throw new ApiError(403, "Bad Credentials");

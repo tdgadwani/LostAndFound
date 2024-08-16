@@ -57,7 +57,7 @@ const EditProfileComp = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-white to-red-200">
+      <div className="bg-gradient-to-b from-white to-red-200">
         <main className="py-16">
           <div className="text-center">
             <h1 className="font-bold text-5xl">Edit Profile</h1>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FoundItem from "../assets/FoundHomepage.svg";
 import LostItem from "../assets/LostHomepage.svg";
 import Header from "../components/Header.jsx";
@@ -25,7 +25,7 @@ const Home = () => {
   const settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     speed: 500,
@@ -54,34 +54,62 @@ const Home = () => {
   };
   const dispatch = useDispatch();
 
-  const lostItems = useSelector((store) => store?.lostItems?.lostItems) || [];
+  const lostItems = useSelector((store) => store?.lostItem?.lostItems) || [];
   const foundItems = useSelector((store) => store?.foundItems?.foundItems) || [];
-  const items = useSelector((store) => store?.lostItems?.items) || [];
+  const items = useSelector((store) => store?.lostItem?.items) || [];
 
   useEffect(() => {
     dispatch(getLostItems());
     dispatch(getFoundItems());
   }, []);
 
+  // useEffect(() => {
+  //   if (lostItems.length > 0) {
+  //     const randomLostItems = getRandomElements(lostItems, lostItems.length);
+  //     console.log("shuffle of lostItems",randomLostItems);
+
+  //     dispatch(setItems(randomLostItems));
+  //   }
+  // }, [lostItems]);
+
+  // useEffect(() => {
+  //   if (foundItems.length > 0) {      
+  //     const randomFoundItems = getRandomElements(foundItems, foundItems.length);
+  //     console.log("shuffle of founditems",randomFoundItems);
+      
+  //     dispatch(setItems(randomFoundItems));
+  //   }
+  // }, [foundItems]);
+
+  const [combinedItems, setCombinedItems] = useState([]);
+
   useEffect(() => {
+    let addTwoArrays = [];
+
     if (lostItems.length > 0) {
       const randomLostItems = getRandomElements(lostItems, lostItems.length);
-      dispatch(setItems(randomLostItems));
+      addTwoArrays = addTwoArrays.concat(randomLostItems);
+    } else {
+      addTwoArrays = addTwoArrays.concat(lostItems);
     }
-  }, [lostItems]);
 
-  useEffect(() => {
     if (foundItems.length > 0) {
       const randomFoundItems = getRandomElements(foundItems, foundItems.length);
-      dispatch(setItems(randomFoundItems));
+      addTwoArrays = addTwoArrays.concat(randomFoundItems);
+    } else {
+      addTwoArrays = addTwoArrays.concat(foundItems);
     }
-  }, [foundItems]);
 
+    setCombinedItems(addTwoArrays);
+  }, [lostItems, foundItems]);
+  
   return (
     <>
       <Header className="fixed w-full" />
-      <div className="ml-5 mt-20 md:ml-20">
-        <div className="text-3xl md:text-6xl lg:text-9xl">
+      <div className="mt-20 w-screen">
+        <div className=" w-[95%] mx-auto ">
+
+        <div className="text-3xl md:text-6xl lg:text-8xl">
           HI{" "}
           <span className="text-kaddu-400">{userData?.email || "Email"}</span>
         </div>
@@ -110,14 +138,17 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="relative mt-10">
-          <Slider {...settings}>
-            {array.map((i) => (
-              <div key={i} className="p-2">
-                <ItemCard />
-              </div>
-            ))}
-          </Slider>
+        <div className="flex justify-center bg-blue-gray-200/5 mt-10 w-full">
+          <div className="realtive w-[95%]">
+            <Slider {...settings}>
+              {combinedItems.map((i) => (
+                <div key={i._id} className="p-2 gap-1">
+                  <ItemCard item={i} />
+                </div>
+              ))}
+            </Slider>
+          </div>
+
         </div>
 
         <div className="flex flex-col md:flex-row items-center justify-evenly my-20">
@@ -142,6 +173,7 @@ const Home = () => {
               <img src={HomeFollow} alt="Follow" className="w-full md:w-auto" />
             </div>
           </div>
+        </div>
         </div>
       </div>
       <Footer />

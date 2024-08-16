@@ -14,44 +14,47 @@ const ItemCard = ({item}) => {
     const [showItemDetailPopup, setShowItemDetailPopup] = useState(false);
     var color="red";
     var type = "Lost";
-    if(item.isRetrieved){
+    if(item?.isRetrieved){
         type="Claimed";
         color ="green"
     }
-    else if(!item.isLost){
+    else if(!item?.isLost){
         type="Found";
         color="blue"
     }
    
 
-    const time = ExtractDate(item.dateFound);
+    const time = ExtractDate(item?.dateFound);
     return (
         <>
         <div
-            className="h-72 w-64 bg-kaddu-123 mx-10 my-7 p-2 border-2 rounded-xl z-0"
+            className="h-72 w-56 bg-kaddu-123 mx-10 my-7 p-2 border-2 rounded-xl z-0"
             
         >
-            <div className="h-52 bg-kaddu-500 rounded-lg p-2" onClick={() => setShowItemDetailPopup(true)}>
+            <div className="h-52 flex flex-col justify-center bg-kaddu-500 rounded-lg p-2" onClick={() => setShowItemDetailPopup(true)}>
             <img className="h-8 w-8 relative top-0 right-0" src={RightIcon} />
             {/* <img src={ IMG_CDN_URL + cloudinaryImageId } /> */}
-            {(item && item.media)?(
-                <img src={item.media[0]} alt="" className="pt-2"/>
-            ):
-             
-            (<div></div>)
-            }
+                <div className=" w-full h-full overflow-hidden object-cover p-2">
+                    {(item && item?.media)?(
+                        <img src={item?.media[0]} alt="" className="w-full h-full rounded-lg"/>
+                    ):
+                    
+                    (<div></div>)
+                    }
+
+                </div>
             
             </div>
             <div className="my-2 ">
             <div className="flex justify-between">
                 <div className="flex flex-col">
-                     <h1 className="font-bold text-black">{item.itemName || "Item"} </h1>
+                     <h1 className="font-bold text-black">{item?.itemName || "Item"} </h1>
                     <div className="flex text-sm ">
                         <img src={LocationIcon} alt="" className="h-6 w-6 " />
                         {
-                            (item && item.address && item.address.buildingName)?(
+                            (item && item?.address && item?.address.buildingName)?(
                                 <p>
-                                {item.address.buildingName} | {time}
+                                {item?.address.buildingName} | {time}
                                 
                                 </p>
                             ):(

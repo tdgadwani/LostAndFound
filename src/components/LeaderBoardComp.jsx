@@ -4,19 +4,36 @@ import Rank2 from "../assets/Rank2.svg";
 import Rank3 from "../assets/Rank3.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { getLeaderBoardData } from "../services/operations/authAPI";
+import LeaderboardShimmer from "../Shimmer/LeaderboardShimmer";
 
 const LeaderboardComp = () => {
   const dispatch = useDispatch();
     const [leaderboardData, setLeaderboardData] = useState([]);
+    const [isLoading , setIsLoading]=useState(false);
   useEffect(() => {
-    dispatch(getLeaderBoardData());
+    setIsLoading(true)
+    const timer= setTimeout(()=>{
+      dispatch(getLeaderBoardData());
+    },300)
+    setIsLoading(false);
+    return ()=>clearTimeout(timer);
   }, [dispatch]);
 
   const leaderBoardData = useSelector((store) => store?.auth?.leaderBoardData);
   useEffect(() => {
-    setLeaderboardData(leaderBoardData);
+    if(leaderBoardData){
+      setLeaderboardData(leaderBoardData);
+    }
   },[leaderBoardData]);
   console.log("stfgd ", leaderboardData);
+
+  if(isLoading){
+    return(
+      <>
+        <LeaderboardShimmer/>
+      </>
+    )
+  }
   return (
     <>
       {leaderboardData !== undefined && leaderboardData.length >= 3 ? (
@@ -28,17 +45,17 @@ const LeaderboardComp = () => {
               <div className="bg-yellow-300 rounded-lg p-2">
                 <div className="font-bold">Rank 2</div>
                 <img
-                  src={Rank2}
+                  src={leaderBoardData[1]?.avatar}
                   className="w-20 h-20 mx-auto rounded-full my-2"
                 />
               </div>
               <div className=" text-black">
-                <div className="text-xl font-bold">
-                  {leaderboardData[1].name}
+                <div className="text-base md:text-xl font-bold ">
+                  {leaderboardData[1]?.fullName}
                 </div>
                 <div className="text-sm">NIT Patna</div>
                 <div className="text-red-500 font-bold ">
-                  credits: {leaderboardData[1].coins}
+                  credits: {leaderboardData[1]?.coins}
                 </div>
               </div>
             </div>
@@ -46,45 +63,45 @@ const LeaderboardComp = () => {
             <div className="text-center shadow-2xl w-48 h-64">
               <div className="bg-yellow-300 rounded-lg p-2 ">
                 <div className="font-bold text-2xl">
-                  Rank {leaderboardData[0].rank}
+                  Rank 1
                 </div>
                 <img
-                  src={Rank1}
+                  src={leaderBoardData[0]?.avatar}
                   className="w-24 h-24 mx-auto rounded-full my-2"
                 />
               </div>
               <div className="text-black">
-                <div className="text-xl font-bold">
-                  {leaderboardData[0].fullName}
+                <div className="text-base md:text-xl font-bold ">
+                  {leaderboardData[0]?.fullName}
                 </div>
                 <div className="text-sm">NIT Patna</div>
                 <div className="text-red-500 font-bold ">
-                  credits: {leaderboardData[0].coins}
+                  credits: {leaderboardData[0]?.coins}
                 </div>
               </div>
             </div>
 
             <div className=" text-center shadow-2xl w-40 h-56">
               <div className="bg-yellow-300 rounded-lg p-2">
-                <div className="font-bold">Rank 1</div>
+                <div className="font-bold">Rank 3</div>
                 <img
-                  src={Rank3}
+                  src={leaderBoardData[2]?.avatar}
                   className="w-20 h-20 mx-auto rounded-full my-2"
                 />
               </div>
               <div className=" text-black">
-                <div className="text-xl font-bold">
-                  {leaderboardData[2].name}
+                <div className="text-base md:text-xl font-bold ">
+                  {leaderboardData[2]?.fullName}
                 </div>
                 <div className="text-sm">NIT Patna</div>
                 <div className="text-red-500 font-bold ">
-                  credits: {leaderboardData[2].coins}
+                  credits: {leaderboardData[2]?.coins}
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="w-3/5 mx-auto bg-white rounded-lg shadow-md ">
+          <div className="w-[90%] md:w-3/5 mx-auto bg-white rounded-lg shadow-md ">
             <table className="min-w-full divide-y divide-gray-200 rounded-lg">
               <thead className="bg-gray-400">
                 <tr>
@@ -99,7 +116,7 @@ const LeaderboardComp = () => {
                     <td className="py-2 px-2 text-left text-sm">
                       Rank {index + 1}
                     </td>
-                    <td className="py-2 px-2 text-left text-sm">{user.fullName}</td>
+                    <td className="py-2 px-2 text-left text-sm line-clamp-1 ">{user.fullName}</td>
                     <td className="py-2 px-2 text-left text-sm text-red-500">
                       credits: {user.coins}
                     </td>
@@ -111,6 +128,7 @@ const LeaderboardComp = () => {
         </div>
       ) : (
         <div>Loading...</div>
+        // <LeaderboardShimmer/>
       )}
     </>
   );

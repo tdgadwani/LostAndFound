@@ -47,13 +47,12 @@ const resetPassword = asyncHandler(async (req, res, _) => {
 
   if ((Date.now(user.resetPasswordExpires) > Date.now()))
     throw new ApiError(403, "Token Expired");
-
-  password = await bcrypt.hash(password, 10);
+  const hashpassword = await bcrypt.hash(password, 10);
   const updatedUser = await User.findByIdAndUpdate(
     user._id,
     {
       $set: {
-        password,
+        password:hashpassword,
         resetPasswordToken: null,
         resetPasswordTokenExpiry: null,
       },

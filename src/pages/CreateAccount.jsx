@@ -12,6 +12,7 @@ import Header from "../components/Header.jsx";
 import TogglePassword from "../components/TogglePassword.jsx";
 import { PASSWORDERRORMESSAGE, ROUTES } from "../utils/constants.js";
 import toast from "react-hot-toast";
+import { setSignupData } from "../slices/authSlice.js";
 
 const CreateAccount = () => {
   const [showOTPWindow, setShowOTPWindow] = useState(false);
@@ -44,7 +45,8 @@ const CreateAccount = () => {
       email: emailRef.current.value,
       password: passwordRef.current.value,
       fullName: fullnameRef.current.value,
-    };
+    }; 
+    dispatch(setSignupData(formData))
     dispatch(sendOTP(formData, navigate));
     setShowOTPWindow(true);
     emailRef.current.value = "";
