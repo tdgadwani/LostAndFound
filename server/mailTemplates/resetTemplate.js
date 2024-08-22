@@ -76,8 +76,8 @@ const ResetTemp = (name,url) => {
 <body>
     <div class="email-container">
         <div class="logo">
-            // <img src="https://res.cloudinary.com/dlgrwtkck/image/upload/v1720550354/dla8f3ol18a5agsekawy.svg" alt="Foundify Logo">
-            <img src=${Logo} alt="Foundify Logo">
+            <img src="https://res.cloudinary.com/dlgrwtkck/image/upload/v1720550354/dla8f3ol18a5agsekawy.svg" alt="Foundify Logo">
+            // <img src=${Logo} alt="Foundify Logo">
         </div>
         <div class="content">
             <p class="heading">Hi ${name},</p>
