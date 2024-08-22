@@ -63,6 +63,7 @@ const sendOTP = asyncHandler(async (req, res) => {
         new ApiResponse(200, sentOTP, `OTP Sent Successfully on mail ${email}`)
       );
   } catch (error) {
+    console.log(error);
     new ApiError(501, `Error at Server Side ${error}`);
   }
 });
