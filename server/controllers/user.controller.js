@@ -1,12 +1,15 @@
+
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { User } from "../models/User.model.js";
+import { Notification } from "../models/Notifications.models.js";
 import { OPTIONS, OTP_SUBJECT } from "../constants.js";
 import { OTP } from "../models/OTP.model.js";
 import { mailSender } from "../utils/mailSender.js";
 import OtpTemp from "../mailTemplates/otpTemplate.js";
+import { handelUserCheckIn } from "../utils/rewardUtils.js";
 
 const generateAccessAndRefreshToken = async (userId) => {
   try {
@@ -63,7 +66,6 @@ const sendOTP = asyncHandler(async (req, res) => {
         new ApiResponse(200, sentOTP, `OTP Sent Successfully on mail ${email}`)
       );
   } catch (error) {
-    console.log(error);
     new ApiError(501, `Error at Server Side ${error}`);
   }
 });
@@ -157,52 +159,38 @@ const loginUser = asyncHandler(async (req, res) => {
   
   if (!user)
     throw new ApiError(403, "User not found with provided Email or Username");
-  const { lastCheckInDate } = user;
   // const date = new Date(lastCheckInDate).toISOString().split("T")[0];
   // const today = new Date().toISOString().split("T")[0];
-  const date = new Date(lastCheckInDate)
-  const today = new Date()
-  console.log("tgadwani ", today, date);
   const isPasswordValid = await user.isPasswordCorrect(password);
-
-  console.log(" :",password);
-  
-  // if(today > date) {
-  //   user.coins += 5;
-  //   user.lastCheckInDate = Date.now()
-  //   await user.save();
-  // }
-
-  if(date.getFullYear()===today.getFullYear()){
-    if(date.getMonth()===today.getMonth()){
-      if(date.getDate()<today.getDate()){
-        user.coins+=5;
-        user.lastCheckInDate=Date.now();
-        await user.save();
+  if (!isPasswordValid) throw new ApiError(403, "Bad Credentials");
+    
+    
+    const { lastCheckInDate } = user;
+    
+    const date = new Date(lastCheckInDate)
+    const today = new Date();
+    if(date.getFullYear()===today.getFullYear()){
+      if(date.getMonth()===today.getMonth()){
+        if(date.getDate()<today.getDate()){
+          await handelUserCheckIn(user,Date.now());
+        }
+      }
+      else if(date.getMonth()<today.getMonth()){
+        await handelUserCheckIn(user,Date.now());
       }
     }
-    else if(date.getMonth()<today.getMonth()){
-      user.coins+=5;
-      user.lastCheckInDate=Date.now();
-      await user.save();
-
+    else if(date.getFullYear()<today.getFullYear()){
+      await handelUserCheckIn(user,Date.now());
     }
-  }
-  else if(date.getFullYear()<today.getFullYear()){
-    user.coins+=5;
-    user.lastCheckInDate=Date.now();
-    await user.save();
-  }
-  if (!isPasswordValid) throw new ApiError(403, "Bad Credentials");
-  const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
-    user._id
-  );
-  const loggedinUser = await User.findById(user._id).select(
-    "-password -refreshToken"
-  );
+    const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
+      user._id
+    );
+    const loggedinUser = await User.findById(user._id).select(
+      "-password -refreshToken"
+  ); 
   res
-    .status(200)
-    .cookie("accessToken", accessToken, OPTIONS)
+  .status(200)
+  .cookie("accessToken", accessToken, OPTIONS)
     .cookie("refreshToken", refreshToken, OPTIONS)
     .cookie("lastCheckedIn", today, {
       httpOnly: true,
@@ -281,12 +269,18 @@ const editProfile = asyncHandler(async (req, res) => {
       },
     },
     { new: true, runValidators: true }
-  );
+  ).select(
+    "-password -refreshToken -rollNo -mobileNo"
+  )
+  console.log("Edit Profile: ",updatedUser);
+  
   if (!updatedUser) {
     throw new ApiError(500, "unable to update profile, please try again later");
   }
 
-  return res.status(200).json(new ApiResponse(200, {}, "profile updated"));
+  return res.status(200).json(new ApiResponse(200, {
+    user:updatedUser
+  }, "profile updated"));
 });
 
 const getLeaderBoardData = asyncHandler(async (req, res) => {

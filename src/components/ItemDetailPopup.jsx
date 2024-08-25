@@ -8,7 +8,7 @@ const ItemDetailPopup = ({ onClose, item }) => {
 
     return (
         <>
-            <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30'>
+            <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50'>
                 <div className='relative bg-white p-4 md:p-6 rounded-lg shadow-lg w-11/12 md:w-3/4 lg:w-1/2 max-h-3/4 overflow-auto'>
                     <button onClick={onClose} className='absolute top-2 right-2'>
                         <img src={cross} alt="Close" className='w-6 h-6' />
@@ -21,7 +21,7 @@ const ItemDetailPopup = ({ onClose, item }) => {
                                 ))}
                             </Carousel>
                             {
-                                item.isLost?(
+                                !(item?.isLost) && !(item?.isRetrieved) ?(
                                     <div className='mt-4'>
                                 <button className='bg-blue-500 text-white py-2 px-4 rounded' onClick={() => setIsRollNoPopUp(true)}>Claim</button>
                             </div>

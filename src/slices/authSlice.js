@@ -5,6 +5,7 @@ const initialState = {
     token: null,
     userData: null,
     leaderBoardData: null,
+    leaderBoardLoading:false,
 }
 
 const authSlice = createSlice({
@@ -25,6 +26,9 @@ const authSlice = createSlice({
         },
         setLeaderBoardData(state, value) {
             state.leaderBoardData = value.payload;
+        },
+        setLeaderBoardLoading(state, value) {
+            state.leaderBoardData = value.payload;
         }
     }
 });
@@ -34,7 +38,8 @@ export const {
     setToken,
     setUserData,
     setUpdataSignupData,
-    setLeaderBoardData
+    setLeaderBoardData,
+    setLeaderBoardLoading
     
 } = authSlice.actions
 

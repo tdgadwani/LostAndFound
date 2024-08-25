@@ -4,6 +4,8 @@ import { FoundItem } from "../models/FoundItems.model.js";
 import { User } from "../models/User.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { Notification } from "../models/Notifications.models.js";
+import { RewardHistory } from "../models/RewardHistory.model.js";
 
 const postFoundItems = asyncHandler(async (req, res, _) => {
   const { itemName, category, description, address, contactInfo } = req.body;
@@ -53,6 +55,18 @@ const postFoundItems = asyncHandler(async (req, res, _) => {
   });
   user.coins += 40;
   await user.save({validateBeforeSave: false});
+  await Notification.create({
+    userId:user._id,
+    type:"Reward",
+    message:"Completed a Post Found Item mission, Coin increase +40"
+  })
+  const rewardHistory = await RewardHistory.create({
+    rewardType: "foundItem",
+    rewardDate: Date.now(),
+    userId: user._id,
+  });
+  if(!rewardHistory)
+    throw new  ApiError(50,"Unable to Check-in. Please try after sometime");
   if (!Found) throw new ApiError(500, "Unable to post found item");
 
   return res
@@ -137,7 +151,6 @@ const updateFoundItem = asyncHandler(async (req, res, _) => {
 
   const retrievedBy = await User.findOne({rollNo:retrievedByUser}).select("_id"); //?:Have fix (rollno data is not avilabal in database)
   // const retrievedBy = await User.findOne({email:retrievedByUser}).select("_id"); 
-  console.log(retrievedBy);
   if(!retrievedBy)
     throw new ApiError(403,"User with given Roll No. Not found"); 
   const foundItem = await FoundItem.findByIdAndUpdate(id,{
@@ -155,6 +168,18 @@ const updateFoundItem = asyncHandler(async (req, res, _) => {
   const user = req.user;
   user.coins += 10;
   await user.save();
+  await Notification.create({
+    userId:user._id,
+    type:"Reward",
+    message:"Completed a Claimed Item mission, Coin increase +10"
+  })
+  const rewardHistory = await RewardHistory.create({
+    rewardType: "foundItem",
+    rewardDate: Date.now(),
+    userId: user._id,
+  });
+  if(!rewardHistory)
+    throw new  ApiError(50,"Unable to Check-in. Please try after sometime");
   return res
       .status(200)
       .json(

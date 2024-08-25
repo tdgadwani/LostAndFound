@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import FoundItem from "../assets/FoundHomepage.svg";
 import LostItem from "../assets/LostHomepage.svg";
 import Header from "../components/Header.jsx";
@@ -57,44 +57,31 @@ const Home = () => {
   const lostItems = useSelector((store) => store?.lostItem?.lostItems) || [];
   const foundItems = useSelector((store) => store?.foundItems?.foundItems) || [];
   const items = useSelector((store) => store?.lostItem?.items) || [];
-
+  
   useEffect(() => {
-    dispatch(getLostItems());
-    dispatch(getFoundItems());
+    if(!lostItems){
+      dispatch(getLostItems());
+    }
+    if(!foundItems){
+      dispatch(getFoundItems());
+    }
   }, []);
-
-  // useEffect(() => {
-  //   if (lostItems.length > 0) {
-  //     const randomLostItems = getRandomElements(lostItems, lostItems.length);
-  //     console.log("shuffle of lostItems",randomLostItems);
-
-  //     dispatch(setItems(randomLostItems));
-  //   }
-  // }, [lostItems]);
-
-  // useEffect(() => {
-  //   if (foundItems.length > 0) {      
-  //     const randomFoundItems = getRandomElements(foundItems, foundItems.length);
-  //     console.log("shuffle of founditems",randomFoundItems);
-      
-  //     dispatch(setItems(randomFoundItems));
-  //   }
-  // }, [foundItems]);
-
   const [combinedItems, setCombinedItems] = useState([]);
+  const randomLostItems = useMemo(()=> getRandomElements(lostItems, lostItems.length)
+  ,[lostItems,lostItems.length])      
+  
+  const randomFoundItems = useMemo(()=>getRandomElements(foundItems, foundItems.length),[foundItems,foundItems.length]);
 
   useEffect(() => {
     let addTwoArrays = [];
 
     if (lostItems.length > 0) {
-      const randomLostItems = getRandomElements(lostItems, lostItems.length);
       addTwoArrays = addTwoArrays.concat(randomLostItems);
     } else {
       addTwoArrays = addTwoArrays.concat(lostItems);
     }
 
     if (foundItems.length > 0) {
-      const randomFoundItems = getRandomElements(foundItems, foundItems.length);
       addTwoArrays = addTwoArrays.concat(randomFoundItems);
     } else {
       addTwoArrays = addTwoArrays.concat(foundItems);
@@ -117,7 +104,7 @@ const Home = () => {
           what's your plan for today?
         </div>
 
-        <div className="flex flex-col md:flex-row justify-evenly">
+        <div className="flex flex-col justify-center items-center md:flex-row md:justify-evenly ">
           <div className="mb-5 md:mb-0">
             <Link to={ROUTES.ADDITEM} state={{ isLost: true }}>
               <img
@@ -139,7 +126,7 @@ const Home = () => {
         </div>
 
         <div className="flex justify-center bg-blue-gray-200/5 mt-10 w-full">
-          <div className="realtive w-[95%]">
+          <div className="relative w-[95%]">
             <Slider {...settings}>
               {combinedItems.map((i) => (
                 <div key={i._id} className="p-2 gap-1">

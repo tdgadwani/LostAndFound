@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -14,7 +15,7 @@ const AddItem = () => {
 
   useEffect(() => {
     if (userData.isProfileSet === false) {
-      toast("Complete your Profile", {
+      toast("Complete your Profile First", {
         duration: 4000,
       });
       setProfileSet(true);

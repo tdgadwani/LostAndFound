@@ -6,37 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getLeaderBoardData } from "../services/operations/authAPI";
 import LeaderboardShimmer from "../Shimmer/LeaderboardShimmer";
 
-const LeaderboardComp = () => {
-  const dispatch = useDispatch();
-    const [leaderboardData, setLeaderboardData] = useState([]);
-    const [isLoading , setIsLoading]=useState(false);
-  useEffect(() => {
-    setIsLoading(true)
-    const timer= setTimeout(()=>{
-      dispatch(getLeaderBoardData());
-    },300)
-    setIsLoading(false);
-    return ()=>clearTimeout(timer);
-  }, [dispatch]);
-
-  const leaderBoardData = useSelector((store) => store?.auth?.leaderBoardData);
-  useEffect(() => {
-    if(leaderBoardData){
-      setLeaderboardData(leaderBoardData);
-    }
-  },[leaderBoardData]);
-  console.log("stfgd ", leaderboardData);
-
-  if(isLoading){
-    return(
-      <>
-        <LeaderboardShimmer/>
-      </>
-    )
-  }
+const LeaderboardComp = ({leaderBoardData}) => {
   return (
     <>
-      {leaderboardData !== undefined && leaderboardData.length >= 3 ? (
+      {leaderBoardData !== undefined && leaderBoardData?.length >= 3 ? (
         <div className="min-h-screen bg-gradient-to-b from-white to-orange-200 p-8 mt-16 pb-44">
           <h1 className="text-center text-5xl font-bold mb-8">Leaderboard</h1>
 
@@ -51,11 +24,11 @@ const LeaderboardComp = () => {
               </div>
               <div className=" text-black">
                 <div className="text-base md:text-xl font-bold ">
-                  {leaderboardData[1]?.fullName}
+                  {leaderBoardData[1]?.fullName}
                 </div>
                 <div className="text-sm">NIT Patna</div>
                 <div className="text-red-500 font-bold ">
-                  credits: {leaderboardData[1]?.coins}
+                  credits: {leaderBoardData[1]?.coins}
                 </div>
               </div>
             </div>
@@ -72,11 +45,11 @@ const LeaderboardComp = () => {
               </div>
               <div className="text-black">
                 <div className="text-base md:text-xl font-bold ">
-                  {leaderboardData[0]?.fullName}
+                  {leaderBoardData[0]?.fullName}
                 </div>
                 <div className="text-sm">NIT Patna</div>
                 <div className="text-red-500 font-bold ">
-                  credits: {leaderboardData[0]?.coins}
+                  credits: {leaderBoardData[0]?.coins}
                 </div>
               </div>
             </div>
@@ -91,17 +64,17 @@ const LeaderboardComp = () => {
               </div>
               <div className=" text-black">
                 <div className="text-base md:text-xl font-bold ">
-                  {leaderboardData[2]?.fullName}
+                  {leaderBoardData[2]?.fullName}
                 </div>
                 <div className="text-sm">NIT Patna</div>
                 <div className="text-red-500 font-bold ">
-                  credits: {leaderboardData[2]?.coins}
+                  credits: {leaderBoardData[2]?.coins}
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="w-[90%] md:w-3/5 mx-auto bg-white rounded-lg shadow-md ">
+          <div className="w-[90%] md:w-[700px] mx-auto bg-white rounded-lg shadow-md ">
             <table className="min-w-full divide-y divide-gray-200 rounded-lg">
               <thead className="bg-gray-400">
                 <tr>
@@ -111,14 +84,16 @@ const LeaderboardComp = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y border-collapse rounded-lg divide-gray-400">
-                {leaderboardData.map((user, index) => (
+                {leaderBoardData?.map((user, index) => (
                   <tr key={index}>
-                    <td className="py-2 px-2 text-left text-sm">
-                      Rank {index + 1}
+                    <td className="py-2 px-2 text-left text-sm items-center">
+                      <span className="pr-2 hidden md:inline-block">Rank</span>
+                      <span>{index + 1}</span>
                     </td>
-                    <td className="py-2 px-2 text-left text-sm line-clamp-1 ">{user.fullName}</td>
+                    <td className="py-2 px-2 text-left text-sm line-clamp-1 ">{user?.fullName}</td>
                     <td className="py-2 px-2 text-left text-sm text-red-500">
-                      credits: {user.coins}
+                      <span className="pr-2 hidden md:inline-block">credits: </span>
+                      <span>{user?.coins}</span>
                     </td>
                   </tr>
                 ))}

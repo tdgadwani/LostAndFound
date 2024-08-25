@@ -1,4 +1,4 @@
-import { setLeaderBoardData, setSignupData, setToken, setUserData } from "../../slices/authSlice.js";
+import { setLeaderBoardData, setLeaderBoardLoading, setSignupData, setToken, setUserData } from "../../slices/authSlice.js";
 import { ROUTES } from "../../utils/constants.js";
 import { apiConnector } from "../apiConnector.js";
 import { SEND_OTP_URL, RESEND_OTP_URL, SIGNUP_URL, LOGIN_URL, LOGOUT_URL, EDIT_PROFILE, LEADERBOARD_URL, } from "../apis.js";
@@ -78,9 +78,7 @@ const loginUser = (formData, navigate) => {
       if (!response.data.success) {
         throw new Error(response.data.message);
       }
-      toast.success(response.data.message);
-      console.log(response.data);
-      
+      toast.success(response.data.message);      
       dispatch(setUserData(response.data.data.user));
       dispatch(setToken(response.data.data.accessToken));
       navigate(ROUTES.HOME);
@@ -123,6 +121,7 @@ const editProfile = (formData,navigate) => {
             if(!response.data.success) {
                 throw new Error(response.data.message);
             }
+            dispatch(setUserData(response.data.data.user));
             toast.success(response.data.message);
             navigate(ROUTES.HOME);
         } catch (error) {
@@ -136,17 +135,21 @@ const editProfile = (formData,navigate) => {
 const getLeaderBoardData = () => {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...");
+    setLeaderBoardLoading(true);
     try {
       const response = await apiConnector("GET",LEADERBOARD_URL);
       if(!response.data.success) {
         throw new Error(response.data.message);
       }
       console.log("rrgrsf ", response);
+      setLeaderBoardLoading(false);
       dispatch(setLeaderBoardData(response.data.data.leaderBoardData));
       toast.success(response.data.message);
     } catch (error) {
+      setLeaderBoardLoading(false);
       toast.error(error.message);
     } finally {
+      setLeaderBoardLoading(false);
       toast.dismiss(toastId);
     }
   }

@@ -1,3 +1,4 @@
+
 const BASE_URL = "https://lostandfound-jgbr.onrender.com";
 
 // const BASE_URL = "http://localhost:3000";
@@ -34,3 +35,5 @@ export const GET_LOST_ITEMS_BY_USER_ID = LOST_ITEMS_URL + "/getLostItemsByUId";
 
 export const RESET_PASSWORD_TOKEN = RESET_PASSWORD_URL + "/generate-reset-token";
 export const RESET_PASSWORD = RESET_PASSWORD_URL + "/reset-password"; 
+
+export const GET_NOTIFICATIONS=NOTIFICATION_URL+"/get-notifications";
