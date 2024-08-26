@@ -20,7 +20,7 @@ const lostItemsSchema =new mongoose.Schema({
 	category: {
 		type:String,
 		required:true,
-		enum: ['Electronics', 'Clothing', 'Accessories', 'Books', 'Jewllery', 'Others'] 
+		enum: ['Electronics', 'Clothing', 'Accessories', 'Books', 'Jwellery', 'Others'] 
 	},
 	description: {
 		type: String,
