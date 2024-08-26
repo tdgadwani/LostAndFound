@@ -24,7 +24,6 @@ const generateResetPasswordToken = asyncHandler(async (req, res, _) => {
   await user.save();
   const resetPasswordURL = `${process.env.CORS_ORIGIN}/reset-password/${resetPasswordToken}`;
   const htmlContent = ResetTemp(name, resetPasswordURL);
-  console.log("htmlContent ", htmlContent);   
   const response = await mailSender(email,RESET_PASSWORD_SUBJECT,htmlContent);
 //   console.log(response);
 //     if(!response)

@@ -1,4 +1,3 @@
-
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
@@ -53,13 +52,13 @@ const sendOTP = asyncHandler(async (req, res) => {
     });
     if (!sentOTP)
       throw new ApiError(500, "something Went wrong While Sending OTP");
-    console.log(`Sending email with otp ${otp}`);
     const name = fullName.split(" ")[0];
-    try {
-      await mailSender(email, OTP_SUBJECT,OtpTemp(name, otp));
-    } catch (error) {
-      throw new ApiError(501, error.message);
-    }
+    const htmlContent = OtpTemp(name, otp);    
+    const response=await mailSender(email,OTP_SUBJECT,htmlContent);
+    console.log(`Sending email with otp ${otp}`);
+    // catch (error) {
+    //   throw new ApiError(501, error.message);
+    // }
     return res
       .status(200)
       .json(
