@@ -5,7 +5,7 @@ import { ApiError } from "./ApiError.js";
 
 const handelUserCheckIn=async(user,today)=>{
     try {
-        user.conins += 1;
+        user.coins += 1;
         user.lastCheckInDate=Date.now();
         await user.save({validateBeforeSave: false });
         await Notification.create({
