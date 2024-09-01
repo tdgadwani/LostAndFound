@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { getNotifications } from '../services/operations/notificationAPI'
 import { useDispatch, useSelector } from 'react-redux'
+import NotificationMessage from './NotificationMessage'
 
 export default function NotificationComp() {
     const notiloading =useSelector((store)=>store?.notification?.notiloading)
@@ -20,10 +21,8 @@ export default function NotificationComp() {
         {notificationData?.length>0 ?
         notificationData?.map((notification)=>
         (
-        <div className='border-black border-b-2 p-2 ' key={notification?._id}>
-            <div>
-                {notification?.message}
-            </div>
+        <div className='border-black border-b-2 p-2  hover:bg-blue-gray-50' key={notification?._id}>
+            <NotificationMessage {...notification}/>
         </div>
         )
         ):

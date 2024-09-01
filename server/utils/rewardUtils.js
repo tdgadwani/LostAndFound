@@ -9,10 +9,10 @@ const handelUserCheckIn=async(user,today)=>{
         user.lastCheckInDate=Date.now();
         await user.save({validateBeforeSave: false });
         await Notification.create({
-            userId:user._id,
-            type:"Reward",
-            message:"Completed a daily check-in mission, Coin increase +1"
-        })
+          userId: user._id,
+          type: "Reward",
+          message: "Check-in complete! See you tomorrow! +1",
+        });
         const rewardHistory = await RewardHistory.create({
             rewardType: "lastCheckInDate",
             rewardDate: today,

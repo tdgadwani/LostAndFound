@@ -1,9 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { User } from "../models/User.model.js";
-import { Notification } from "../models/Notifications.models.js";
 import { OPTIONS, OTP_SUBJECT } from "../constants.js";
 import { OTP } from "../models/OTP.model.js";
 import { mailSender } from "../utils/mailSender.js";
