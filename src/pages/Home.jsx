@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import HomeLeaderBoardSVG from "../assets/Home_LeaderBoard.svg";
 import HomeShareCard from "../assets/Home_share.svg";
 import HomeFollow from "../assets/Home_follow.svg";
+import HandShake from "../assets/HandShake.png";
 import ItemCard from "../components/ItemCard.jsx";
 import Footer from "../components/Footer.jsx";
 import Slider from "react-slick";
@@ -18,6 +19,8 @@ import { getFoundItems } from "../services/operations/foundItemsAPI.js";
 import { getRandomElements } from "../utils/utils.js";
 import { setItems } from "../slices/lostItemSlice.js";
 import { ROUTES } from "../utils/constants.js";
+import FlowingText from "../components/FlowingText.jsx";
+import LostAndFoundBanner from "../components/LostAndFoundBanner.jsx";
 
 const Home = () => {
   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -72,6 +75,23 @@ const Home = () => {
   
   const randomFoundItems = useMemo(()=>getRandomElements(foundItems, foundItems.length),[foundItems,foundItems.length]);
 
+const handleShare = async () => {
+  try {
+    if (navigator.share) {
+      await navigator.share({
+        title: document.title,
+        text: "Check out this page!",
+        url: window.location.href,
+      });
+      console.log("Content shared successfully");
+    } else {
+      alert("Web Share API is not supported in your browser.");
+    }
+  } catch (error) {
+    console.error("Error sharing:", error);
+  }
+};
+
   useEffect(() => {
     let addTwoArrays = [];
 
@@ -92,75 +112,162 @@ const Home = () => {
   
   return (
     <>
-      <Header className="fixed w-full" />
+      <Header className="fixed w-full " />
+  
       <div className="mt-20 w-screen">
-        <div className=" w-[95%] mx-auto ">
-
-        <div className="text-3xl md:text-6xl lg:text-8xl">
-          HI{" "}
-          <span className="text-kaddu-400">{userData?.email || "Email"}</span>
-        </div>
-        <div className="text-2xl md:text-5xl lg:text-8xl my-9">
-          what's your plan for today?
-        </div>
-
-        <div className="flex flex-col justify-center items-center md:flex-row md:justify-evenly ">
-          <div className="mb-5 md:mb-0">
-            <Link to={ROUTES.ADDITEM} state={{ isLost: true }}>
-              <img
-                src={LostItem}
-                alt="Lost Item"
-                className="w-full md:w-auto"
-              />
-            </Link>
-          </div>
-          <div>
-            <Link to={ROUTES.ADDITEM} state={{ isLost: false }}>
-              <img
-                src={FoundItem}
-                alt="Found Item"
-                className="w-full md:w-auto"
-              />
-            </Link>
-          </div>
-        </div>
-
-        <div className="flex justify-center bg-blue-gray-200/5 mt-10 w-full">
-          <div className="relative w-[95%]">
-            <Slider {...settings}>
-              {combinedItems.map((i) => (
-                <div key={i._id} className="p-2 gap-1">
-                  <ItemCard item={i} />
+        <div className=" w-[95%] mx-auto">
+          <div className="flex flex-col ravi">
+            <div className="flex flex-row justify-between">
+              <div>
+                <div>
+                  <div className="text-xl md:text-3xl lg:text-5xl">
+                    Hi{" "}
+                    <span className="text-kaddu-400">
+                      {userData?.fullName
+                        .split(" ")[0]
+                        .replace(
+                          /^./,
+                          userData?.fullName.split(" ")[0][0].toUpperCase()
+                        ) || "Email"}
+                      ,
+                    </span>
+                  </div>
+                  <div className="mb-9 text-xl md:text-3xl lg:text-5xl  mt-1">
+                    What's your plan for today?
+                  </div>
                 </div>
-              ))}
-            </Slider>
-          </div>
+                <div className="flex flex-col justify-center items-center md:flex-row mt-14 md:justify-normal ml-0">
+                  <div className="mb-5 md:mb-0">
+                    <Link to={ROUTES.ADDITEM} state={{ isLost: true }}>
+                      <img
+                        src={LostItem}
+                        alt="Lost Item"
+                        className="w-full md:w-[350px]"
+                      />
+                    </Link>
+                  </div>
+                  <div>
+                    <Link to={ROUTES.ADDITEM} state={{ isLost: false }}>
+                      <img
+                        src={FoundItem}
+                        alt="Found Item"
+                        className="w-full md:w-[350px] ml-7"
+                      />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <div className="mb-5 md:mb-0 md:w-[300px] ml-10  mr-10">
+                  <Link to={ROUTES.LEADERBOARD}>
+                    <img
+                      src={HomeLeaderBoardSVG}
+                      alt="Leaderboard"
+                      className="w-full md:w-auto"
+                    />
+                    {/* <div
+                      className="w-[300px] h-[186px] border-black border-2"
+                    >
+                              Leaderboard
+                    </div> */}
 
-        </div>
-
-        <div className="flex flex-col md:flex-row items-center justify-evenly my-20">
-          <div className="mb-5 md:mb-0">
-            <Link to={ROUTES.LEADERBOARD}>
-              <img
-                src={HomeLeaderBoardSVG}
-                alt="Leaderboard"
-                className="w-full md:w-auto"
-              />
-            </Link>
-          </div>
-          <div className="flex flex-col justify-between items-center">
-            <div className="mb-5 md:mb-0">
-              <img
-                src={HomeShareCard}
-                alt="Share"
-                className="w-full md:w-auto"
-              />
+                  </Link>
+                </div>
+                <div
+                  className="bg-black cursor-pointer text-white font-extrabold text-2xl p-2 rounded-xl mb-5 md:mb-0 mt-5 w-[300px] h-[186px] ml-10"
+                  onClick={handleShare}
+                >
+                  Share With Your Homies
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col justify-center items-center md:flex-row md:justify-normal ml-0">
+              {/* <div className="mb-5 md:mb-0">
+              <Link to={ROUTES.ADDITEM} state={{ isLost: true }}>
+                <img
+                  src={LostItem}
+                  alt="Lost Item"
+                  className="w-full md:w-[350px]"
+                />
+              </Link>
             </div>
             <div>
-              <img src={HomeFollow} alt="Follow" className="w-full md:w-auto" />
+              <Link to={ROUTES.ADDITEM} state={{ isLost: false }}>
+                <img
+                  src={FoundItem}
+                  alt="Found Item"
+                  className="w-full md:w-[350px] ml-7"
+                />
+              </Link>
+            </div> */}
             </div>
           </div>
-        </div>
+          <div className="mt-2">
+            <div className="border-black border-b-2 border-t-2 p-2">
+              <FlowingText
+                text={
+                  "#Lost & Found #Lost & Found #Lost & Found #Lost & Found #Lost & Found"
+                }
+                isBold={false}
+              />
+            </div>
+            <div className="border-black border-b-2 p-2">
+              <FlowingText
+                text={
+                  "#Lost & Found #Lost & Found #Lost & Found #Lost & Found #Lost & Found"
+                }
+                isBold={true}
+              />
+            </div>
+          </div>
+          <div className="flex justify-center bg-blue-gray-200/5 mt-10 w-full">
+            <div className="relative w-[95%]">
+              <Slider {...settings}>
+                {combinedItems.map((i) => (
+                  <div key={i._id} className="p-2 gap-1">
+                    <ItemCard item={i} />
+                  </div>
+                ))}
+              </Slider>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row items-center justify-evenly my-20">
+            {/* <div className="mb-5 md:mb-0">
+              <Link to={ROUTES.LEADERBOARD}>
+                <img
+                  src={HomeLeaderBoardSVG}
+                  alt="Leaderboard"
+                  className="w-full md:w-auto"
+                />
+              </Link>
+            </div> */}
+            <div className="flex flex-col justify-between items-center">
+              {/* <div className="mb-5 md:mb-0">
+                <img
+                  src={HomeShareCard}
+                  alt="Share"
+                  className="w-full md:w-auto"
+                />
+              </div> */}
+              {/* <div>
+                <img
+                  src={HomeFollow}
+                  alt="Follow"
+                  className="w-full md:w-auto"
+                />
+              </div> */}
+              <div className="flex flex-row bg-gradient-to-r from-kaddu-1100 to-kaddu-600 rounded-xl w-full h-[300px] text-5xl text-white justify-center p-2">
+                <div className="flex flex-col p-16 font-sans">
+                  <div className="font-extrabold ">Reuniting you </div>
+                  <div className="font-extrabold mt-3">with your belongings</div>
+                </div>
+                <div>
+                  <img src={HandShake} className="w-[491px] h-[312px]" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <Footer />
