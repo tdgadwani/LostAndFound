@@ -56,10 +56,11 @@ const postFoundItems = asyncHandler(async (req, res, _) => {
   user.coins += 40;
   await user.save({validateBeforeSave: false});
   await Notification.create({
-    userId:user._id,
-    type:"Reward",
-    message:"Completed a Post Found Item mission, Coin increase +40"
-  })
+    userId: user._id,
+    type: "Reward",
+    message:
+      "Thank you for reporting! You've earned a reward for your honesty. +40",
+  });
   const rewardHistory = await RewardHistory.create({
     rewardType: "foundItem",
     rewardDate: Date.now(),

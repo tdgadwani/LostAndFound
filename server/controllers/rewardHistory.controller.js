@@ -30,10 +30,10 @@ const dailyCheckIn = asyncHandler(async(req,res) => {
               user.lastCheckInDate=Date.now();
               await user.save({ validateBeforeSave: false });
               await Notification.create({
-                userId:user._id,
-                type:"Reward",
-                message:"Completed a daily check-in mission, Coin increase +1"
-              })
+                userId: user._id,
+                type: "Reward",
+                message: "Check-in complete! See you tomorrow! +1",
+              });
             }
           }
           else if(date.getMonth()<today.getMonth()){
@@ -42,10 +42,10 @@ const dailyCheckIn = asyncHandler(async(req,res) => {
             user.lastCheckInDate=Date.now();
             await user.save({ validateBeforeSave: false });
             await Notification.create({
-              userId:user._id,
-              type:"Reward",
-              message:"Completed a daily check-in mission, Coin increase +1"
-            })
+              userId: user._id,
+              type: "Reward",
+              message: "Check-in complete! See you tomorrow! +1",
+            });
           }
         }
         else if(date.getFullYear()<today.getFullYear()){
