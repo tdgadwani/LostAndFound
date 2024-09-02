@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import outline from '../assets/pencil1.png';
-import avatar0 from '../assets/avatar0.png';
+import avatar0 from '../assets/avatar01.png';
 import avatar1 from '../assets/avatar1.png'; 
 import avatar2 from '../assets/avatar2.png';
 import avatar3 from '../assets/avatar3.png';
@@ -57,24 +57,25 @@ const EditProfileComp = () => {
 
   return (
     <>
-      <div className="bg-gradient-to-b from-white to-red-200">
-        <main className="py-16">
+      {/* <div className="bg-gradient-to-b from-white to-red-200"> */}
+      <div className="bg-black p-20">
+        <main className=" ">
           <div className="text-center">
-            <h1 className="font-bold text-5xl">Edit Profile</h1>
+            <h1 className="font-bold text-5xl text-white">Edit Profile</h1>
           </div>
 
           <div className="flex justify-center mt-8 pt-10 flex-wrap ">
             <div className="flex flex-col items-center w-full md:w-1/3 mb-8 md:mb-0 ">
               <div className="flex flex-col items-center">
                 <div
-                  className={`w-32 h-32 rounded-full cursor-pointer`}
+                  className={`w-32 h-32 rounded-full cursor-pointer `}
                   style={{
                     backgroundImage: `url(${avatarMap[avatar]})`,
                     backgroundSize: "cover",
                   }}
                 ></div>
 
-                <div className="flex space-x-2 mt-4">
+                <div className="flex space-x-2 mt-4 ">
                   <div
                     className={`w-16 h-16 rounded-full cursor-pointer ${
                       avatar === "avatar0" ? "ring-4 ring-red-500" : ""
@@ -200,7 +201,7 @@ const EditProfileComp = () => {
                     })}
                   </select>
                   <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mt-2">
-                    <div className="font-semibold  p-2 rounded">
+                    <div className="font-semibold text-white  p-2 rounded">
                       Year Of Graduation
                     </div>
                     <select

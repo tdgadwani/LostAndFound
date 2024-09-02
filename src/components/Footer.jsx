@@ -5,10 +5,11 @@ import facebook from "../assets/facebook.svg";
 import { Link } from "react-router-dom";
 import arrow from "../assets/arrow.svg";
 import sideArrow from "../assets/sideArrow.svg";
+import { ROUTES } from '../utils/constants';
 
 const Footer = () => {
   return (
-    <div className="bg-black text-white py-16 px-6 bottom-0 left-0 right-0 h-80">
+    <div className="bg-black text-white py-16 px-6 bottom-0 left-0 right-0 h-80 border-white border-2">
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
         <div>
@@ -34,7 +35,7 @@ const Footer = () => {
           <div>
             <ul className="space-y-3 font-bold text-base">
               <li><Link to="/">Services</Link></li>
-              <li><Link to="/">About</Link></li>
+              <li><Link to={ROUTES.ABOUT}>About</Link></li>
               <li><Link to="/">Work</Link></li>
               <li><Link to="/">Contact</Link></li>
             </ul>

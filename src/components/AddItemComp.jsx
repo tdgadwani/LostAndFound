@@ -118,8 +118,9 @@ const AddItemComp = ({ isLost }) => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-white to-red-200 p-2 md:p-4 mt-10">
-        <div className="max-w-xl mx-auto bg-white shadow-2xl rounded-lg p-4 md:p-6">
+      {/* <div className="min-h-screen bg-gradient-to-b from-white to-red-200 p-2 md:p-4 mt-10"> */}
+      <div className="min-h-screen bg-black p-2 md:p-4 ">
+        <div className="max-w-xl mx-auto bg-white shadow-2xl rounded-lg p-4 md:p-6 mt-20">
           <h1 className="text-6xl md:text-3xl font-bold text-center mb-4 md:mb-6">
             Add Item
           </h1>
@@ -143,7 +144,7 @@ const AddItemComp = ({ isLost }) => {
           </div>
           <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
             <div className="flex flex-col md:flex-row justify-between space-y-3 md:space-y-0 md:space-x-3">
-              <div className="w-full md:w-1/2 flex flex-col items-center space-y-3 bg-gray-300 p-3 rounded-lg">
+              <div className="w-full md:w-1/2 flex flex-col items-center space-y-3 bg-gray-400 p-3 rounded-lg">
                 <div className="w-full h-40 bg-gray-100 flex items-center justify-center rounded-lg overflow-hidden">
                   {previewUrls.length > 0 ? (
                     <Carousel autoSlide={true}>
@@ -177,12 +178,12 @@ const AddItemComp = ({ isLost }) => {
                 />
                 <label
                   htmlFor="upload-image"
-                  className="bg-gray-100 py-2 px-3 rounded cursor-pointer hover:bg-gray-400 text-center w-full"
+                  className="bg-gray-100 py-2 px-3 rounded cursor-pointer hover:bg-blue-gray-300 text-center w-full"
                 >
                   Add Image
                 </label>
               </div>
-              <div className="w-full md:w-1/2 bg-gray-300 p-3 rounded-lg">
+              <div className="w-full md:w-1/2 bg-gray-400 p-3 rounded-lg">
                 <h2 className="text-lg md:text-xl font-bold mb-3">
                   Description
                 </h2>
@@ -193,6 +194,7 @@ const AddItemComp = ({ isLost }) => {
                     ref={itemName}
                     className="w-full p-2 rounded border border-gray-300"
                   />
+                  
                   <input
                     type="tel"
                     placeholder="Phone Number"
@@ -244,7 +246,6 @@ const AddItemComp = ({ isLost }) => {
           </form>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

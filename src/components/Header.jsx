@@ -109,18 +109,18 @@ const Header = () => {
             <div className="bg-kaddu-800 absolute z-60 right-0 top-12 min-w-[170px] pt-2 border border-gray-900 rounded-md">
               <Link
                 to={ROUTES.YOURPROFILE}
-                className="flex items-center px-4 py-2 gap-3 text-xs text-kaddu-900 hover:text-kaddu-700"
+                className="flex items-center px-4 py-2 gap-3 text-lg text-black font-bold hover:text-kaddu-700"
               >
                 <div className="title">Your Profile</div>
               </Link>
               <Link
                 to={ROUTES.EDITPROFILE}
-                className="flex items-center px-4 py-2 gap-3 text-xs text-kaddu-900 hover:text-kaddu-700"
+                className="flex items-center px-4 py-2 gap-3 text-lg text-black font-bold hover:text-kaddu-700"
               >
-                <div className="title">Settings</div>
+                <div className="title">Edit Profile</div>
               </Link>
               <div
-                className="flex items-center px-4 py-2 text-sm text-kaddu-1000 hover:text-kaddu-500 cursor-pointer"
+                className="flex items-center px-4 py-2 text-lg text-kaddu-1000 font-bold hover:text-kaddu-500 cursor-pointer"
                 onClick={handleLogout}
               >
                 <div className="title">Logout Profile</div>

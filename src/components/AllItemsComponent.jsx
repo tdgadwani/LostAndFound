@@ -55,7 +55,8 @@ const AllItemsComponent = ({itemType}) => {
   console.log("tgadwani ", allItems);
 
   return (
-    <div className="flex flex-col min-h-screen pt-32 bg-gradient-to-r from-kaddu-100 via-transparent to-kaddu-100">
+    // <div className="flex flex-col min-h-screen pt-32 bg-gradient-to-r from-kaddu-100 via-transparent to-kaddu-100">
+       <div className="flex flex-col min-h-screen pt-32 bg-black ">
       <h1 className="text-4xl md:text-6xl text-center">{itemType} Items</h1>
       <div className="flex flex-wrap justify-center md:justify-normal pt-2 md:pt-20">
         {allItems?.length === 0 ? 
