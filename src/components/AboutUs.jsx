@@ -18,7 +18,7 @@ const AboutUs = () => {
             <div className='flex flex-wrap justify-center mt-10'>
                 
                 {/* First Profile Card */}
-                <div className='p-1 w-full sm:w-1/2 lg:w-60 bg-white shadow-2xl rounded-lg mx-4 mb-4'>
+                <div className='p-1 w-full sm:w-1/2 lg:w-60 bg-white shadow-4xl  rounded-lg mx-4 mb-4'>
                     <div className='flex justify-center mt-2'>
                         <img src={Ravi} className="h-32 sm:h-40 w-32 sm:w-40 rounded-full cursor-pointer border-black border-solid border-4" alt="profile" />
                     </div>
@@ -32,9 +32,9 @@ const AboutUs = () => {
                         Web Developer
                     </div>
                     <div className='flex justify-center mb-2 mt-2'>
-                        <div className='mx-1 text-lg sm:text-xl'><FaLinkedinIn /></div>
-                        <div className='mx-1 text-lg sm:text-xl'><GrInstagram /></div> 
-                        <div className='mx-1 text-lg sm:text-xl'><FaTwitter /></div>   
+                        <div className='mx-1 text-lg sm:text-xl'> <a href="https://www.google.com"><FaLinkedinIn /></a></div>
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.google.com"><GrInstagram /></a></div> 
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.google.com"><FaTwitter /></a></div>   
                     </div>
                 </div>
 
@@ -53,9 +53,11 @@ const AboutUs = () => {
                         Web Developer
                     </div>
                     <div className='flex justify-center mb-2 mt-2'>
-                        <div className='mx-1 text-lg sm:text-xl'><FaLinkedinIn /></div>
-                        <div className='mx-1 text-lg sm:text-xl'><GrInstagram /></div> 
-                        <div className='mx-1 text-lg sm:text-xl'><FaTwitter /></div>   
+                    <div className='flex justify-center mb-2 mt-2'>
+                        <div className='mx-1 text-lg sm:text-xl'> <a href="https://www.google.com"><FaLinkedinIn /></a></div>
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.google.com"><GrInstagram /></a></div> 
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.google.com"><FaTwitter /></a></div>   
+                    </div>
                     </div>
                 </div>
 
@@ -74,9 +76,11 @@ const AboutUs = () => {
                         Web Developer
                     </div>
                     <div className='flex justify-center mb-2 mt-2'>
-                        <div className='mx-1 text-lg sm:text-xl'><FaLinkedinIn /></div>
-                        <div className='mx-1 text-lg sm:text-xl'><GrInstagram /></div> 
-                        <div className='mx-1 text-lg sm:text-xl'><FaTwitter /></div>   
+                    <div className='flex justify-center mb-2 mt-2'>
+                        <div className='mx-1 text-lg sm:text-xl'> <a href="https://www.google.com"><FaLinkedinIn /></a></div>
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.google.com"><GrInstagram /></a></div> 
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.google.com"><FaTwitter /></a></div>   
+                    </div>
                     </div>
                 </div>
 
@@ -95,9 +99,11 @@ const AboutUs = () => {
                         Web Developer
                     </div>
                     <div className='flex justify-center mb-2 mt-2'>
-                        <div className='mx-1 text-lg sm:text-xl'><FaLinkedinIn /></div>
-                        <div className='mx-1 text-lg sm:text-xl'><GrInstagram /></div> 
-                        <div className='mx-1 text-lg sm:text-xl'><FaTwitter /></div>   
+                    <div className='flex justify-center mb-2 mt-2'>
+                        <div className='mx-1 text-lg sm:text-xl'> <a href="https://www.google.com"><FaLinkedinIn /></a></div>
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.google.com"><GrInstagram /></a></div> 
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.google.com"><FaTwitter /></a></div>   
+                    </div>
                     </div>
                 </div>
                 

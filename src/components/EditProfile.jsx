@@ -151,42 +151,42 @@ const EditProfileComp = () => {
               >
                 <div className="grid grid-cols-1 gap-2">
                   <div className="flex flex-col md:flex-row">
-                    <input
-                      type="text"
-                      name="firstName"
-                      ref={firstName}
-                      placeholder="First Name"
-                      className="p-2 mr-0 md:mr-2 border rounded-2xl w-full bg-gray-300 mb-2 md:mb-0 "
-                    />
+                  <input
+                    type="text"
+                    name="firstName"
+                    ref={firstName}
+                    placeholder="First Name"
+                    className="p-2 mr-0 md:mr-2 border rounded-2xl w-full bg-gray-300 placeholder:text-gray-800 placeholder:font-semibold placeholder:text-lg"
+                  />
                     <input
                       type="text"
                       name="lastName"
                       ref={lastName}
                       placeholder="Last Name"
-                      className="p-2 ml-0 md:ml-2 border rounded-2xl w-full bg-gray-300"
-                    />
+                      className="p-2 mr-0 md:mr-2 border rounded-2xl w-full bg-gray-300 placeholder:text-gray-800 placeholder:font-semibold placeholder:text-lg"
+                      />
                   </div>
                   <input
                     type="text"
                     name="rollNo"
                     ref={rollNo}
                     placeholder="Roll No."
-                    className="p-2 border rounded-2xl w-full bg-gray-300"
+                    className="p-2 mr-0 md:mr-2 border rounded-2xl w-full bg-gray-300 placeholder:text-gray-800 placeholder:font-semibold placeholder:text-lg"
                   />
                   <input
                     type="text"
                     name="phoneNo"
                     ref={phoneNo}
                     placeholder="Phone No."
-                    className="p-2 border rounded-2xl w-full bg-gray-300"
-                  />
+                    className="p-2 mr-0 md:mr-2 border rounded-2xl w-full bg-gray-300 placeholder:text-gray-800 placeholder:font-semibold placeholder:text-lg"
+                    />
                   <input
                     type="email"
                     name="email"
                     ref={email}
                     placeholder="E-mail"
-                    className="p-2 border rounded-2xl w-full bg-gray-300"
-                  />
+                    className="p-2 mr-0 md:mr-2 border rounded-2xl w-full bg-gray-300 placeholder:text-gray-800 placeholder:font-semibold placeholder:text-lg"
+                    />
                   <select
                     name="college"
                     ref={college}
