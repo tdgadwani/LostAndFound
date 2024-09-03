@@ -10,19 +10,19 @@ const LeaderboardComp = ({leaderBoardData}) => {
   return (
     <>
       {leaderBoardData !== undefined && leaderBoardData?.length >= 3 ? (
-        <div className="min-h-screen bg-gradient-to-b from-white to-orange-200 p-8 mt-16 pb-44">
-          <h1 className="text-center text-5xl font-bold mb-8">Leaderboard</h1>
+        <div className="min-h-screen bg-foundify-gradient pt-20 pb-44">
+          <h1 className="text-center text-white text-5xl font-bold mb-8">Leaderboard</h1>
 
           <div className="flex justify-center space-x-4 mb-8">
             <div className=" text-center shadow-2xl w-40 h-56">
-              <div className="bg-yellow-300 rounded-lg p-2">
+              <div className="bg-yellow-300 rounded-t-lg p-2">
                 <div className="font-bold">Rank 2</div>
                 <img
                   src={leaderBoardData[1]?.avatar}
                   className="w-20 h-20 mx-auto rounded-full my-2"
                 />
               </div>
-              <div className=" text-black">
+              <div className=" text-gray-600 shadow-sm shadow-white">
                 <div className="text-base md:text-xl font-bold ">
                   {leaderBoardData[1]?.fullName}
                 </div>
@@ -34,7 +34,7 @@ const LeaderboardComp = ({leaderBoardData}) => {
             </div>
 
             <div className="text-center shadow-2xl w-48 h-64">
-              <div className="bg-yellow-300 rounded-lg p-2 ">
+              <div className="bg-yellow-300 rounded-t-lg p-2 ">
                 <div className="font-bold text-2xl">
                   Rank 1
                 </div>
@@ -43,7 +43,7 @@ const LeaderboardComp = ({leaderBoardData}) => {
                   className="w-24 h-24 mx-auto rounded-full my-2"
                 />
               </div>
-              <div className="text-black">
+              <div className="text-gray-600 shadow-sm shadow-white">
                 <div className="text-base md:text-xl font-bold ">
                   {leaderBoardData[0]?.fullName}
                 </div>
@@ -55,14 +55,14 @@ const LeaderboardComp = ({leaderBoardData}) => {
             </div>
 
             <div className=" text-center shadow-2xl w-40 h-56">
-              <div className="bg-yellow-300 rounded-lg p-2">
+              <div className="bg-yellow-300 rounded-t-lg p-2">
                 <div className="font-bold">Rank 3</div>
                 <img
                   src={leaderBoardData[2]?.avatar}
                   className="w-20 h-20 mx-auto rounded-full my-2"
                 />
               </div>
-              <div className=" text-black">
+              <div className=" text-gray-600 shadow-sm shadow-white">
                 <div className="text-base md:text-xl font-bold ">
                   {leaderBoardData[2]?.fullName}
                 </div>
