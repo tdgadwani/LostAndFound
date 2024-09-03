@@ -1,7 +1,7 @@
 
-const BASE_URL = "https://lostandfound-jgbr.onrender.com";
+// const BASE_URL = "https://lostandfound-jgbr.onrender.com";
 
-// const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:3000";
 
 const USER_URL = BASE_URL + "/api/v1/user";
 const LOST_ITEMS_URL = BASE_URL + "/api/v1/lostitem";
@@ -11,6 +11,7 @@ const REDEMPTION_URL = BASE_URL + "/api/v1/redemption";
 const REWARD_HISTORY_URL = BASE_URL + "/api/v1/reward-history";
 const RESET_PASSWORD_URL = BASE_URL + "/api/v1/resetPassword";
 
+export const APP_DETAILS = USER_URL + "/app-details";
 export const SEND_OTP_URL = USER_URL + "/send-otp";
 export const RESEND_OTP_URL = USER_URL + "/resend-otp";
 export const SIGNUP_URL = USER_URL + "/signup";

@@ -7,6 +7,27 @@ import { OTP } from "../models/OTP.model.js";
 import { mailSender } from "../utils/mailSender.js";
 import OtpTemp from "../mailTemplates/otpTemplate.js";
 import { handelUserCheckIn } from "../utils/rewardUtils.js";
+import { LostItem } from "../models/LostItems.model.js";
+import { FoundItem } from "../models/FoundItems.model.js";
+
+
+const appDetails = asyncHandler(async (req, res) => {
+    const users = await User.countDocuments({});
+    const lostItems = await LostItem.countDocuments({});
+    const foundItems = await FoundItem.countDocuments({});
+    const claimedItems = await FoundItem.countDocuments({ isRetrieved: true});
+    console.log("claimedItems ",claimedItems);
+    if(!users || !lostItems || !foundItems || !claimedItems) 
+      throw new ApiError(501, "Something Went Wrong while fetching App Details");
+    return res.status(200).json(
+      new ApiResponse(200, {
+        users,
+        items: lostItems + foundItems,
+        claimedItems,
+      }, 
+    "App Details Fetched Successfully")
+    );
+});
 
 const generateAccessAndRefreshToken = async (userId) => {
   try {
@@ -303,6 +324,7 @@ const getLeaderBoardData = asyncHandler(async (req, res) => {
 });
 
 export {
+  appDetails,
   sendOTP,
   signupUser,
   resendOTP,

@@ -10,10 +10,10 @@ const NotificationMessage = ({ message, timestamp }) => {
         <div>Unity Points</div>
         <div>{time}</div>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-row">
         <div>{message}</div>
         <div>
-         <img src={Coin} className="ml-1 h-[15px]" /></div>
+         <img src={Coin} className="ml-2 mt-1 h-[15px]" /></div>
       </div>
     </div>
   );
