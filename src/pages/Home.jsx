@@ -35,6 +35,8 @@ import FoundHead from "../assets/Found SomethingHeading.svg"
 
 
 import { appDetails } from "../services/operations/authAPI.js";
+import { FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
+import { NextArrow, PrevArrow } from "../components/Arrows.jsx";
 
 const Home = () => {
   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -48,6 +50,8 @@ const Home = () => {
     speed: 500,
     autoplaySpeed: 3000,
     cssEase: "linear",
+    prevArrow: <PrevArrow/>,
+    nextArrow: <NextArrow/>,
     responsive: [
       {
         breakpoint: 1024,
@@ -264,7 +268,7 @@ const handleShare = async () => {
             </div>
           </div>
           <div className="mt-2">
-            <div className="border-black border-b-2 border-t-2 p-2">
+            <div className="border-white border-b-2 border-t-2 p-2">
               <FlowingText
                 text={
                   "#Lost & Found #Lost & Found #Lost & Found #Lost & Found #Lost & Found"
@@ -272,7 +276,7 @@ const handleShare = async () => {
                 isBold={false}
               />
             </div>
-            <div className="border-black border-b-2 p-2">
+            <div className="border-white border-b-2 p-2 ">
               <FlowingText
                 text={
                   "#Lost & Found #Lost & Found #Lost & Found #Lost & Found #Lost & Found"
@@ -281,7 +285,7 @@ const handleShare = async () => {
               />
             </div>
           </div>
-          <div className="flex justify-center bg-blue-gray-200/5 mt-10 w-full">
+          <div className="flex justify-center  mt-10 w-full">
             <div className="relative w-[95%]">
               <Slider {...settings}>
                 {combinedItems.map((item) => (
