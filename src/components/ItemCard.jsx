@@ -22,7 +22,7 @@ const ItemCard = ({item}) => {
     }
    
 
-    const time = ExtractDate(item?.dateFound);
+     const time = ExtractDate(item?.dateFound || item?.dateLost); 
     return (
         <>
         <div
