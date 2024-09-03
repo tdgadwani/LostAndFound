@@ -6,12 +6,12 @@ const FlowingText = ({ text, isBold }) => {
       <div
         className={`animate-scroll inline-block  text-4xl ${
           isBold
-            ? "font-extrabold text-black" 
-            : "font-bold text-transparent" 
+            ? "font-extrabold text-white" 
+            : "font-bold text-transparent text-black" 
         } uppercase`}
-        style={isBold ? {} : { WebkitTextStroke: "1px black" }} 
+        style={isBold ? {} : { WebkitTextStroke: "1px white" }} 
       >
-        {`${text} ${text} ${text}`}
+        {`${text}  ${text} ${text}`}
       </div>
     </div>
   );
