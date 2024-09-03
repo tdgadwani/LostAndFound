@@ -226,9 +226,9 @@ const handleShare = async () => {
           <div className="flex justify-center bg-blue-gray-200/5 mt-10 w-full">
             <div className="relative w-[95%]">
               <Slider {...settings}>
-                {combinedItems.map((i) => (
-                  <div key={i._id} className="p-2 gap-1">
-                    <ItemCard item={i} />
+                {combinedItems.map((item) => (
+                  <div key={item._id} className="p-2 gap-1">
+                    <ItemCard item={item} disabled={true} />
                   </div>
                 ))}
               </Slider>

@@ -8,7 +8,7 @@ import ExtractDate from "../utils/ExtractDate.js";
 
 // const Item = ({cloudinaryImageId,itemName,type,address,dateFound}) => {
 
-const ItemCard = ({item}) => {    
+const ItemCard = ({item, disabled}) => {    
     const [showItemDetailPopup, setShowItemDetailPopup] = useState(false);
     var color="red";
     var type = "Lost";
@@ -22,12 +22,15 @@ const ItemCard = ({item}) => {
     }
    
 
-    const time = ExtractDate(item?.dateFound);
+    const time = ExtractDate(item?.dateFound || item?.dateLost);
+    console.log("tgadwani time ", time);
+    
     return (
         <>
         <div
-            className="h-72 w-56 bg-kaddu-123 mx-10 my-7  p-3 border-2 rounded-xl "
-            onClick={() => setShowItemDetailPopup(true)}
+            className={`h-72 w-56 bg-kaddu-123 mx-10 my-7  p-3 border-2 rounded-xl  ${
+        disabled ? "cursor-default" : "cursor-pointer"}`}
+            onClick={!disabled ? () => setShowItemDetailPopup(true) : undefined}
         >
             
             <div className="h-52 flex flex-col justify-center bg-black rounded-lg p-1" >

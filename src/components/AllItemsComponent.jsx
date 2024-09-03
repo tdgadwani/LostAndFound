@@ -63,7 +63,7 @@ const AllItemsComponent = ({itemType}) => {
           <LostItemShimmer/>
          :
           (allItems?.map((item) => {
-            return <ItemCard item={item} key={item._id} />
+            return <ItemCard item={item} key={item._id} disabled={false} />
 }))}
       </div>
     </div>

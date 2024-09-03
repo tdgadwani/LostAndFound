@@ -13,7 +13,8 @@ module.exports = withMT({
     },
     extend: {
       backgroundImage: {
-        'foundify-gradient': 'linear-gradient(to right, #060413, #1d0479, #160457, #10042f, #14043f)',
+        "foundify-gradient":
+          "linear-gradient(to right, #060413, #1d0479, #160457, #10042f, #14043f)",
       },
       colors: {
         kaddu: {
@@ -32,13 +33,13 @@ module.exports = withMT({
         },
       },
       keyframes: {
-        flowing: {
-          "0%": { transform: "translateX(100%)" },
-          "100%": { transform: "translateX(-50%)" },
+        scroll: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-100%)" },
         },
       },
       animation: {
-        flowing: "flowing 30s linear infinite",
+        scroll: "scroll 15s linear infinite",
       },
     },
   },
