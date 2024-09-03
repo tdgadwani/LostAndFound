@@ -23,6 +23,16 @@ import FlowingText from "../components/FlowingText.jsx";
 import LostAndFoundBanner from "../components/LostAndFoundBanner.jsx";
 import LeaderboardSVG from "../assets/LeaderboardCompleteSVG.svg";
 import arrow from "../assets/ArrowVisit.svg";
+import { TfiAnnouncement } from "react-icons/tfi";
+import { FaUsers } from "react-icons/fa6";
+import { VscFeedback } from "react-icons/vsc";
+import { FaTwitter } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa6";
+import { BiLogoGmail } from "react-icons/bi";
+import { IoLogoWhatsapp } from "react-icons/io";
+
+
+
 
 const Home = () => {
   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -161,52 +171,83 @@ const handleShare = async () => {
                   </div>
                 </div>
 
-              <div className="flex flex-col w-auto ">
-                <div className="mb-2  mr-10 bg-white w-96 h-44 p-4 rounded-lg">
-                  <Link to={ROUTES.LEADERBOARD}>
-                    <div>
-                        <div className="flex justify-between">
-                            <div>
-                            <img
-                                src={LeaderboardSVG}
-                                alt="Found Item"
-                                className=" w-40"
-                              />
-                            </div>
-                            <div>
+              <div className="flex  w-auto ">
+                    <div className=" flex flex-col">
+                          <div className="mb-2  mr-4 bg-white w-96 h-44 p-4 rounded-lg">
+                                <Link to={ROUTES.LEADERBOARD}>
+                                  <div>
+                                      <div className="flex justify-between">
+                                          <div>
+                                          <img
+                                              src={LeaderboardSVG}
+                                              alt="Found Item"
+                                              className=" w-40"
+                                            />
+                                          </div>
+                                          <div>
+                                              <img
+                                              src={arrow}
+                                              alt="Found Item"
+                                              className="w-8 "
+                                            />
+                                          </div>
+                                      </div>
+
+                                      <div>
+
+                                      </div>
+                                  </div>
+
+                                </Link>
+                          </div>
+                          <div
+                            className="bg-white cursor-pointer w-96 h-44 mt-4 mb-2 p-4 text-black font-extrabold  rounded-lg  "
+                            onClick={handleShare}
+                          >
+                            <div className="flex justify-between">
+                                <div className="text-2xl">
+                                    Share With Your <br/> Homies
+                                </div>
+                                <div>
                                 <img
-                                src={arrow}
-                                alt="Found Item"
-                                className="w-8 "
-                              />
+                                    src={arrow}
+                                    alt="Found Item"
+                                    className="w-8 "
+                                  />
+                                </div>
                             </div>
-                        </div>
-
-                        <div>
-
-                        </div>
+                            <div className="flex justify-around mt-8">
+                                 <div><BiLogoGmail className="h-7 w-7" /></div>
+                                 <div><IoLogoWhatsapp className="h-7 w-7"/></div>
+                                 <div><FaTwitter className="h-7 w-7"/></div>
+                                 <div><FaLinkedinIn className="h-7 w-7"/></div>
+                            </div>
+                          </div>
                     </div>
-
-                    {/* <img
-                      src={HomeLeaderBoardSVG}
-                      alt="Leaderboard"
-                      className="w-full md:w-auto"
-                    />
-                    <div
-                      className="w-[300px] h-[186px] border-black border-2"
-                    >
-                              Leaderboard
-                    </div>  */}
-                    
-
-                  </Link>
-                </div>
-                <div
-                  className="bg-white cursor-pointer w-96 h-44 mt-4 p-4 text-black font-extrabold text-3xl rounded-lg "
-                  onClick={handleShare}
-                >
-                  Share With Your Homies
-                </div>
+                    <div className="bg-white mb-4 w-48 text-black rounded-lg flex-col justify-center">
+                         <div className="flex mx-4 my-8">
+                               <div className="flex justify-center "><TfiAnnouncement className="h-10 w-10 mr-5" /></div>
+                               <div className="">
+                                    <div className="text-sm font-bold">Lost & Found <br/>Cases</div>
+                                    <div>500</div>
+                               </div>
+                          </div>
+                          <div className="flex mx-4 my-12">
+                               <div className="flex justify-center "><FaUsers className="h-10 w-10 mr-5" /></div>
+                               <div className="">
+                                    <div className="text-sm font-bold">Lost Found <br/>Cases</div>
+                                    <div>500</div>
+                               </div>
+                          </div>
+                          <div className="flex mx-4 my-8" >
+                               <div className="flex justify-center "><VscFeedback className="h-10 w-10 mr-5" /></div>
+                               <div className="">
+                                    <div className="text-sm font-bold">Lost Found <br/>Cases</div>
+                                    <div>500</div>
+                               </div>
+                          </div>
+                          
+                    </div>
               </div>
 
             </div>
