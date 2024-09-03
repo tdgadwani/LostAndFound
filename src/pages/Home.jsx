@@ -21,6 +21,8 @@ import { setItems } from "../slices/lostItemSlice.js";
 import { ROUTES } from "../utils/constants.js";
 import FlowingText from "../components/FlowingText.jsx";
 import LostAndFoundBanner from "../components/LostAndFoundBanner.jsx";
+import LeaderboardSVG from "../assets/LeaderboardCompleteSVG.svg";
+import arrow from "../assets/ArrowVisit.svg";
 
 const Home = () => {
   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -114,13 +116,13 @@ const handleShare = async () => {
     <>
       <Header className="fixed w-full " />
   
-      <div className="mt-20 w-screen">
+      <div className="pt-20 w-screen bg-foundify-gradient">
         <div className=" w-[95%] mx-auto">
           <div className="flex flex-col ravi">
             <div className="flex flex-row justify-between">
                 <div>
                     <div>
-                      <div className="text-xl md:text-3xl lg:text-5xl">
+                      <div className="text-xl md:text-3xl lg:text-5xl text-white">
                         Hi{" "}
                         <span className="text-kaddu-400">
                           {userData?.fullName
@@ -132,7 +134,7 @@ const handleShare = async () => {
                           ,
                         </span>
                       </div>
-                      <div className="mb-9 text-xl md:text-3xl lg:text-5xl  mt-1">
+                      <div className="mb-9 text-xl md:text-3xl lg:text-5xl  mt-1 text-white">
                         What's your plan for today?
                       </div>
                     </div>
@@ -159,24 +161,48 @@ const handleShare = async () => {
                   </div>
                 </div>
 
-              <div className="flex flex-col w-2/5">
-                <div className="mb-5 md:mb-0 md:w-[300px] ml-10  mr-10">
+              <div className="flex flex-col w-auto ">
+                <div className="mb-2  mr-10 bg-white w-96 h-44 p-4 rounded-lg">
                   <Link to={ROUTES.LEADERBOARD}>
-                    <img
+                    <div>
+                        <div className="flex justify-between">
+                            <div>
+                            <img
+                                src={LeaderboardSVG}
+                                alt="Found Item"
+                                className=" w-40"
+                              />
+                            </div>
+                            <div>
+                                <img
+                                src={arrow}
+                                alt="Found Item"
+                                className="w-8 "
+                              />
+                            </div>
+                        </div>
+
+                        <div>
+
+                        </div>
+                    </div>
+
+                    {/* <img
                       src={HomeLeaderBoardSVG}
                       alt="Leaderboard"
                       className="w-full md:w-auto"
                     />
-                    {/* <div
+                    <div
                       className="w-[300px] h-[186px] border-black border-2"
                     >
                               Leaderboard
-                    </div> */}
+                    </div>  */}
+                    
 
                   </Link>
                 </div>
                 <div
-                  className="bg-black cursor-pointer text-white font-extrabold text-2xl p-2 rounded-xl mb-5 md:mb-0 mt-5 w-[300px] h-[186px] ml-10"
+                  className="bg-white cursor-pointer w-96 h-44 mt-4 p-4 text-black font-extrabold text-3xl rounded-lg "
                   onClick={handleShare}
                 >
                   Share With Your Homies

@@ -22,9 +22,7 @@ const ItemCard = ({item, disabled}) => {
     }
    
 
-    const time = ExtractDate(item?.dateFound || item?.dateLost);
-    console.log("tgadwani time ", time);
-    
+     const time = ExtractDate(item?.dateFound || item?.dateLost); 
     return (
         <>
         <div
