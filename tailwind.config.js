@@ -39,7 +39,7 @@ module.exports = withMT({
         },
       },
       animation: {
-        scroll: "scroll 15s linear infinite",
+        scroll: "scroll 20s linear infinite",
       },
     },
   },

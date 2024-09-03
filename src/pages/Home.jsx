@@ -16,15 +16,21 @@ import { getFoundItems } from "../services/operations/foundItemsAPI.js";
 import { getRandomElements } from "../utils/utils.js";
 import { ROUTES } from "../utils/constants.js";
 import FlowingText from "../components/FlowingText.jsx";
-import LeaderboardSVG from "../assets/LeaderboardCompleteSVG.svg";
-import arrow from "../assets/ArrowVisit.svg";
+import LeaderboardSVG from "../assets/LeaderboardWhite.svg";
 import { TfiAnnouncement } from "react-icons/tfi";
-import { FaUsers } from "react-icons/fa6";
+import { HiOutlineUserGroup } from "react-icons/hi2";
 import { VscFeedback } from "react-icons/vsc";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { BiLogoGmail } from "react-icons/bi";
-import { IoLogoWhatsapp } from "react-icons/io";
+import { IoIosShareAlt, IoLogoWhatsapp } from "react-icons/io";
+import { MdLeaderboard } from "react-icons/md";
+import LostSvg from "../assets/LostSomethingSvg.svg"
+import FoundSvg from "../assets/FoundSomethingSvg.svg"
+import LostHead from "../assets/Lost SomethingHeading.svg"
+import FoundHead from "../assets/Found SomethingHeading.svg"
+
+
 
 
 
@@ -152,20 +158,24 @@ const handleShare = async () => {
                   <div className="flex flex-col justify-center items-center md:flex-row mt-14 md:justify-normal ml-0">
                     <div className="mb-5 md:mb-0">
                       <Link to={ROUTES.ADDITEM} state={{ isLost: true }}>
-                        <img
-                          src={LostItem}
-                          alt="Lost Item"
-                          className="w-full md:w-[350px]"
-                        />
+                        <div>
+                            <div></div>
+                            <div>
+                                  <div><img src={LostHead} alt="Found Item" className="w-full md:w-[350px] ml-7" /></div>
+                                  <div><img src={LostSvg} alt="Found Item" className="w-full md:w-[350px] ml-7" /></div>
+                            </div>
+                        </div>
                       </Link>
                     </div>
                     <div>
                       <Link to={ROUTES.ADDITEM} state={{ isLost: false }}>
-                        <img
-                          src={FoundItem}
-                          alt="Found Item"
-                          className="w-full md:w-[350px] ml-7"
-                        />
+                        <div>
+                              <div></div>
+                              <div>
+                                    <div><img src={FoundHead} alt="Found Item" className="w-full md:w-[350px] ml-7" /></div>
+                                    <div><img src={FoundSvg} alt="Found Item" className="w-full md:w-[350px] ml-7" /></div>
+                              </div>
+                          </div>
                       </Link>
                     </div>
                   </div>
@@ -173,77 +183,58 @@ const handleShare = async () => {
 
               <div className="flex  w-auto ">
                     <div className=" flex flex-col">
-                          <div className="mb-2  mr-4 bg-white w-96 h-44 p-4 rounded-lg">
+                          <div className="mb-2  mr-4 bg-foundify-gradient shadow-sm shadow-white w-96 h-44 p-4 rounded-lg">
                                 <Link to={ROUTES.LEADERBOARD}>
-                                  <div>
-                                      <div className="flex justify-between">
-                                          <div>
+                                
+                                      <div className="flex pl-4 pr-4 pt-6 ">
+                                          <div className="flex "><MdLeaderboard className="h-24 w-20 mx-6 flex justify-center text-white"/></div>
                                           <img
                                               src={LeaderboardSVG}
                                               alt="Found Item"
-                                              className=" w-40"
+                                              className=" w-40 m-3 text-white"
                                             />
-                                          </div>
-                                          <div>
-                                              <img
-                                              src={arrow}
-                                              alt="Found Item"
-                                              className="w-8 "
-                                            />
-                                          </div>
                                       </div>
-
-                                      <div>
-
-                                      </div>
-                                  </div>
-
+                                 
                                 </Link>
                           </div>
                           <div
-                            className="bg-white cursor-pointer w-96 h-44 mt-4 mb-2 p-4 text-black font-extrabold  rounded-lg  "
+                            className="bg-foundify-gradient shadow-sm shadow-white cursor-pointer w-96 h-44 mt-4 mb-2 p-4 text-black font-extrabold  rounded-lg  "
                             onClick={handleShare}
                           >
-                            <div className="flex justify-between">
-                                <div className="text-2xl">
-                                    Share With Your <br/> Homies
+                            <div className="flex justify-between ">
+                                <div className="text-2xl font-extrabold text-white">
+                                    Share With Your <br/> Friends
                                 </div>
-                                <div>
-                                <img
-                                    src={arrow}
-                                    alt="Found Item"
-                                    className="w-8 "
-                                  />
-                                </div>
+                                <div><IoIosShareAlt className="text-white h-8 w-8" /></div>
                             </div>
                             <div className="flex justify-around mt-8">
-                                 <div><BiLogoGmail className="h-7 w-7" /></div>
-                                 <div><IoLogoWhatsapp className="h-7 w-7"/></div>
-                                 <div><FaTwitter className="h-7 w-7"/></div>
-                                 <div><FaLinkedinIn className="h-7 w-7"/></div>
+                                 <div ><BiLogoGmail className="h-7 w-7 text-white" /></div>
+                                 <div><IoLogoWhatsapp className="h-7 w-7 text-white"/></div>
+                                 <div><FaTwitter className="h-7 w-7 text-white"/></div>
+                                 <div><FaLinkedinIn className="h-7 w-7 text-white"/></div>
                             </div>
                           </div>
                     </div>
-                    <div className="bg-white mb-4 w-48 text-black rounded-lg flex-col justify-center">
+                    <div className="bg-foundify-gradient shadow-sm shadow-white mb-4 w-48 text-black rounded-lg flex-col justify-center">
                          <div className="flex mx-4 my-8">
-                               <div className="flex justify-center "><TfiAnnouncement className="h-10 w-10 mr-5" /></div>
+                               <div className="flex justify-center "><TfiAnnouncement className="h-10 w-10 mr-5 text-white" /></div>
                                <div className="">
-                                    <div className="text-sm font-bold">Lost & Found <br/>Cases</div>
-                                    <div>500</div>
+                                    <div className="text-sm font-bold text-white">Lost & Found <br/>Cases</div>
+                                    <div className="text-white">{appData.items}</div>
                                </div>
                           </div>
-                          <div className="flex mx-4 my-12">
-                               <div className="flex justify-center "><FaUsers className="h-10 w-10 mr-5" /></div>
+                          <div className="flex mx-4 my-16">
+                               <div className="flex justify-center "><HiOutlineUserGroup  className="h-12 w-12 mr-5 text-white" /></div>
                                <div className="">
-                                    <div className="text-sm font-bold">Lost Found <br/>Cases</div>
-                                    <div>500</div>
+                                    <div className="text-sm font-bold text-white">Users </div>
+                                    <div className="text-white">{appData.users}</div>
                                </div>
                           </div>
                           <div className="flex mx-4 my-8" >
-                               <div className="flex justify-center "><VscFeedback className="h-10 w-10 mr-5" /></div>
+                               <div className="flex justify-center "><VscFeedback className="h-12 w-12 mr-5 text-white" /></div>
                                <div className="">
-                                    <div className="text-sm font-bold">Lost Found <br/>Cases</div>
-                                    <div>500</div>
+                                    <div className="text-sm font-bold text-white">Feedback </div>
+                                    <div className="text-white">{appData.claimedItems}</div>
                                </div>
                           </div>
                           
@@ -302,7 +293,7 @@ const handleShare = async () => {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center justify-evenly my-20">
+          <div className="flex flex-col md:flex-row items-center justify-evenly pb-10">
             {/* <div className="mb-5 md:mb-0">
               <Link to={ROUTES.LEADERBOARD}>
                 <img
@@ -327,7 +318,7 @@ const handleShare = async () => {
                   className="w-full md:w-auto"
                 />
               </div> */}
-              <div className="flex flex-row bg-gradient-to-r from-kaddu-1100 to-kaddu-600 rounded-xl w-full h-[300px] text-5xl text-white justify-center p-2">
+              <div className="flex flex-row  from-kaddu-1100 to-kaddu-600 rounded-xl w-full h-64 mt-10 text-5xl text-white justify-center p-2">
                 <div className="flex flex-col p-16 font-sans">
                   <div className="font-extrabold ">Reuniting you </div>
                   <div className="font-extrabold mt-3">with your belongings</div>
@@ -346,3 +337,5 @@ const handleShare = async () => {
 };
 
 export default Home;
+
+
