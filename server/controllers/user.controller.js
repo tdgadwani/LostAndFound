@@ -2,13 +2,14 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { User } from "../models/User.model.js";
-import { OPTIONS, OTP_SUBJECT } from "../constants.js";
+import { OPTIONS, OTP_SUBJECT, SUBSCRIBE_SUBJECT } from "../constants.js";
 import { OTP } from "../models/OTP.model.js";
 import { mailSender } from "../utils/mailSender.js";
 import OtpTemp from "../mailTemplates/otpTemplate.js";
 import { handelUserCheckIn } from "../utils/rewardUtils.js";
 import { LostItem } from "../models/LostItems.model.js";
 import { FoundItem } from "../models/FoundItems.model.js";
+import subscribeTemplate from "../mailTemplates/subscribeTemplate.js";
 
 
 const appDetails = asyncHandler(async (req, res) => {
@@ -28,6 +29,13 @@ const appDetails = asyncHandler(async (req, res) => {
     "App Details Fetched Successfully")
     );
 });
+const subscribeUser = asyncHandler(async( req, res) => {
+    const { email } = req.body;
+    if(!email)
+        throw new ApiError(402, "Email-ID is required");
+    await  mailSender(email,SUBSCRIBE_SUBJECT, subscribeTemplate());
+    return res.status(200).json(new ApiResponse(200, "Mail Sent Successfully"));
+})
 
 const generateAccessAndRefreshToken = async (userId) => {
   try {
@@ -324,6 +332,7 @@ const getLeaderBoardData = asyncHandler(async (req, res) => {
 });
 
 export {
+  subscribeUser,
   appDetails,
   sendOTP,
   signupUser,

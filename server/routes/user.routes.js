@@ -1,11 +1,12 @@
 import express from "express";
-import { appDetails, editProfile, getLeaderBoardData, loginUser, logoutUser, resendOTP, sendOTP, signupUser } from "../controllers/user.controller.js";
+import { appDetails, editProfile, getLeaderBoardData, loginUser, logoutUser, resendOTP, sendOTP, signupUser, subscribeUser } from "../controllers/user.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { userCheckedIn } from "../middlewares/checkIn.middleWare.js";
 
 const userRouter = express.Router();
 
+userRouter.route("/subscribe-user").post(subscribeUser);
 userRouter.route("/app-details").get(appDetails);
 userRouter.route("/send-otp").post(sendOTP);
 userRouter.route("/resend-otp").post(resendOTP);

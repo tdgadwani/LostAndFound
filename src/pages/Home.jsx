@@ -3,9 +3,6 @@ import FoundItem from "../assets/FoundHomepage.svg";
 import LostItem from "../assets/LostHomepage.svg";
 import Header from "../components/Header.jsx";
 import { Link } from "react-router-dom";
-import HomeLeaderBoardSVG from "../assets/Home_LeaderBoard.svg";
-import HomeShareCard from "../assets/Home_share.svg";
-import HomeFollow from "../assets/Home_follow.svg";
 import HandShake from "../assets/HandShake.png";
 import ItemCard from "../components/ItemCard.jsx";
 import Footer from "../components/Footer.jsx";
@@ -17,13 +14,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getLostItems } from "../services/operations/lostItemsAPI.js";
 import { getFoundItems } from "../services/operations/foundItemsAPI.js";
 import { getRandomElements } from "../utils/utils.js";
-import { setItems } from "../slices/lostItemSlice.js";
 import { ROUTES } from "../utils/constants.js";
 import FlowingText from "../components/FlowingText.jsx";
-import LostAndFoundBanner from "../components/LostAndFoundBanner.jsx";
 import LeaderboardSVG from "../assets/LeaderboardCompleteSVG.svg";
 import arrow from "../assets/ArrowVisit.svg";
-import { setAppData } from "../slices/authSlice.js";
 import { appDetails } from "../services/operations/authAPI.js";
 
 const Home = () => {

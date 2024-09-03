@@ -63,7 +63,7 @@
 // };
 
 // export default Footer;
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from "react-router-dom";
 import arrow from "../assets/arrow.svg";
 import sideArrow from "../assets/sideArrow.svg";
@@ -71,8 +71,19 @@ import { ROUTES } from '../utils/constants';
 import { FaLinkedinIn } from "react-icons/fa6";
 import { GrInstagram } from "react-icons/gr";
 import { FaTwitter } from "react-icons/fa";
+import { useDispatch } from 'react-redux';
+import { subscribeUser } from '../services/operations/authAPI';
 
 const Footer = () => {
+  const dispatch = useDispatch();
+  const emailRef = useRef("");
+  const subscribeHandler = () => {
+    const email = emailRef.current.value;
+    console.log("footer email", email);
+    
+    dispatch(subscribeUser({email}));
+  };
+
   return (
     <div className="bg-black text-white py-6 px-6 bottom-0 left-0 right-0 h-auto border-white border-2">
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -84,9 +95,10 @@ const Footer = () => {
             <input 
               type="text" 
               placeholder="Email Address" 
+              ref={emailRef}
               className="bg-black border border-white p-2 text-base text-white w-full"
             />
-            <button className="p-2">
+            <button className="p-2" onClick={subscribeHandler}>
               <img src={sideArrow} alt="Subscribe" />
             </button>
           </div>

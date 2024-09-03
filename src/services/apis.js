@@ -12,6 +12,7 @@ const REWARD_HISTORY_URL = BASE_URL + "/api/v1/reward-history";
 const RESET_PASSWORD_URL = BASE_URL + "/api/v1/resetPassword";
 
 export const APP_DETAILS = USER_URL + "/app-details";
+export const SUBSCRIBE_USER = USER_URL + "/subscribe-user";
 export const SEND_OTP_URL = USER_URL + "/send-otp";
 export const RESEND_OTP_URL = USER_URL + "/resend-otp";
 export const SIGNUP_URL = USER_URL + "/signup";

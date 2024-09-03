@@ -1,5 +1,3 @@
-// import Logo from "../../src/assets/LogoMain.svg"
-
 const ResetTemp = (name,url) => {
     return `<!DOCTYPE html>
 <html lang="en">
@@ -10,7 +8,7 @@ const ResetTemp = (name,url) => {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
+            background: linear-gradient(to right, #0b032d, #24005f, #3a0080, #53009f, #6d00bd);
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -24,7 +22,7 @@ const ResetTemp = (name,url) => {
             max-width: 90%;
             margin:  0 auto;
             padding: 15px;
-            background: linear-gradient(to bottom, white, #fdba74);
+            background: linear-gradient(to right, #0b032d, #24005f, #3a0080, #53009f, #6d00bd);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             /* display: flex;
@@ -49,7 +47,7 @@ const ResetTemp = (name,url) => {
         .content {
             font-size: 12px;
             font-weight: bold;
-            color: #333;
+            color: white;
             line-height: 3;
             text-align: center;
         }
@@ -57,7 +55,7 @@ const ResetTemp = (name,url) => {
             color: #ffffff !important;
         }
         .res_button {
-            background-color: rgb(219, 43, 43);
+            background-color: black;
             color: #ffffff;
             font-size: 12px;
             font-weight: bold;
@@ -70,12 +68,12 @@ const ResetTemp = (name,url) => {
             transition: background-color 0.3s ease;
         }
         .res_button:hover {
-            background-color: darkred;
+            background-color: black;
         }
         .footer {
             font-size: 16px;
             font-weight: bold;
-            color: #5f5e5e;
+            color: white;
             text-align: center;
             margin-top: 10px;
         }
@@ -106,8 +104,7 @@ const ResetTemp = (name,url) => {
     </div>
 </body>
 </html>
-        `
-    ;
+       `;
 };
 
 export default ResetTemp ;
