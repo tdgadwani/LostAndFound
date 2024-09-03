@@ -158,22 +158,28 @@ const handleShare = async () => {
                   <div className="flex flex-col justify-center items-center md:flex-row mt-14 md:justify-normal ml-0">
                     <div className="mb-5 md:mb-0">
                       <Link to={ROUTES.ADDITEM} state={{ isLost: true }}>
-                        <div>
-                            <div></div>
-                            <div>
-                                  <div><img src={LostHead} alt="Found Item" className="w-full md:w-[350px] ml-7" /></div>
-                                  <div><img src={LostSvg} alt="Found Item" className="w-full md:w-[350px] ml-7" /></div>
+                        <div className="shadow-sm shadow-white px-2 mx-2 w-96 h-48 rounded-lg">
+                            <div className="flex justify-between">
+                              <div></div>
+                              <div className=" mr-2 mt-2"><IoIosShareAlt className="text-white h-8 w-8 " /></div>
+                            </div>
+                            <div className="flex justify-between ml-6 mr-4">
+                                  <div className="text-white"><img src={LostHead} alt="Found Item" className="w-44 h-40" /></div>
+                                  <div className="text-white"><img src={LostSvg} alt="Found Item" className=" h-40" /></div>
                             </div>
                         </div>
                       </Link>
                     </div>
                     <div>
                       <Link to={ROUTES.ADDITEM} state={{ isLost: false }}>
-                        <div>
-                              <div></div>
-                              <div>
-                                    <div><img src={FoundHead} alt="Found Item" className="w-full md:w-[350px] ml-7" /></div>
-                                    <div><img src={FoundSvg} alt="Found Item" className="w-full md:w-[350px] ml-7" /></div>
+                        <div className="shadow-sm shadow-white px-2 m-2 w-96 h-48 rounded-lg">
+                              <div className="flex justify-between">
+                                <div></div>
+                                <div className=" mr-2 mt-2"><IoIosShareAlt className="text-white h-8 w-8 " /></div>
+                              </div>
+                              <div className="flex ml-2 mr-2">
+                                    <div className="text-white"><img src={FoundHead} alt="Found Item" className="w-44 h-40" /></div>
+                                    <div className="text-white"><img src={FoundSvg} alt="Found Item" className="  h-40" /></div>
                               </div>
                           </div>
                       </Link>
@@ -183,7 +189,7 @@ const handleShare = async () => {
 
               <div className="flex  w-auto ">
                     <div className=" flex flex-col">
-                          <div className="mb-2  mr-4 bg-foundify-gradient shadow-sm shadow-white w-96 h-44 p-4 rounded-lg">
+                          <div className="mb-2  mr-4 bg-foundify-gradient shadow-sm shadow-white w-96 h-40 p-4 rounded-lg">
                                 <Link to={ROUTES.LEADERBOARD}>
                                 
                                       <div className="flex pl-4 pr-4 pt-6 ">
