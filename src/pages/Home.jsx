@@ -23,6 +23,8 @@ import FlowingText from "../components/FlowingText.jsx";
 import LostAndFoundBanner from "../components/LostAndFoundBanner.jsx";
 import LeaderboardSVG from "../assets/LeaderboardCompleteSVG.svg";
 import arrow from "../assets/ArrowVisit.svg";
+import { setAppData } from "../slices/authSlice.js";
+import { appDetails } from "../services/operations/authAPI.js";
 
 const Home = () => {
   const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -61,14 +63,18 @@ const Home = () => {
 
   const lostItems = useSelector((store) => store?.lostItem?.lostItems) || [];
   const foundItems = useSelector((store) => store?.foundItems?.foundItems) || [];
+  const appData = useSelector((store) => store?.auth?.appData) || {};
   const items = useSelector((store) => store?.lostItem?.items) || [];
   
   useEffect(() => {
-    if(!lostItems){
+    if(!lostItems || lostItems.length === 0){
       dispatch(getLostItems());
     }
-    if(!foundItems){
+    if(!foundItems || foundItems.length === 0){
       dispatch(getFoundItems());
+    }
+    if(!appData || Object.keys(appData).length === 0) {
+      dispatch(appDetails());
     }
   }, []);
   const [combinedItems, setCombinedItems] = useState([]);
@@ -111,7 +117,7 @@ const handleShare = async () => {
 
     setCombinedItems(addTwoArrays);
   }, [lostItems, foundItems]);
-  
+  console.log("appDetails", appData)
   return (
     <>
       <Header className="fixed w-full " />

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
+    appData: null,
     signupData: null,
     token: null,
     userData: null,
@@ -12,6 +13,9 @@ const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
+        setAppData(state, value) {
+            state.appData = value.payload;
+        },
         setSignupData(state,value) {
             state.signupData = value.payload;
         },
@@ -34,6 +38,7 @@ const authSlice = createSlice({
 });
 
 export const {
+    setAppData,
     setSignupData,
     setToken,
     setUserData,

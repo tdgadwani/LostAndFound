@@ -1,9 +1,23 @@
-import { setLeaderBoardData, setLeaderBoardLoading, setSignupData, setToken, setUserData } from "../../slices/authSlice.js";
+import { setAppData, setLeaderBoardData, setLeaderBoardLoading, setSignupData, setToken, setUserData } from "../../slices/authSlice.js";
 import { ROUTES } from "../../utils/constants.js";
 import { apiConnector } from "../apiConnector.js";
-import { SEND_OTP_URL, RESEND_OTP_URL, SIGNUP_URL, LOGIN_URL, LOGOUT_URL, EDIT_PROFILE, LEADERBOARD_URL, } from "../apis.js";
+import { SEND_OTP_URL, RESEND_OTP_URL, SIGNUP_URL, LOGIN_URL, LOGOUT_URL, EDIT_PROFILE, LEADERBOARD_URL, APP_DETAILS, } from "../apis.js";
 import { toast } from "react-hot-toast";
 
+
+const appDetails = () => {
+    return async (dispatch) => {
+      try {
+        const response = await apiConnector("GET",APP_DETAILS);
+        if(!response.data.success) {
+          throw new Error(response.data.message);
+        }
+        dispatch(setAppData(response.data.data));
+      } catch (e) {
+        console.error(e.message);
+      }
+    }
+}
 const sendOTP = (formData,navigate) => {
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
@@ -156,6 +170,7 @@ const getLeaderBoardData = () => {
 }
 
 export {
+    appDetails,
     sendOTP,
     resendOTP,
     signupUser,
