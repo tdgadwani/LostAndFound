@@ -118,46 +118,48 @@ const handleShare = async () => {
         <div className=" w-[95%] mx-auto">
           <div className="flex flex-col ravi">
             <div className="flex flex-row justify-between">
-              <div>
                 <div>
-                  <div className="text-xl md:text-3xl lg:text-5xl">
-                    Hi{" "}
-                    <span className="text-kaddu-400">
-                      {userData?.fullName
-                        .split(" ")[0]
-                        .replace(
-                          /^./,
-                          userData?.fullName.split(" ")[0][0].toUpperCase()
-                        ) || "Email"}
-                      ,
-                    </span>
-                  </div>
-                  <div className="mb-9 text-xl md:text-3xl lg:text-5xl  mt-1">
-                    What's your plan for today?
+                    <div>
+                      <div className="text-xl md:text-3xl lg:text-5xl">
+                        Hi{" "}
+                        <span className="text-kaddu-400">
+                          {userData?.fullName
+                            .split(" ")[0]
+                            .replace(
+                              /^./,
+                              userData?.fullName.split(" ")[0][0].toUpperCase()
+                            ) || "Email"}
+                          ,
+                        </span>
+                      </div>
+                      <div className="mb-9 text-xl md:text-3xl lg:text-5xl  mt-1">
+                        What's your plan for today?
+                      </div>
+                    </div>
+                    
+                  <div className="flex flex-col justify-center items-center md:flex-row mt-14 md:justify-normal ml-0">
+                    <div className="mb-5 md:mb-0">
+                      <Link to={ROUTES.ADDITEM} state={{ isLost: true }}>
+                        <img
+                          src={LostItem}
+                          alt="Lost Item"
+                          className="w-full md:w-[350px]"
+                        />
+                      </Link>
+                    </div>
+                    <div>
+                      <Link to={ROUTES.ADDITEM} state={{ isLost: false }}>
+                        <img
+                          src={FoundItem}
+                          alt="Found Item"
+                          className="w-full md:w-[350px] ml-7"
+                        />
+                      </Link>
+                    </div>
                   </div>
                 </div>
-                <div className="flex flex-col justify-center items-center md:flex-row mt-14 md:justify-normal ml-0">
-                  <div className="mb-5 md:mb-0">
-                    <Link to={ROUTES.ADDITEM} state={{ isLost: true }}>
-                      <img
-                        src={LostItem}
-                        alt="Lost Item"
-                        className="w-full md:w-[350px]"
-                      />
-                    </Link>
-                  </div>
-                  <div>
-                    <Link to={ROUTES.ADDITEM} state={{ isLost: false }}>
-                      <img
-                        src={FoundItem}
-                        alt="Found Item"
-                        className="w-full md:w-[350px] ml-7"
-                      />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col">
+
+              <div className="flex flex-col w-2/5">
                 <div className="mb-5 md:mb-0 md:w-[300px] ml-10  mr-10">
                   <Link to={ROUTES.LEADERBOARD}>
                     <img
@@ -180,6 +182,7 @@ const handleShare = async () => {
                   Share With Your Homies
                 </div>
               </div>
+
             </div>
             <div className="flex flex-col justify-center items-center md:flex-row md:justify-normal ml-0">
               {/* <div className="mb-5 md:mb-0">

@@ -13,7 +13,7 @@ module.exports = withMT({
     },
     extend: {
       backgroundImage: {
-        "darkBg": "linear-gradient(to right, #C566FF 0%, #754DFF 64%)",
+        'foundify-gradient': 'linear-gradient(to right, #060413, #1d0479, #160457, #10042f, #14043f)',
       },
       colors: {
         kaddu: {

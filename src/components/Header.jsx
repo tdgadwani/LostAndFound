@@ -33,7 +33,7 @@ const Header = () => {
 
   useOnClickOutside(showref,buttonRef, () => setShowNotification(false));
   return (
-    <div className="flex justify-between items-center border-b-2 fixed backdrop-blur-sm z-30 top-0 left-0 right-0 py-2 px-4 md:px-6 bg-white bg-opacity-30">
+    <div className="flex justify-between items-center border-b-2 fixed backdrop-blur-sm z-30 top-0 left-0 right-0 py-2 px-4 md:px-6 bg-white bg-opacity-40">
       <Title />
       <div className="flex items-center space-x-4">
         <button
@@ -63,7 +63,7 @@ const Header = () => {
           <li className="md:mt-0 mt-2">
             <Link
               to={ROUTES.LOSTITEMS}
-              className="block px-4 py-2 md:p-0 hover:text-gray-600 text-sm md:text-lg"
+              className="block px-4 py-2 md:p-0 hover:text-white text-sm md:text-lg"
             >
               Lost
             </Link>
@@ -71,7 +71,7 @@ const Header = () => {
           <li className="md:mt-0 mt-2">
             <Link
               to={ROUTES.FOUNDITEMS}
-              className="block px-4 py-2 md:p-0 hover:text-gray-600 text-sm md:text-lg"
+              className="block px-4 py-2 md:p-0 hover:text-white text-sm md:text-lg"
             >
               Found
             </Link>
@@ -79,7 +79,7 @@ const Header = () => {
           <li className="md:mt-0 mt-2">
             <Link
               to={ROUTES.CLAIMEDITEMS}
-              className="block px-4 py-2 md:p-0 hover:text-gray-600 text-sm md:text-lg"
+              className="block px-4 py-2 md:p-0  hover:text-white text-sm md:text-lg"
             >
               Claimed
             </Link>
@@ -87,7 +87,7 @@ const Header = () => {
           <li className="md:mt-0 mt-2">
             <Link
               to={ROUTES.REWARDS}
-              className="block px-4 py-2 md:p-0 hover:text-gray-600 text-sm md:text-lg"
+              className="block px-4 py-2 md:p-0 hover:text-white text-sm md:text-lg"
             >
               Rewards
             </Link>

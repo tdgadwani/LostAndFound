@@ -58,7 +58,7 @@ const EditProfileComp = () => {
   return (
     <>
       {/* <div className="bg-gradient-to-b from-white to-red-200"> */}
-      <div className="bg-black p-20">
+      <div className="bg-foundify-gradient p-20">
         <main className=" ">
           <div className="text-center">
             <h1 className="font-bold text-5xl text-white">Edit Profile</h1>
@@ -140,7 +140,7 @@ const EditProfileComp = () => {
                   ></div>
                 </div>
               </div>
-              <div className="text-center mt-4 font-bold">
+              <div className="text-center mt-4 font-bold text-white">
                 Choose Your Avatar
               </div>
             </div>
@@ -244,13 +244,13 @@ const EditProfileComp = () => {
             </div>
           </div>
 
-          <div className="flex justify-end mb-16 mr-10 fixed bottom-16 right-4 ">
+          {/* <div className="flex justify-end mb-16 mr-10 fixed bottom-16 right-4 ">
             <img
               src={outline}
               alt="Edit"
               className="w-14 h-14 cursor-pointer"
             />
-          </div>
+          </div> */}
         </main>
       </div>
     </>
