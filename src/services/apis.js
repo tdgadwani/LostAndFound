@@ -1,7 +1,7 @@
 
-// const BASE_URL = "https://lostandfound-jgbr.onrender.com";
+const BASE_URL = "https://lostandfound-jgbr.onrender.com";
 
-const BASE_URL = "http://localhost:3000";
+// const BASE_URL = "http://localhost:3000";
 
 const USER_URL = BASE_URL + "/api/v1/user";
 const LOST_ITEMS_URL = BASE_URL + "/api/v1/lostitem";
