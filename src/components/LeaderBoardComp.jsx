@@ -14,7 +14,7 @@ const LeaderboardComp = ({leaderBoardData}) => {
           <h1 className="text-center text-white text-5xl font-bold mb-8">Leaderboard</h1>
 
           <div className="flex justify-center space-x-4 mb-8">
-            <div className=" text-center shadow-2xl w-40 h-56">
+            <div className=" text-center shadow-2xl w-40 h-56 mt-12">
               <div className="bg-yellow-300 rounded-t-lg p-2">
                 <div className="font-bold">Rank 2</div>
                 <img
@@ -54,7 +54,7 @@ const LeaderboardComp = ({leaderBoardData}) => {
               </div>
             </div>
 
-            <div className=" text-center shadow-2xl w-40 h-56">
+            <div className=" text-center shadow-2xl w-40 h-56 mt-12">
               <div className="bg-yellow-300 rounded-t-lg p-2">
                 <div className="font-bold">Rank 3</div>
                 <img

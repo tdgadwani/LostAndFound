@@ -42,34 +42,14 @@ export const YEARS = [
 
 export const MAX_COUNT = 4;
 
-const DUMMY_OBJ = {
-  isLost: false,
-  _id: "66891234b7c7f91c34fed9cb",
-  itemName: "fhv",
-  category: "Books",
-  media: [
-    "http://res.cloudinary.com/dlgrwtkck/image/upload/v1720259125/e6tdsif6luwbnnvzrpab.png",
-    "http://res.cloudinary.com/dlgrwtkck/image/upload/v1720259126/ujgbihkmgdf1vrne6qyd.png",
-    "http://res.cloudinary.com/dlgrwtkck/image/upload/v1720259123/levxiksnfj5j00pdpmye.png",
-    "http://res.cloudinary.com/dlgrwtkck/image/upload/v1720259123/heg2g1l4qnq1goeo7oug.png",
-  ],
-  description: "Profile got banned 😥\r\nsolved 600+ questions",
-  address: {
-    buildingName: "CSzd",
-    collegeName: "NIT Patna",
-    _id: "66891234b7c7f91c34fed9cc",
-  },
-  userId: {
-    _id: "6688c49baf84d0b9fecbdd2b",
-    fullName: "Tushar Gadwani",
-    rollNo: "2106177",
-  },
-  isRetrieved: false,
-  dateFound: "2024-07-06T09:45:24.702Z",
-  createdAt: "2024-07-06T09:45:24.710Z",
-  updatedAt: "2024-07-06T09:45:24.710Z",
-  __v: 0,
-};
+
+export const REWARDS = [
+   "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725444262/g2shscl9rlbt327w9m1a.avif",
+   "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725450295/bm4biujtssqnkm9krqtj.jpg",
+   "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725451004/kh53mqnnnnxsjgelfo46.jpg",
+   "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725444263/dl3fsxl8nesdtceoywcl.jpg",
+   "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725450294/qfxm4vpa6pcjjldwz5mj.webp",
+]
 
 export const ROUTES = Object.freeze({
   HOME: "/",
