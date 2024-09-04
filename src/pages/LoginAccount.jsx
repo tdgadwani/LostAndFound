@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import LoginAct from "../assets/LoginAccount.svg";
 import TogglePassword from "../components/TogglePassword";
 import { ROUTES } from "../utils/constants";
+import loginSvg from "../assets/loginbg2.svg"
 
 const LoginAccount = () => {
   const navigate = useNavigate();
@@ -29,14 +30,16 @@ const LoginAccount = () => {
 
   return (
     <div
-      className="bg-kaddu-500 flex h-screen justify-between"
-      style={{
-        backgroundImage: `url(${BGImage})`,
-        backgroundSize: "contain",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="bg-foundify-gradient flex h-screen justify-between"
+      // style={{
+      //   backgroundImage: `url(${BGImage})`,
+      //   backgroundSize: "contain",
+      //   backgroundRepeat: "no-repeat",
+      // }}
     >
-      <div className="hidden md:block w-1/2"></div>
+      <div className="hidden md:block w-1/2 justify-center">
+        <img src={loginSvg} className="w-full h-full"/>
+      </div>
       <div className="w-full md:w-2/5 m-4 md:m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl p-4 md:p-10">
         <img src={Logo} alt="Logo" className="w-32 md:w-48 lg:w-64" />
         <div className="flex flex-col justify-evenly items-center w-full">

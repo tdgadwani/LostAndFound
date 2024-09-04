@@ -139,7 +139,7 @@ const handleShare = async () => {
       <div className="pt-20 w-screen bg-foundify-gradient">
         <div className=" w-[95%] mx-auto">
           <div className="flex flex-col ravi">
-            <div className="flex flex-col lg:flex-row justify-between">
+            <div className="flex flex-row justify-between">
                 <div>
                     <div>
                       <div className="text-xl md:text-3xl lg:text-5xl text-white">
@@ -191,12 +191,15 @@ const handleShare = async () => {
                   </div>
                 </div>
 
-              <div className="flex flex-col lg:flex-row mt-5 items-center w-auto ">
+              <div className="flex  w-auto ">
                     <div className=" flex flex-col pr-12">
-                          <div className="mb-2   bg-foundify-gradient shadow-sm shadow-white w-96 h-40 p-4 rounded-lg">
+                          <div className="mb-2   bg-foundify-gradient shadow-sm shadow-white w-96 h-40 rounded-lg">
                                 <Link to={ROUTES.LEADERBOARD}>
-                                
-                                      <div className="flex pl-4 pr-4 pt-6 ">
+                                      <div className="flex justify-between">
+                                        <div></div>
+                                        <div className=" mr-2 mt-2"><IoIosShareAlt className="text-white h-8 w-8 " /></div>
+                                    </div>
+                                      <div className="flex pl-4 pr-4 ">
                                           <div className="flex "><MdLeaderboard className="h-24 w-20 mx-6 flex justify-center text-white"/></div>
                                           <img
                                               src={LeaderboardSVG}
@@ -225,26 +228,26 @@ const handleShare = async () => {
                             </div>
                           </div>
                     </div>
-                    <div className="bg-foundify-gradient shadow-sm shadow-white mb-4 w-5/6 items-center  lg:w-56 text-black rounded-lg flex flex-row lg:flex-col justify-center">
+                    <div className="bg-foundify-gradient shadow-sm shadow-white mb-4 w-56 text-black rounded-lg flex-col justify-center">
                          <div className="flex mx-4 my-8">
                                <div className="flex justify-center "><TfiAnnouncement className="h-10 w-10 mr-5 text-white" /></div>
                                <div className="">
                                     <div className="text-sm font-bold text-white">Lost & Found <br/>Cases</div>
-                                    <div className="text-white">{appData.items}</div>
+                                    <div className="text-kaddu-600 font-bold text-lg">{appData.items}</div>
                                </div>
                           </div>
                           <div className="flex mx-4 my-16">
                                <div className="flex justify-center "><HiOutlineUserGroup  className="h-12 w-12 mr-5 text-white" /></div>
                                <div className="">
                                     <div className="text-sm font-bold text-white">Users </div>
-                                    <div className="text-white">{appData.users}</div>
+                                    <div className="text-kaddu-600 font-bold text-lg">{appData.users}</div>
                                </div>
                           </div>
                           <div className="flex mx-4 my-8" >
                                <div className="flex justify-center "><VscFeedback className="h-12 w-12 mr-5 text-white" /></div>
                                <div className="">
                                     <div className="text-sm font-bold text-white">Feedback </div>
-                                    <div className="text-white">{appData.claimedItems}</div>
+                                    <div className="text-kaddu-600 font-bold text-lg">{appData.claimedItems}</div>
                                </div>
                           </div>
                           
@@ -328,16 +331,7 @@ const handleShare = async () => {
                   className="w-full md:w-auto"
                 />
               </div> */}
-              <div className="flex flex-col lg:flex-row  from-kaddu-1100 to-kaddu-600 rounded-xl w-full h-auto lg:h-64 mt-10 text-xl lg:text-5xl text-white justify-center items-center p-2">
-                <div className="flex flex-col text-center lg:text-left p-8 lg:p-16 font-sans">
-                  <div className="font-extrabold text-3xl lg:text-5xl">Reuniting you</div>
-                  <div className="font-extrabold mt-3 text-3xl lg:text-5xl">with your belongings</div>
-                </div>
-                <div className="flex justify-center lg:justify-end w-full lg:w-auto">
-                  <img src={HandShake} className="w-40 sm:w-64 md:w-80 lg:w-[491px] h-auto mt-5 lg:mt-0" />
-                </div>
-              </div>
-              {/* <div className="flex flex-row  from-kaddu-1100 to-kaddu-600 rounded-xl w-full h-64 mt-10 text-xl lg:text-5xl text-white justify-center p-2">
+              <div className="flex flex-row  from-kaddu-1100 to-kaddu-600 rounded-xl w-full h-64 mt-10 text-5xl text-white justify-center p-2">
                 <div className="flex flex-col p-16 font-sans">
                   <div className="font-extrabold ">Reuniting you </div>
                   <div className="font-extrabold mt-3">with your belongings</div>
@@ -345,8 +339,7 @@ const handleShare = async () => {
                 <div>
                   <img src={HandShake} className="w-[491px] h-[312px]" />
                 </div>
-              </div> */}
-
+              </div>
             </div>
           </div>
         </div>

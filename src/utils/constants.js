@@ -51,6 +51,13 @@ export const REWARDS = [
    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725450294/qfxm4vpa6pcjjldwz5mj.webp",
 ]
 
+export const PROFILE = [
+    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725481389/maj2oeitym0vuhwf9pja.jpg",
+    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725481382/hlkjz3jqhlmpnu7qnjow.jpg",
+    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725481268/sng1qbesyty2fxgevm5r.jpg",
+    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725481267/mul0gbvr9pbf8kqqusua.jpg"
+]
+
 export const ROUTES = Object.freeze({
   HOME: "/",
   SIGNUP: "/signup",
