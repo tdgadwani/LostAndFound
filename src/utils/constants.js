@@ -27,7 +27,7 @@ export const MONTHS = [
 ];
 
 export const AVATAR_URLS = [
-    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725221296/sssc6xcjryc9lw9pzbwp.png",
+    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725441906/pfg49mk7qccyfxlngud3.jpg",
     "https://res.cloudinary.com/dlgrwtkck/image/upload/v1720264641/r9ipbbd67w7j62lxutgt.png",
     "https://res.cloudinary.com/dlgrwtkck/image/upload/v1720264641/w2jzpc5r0l1xt4ey9uo5.png",
     "https://res.cloudinary.com/dlgrwtkck/image/upload/v1720264642/ibpxheujctlx4i4aicpa.png",
