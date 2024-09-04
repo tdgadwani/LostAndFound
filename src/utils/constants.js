@@ -90,7 +90,8 @@ export const ROUTES = Object.freeze({
   REWARDS: "/rewards",
   YOURPROFILE: "/profile",
   LEADERBOARD: "/leader-board",
-  ABOUT: "/aboutus"
+  ABOUT: "/aboutus",
+  WORK: "/work",
 });
 
 export const PASSWORDERRORMESSAGE = "Password must be at least 8 characters long.";

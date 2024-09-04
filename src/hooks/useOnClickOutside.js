@@ -15,9 +15,11 @@ export default function useOnClickOutside(ref1, ref2, handler) {
         };
         document.addEventListener("mousedown", listener);
         document.addEventListener("touchstart", listener);
+        document.addEventListener("scroll",listener);
         return () => {
           document.removeEventListener("mousedown", listener);
           document.removeEventListener("touchstart", listener);
+          document.removeEventListener("scroll",listener);
         };
       },
       [ref1,ref2, handler]

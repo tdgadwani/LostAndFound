@@ -7,7 +7,7 @@ const NotificationMessage = ({ message, timestamp }) => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row justify-between">
-        <div>Unity Points</div>
+        <div className="font-bold">Unity Points</div>
         <div>{time}</div>
       </div>
       <div className="flex flex-row">

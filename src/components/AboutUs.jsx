@@ -11,9 +11,9 @@ import { PROFILE } from '../utils/constants';
 const AboutUs = () => {
   return (
     <div>
-        <Header />
-        <div className='p-4 sm:p-8 md:p-12 lg:p-20 bg-foundify-gradient min-h-screen'>
-            <div className='text-center font-bold text-3xl sm:text-4xl text-white'>
+        <Header  />
+        <div className='p-4 sm:p-8 md:p-12 lg:p-20 bg-foundify-gradient min-h-screen '>
+            <div className='text-center font-bold text-3xl sm:text-4xl text-white pt-20 '>
                 Meet Our Foundify Team
             </div>
             <div>
@@ -25,9 +25,9 @@ const AboutUs = () => {
                         <img src={PROFILE[0]} className="h-32 sm:h-40 w-32 sm:w-40 rounded-full cursor-pointer border-black border-solid border-4" alt="profile" />
                     </div>
                     <div className='flex justify-center my-2 text-black'>
-                        <h1 className='font-bold text-xl sm:text-2xl my-3 text-gray-600'>Tushar Gadwani</h1>
+                        <h1 className='font-bold text-xl sm:text-2xl my-3 text-gray-400'>Tushar Gadwani</h1>
                     </div>
-                    <div className='text-center  text-sm sm:text-base text-gray-600'>
+                    <div className='text-center  text-sm sm:text-base text-gray-400'>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde molestias fugiat reiciendis natus veritatis sit in ia officiis, autem ea.
                     </div>
                     <div className='font-extrabold my-2 flex justify-center text-sm sm:text-base text-gray-600'>
@@ -35,9 +35,9 @@ const AboutUs = () => {
                     </div>
                     <div className='flex justify-center mb-2 mt-2'>
                     <div className='flex justify-center mb-2 mt-2'>
-                        <div className='mx-1 text-lg sm:text-xl'> <a href="https://www.linkedin.com/in/tushar-gadwani-6ab6b1212/"><FaLinkedinIn className='text-gray-600' /></a></div>
-                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.linkedin.com/in/tushar-gadwani-6ab6b1212/"><GrInstagram  className='text-gray-600'/></a></div> 
-                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.linkedin.com/in/tushar-gadwani-6ab6b1212/"><FaTwitter  className='text-gray-600'/></a></div>   
+                        <div className='mx-1 text-lg sm:text-xl'> <a href="https://www.linkedin.com/in/tushar-gadwani-6ab6b1212/"><FaLinkedinIn className='text-gray-400' /></a></div>
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.linkedin.com/in/tushar-gadwani-6ab6b1212/"><GrInstagram  className='text-gray-400'/></a></div> 
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.linkedin.com/in/tushar-gadwani-6ab6b1212/"><FaTwitter  className='text-gray-400'/></a></div>   
                     </div>
                     </div>
                 </div>
@@ -48,19 +48,19 @@ const AboutUs = () => {
                         <img src={PROFILE[1]} className="h-32 sm:h-40 w-32 sm:w-40 rounded-full cursor-pointer border-black border-solid border-4" alt="profile" />
                     </div>
                     <div className='flex justify-center my-2 text-black'>
-                        <h1 className='font-bold text-xl sm:text-2xl my-3 text-gray-600'>Ravi Saini</h1>
+                        <h1 className='font-bold text-xl sm:text-2xl my-3 text-gray-400'>Ravi Saini</h1>
                     </div>
-                    <div className='text-center  text-sm sm:text-base text-gray-600'>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde molestias fugiat reiciendis natus veritatis sit in ia officiis, autem ea.
+                    <div className='text-center  text-sm sm:text-base text-gray-400'>
+                    MERN stack Developer and Competitive Programmer, expertise in ReactJS and Node.js, adapt at building scalable and efficient web applications.
                     </div>
                     <div className='font-extrabold my-2 flex justify-center text-sm sm:text-base text-gray-600'>
                         Web Developer
                     </div>
                     <div className='flex justify-center mb-2 mt-2'>
                     <div className='flex justify-center mb-2 mt-2'>
-                        <div className='mx-1 text-lg sm:text-xl'> <a href="https://www.linkedin.com/in/ravi-saini-78096a22a"><FaLinkedinIn className='text-gray-600' /></a></div>
-                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.linkedin.com/in/ravi-saini-78096a22a"><GrInstagram  className='text-gray-600'/></a></div> 
-                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.linkedin.com/in/ravi-saini-78096a22a"><FaTwitter  className='text-gray-600'/></a></div>   
+                        <div className='mx-1 text-lg sm:text-xl'> <a href="https://www.linkedin.com/in/ravi-saini-78096a22a"><FaLinkedinIn className='text-gray-400' /></a></div>
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.instagram.com/ravisaini045?igsh=Z3lhNG04YjRmbmNt"><GrInstagram  className='text-gray-400'/></a></div> 
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.linkedin.com/in/ravi-saini-78096a22a"><FaTwitter  className='text-gray-400'/></a></div>   
                     </div>
                     </div>
                 </div>
@@ -71,19 +71,18 @@ const AboutUs = () => {
                         <img src={PROFILE[2]} className="h-32 sm:h-40 w-32 sm:w-40 rounded-full cursor-pointer border-black border-solid border-4" alt="profile" />
                     </div>
                     <div className='flex justify-center my-2 text-black'>
-                        <h1 className='font-bold text-xl sm:text-2xl my-3 text-gray-600'>Harsh Kumar</h1>
+                        <h1 className='font-bold text-xl sm:text-2xl my-3 text-gray-400'>Harsh Kumar</h1>
                     </div>
-                    <div className='text-center  text-sm sm:text-base text-gray-600'>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde molestias fugiat reiciendis natus veritatis sit in ia officiis, autem ea.
-                    </div>
+                    <div className='text-center  text-sm sm:text-base text-gray-400'>
+                    Full Stack Developer with expertise in ReactJS, NodeJS, MongoDB, and competitive programming, building responsive apps with advanced algorithms</div>
                     <div className='font-extrabold my-2 flex justify-center text-sm sm:text-base text-gray-600'>
                         Web Developer
                     </div>
                     <div className='flex justify-center mb-2 mt-2'>
                     <div className='flex justify-center mb-2 mt-2'>
-                        <div className='mx-1 text-lg sm:text-xl'> <a href="https://www.linkedin.com/in/harsh-kumar-58a156229/"><FaLinkedinIn className='text-gray-600' /></a></div>
-                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.instagram.com/i_am_harshk?igsh=MXRxZDE5djczYnZydw=="><GrInstagram  className='text-gray-600'/></a></div> 
-                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.linkedin.com/in/harsh-kumar-58a156229/"><FaTwitter  className='text-gray-600'/></a></div>   
+                        <div className='mx-1 text-lg sm:text-xl'> <a href="https://www.linkedin.com/in/harsh-kumar-58a156229/"><FaLinkedinIn className='text-gray-400' /></a></div>
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.instagram.com/i_am_harshk?igsh=MXRxZDE5djczYnZydw=="><GrInstagram  className='text-gray-400'/></a></div> 
+                        <div className='mx-1 text-lg sm:text-xl'><a href="https://www.linkedin.com/in/harsh-kumar-58a156229/"><FaTwitter  className='text-gray-400'/></a></div>   
                     </div>
                     </div>
                 </div>
@@ -97,8 +96,8 @@ const AboutUs = () => {
                         <h1 className='font-bold text-xl sm:text-2xl my-3 text-gray-400'>Yash Gupta</h1>
                     </div>
                     <div className='text-center  text-sm sm:text-base text-gray-400'>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde molestias fugiat reiciendis natus veritatis sit in ia officiis, autem ea.
-                    </div>
+                    Full Stack Developer experienced in building responsive web applications using ReactJS, NodeJS, and MongoDB
+                       </div>
                     <div className='font-extrabold my-2 flex justify-center text-sm sm:text-base text-gray-600'>
                         Web Developer
                     </div>

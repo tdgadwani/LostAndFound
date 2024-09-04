@@ -20,6 +20,7 @@ import { ROUTES } from "./utils/constants.js";
 import Leaderboard from "./pages/Leaderboard.jsx";
 import YourProfile from "./pages/YourProfile.jsx";
 import AboutUs from "./components/AboutUs.jsx";
+import Work from "./pages/Work.jsx";
 
 function App() {
  
@@ -141,8 +142,15 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path={ROUTES.WORK}
+          element={
+            <PrivateRoute>
+              <Work/>
+            </PrivateRoute>
+          }
+        />
       </Routes>
-      {/* <AllItems itemType="Found"/> */}
 
     </>
   );

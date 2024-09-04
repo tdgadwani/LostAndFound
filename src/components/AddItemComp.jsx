@@ -120,8 +120,8 @@ const AddItemComp = ({ isLost }) => {
     <>
       {/* <div className="min-h-screen bg-gradient-to-b from-white to-red-200 p-2 md:p-4 mt-10"> */}
       <div className="min-h-screen bg-foundify-gradient p-2 md:p-4 ">
-        <div className="max-w-xl mx-auto bg-white shadow-2xl rounded-lg p-4 md:p-6 mt-20">
-          <h1 className="text-6xl md:text-3xl font-bold text-center mb-4 md:mb-6">
+        <div className="max-w-xl mx-auto bg-foundify-gradient shadow-white  shadow-sm rounded-lg p-4 md:p-8 mt-20">
+          <h1 className="text-6xl md:text-3xl font-bold text-center text-white mb-4 md:mb-6">
             Add Item
           </h1>
           <div className="flex justify-center mb-2 md:mb-4 ">

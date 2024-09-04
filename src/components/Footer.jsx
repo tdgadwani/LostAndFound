@@ -114,7 +114,7 @@ const Footer = () => {
           <div className="flex-1">
             <ul className="space-y-3 font-bold text-base">
               <li><Link to={ROUTES.ABOUT}>About Team</Link></li>
-              <li><Link to="/">Work</Link></li>
+              <li><Link to={ROUTES.WORK}>Work</Link></li>
             </ul>
           </div>
           <div className="flex-1">

@@ -17,11 +17,11 @@ export default function NotificationComp() {
         return <div>Loading...</div>
     }
   return (
-    <div className='w-full h-full p-4 overflow-y-auto '>
+    <div className='w-full h-full p-4 overflow-y-auto rounded-lg'>
         {notificationData?.length>0 ?
         notificationData?.map((notification)=>
         (
-        <div className='border-black border-b-2 p-2  hover:bg-blue-gray-50' key={notification?._id}>
+        <div className='border-black border-b-2 p-2  hover:bg-blue-gray-200' key={notification?._id}>
             <NotificationMessage {...notification}/>
         </div>
         )
