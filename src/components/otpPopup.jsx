@@ -71,7 +71,7 @@ const OTPPopup = ({ onClose, email }) => {
           <button
             type="button" // Use type="button" to prevent form submission
             onClick={handleSubmit}
-            className="bg-blue-500 text-white py-2 px-6 rounded font-semibold"
+            className="bg-[#7D58FE] text-white py-2 px-6 rounded font-semibold"
           >
             Submit
           </button>

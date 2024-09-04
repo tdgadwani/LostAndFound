@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 import LoginAct from "../assets/LoginAccount.svg";
 import TogglePassword from "../components/TogglePassword";
 import { ROUTES } from "../utils/constants";
-import loginSvg from "../assets/loginbg2.svg"
+import loginSvg from "../assets/loginbg2.svg";
+import FLogo from "../assets/FLogo1.png";
+import HandLogo from "../assets/HandLogo.png";
 
 const LoginAccount = () => {
   const navigate = useNavigate();
@@ -37,13 +39,21 @@ const LoginAccount = () => {
       //   backgroundRepeat: "no-repeat",
       // }}
     >
-      <div className="hidden md:block w-1/2 justify-center">
-        <img src={loginSvg} className="w-full h-full"/>
+      <div className="hidden relative  md:block w-1/2 ">
+        <img
+          src={FLogo}
+          className=" mt-0 absolute h-full top[-500px] object-cover w-full"
+        />
+        <img src={HandLogo} className="absolute top-0 left-0 object-contain" />
       </div>
       <div className="w-full md:w-2/5 m-4 md:m-8 bg-white flex flex-col justify-evenly items-center rounded-3xl p-4 md:p-10">
         <img src={Logo} alt="Logo" className="w-32 md:w-48 lg:w-64" />
         <div className="flex flex-col justify-evenly items-center w-full">
-          <img src={LoginAct} alt="Create Account" className="my-2 w-3/4 md:w-auto" />
+          <img
+            src={LoginAct}
+            alt="Create Account"
+            className="my-2 w-3/4 md:w-auto"
+          />
           <form onSubmit={submitHandler} className="w-full">
             <div className="my-2 flex flex-col justify-evenly items-center w-full">
               <input
@@ -54,11 +64,14 @@ const LoginAccount = () => {
                 required
               />
 
-              <TogglePassword passwordRef={passwordRef} passwordType={"Password"}/>
+              <TogglePassword
+                passwordRef={passwordRef}
+                passwordType={"Password"}
+              />
 
               <button
                 type="submit"
-                className="bg-kaddu-500 p-3 w-full border-2 mt-2 font-bold text-xl"
+                className="bg-[#7D58FE] p-3 w-full border-2 mt-2 font-bold text-xl"
               >
                 Login
               </button>
@@ -66,14 +79,14 @@ const LoginAccount = () => {
           </form>
           <div className="my-2">
             <Link to={ROUTES.RESETPASSWORD}>
-              <span className="text-kaddu-600 font-bold">Forgot Password</span>
+              <span className="text-[#7D58FE] font-bold">Forgot Password</span>
             </Link>
           </div>
         </div>
         <div className="text-center">
-          Don't have an account? 
+          Don't have an account?
           <Link to={ROUTES.SIGNUP}>
-            <span className="text-kaddu-600"> Create Now </span>
+            <span className="text-[#7D58FE]"> Create Now </span>
           </Link>
         </div>
       </div>

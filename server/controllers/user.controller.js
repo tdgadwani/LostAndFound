@@ -81,7 +81,7 @@ const sendOTP = asyncHandler(async (req, res) => {
       throw new ApiError(500, "something Went wrong While Sending OTP");
     const name = fullName.split(" ")[0];
     const htmlContent = OtpTemp(name, otp);    
-    const response=await mailSender(email,OTP_SUBJECT,htmlContent);
+    const response=await mailSender(email,OTP_SUBJECT + otp,htmlContent);
     console.log(`Sending email with otp ${otp}`);
     // catch (error) {
     //   throw new ApiError(501, error.message);
@@ -125,7 +125,7 @@ const resendOTP = asyncHandler(async (req, res) => {
       .status(200)
       .json(new ApiResponse(200, sentOTP, "OTP sent Successfully"));
   }
-  await mailSender(email, OTP_SUBJECT, `YOUR OTP IS ${otp}`);
+  await mailSender(email, OTP_SUBJECT + otp, `YOUR OTP IS ${otp}`);
   return res
     .status(200)
     .json(new ApiResponse(200, existingOTP, "OTP sent Successfully"));
