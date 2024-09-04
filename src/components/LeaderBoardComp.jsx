@@ -7,6 +7,7 @@ import { getLeaderBoardData } from "../services/operations/authAPI";
 import LeaderboardShimmer from "../Shimmer/LeaderboardShimmer";
 
 const LeaderboardComp = ({leaderBoardData}) => {
+  
   return (
     <>
       {leaderBoardData !== undefined && leaderBoardData?.length >= 3 ? (

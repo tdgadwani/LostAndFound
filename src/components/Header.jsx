@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import profile from "../assets/profileImage.png";
 import Logo from "../assets/LogoMain.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../services/operations/authAPI";
 import { ROUTES } from "../utils/constants";
 import NotificationComp from "./NotificationComp";
@@ -15,6 +15,7 @@ const Title = () => (
 );
 
 const Header = () => {
+  const { userData } = useSelector((store) => store?.auth);
   const [showList, setShowList] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -100,7 +101,7 @@ const Header = () => {
             </svg>
           </div>
           <img
-            src={profile}
+            src={userData.avatar}
             className="h-10 w-10 rounded-full cursor-pointer"
             alt="profile"
             onClick={() => setShowList(!showList)}

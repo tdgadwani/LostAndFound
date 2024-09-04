@@ -44,12 +44,30 @@ export const MAX_COUNT = 4;
 
 
 export const REWARDS = [
-   "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725444262/g2shscl9rlbt327w9m1a.avif",
-   "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725450295/bm4biujtssqnkm9krqtj.jpg",
-   "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725451004/kh53mqnnnnxsjgelfo46.jpg",
-   "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725444263/dl3fsxl8nesdtceoywcl.jpg",
-   "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725450294/qfxm4vpa6pcjjldwz5mj.webp",
-]
+    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725444262/g2shscl9rlbt327w9m1a.avif",
+    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725477718/x0vt8fjb3rojg0pam4yw.jpg",
+    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725451004/kh53mqnnnnxsjgelfo46.jpg",
+    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725444263/dl3fsxl8nesdtceoywcl.jpg",
+    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725450294/qfxm4vpa6pcjjldwz5mj.webp",
+];
+
+export const RANKS = {
+  0: {
+    rank: "HELPER",
+    badge:
+      "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725480893/wxogqjxrz5yndzyn5yo1.jpg",
+  },
+  1: {
+    rank: "SAVIOUR",
+    badge:
+      "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725478496/yyal8uhuflmzmapwape6.svg",
+  },
+  2: {
+    rank: "GOD",
+    badge:
+      "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725480893/gxjot22svov2vysg51bs.jpg",
+  },
+};
 
 export const ROUTES = Object.freeze({
   HOME: "/",
