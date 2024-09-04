@@ -136,7 +136,7 @@ const handleShare = async () => {
     <>
       <Header className="fixed w-full " />
   
-      <div className="pt-20 w-screen bg-foundify-gradient">
+      <div className="pt-20 w-screen bg-foundify-gradient scroll-m-0">
         <div className=" w-[95%] mx-auto">
           <div className="flex flex-col ravi">
             <div className="flex flex-row justify-between">
