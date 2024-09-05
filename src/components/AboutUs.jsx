@@ -89,7 +89,7 @@ const AboutUs = () => {
                 </h1>
               </div>
               <div className="text-center  text-sm sm:text-base text-gray-400">
-                MERN stack Developer, expertise in ReactJS and Node.js, adapt at
+                MERN Stack Developer and Competitive Programmer , expertise in ReactJS and Node.js, adapt at
                 building scalable and efficient web applications.
               </div>
               <div className="font-extrabold my-2 flex justify-center text-sm sm:text-base text-gray-600">
@@ -239,7 +239,7 @@ const AboutUs = () => {
           <div className="bg-bg-foundify-gradient  ">
             <div className="flex justify-center mt-2">
               <img
-                src={Ravi}
+                src={PROFILE[4]}
                 className="h-32 sm:h-40 w-32 sm:w-40 rounded-full cursor-pointer border-black border-solid border-4"
                 alt="profile"
               />

@@ -10,6 +10,7 @@ import { handelUserCheckIn } from "../utils/rewardUtils.js";
 import { LostItem } from "../models/LostItems.model.js";
 import { FoundItem } from "../models/FoundItems.model.js";
 import subscribeTemplate from "../mailTemplates/subscribeTemplate.js";
+import { request } from "express";
 
 
 const appDetails = asyncHandler(async (req, res) => {
@@ -17,7 +18,7 @@ const appDetails = asyncHandler(async (req, res) => {
     const lostItems = await LostItem.countDocuments({});
     const foundItems = await FoundItem.countDocuments({});
     const claimedItems = await FoundItem.countDocuments({ isRetrieved: true});
-    console.log("claimedItems ",claimedItems);
+    console.log("claimedItems ",claimedItems, users, lostItems, foundItems);
     if(!users || !lostItems || !foundItems || !claimedItems) 
       throw new ApiError(501, "Something Went Wrong while fetching App Details");
     return res.status(200).json(
@@ -92,7 +93,7 @@ const sendOTP = asyncHandler(async (req, res) => {
         new ApiResponse(200, sentOTP, `OTP Sent Successfully on mail ${email}`)
       );
   } catch (error) {
-    new ApiError(501, `Error at Server Side ${error}`);
+    return res.status(501).json(new ApiError(501, `Error at Server Side ${error}`));
   }
 });
 
@@ -275,8 +276,9 @@ const editProfile = asyncHandler(async (req, res) => {
     graduationYear,
     avatar,
   } = req.body;
+  console.log(req.body);
   const { isProfileSet } = req.user;
-  if (isProfileSet == false && !rollNo) {
+  if (isProfileSet === false && !rollNo) {
     throw new ApiError(400, "please set your profile by adding roll number");
   }
 
