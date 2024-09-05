@@ -51,7 +51,7 @@ const AboutUs = () => {
                         <h1 className='font-bold text-xl sm:text-2xl my-3 text-gray-400'>Ravi Saini</h1>
                     </div>
                     <div className='text-center  text-sm sm:text-base text-gray-400'>
-                    MERN stack Developer and Competitive Programmer, expertise in ReactJS and Node.js, adapt at building scalable and efficient web applications.
+                    MERN stack Developer, expertise in ReactJS and Node.js, adapt at building scalable and efficient web applications.
                     </div>
                     <div className='font-extrabold my-2 flex justify-center text-sm sm:text-base text-gray-600'>
                         Web Developer
