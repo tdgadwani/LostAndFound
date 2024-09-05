@@ -10,6 +10,7 @@ import { handelUserCheckIn } from "../utils/rewardUtils.js";
 import { LostItem } from "../models/LostItems.model.js";
 import { FoundItem } from "../models/FoundItems.model.js";
 import subscribeTemplate from "../mailTemplates/subscribeTemplate.js";
+import { request } from "express";
 
 
 const appDetails = asyncHandler(async (req, res) => {
@@ -275,8 +276,9 @@ const editProfile = asyncHandler(async (req, res) => {
     graduationYear,
     avatar,
   } = req.body;
+  console.log(req.body);
   const { isProfileSet } = req.user;
-  if (isProfileSet == false && !rollNo) {
+  if (isProfileSet === false && !rollNo) {
     throw new ApiError(400, "please set your profile by adding roll number");
   }
 
