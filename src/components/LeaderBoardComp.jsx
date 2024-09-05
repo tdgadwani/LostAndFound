@@ -23,12 +23,12 @@ const LeaderboardComp = ({leaderBoardData}) => {
                   className="w-20 h-20 mx-auto rounded-full my-2"
                 />
               </div>
-              <div className=" text-gray-600 shadow-sm shadow-white">
+              <div className=" text-gray-200 shadow-sm shadow-white">
                 <div className="text-base md:text-xl font-bold ">
                   {leaderBoardData[1]?.fullName}
                 </div>
                 <div className="text-sm">NIT Patna</div>
-                <div className="text-red-500 font-bold ">
+                <div className="text-kaddu-400 font-bold ">
                   credits: {leaderBoardData[1]?.coins}
                 </div>
               </div>
@@ -44,12 +44,12 @@ const LeaderboardComp = ({leaderBoardData}) => {
                   className="w-24 h-24 mx-auto rounded-full my-2"
                 />
               </div>
-              <div className="text-gray-600 shadow-sm shadow-white">
+              <div className="text-gray-200 shadow-sm shadow-white">
                 <div className="text-base md:text-xl font-bold ">
                   {leaderBoardData[0]?.fullName}
                 </div>
                 <div className="text-sm">NIT Patna</div>
-                <div className="text-red-500 font-bold ">
+                <div className="text-kaddu-400 font-bold ">
                   credits: {leaderBoardData[0]?.coins}
                 </div>
               </div>
@@ -63,12 +63,12 @@ const LeaderboardComp = ({leaderBoardData}) => {
                   className="w-20 h-20 mx-auto rounded-full my-2"
                 />
               </div>
-              <div className=" text-gray-600 shadow-sm shadow-white">
+              <div className=" text-gray-200 shadow-sm shadow-white">
                 <div className="text-base md:text-xl font-bold ">
                   {leaderBoardData[2]?.fullName}
                 </div>
                 <div className="text-sm">NIT Patna</div>
-                <div className="text-red-500 font-bold ">
+                <div className="text-kaddu-400 font-bold ">
                   credits: {leaderBoardData[2]?.coins}
                 </div>
               </div>
@@ -92,7 +92,7 @@ const LeaderboardComp = ({leaderBoardData}) => {
                       <span>{index + 1}</span>
                     </td>
                     <td className="py-2 px-2 text-left text-sm line-clamp-1 ">{user?.fullName}</td>
-                    <td className="py-2 px-2 text-left text-sm text-red-500">
+                    <td className="py-2 px-2 text-left text-sm text-kaddu-400">
                       <span className="pr-2 hidden md:inline-block">credits: </span>
                       <span>{user?.coins}</span>
                     </td>
