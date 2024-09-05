@@ -4,7 +4,7 @@ import profile from "../assets/profileImage.png";
 import Logo from "../assets/LogoMain.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../services/operations/authAPI";
-import { ROUTES } from "../utils/constants";
+import { AVATAR_URLS, ROUTES } from "../utils/constants";
 import NotificationComp from "./NotificationComp";
 import useOnClickOutside from "../hooks/useOnClickOutside";
 
@@ -108,7 +108,7 @@ const Header = () => {
             </svg>
           </div>
           <img
-            src={userData.avatar}
+            src={userData.avatar === undefined ? AVATAR_URLS[0] : userData.avatar}
             className="h-10 w-10 rounded-full cursor-pointer"
             alt="profile"
             onClick={() => setShowList(!showList)}
