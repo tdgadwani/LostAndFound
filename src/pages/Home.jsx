@@ -204,9 +204,13 @@ const handleShare = async () => {
   <div className="w-full md:w-1/2 mt-10 md:mt-0 mx-auto">
     <div className="flex flex-col md:flex-row md:space-x-4 w-full">
       <div className="flex flex-col pr-0 md:pr-12">
-        <div className="mb-4 bg-foundify-gradient shadow-sm shadow-white w-full max-w-lg h-40 p-4 rounded-lg">
+        <div className="mb-4 bg-foundify-gradient shadow-sm shadow-white w-full max-w-lg h-40 p-2 rounded-lg">
           <Link to={ROUTES.LEADERBOARD}>
-            <div className="flex pl-4 pr-4 pt-6">
+            <div className="flex">
+              <div className="w-full"></div>
+              <IoIosShareAlt className="text-white h-8 w-8" />
+            </div>
+            <div className="flex pl-4 pr-4 ">
               <MdLeaderboard className="h-20 w-20 mx-6 text-white" />
               <img
                 src={LeaderboardSVG}

@@ -73,7 +73,8 @@ export const PROFILE = [
     "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725481389/maj2oeitym0vuhwf9pja.jpg",
     "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725481382/hlkjz3jqhlmpnu7qnjow.jpg",
     "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725481268/sng1qbesyty2fxgevm5r.jpg",
-    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725481267/mul0gbvr9pbf8kqqusua.jpg"
+    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725481267/mul0gbvr9pbf8kqqusua.jpg",
+    "https://res.cloudinary.com/dlgrwtkck/image/upload/v1725561377/n163kltog90mjzgsomfv.jpg"
 ]
 
 export const ROUTES = Object.freeze({
