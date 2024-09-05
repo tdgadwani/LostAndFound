@@ -28,7 +28,7 @@ const RewardComp = () => {
 
         <div className="flex flex-col md:flex-row items-center  text-white m-2">
           <div
-            className=" w-60 sm:w-2/3 lg:w-1/3 h-80  m-2 p-2 rounded-xl shadow-md shadow-white "
+            className=" w-60 sm:w-2/3  lg:w-1/3 h-80  m-2 p-0.5 rounded-xl shadow-md shadow-white "
             style={{
               backgroundImage: `url(${REWARDS[0]})`,
               backgroundSize: "cover",
@@ -74,7 +74,7 @@ const RewardComp = () => {
                 </div>
               </div>
               <div
-                className="m-2 p-2 bg-black w-1/2 rounded-xl shadow-md shadow-white"
+                className="m-2 p-0.5 bg-black w-1/2 rounded-xl shadow-md shadow-white"
                 style={{
                   backgroundImage: `url(${REWARDS[3]})`,
                   backgroundSize: "cover",
