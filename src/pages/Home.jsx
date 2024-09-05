@@ -136,125 +136,134 @@ const handleShare = async () => {
     <>
       <Header className="fixed w-full " />
   
-      <div className="pt-20 w-screen bg-foundify-gradient scroll-m-0">
+      <div className="pt-20 w-screen bg-foundify-gradient">
         <div className=" w-[95%] mx-auto">
           <div className="flex flex-col ravi">
-            <div className="flex flex-row justify-between">
-                <div>
-                    <div>
-                      <div className="text-xl md:text-3xl lg:text-5xl text-white">
-                        Hi{" "}
-                        <span className="text-kaddu-400">
-                          {userData?.fullName
-                            .split(" ")[0]
-                            .replace(
-                              /^./,
-                              userData?.fullName.split(" ")[0][0].toUpperCase()
-                            ) || "Email"}
-                          ,
-                        </span>
-                      </div>
-                      <div className="mb-9 text-xl md:text-3xl lg:text-5xl  mt-1 text-white">
-                        What's your plan for today?
-                      </div>
-                    </div>
-                    
-                  <div className="flex flex-col justify-center items-center md:flex-row mt-14 md:justify-normal ml-0">
-                    <div className="mb-5 md:mb-0">
-                      <Link to={ROUTES.ADDITEM} state={{ isLost: true }}>
-                        <div className="shadow-sm shadow-white px-2 mr-4 w-80 h-48 rounded-lg">
-                            <div className="flex justify-between">
-                              <div></div>
-                              <div className=" mr-2 mt-2"><IoIosShareAlt className="text-white h-6 w-6 " /></div>
-                            </div>
-                            <div className="flex justify-between ml-6 mr-4">
-                                  <div className="text-white"><img src={LostHead} alt="Found Item" className="w-48 h-36" /></div>
-                                  <div className="text-white"><img src={LostSvg} alt="Found Item" className=" h-36" /></div>
-                            </div>
-                        </div>
-                      </Link>
-                    </div>
-                    <div>
-                      <Link to={ROUTES.ADDITEM} state={{ isLost: false }}>
-                        <div className="shadow-sm shadow-white px-2 m-2 w-80 h-48 rounded-lg">
-                              <div className="flex justify-between">
-                                <div></div>
-                                <div className=" mr-2 mt-2"><IoIosShareAlt className="text-white h-6 w-6 " /></div>
-                              </div>
-                              <div className="flex ml-2 mr-2">
-                                    <div className="text-white"><img src={FoundHead} alt="Found Item" className="w-48 h-36" /></div>
-                                    <div className="text-white"><img src={FoundSvg} alt="Found Item" className="  h-36" /></div>
-                              </div>
-                          </div>
-                      </Link>
-                    </div>
-                  </div>
+
+
+          <div className="flex flex-col md:flex-row justify-between p-4 md:p-8">
+  {/* Left Section */}
+  <div className="w-full md:w-1/2 mx-auto">
+    <div>
+      <div>
+        <div className="text-2xl md:text-3xl lg:text-5xl text-white">
+          Hi{" "}
+          <span className="text-kaddu-400">
+            {userData?.fullName
+              .split(" ")[0]
+              .replace(
+                /^./,
+                userData?.fullName.split(" ")[0][0].toUpperCase()
+              ) || "Email"}
+            ,
+          </span>
+        </div>
+        <div className="mt-1 mb-9 text-2xl md:text-3xl lg:text-5xl text-white">
+          What's your plan for today?
+        </div>
+      </div>
+
+      <div className="flex flex-col items-center justify-center md:flex-row md:justify-start mt-10  mx-auto">
+        <div className="mb-5 md:mb-0 md:mr-4">
+          <Link to={ROUTES.ADDITEM} state={{ isLost: true }}>
+            <div className="shadow-sm shadow-white p-2 w-full max-w-xs h-48 rounded-lg">
+              <div className="flex justify-between">
+                <div></div>
+                <div className="mr-2 mt-2">
+                  <IoIosShareAlt className="text-white h-6 w-6" />
                 </div>
-
-              <div className="flex  w-auto ">
-                    <div className=" flex flex-col pr-12">
-                          <div className="mb-2   bg-foundify-gradient shadow-sm shadow-white w-96 h-40 rounded-lg">
-                                <Link to={ROUTES.LEADERBOARD}>
-                                      <div className="flex justify-between">
-                                        <div></div>
-                                        <div className=" mr-2 mt-2"><IoIosShareAlt className="text-white h-8 w-8 " /></div>
-                                    </div>
-                                      <div className="flex pl-4 pr-4 ">
-                                          <div className="flex "><MdLeaderboard className="h-24 w-20 mx-6 flex justify-center text-white"/></div>
-                                          <img
-                                              src={LeaderboardSVG}
-                                              alt="Found Item"
-                                              className=" w-40 m-3 text-white"
-                                            />
-                                      </div>
-                                 
-                                </Link>
-                          </div>
-                          <div
-                            className="bg-foundify-gradient shadow-sm shadow-white cursor-pointer w-96 h-44 mt-4 mb-2 p-4 text-black font-extrabold  rounded-lg  "
-                            onClick={handleShare}
-                          >
-                            <div className="flex justify-between ">
-                                <div className="text-2xl font-extrabold text-white">
-                                    Share With Your <br/> Friends
-                                </div>
-                                <div><IoIosShareAlt className="text-white h-8 w-8" /></div>
-                            </div>
-                            <div className="flex justify-around mt-8">
-                                 <div ><BiLogoGmail className="h-7 w-7 text-white" /></div>
-                                 <div><IoLogoWhatsapp className="h-7 w-7 text-white"/></div>
-                                 <div><FaTwitter className="h-7 w-7 text-white"/></div>
-                                 <div><FaLinkedinIn className="h-7 w-7 text-white"/></div>
-                            </div>
-                          </div>
-                    </div>
-                    <div className="bg-foundify-gradient shadow-sm shadow-white mb-4 w-56 text-black rounded-lg flex-col justify-center">
-                         <div className="flex mx-4 my-8">
-                               <div className="flex justify-center "><TfiAnnouncement className="h-10 w-10 mr-5 text-white" /></div>
-                               <div className="">
-                                    <div className="text-sm font-bold text-white">Lost & Found <br/>Cases</div>
-                                    <div className="text-kaddu-600 font-bold text-lg">{appData.items}</div>
-                               </div>
-                          </div>
-                          <div className="flex mx-4 my-16">
-                               <div className="flex justify-center "><HiOutlineUserGroup  className="h-12 w-12 mr-5 text-white" /></div>
-                               <div className="">
-                                    <div className="text-sm font-bold text-white">Users </div>
-                                    <div className="text-kaddu-600 font-bold text-lg">{appData.users}</div>
-                               </div>
-                          </div>
-                          <div className="flex mx-4 my-8" >
-                               <div className="flex justify-center "><VscFeedback className="h-12 w-12 mr-5 text-white" /></div>
-                               <div className="">
-                                    <div className="text-sm font-bold text-white">Feedback </div>
-                                    <div className="text-kaddu-600 font-bold text-lg">{appData.claimedItems}</div>
-                               </div>
-                          </div>
-                          
-                    </div>
               </div>
-
+              <div className="flex justify-between ml-6 mr-4">
+                <img src={LostHead} alt="Found Item" className="w-40 h-36" />
+                <img src={LostSvg} alt="Found Item" className="h-36" />
+              </div>
             </div>
+          </Link>
+        </div>
+        <div className="mt-1">
+          <Link to={ROUTES.ADDITEM} state={{ isLost: false }}>
+            <div className="shadow-sm shadow-white p-2 w-full max-w-xs h-48 rounded-lg">
+              <div className="flex justify-between">
+                <div></div>
+                <div className="mr-2 mt-2">
+                  <IoIosShareAlt className="text-white h-6 w-6" />
+                </div>
+              </div>
+              <div className="flex ml-2 mr-2">
+                <img src={FoundHead} alt="Found Item" className="w-40 h-36" />
+                <img src={FoundSvg} alt="Found Item" className="h-36" />
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Right Section */}
+  <div className="w-full md:w-1/2 mt-10 md:mt-0 mx-auto">
+    <div className="flex flex-col md:flex-row md:space-x-4 w-full">
+      <div className="flex flex-col pr-0 md:pr-12">
+        <div className="mb-4 bg-foundify-gradient shadow-sm shadow-white w-full max-w-lg h-40 p-4 rounded-lg">
+          <Link to={ROUTES.LEADERBOARD}>
+            <div className="flex pl-4 pr-4 pt-6">
+              <MdLeaderboard className="h-20 w-20 mx-6 text-white" />
+              <img
+                src={LeaderboardSVG}
+                alt="Found Item"
+                className="w-32 m-3 text-white"
+              />
+            </div>
+          </Link>
+        </div>
+        <div
+          className="bg-foundify-gradient shadow-sm shadow-white cursor-pointer w-full max-w-lg h-44 mt-4 p-4 text-black font-extrabold rounded-lg"
+          onClick={handleShare}
+        >
+          <div className="flex justify-between">
+            <div className="text-lg md:text-2xl font-extrabold text-white">
+              Share With Your <br /> Friends
+            </div>
+            <IoIosShareAlt className="text-white h-8 w-8" />
+          </div>
+          <div className="flex justify-around mt-6">
+            <BiLogoGmail className="h-7 w-7 text-white" />
+            <IoLogoWhatsapp className="h-7 w-7 text-white" />
+            <FaTwitter className="h-7 w-7 text-white" />
+            <FaLinkedinIn className="h-7 w-7 text-white" />
+          </div>
+        </div>
+      </div>
+    <div className="bg-foundify-gradient shadow-sm shadow-white w-full max-w-xs text-black rounded-lg p-4 flex flex-col justify-center mx-auto mt-8 md:mt-0">
+
+        <div className="flex mb-8">
+          <TfiAnnouncement className="h-10 w-10 mr-5 text-white" />
+          <div>
+            <div className="text-sm font-bold text-white">Lost & Found <br />Cases</div>
+            <div className="text-white">{appData.items}</div>
+          </div>
+        </div>
+        <div className="flex mb-8">
+          <HiOutlineUserGroup className="h-12 w-12 mr-5 text-white" />
+          <div>
+            <div className="text-sm font-bold text-white">Users</div>
+            <div className="text-white">{appData.users}</div>
+          </div>
+        </div>
+        <div className="flex">
+          <VscFeedback className="h-12 w-12 mr-5 text-white" />
+          <div>
+            <div className="text-sm font-bold text-white">Feedback</div>
+            <div className="text-white">{appData.claimedItems}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
             <div className="flex flex-col justify-center items-center md:flex-row md:justify-normal ml-0 mt-16">
               {/* <div className="mb-5 md:mb-0">
               <Link to={ROUTES.ADDITEM} state={{ isLost: true }}>
