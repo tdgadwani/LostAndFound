@@ -49,7 +49,7 @@ const EditProfileComp = () => {
       collageName: college.current.value,
       graduationMonth: gradMonth.current.value,
       graduationYear: gradYear.current.value,
-      avatar,
+      avatar: avatarMap[avatar],
     };
     dispatch(editProfile(formData,navigate));
   };
