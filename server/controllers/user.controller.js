@@ -18,7 +18,7 @@ const appDetails = asyncHandler(async (req, res) => {
     const lostItems = await LostItem.countDocuments({});
     const foundItems = await FoundItem.countDocuments({});
     const claimedItems = await FoundItem.countDocuments({ isRetrieved: true});
-    console.log("claimedItems ",claimedItems);
+    console.log("claimedItems ",claimedItems, users, lostItems, foundItems);
     if(!users || !lostItems || !foundItems || !claimedItems) 
       throw new ApiError(501, "Something Went Wrong while fetching App Details");
     return res.status(200).json(

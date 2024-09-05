@@ -210,7 +210,7 @@ const AddItemComp = ({ isLost }) => {
                   <div className="flex text-sm flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3">
                     <input
                       type="text"
-                      placeholder="Location Found"
+                      placeholder={isLost ? "Location Lost": "Location Found"}
                       ref={locationFound}
                       className="w-full md:w-1/2 p-2 rounded border border-gray-300"
                     />
