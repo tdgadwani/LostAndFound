@@ -340,15 +340,16 @@ const handleShare = async () => {
                   className="w-full md:w-auto"
                 />
               </div> */}
-              <div className="flex flex-row  from-kaddu-1100 to-kaddu-600 rounded-xl w-full h-64 mt-10 text-5xl text-white justify-center p-2">
-                <div className="flex flex-col p-16 font-sans">
-                  <div className="font-extrabold ">Reuniting you </div>
-                  <div className="font-extrabold mt-3">with your belongings</div>
-                </div>
-                <div>
-                  <img src={HandShake} className="w-[491px] h-[312px]" />
-                </div>
-              </div>
+              <div className="flex flex-col items-center from-kaddu-1100 to-kaddu-600 rounded-xl w-full h-auto mt-10 text-white justify-center p-2 lg:flex-row lg:h-64 lg:text-5xl">
+  <div className="flex flex-col p-8 text-center font-sans lg:p-16 lg:text-left lg:text-5xl">
+    <div className="font-extrabold text-3xl sm:text-4xl lg:text-5xl">Reuniting you</div>
+    <div className="font-extrabold mt-2 text-3xl sm:mt-3 sm:text-4xl lg:mt-3 lg:text-5xl">with your belongings</div>
+  </div>
+  <div className="mt-6 lg:mt-0">
+    <img src={HandShake} className="w-48 h-32 sm:w-64 sm:h-40 lg:w-[491px] lg:h-[312px]" />
+  </div>
+</div>
+
             </div>
           </div>
         </div>

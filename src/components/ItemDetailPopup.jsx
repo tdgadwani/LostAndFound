@@ -14,20 +14,28 @@ const ItemDetailPopup = ({ onClose, item }) => {
                         <img src={cross} alt="Close" className='w-4 h-4 ' />
                     </button>
                     <div className='flex flex-col md:flex-row justify-evenly items-center'>
-                        <div className='flex flex-col items-center w-full md:w-1/2 '>
-                            <Carousel autoSlide={true}>
-                                {item.media.map((d, index) => (
-                                    <img key={index} src={d} alt={`Slide ${index}`} className='w-full h-full object-contain' />
-                                ))}
-                            </Carousel>
-                            {
-                                !(item?.isLost) && !(item?.isRetrieved) ?(
-                                    <div className='mt-4'>
-                                <button className='bg-blue-500 text-white py-2 px-4 rounded' onClick={() => setIsRollNoPopUp(true)}>Claim</button>
+                        <div className='items-center'>
+                            <div className='flex flex-col items-center w-full md:w-1/2 md:ml-12 '>
+                                <Carousel autoSlide={true}>
+                                    {item.media.map((d, index) => (
+                                        <img key={index} src={d} alt={`Slide ${index}`} className='w-full h-full object-contain' />
+                                    ))}
+                                </Carousel>
+                                {
+                                    !(item?.isLost) && !(item?.isRetrieved) ?(
+                                        <div className='mt-4'>
+                                    <button className='bg-blue-500 text-white py-2 px-4 rounded' onClick={() => setIsRollNoPopUp(true)}>Claim</button>
+                                </div>
+                                    ):(<div></div>)
+                                }
+                                
                             </div>
-                                ):(<div></div>)
-                            }
-                            
+                            <div className='flex-col'>
+                                <div className=''>
+                                    <span className='font-bold'>Contact Details:</span>
+                                    <span className='bg-gray-400 p-3  rounded-r-2xl block '>{item.itemName}</span>
+                                </div>
+                            </div>
                         </div>
                         <div className=' flex flex-col justify-center w-full md:w-1/2 mt-4 md:mt-0 md:ml-4'>
                             <div className=' font-bold mb-4 text-center text-2xl'>Item Details</div>
