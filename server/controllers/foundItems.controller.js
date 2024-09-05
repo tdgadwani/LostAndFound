@@ -76,10 +76,10 @@ const postFoundItems = asyncHandler(async (req, res, _) => {
 }); // tested 
 
 const getFoundItems = asyncHandler(async (req, res, _) => {
-  const foundItems = await FoundItem.find({isRetrieved: false})
+  const foundItems = await FoundItem.find({ isRetrieved: false })
     .populate({
       path: "userId",
-      select: "rollNo fullName",
+      select: "mobileNo fullName",
     })
     .exec();
 
@@ -190,7 +190,7 @@ const updateFoundItem = asyncHandler(async (req, res, _) => {
 const getRetrievedItems = asyncHandler(async(req,res) => {
     const retrivedItems = await FoundItem.find({ isRetrieved: true }).populate({
       path: "retrievedBy",
-      select: "rollNo fullName",
+      select: "mobileNo fullName",
     }).exec();
     if(!retrivedItems)
       throw new ApiError(501,"Unable to fetch Retrived Items"); 

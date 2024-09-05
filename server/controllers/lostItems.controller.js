@@ -63,7 +63,7 @@ const getLostItems = asyncHandler(async (req, res, _) => {
   const lostItems = await LostItem.find({})
     .populate({
       path: "userId",
-      select: "rollNo  fullName",
+      select: "mobileNo  fullName",
     })
     .exec();
   if (!lostItems) {

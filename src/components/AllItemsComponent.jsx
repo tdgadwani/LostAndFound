@@ -10,7 +10,6 @@ import {
 } from "../services/operations/foundItemsAPI.js";
 
 const AllItemsComponent = ({itemType}) => {
-  console.log("bitches ",itemType)
   const [allItems, setAllItems] = useState([]);
   const dispatch = useDispatch();
   const lostItems = useSelector((store) => store?.lostItem?.lostItems);  
