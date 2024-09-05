@@ -9,13 +9,13 @@ import { RewardHistory } from "../models/RewardHistory.model.js";
 
 const postFoundItems = asyncHandler(async (req, res, _) => {
   const { itemName, category, description, address, contactInfo } = req.body;
-  
-  console.log(req.files)
- if (
-   [itemName, category, description, address, contactInfo].some(
-     (field) => typeof field === "string" && field.trim() === ""
-   )
- )
+
+  console.log(req.files);
+  if (
+    [itemName, category, description, address, contactInfo].some(
+      (field) => typeof field === "string" && field.trim() === ""
+    )
+  )
     throw new ApiError(400, "All fields are Required");
   if (!req.files) throw new ApiError(403, "Image path is required");
 
@@ -54,7 +54,7 @@ const postFoundItems = asyncHandler(async (req, res, _) => {
     contactInfo,
   });
   user.coins += 40;
-  await user.save({validateBeforeSave: false});
+  await user.save({ validateBeforeSave: false });
   await Notification.create({
     userId: user._id,
     type: "Reward",
@@ -66,14 +66,14 @@ const postFoundItems = asyncHandler(async (req, res, _) => {
     rewardDate: Date.now(),
     userId: user._id,
   });
-  if(!rewardHistory)
-    throw new  ApiError(50,"Unable to Check-in. Please try after sometime");
+  if (!rewardHistory)
+    throw new ApiError(50, "Unable to Check-in. Please try after sometime");
   if (!Found) throw new ApiError(500, "Unable to post found item");
 
   return res
     .status(200)
     .json(new ApiResponse(200, Found, "Found Item posted Successfully"));
-}); // tested 
+}); // tested
 
 const getFoundItems = asyncHandler(async (req, res, _) => {
   const foundItems = await FoundItem.find({ isRetrieved: false })
@@ -100,7 +100,9 @@ const getFoundItemById = asyncHandler(async (req, res, _) => {
   }
 
   try {
-    const foundItemById = await FoundItem.findById(id).populate({path: "userId",select: "rollNo fullName"}).exec();
+    const foundItemById = await FoundItem.findById(id)
+      .populate({ path: "userId", select: "rollNo fullName" })
+      .exec();
 
     if (!foundItemById) {
       throw new ApiError(404, "Found Item not found");
@@ -125,7 +127,9 @@ const getFoundItemsByUId = asyncHandler(async (req, res, _) => {
   }
 
   try {
-    const foundItemsByUid = await FoundItem.find({ userId }).populate({path:"userId",select:"rollNo fullName"}).exec(); // Assuming foundBy field
+    const foundItemsByUid = await FoundItem.find({ userId })
+      .populate({ path: "userId", select: "rollNo fullName" })
+      .exec(); // Assuming foundBy field
 
     if (!foundItemsByUid) {
       throw new ApiError(404, "No Found Items found for this user");
@@ -133,68 +137,98 @@ const getFoundItemsByUId = asyncHandler(async (req, res, _) => {
 
     return res
       .status(200)
-      .json(new ApiResponse(200, foundItemsByUid, "FoundItems fetched Successfully"));
+      .json(
+        new ApiResponse(200, foundItemsByUid, "FoundItems fetched Successfully")
+      );
   } catch (error) {
     console.error(error);
     return res.status(error.statusCode || 500).json({ message: error.message });
   }
-});// tested
+}); // tested
 
 const updateFoundItem = asyncHandler(async (req, res, _) => {
-  const { id } = req.params; 
+  const { id } = req.params;
   const { isRetrieved, retrievedByUser } = req.body;
-  console.log(typeof isRetrieved, req.body);
+  const userId = req.user._id;
   if (!id) {
     throw new ApiError(400, "Found Item ID is required for update");
   }
-  if(!isRetrieved || !retrievedByUser)
-    throw new ApiError(401,"All Fields are Required");
-
-  const retrievedBy = await User.findOne({rollNo:retrievedByUser}).select("_id"); //?:Have fix (rollno data is not avilabal in database)
-  // const retrievedBy = await User.findOne({email:retrievedByUser}).select("_id"); 
-  if(!retrievedBy)
-    throw new ApiError(403,"User with given Roll No. Not found"); 
-  const foundItem = await FoundItem.findByIdAndUpdate(id,{
-      $set:{
-          isRetrieved,
-          retrievedBy,
-          retrivedDate: new Date(),
-      }},{
-        new: true,
-      }
+  if (!isRetrieved || !retrievedByUser)
+    throw new ApiError(401, "All Fields are Required");
+  const item = await FoundItem.findById(id);
+  console.log("szdtghdtgjmnszd ", item.userId, userId, typeof userId, typeof(item.userId));
+  if (!userId.equals(item.userId)) {
+    return res
+      .status(200)
+      .json(
+        new ApiResponse(
+          403,
+          null,
+          "To Claim this Item, Contact Current Holder of this Item"
+        )
+      );
+  }
+  const retrievedBy = await User.findOne({ rollNo: retrievedByUser }).select(
+    "_id"
+  ); //?:Have fix (rollno data is not avilabal in database)
+  // const retrievedBy = await User.findOne({email:retrievedByUser}).select("_id");
+  if (!retrievedBy){
+    return res
+      .status(200)
+      .json(new ApiResponse(403, null, "User with Given Roll No. Not found"));
+  }
+  const foundItem = await FoundItem.findByIdAndUpdate(
+    id,
+    {
+      $set: {
+        isRetrieved,
+        retrievedBy,
+        retrivedDate: new Date(),
+      },
+    },
+    {
+      new: true,
+    }
   );
 
-  if (!foundItem)
-    throw new ApiError(404, "Found Item not found");
+  if (!foundItem) throw new ApiError(404, "Found Item not found");
   const user = req.user;
   user.coins += 10;
   await user.save();
   await Notification.create({
-    userId:user._id,
-    type:"Reward",
-    message:"Completed a Claimed Item mission, Coin increase +10"
-  })
+    userId: user._id,
+    type: "Reward",
+    message: "Completed a Claimed Item mission, Coin increase +10",
+  });
   const rewardHistory = await RewardHistory.create({
     rewardType: "foundItem",
     rewardDate: Date.now(),
     userId: user._id,
   });
-  if(!rewardHistory)
-    throw new  ApiError(50,"Unable to Check-in. Please try after sometime");
+  if (!rewardHistory)
+    throw new ApiError(50, "Unable to Check-in. Please try after sometime");
   return res
-      .status(200)
-      .json(
-        new ApiResponse(200, foundItem, "Found Item updated successfully"));
+    .status(200)
+    .json(new ApiResponse(200, foundItem, "Found Item updated successfully"));
 }); //tested
 
-const getRetrievedItems = asyncHandler(async(req,res) => {
-    const retrivedItems = await FoundItem.find({ isRetrieved: true }).populate({
+const getRetrievedItems = asyncHandler(async (req, res) => {
+  const retrivedItems = await FoundItem.find({ isRetrieved: true })
+    .populate({
       path: "retrievedBy",
       select: "mobileNo fullName",
-    }).exec();
-    if(!retrivedItems)
-      throw new ApiError(501,"Unable to fetch Retrived Items"); 
-    return res.status(200).json(new ApiResponse(200,retrivedItems,"Retrieved Items Fetched Successfully"));
+    })
+    .exec();
+  if (!retrivedItems) throw new ApiError(501, "Unable to fetch Retrived Items");
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(
+        200,
+        retrivedItems,
+        "Retrieved Items Fetched Successfully"
+      )
+    );
 }); //tested
 
 export {

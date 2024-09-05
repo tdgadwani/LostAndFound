@@ -113,11 +113,12 @@ const updateFoundItem = (formData, id, navigate) => {
             toast.error(response.data.message);
             throw new Error(response.data.message);
           }
-          toast.success(response.data.message);
+          toast.success(response.data.message, {duration: 4000});
           //  navigate logic
-          navigate(ROUTES.CLAIMEDITEMS);
+          if(response.data.statusCode !== 403)
+            navigate(ROUTES.CLAIMEDITEMS);
         } catch (error) {
-          toast.error(error.message);
+          toast.error(error.message || "Some thing Went Wrong");
         } finally {
           toast.dismiss(toastId);
         }

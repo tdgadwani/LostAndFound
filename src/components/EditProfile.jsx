@@ -11,6 +11,7 @@ import { COLLEGES, MONTHS, YEARS, AVATAR_URLS } from "../utils/constants";
 import { editProfile } from '../services/operations/authAPI';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 
 const avatarMap = {
@@ -39,8 +40,20 @@ const EditProfileComp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let num = 123;
-    num.toFixed()
+    const mobileNum = phoneNo.current.value.toString();
+    const rollNum = rollNo.current.value;
+    if(mobileNum.length !== 10) {
+      toast("Please enter valid Mobile Number", {
+        duration: 4000,
+      });
+      return;
+    }
+    if(rollNum.length < 6 || rollNum.length > 8) {
+      toast("Please enter valid Roll Number", {
+        duration: 4000,
+      });
+      return;
+    }
     const formData = {
       rollNo: rollNo.current.value,
       mobileNo: phoneNo.current.value.toString(),
@@ -49,7 +62,7 @@ const EditProfileComp = () => {
       collageName: college.current.value,
       graduationMonth: gradMonth.current.value,
       graduationYear: gradYear.current.value,
-      avatar,
+      avatar: avatarMap[avatar],
     };
     dispatch(editProfile(formData,navigate));
   };
