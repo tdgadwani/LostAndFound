@@ -135,7 +135,7 @@ const Footer = () => {
         <div className="md:hidden">
           <div className="flex flex-wrap space-y-2 text-sm font-bold text-center">
             <div className="w-full">
-              <Link to={ROUTES.ABOUT}>About Team</Link> | <Link to="/">Work</Link> | <Link to="/">Home</Link>
+              <Link to={ROUTES.ABOUT}>About Team</Link> | <Link to={ROUTES.WORK}>Work</Link> | <Link to="/">Home</Link>
             </div>
             <div className="w-full">
               <Link to="/">Lost & Found</Link> | <Link to="/">Terms and Conditions</Link> | <Link to="/">Privacy Policy</Link>
