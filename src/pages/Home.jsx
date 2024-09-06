@@ -146,7 +146,7 @@ const handleShare = async () => {
   <div className="w-full md:w-1/2 mx-auto">
     <div>
       <div>
-        <div className="text-2xl md:text-3xl lg:text-5xl text-white">
+        <div className="text-2xl md:text-3xl lg:text-5xl text-white italic">
           Hi{" "}
           <span className="text-kaddu-400">
             {userData?.fullName
@@ -158,7 +158,7 @@ const handleShare = async () => {
             ,
           </span>
         </div>
-        <div className="mt-1 mb-9 text-2xl md:text-3xl lg:text-5xl text-white">
+        <div className="mt-1 mb-9 text-2xl md:text-3xl lg:text-5xl text-white italic">
           What's your plan for today?
         </div>
       </div>
