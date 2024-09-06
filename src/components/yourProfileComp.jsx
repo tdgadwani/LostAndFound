@@ -52,9 +52,9 @@ const YourProfileComp = () => {
                         </div>
                     </div>
                     <div className="pl-4 shadow-md shadow-white w-full sm:w-48 h-auto sm:h-72 m-4 text-white">
-                           <div className="text-lg font-bold mt-8">FoundItems : {items?.founditems || 0}</div>
-                           <div className="text-lg font-bold mt-10">LostItems : {items?.lostitems || 0}</div>
-                           <div className="text-lg font-bold mt-10 mb-4">ClaimedItems : {items?.claimitems || 0}</div>
+                           <div className="text-lg font-bold mt-8">FoundItems : {items?.foundItems || 0}</div>
+                           <div className="text-lg font-bold mt-10">LostItems : {items?.lostItems || 0}</div>
+                           <div className="text-lg font-bold mt-10 mb-4">ClaimedItems : {items?.claimItems || 0}</div>
                     </div>
                 </div>
             </div>
