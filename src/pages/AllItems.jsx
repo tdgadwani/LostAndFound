@@ -4,7 +4,6 @@ import Footer from "../components/Footer.jsx"
 import AllItemsComponent from "../components/AllItemsComponent.jsx";
 
 const AllItems = ({itemType}) => {
-    console.log("hello ",itemType)
 
     return (
       <>

@@ -10,7 +10,6 @@ import { RewardHistory } from "../models/RewardHistory.model.js";
 const postFoundItems = asyncHandler(async (req, res, _) => {
   const { itemName, category, description, address, contactInfo } = req.body;
 
-  console.log(req.files);
   if (
     [itemName, category, description, address, contactInfo].some(
       (field) => typeof field === "string" && field.trim() === ""
@@ -156,7 +155,6 @@ const updateFoundItem = asyncHandler(async (req, res, _) => {
   if (!isRetrieved || !retrievedByUser)
     throw new ApiError(401, "All Fields are Required");
   const item = await FoundItem.findById(id);
-  console.log("szdtghdtgjmnszd ", item.userId, userId, typeof userId, typeof(item.userId));
   if (!userId.equals(item.userId)) {
     return res
       .status(200)

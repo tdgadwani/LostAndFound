@@ -22,10 +22,6 @@ const ResetPassword = () => {
       password: newpasswordRef.current.value,
       cpassword: confirmpasswordRef.current.value,
     };
-
-    // console.log(newpasswordRef.current.value);
-    // console.log(confirmpasswordRef.current.value);
-
     dispatch(resetPassword(formData,token,navigate));
   };
 

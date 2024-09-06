@@ -17,7 +17,7 @@ const subscribeUser = (formData) => {
         
       }
     }
-}
+};
 
 const appDetails = () => {
     return async (dispatch) => {
@@ -31,7 +31,8 @@ const appDetails = () => {
         console.error(e.message);
       }
     }
-}
+};
+
 const sendOTP = (formData,navigate) => {
     return async(dispatch) => {
         const toastId = toast.loading("Loading...");
@@ -82,11 +83,10 @@ const signupUser = (formData, navigate) => {
         throw new Error(response.data.message);
       }
       toast.success(response.data.message);
-    //   console.log(response.data);
-      dispatch(setSignupData(null)); 
-      dispatch(setToken(response.data.accessToken)); 
-
-      navigate(ROUTES.HOME);
+      dispatch(setSignupData(null));
+      dispatch(setUserData(response.data.data.user));
+      dispatch(setToken(response.data.data.accessToken)); 
+        navigate(ROUTES.HOME);
     } catch (error) {
       console.log(error.message); 
     } finally {
@@ -132,7 +132,8 @@ const logoutUser = () => {
             toast.success(response.data.message);
             dispatch(setUserData(null));
             dispatch(setToken(null));
-            // navigate("/login"); // to be planned
+            Cookies.remove("accessToken");
+            Cookies.remove("refreshToken");
         } catch (error) {
             console.log(error.message);
         } finally {

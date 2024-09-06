@@ -33,10 +33,6 @@ const OTPPopup = ({ onClose, email }) => {
   const handleSubmit = (e) => {
         e.preventDefault(); 
         const numberString = otp.join("");
-        // const otpNumber = /^\d+$/.test(numberString) ? Number(numberString) : NaN;
-        // dispatch(setUpdataSignupData(numberString));
-        // dispatch(setSignupData({ ...formData, otp: numberString }));
-        console.log(`Formdata ${formData} otp ${otp}`);
         dispatch(signupUser({...formData, otp: numberString}, navigate));
   };
 

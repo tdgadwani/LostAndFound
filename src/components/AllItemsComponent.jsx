@@ -31,7 +31,6 @@ const AllItemsComponent = ({itemType}) => {
       if (lostItems === undefined) {
         setAllItems([]);
       } else {
-        console.log("lost ", lostItems);
         
         setAllItems(lostItems);
       }
@@ -45,13 +44,10 @@ const AllItemsComponent = ({itemType}) => {
       if (claimedItems === undefined) {
         setAllItems([]);
       } else {
-        console.log("claimed", claimedItems);
         setAllItems(claimedItems);
       }
     }
   }, [itemType, lostItems, foundItems, claimedItems]);
-
-  console.log("tgadwani ", allItems);
 
   return (
     // <div className="flex flex-col min-h-screen pt-32 bg-gradient-to-r from-kaddu-100 via-transparent to-kaddu-100">

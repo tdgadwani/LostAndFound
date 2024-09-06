@@ -12,31 +12,32 @@ import { FoundItem } from "../models/FoundItems.model.js";
 import subscribeTemplate from "../mailTemplates/subscribeTemplate.js";
 import { request } from "express";
 
-
 const appDetails = asyncHandler(async (req, res) => {
-    const users = await User.countDocuments({});
-    const lostItems = await LostItem.countDocuments({});
-    const foundItems = await FoundItem.countDocuments({});
-    const claimedItems = await FoundItem.countDocuments({ isRetrieved: true});
-    console.log("claimedItems ",claimedItems, users, lostItems, foundItems);
-    if(!users || !lostItems || !foundItems || !claimedItems) 
-      throw new ApiError(501, "Something Went Wrong while fetching App Details");
-    return res.status(200).json(
-      new ApiResponse(200, {
+  const users = await User.countDocuments({});
+  const lostItems = await LostItem.countDocuments({});
+  const foundItems = await FoundItem.countDocuments({});
+  const claimedItems = await FoundItem.countDocuments({ isRetrieved: true });
+  console.log("claimedItems ", claimedItems, users, lostItems, foundItems);
+  if (!users || !lostItems || !foundItems || !claimedItems)
+    throw new ApiError(501, "Something Went Wrong while fetching App Details");
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      {
         users,
         items: lostItems + foundItems,
         claimedItems,
-      }, 
-    "App Details Fetched Successfully")
-    );
+      },
+      "App Details Fetched Successfully"
+    )
+  );
 });
-const subscribeUser = asyncHandler(async( req, res) => {
-    const { email } = req.body;
-    if(!email)
-        throw new ApiError(402, "Email-ID is required");
-    await  mailSender(email,SUBSCRIBE_SUBJECT, subscribeTemplate());
-    return res.status(200).json(new ApiResponse(200, "Mail Sent Successfully"));
-})
+const subscribeUser = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  if (!email) throw new ApiError(402, "Email-ID is required");
+  await mailSender(email, SUBSCRIBE_SUBJECT, subscribeTemplate());
+  return res.status(200).json(new ApiResponse(200, "Mail Sent Successfully"));
+});
 
 const generateAccessAndRefreshToken = async (userId) => {
   try {
@@ -70,7 +71,8 @@ const sendOTP = asyncHandler(async (req, res) => {
   try {
     const { email, fullName } = req.body;
     console.log(`Sending otp to ${email}`);
-    if (!email.trim() || !fullName.trim()) throw new ApiError(401, "Email Id is Required");
+    if (!email.trim() || !fullName.trim())
+      throw new ApiError(401, "Email Id is Required");
     const user = await User.findOne({ email: email });
     if (user) throw new ApiError(403, "User Already registered");
     const otp = generateOTP();
@@ -81,8 +83,8 @@ const sendOTP = asyncHandler(async (req, res) => {
     if (!sentOTP)
       throw new ApiError(500, "something Went wrong While Sending OTP");
     const name = fullName.split(" ")[0];
-    const htmlContent = OtpTemp(name, otp);    
-    const response=await mailSender(email,OTP_SUBJECT + otp,htmlContent);
+    const htmlContent = OtpTemp(name, otp);
+    const response = await mailSender(email, OTP_SUBJECT + otp, htmlContent);
     console.log(`Sending email with otp ${otp}`);
     // catch (error) {
     //   throw new ApiError(501, error.message);
@@ -93,7 +95,9 @@ const sendOTP = asyncHandler(async (req, res) => {
         new ApiResponse(200, sentOTP, `OTP Sent Successfully on mail ${email}`)
       );
   } catch (error) {
-    return res.status(501).json(new ApiError(501, `Error at Server Side ${error}`));
+    return res
+      .status(501)
+      .json(new ApiError(501, `Error at Server Side ${error}`));
   }
 });
 
@@ -153,16 +157,24 @@ const signupUser = asyncHandler(async (req, res) => {
     password,
     fullName,
   });
-  const createdUser = await User.findById(user._id).select(
-    "-password -refreshToken"
+  console.log("user ", user);  
+  const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
+    user._id
   );
-  if (!createdUser)
+  console.log("dcsf", accessToken, refreshToken);
+  
+  const updatedUser = await User.findByIdAndUpdate(
+    user._id,
+    { $set: { refreshToken } },
+    { new: true }
+  );
+  if (!updatedUser)
     throw new ApiError(501, "Something went wrong while registering the user");
   const today = new Date().toISOString().split("T")[0];
   return res
     .status(200)
-    .cookie("accessToken", createdUser.accessToken, OPTIONS)
-    .cookie("refreshToken", createdUser.refreshToken, OPTIONS)
+    .cookie("accessToken", accessToken, OPTIONS)
+    .cookie("refreshToken", refreshToken, OPTIONS)
     .cookie("lastCheckedIn", today, {
       path: "/",
       httpOnly: true,
@@ -170,54 +182,50 @@ const signupUser = asyncHandler(async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000,
       sameSite: "None",
     })
-    .json(new ApiResponse(200, createdUser, "User Registered Successfully"));
+    .json(new ApiResponse(200, {user: updatedUser, refreshToken, accessToken}, "User Registered Successfully"));
 });
 
 const loginUser = asyncHandler(async (req, res) => {
-  const { rollNo, email, password } = req.body;  
+  const { rollNo, email, password } = req.body;
   if (!(rollNo || email))
     throw new ApiError(400, "Roll Number or Email is Required");
   // const user = await User.findOne({
   //   $or: [{ rollNo }, { email }],
   // });  //?: Bug:  Code always find another email
- 
+
   const user = await User.findOne({ email });
 
-  
   if (!user)
     throw new ApiError(403, "User not found with provided Email or Username");
   // const date = new Date(lastCheckInDate).toISOString().split("T")[0];
   // const today = new Date().toISOString().split("T")[0];
   const isPasswordValid = await user.isPasswordCorrect(password);
   if (!isPasswordValid) throw new ApiError(403, "Bad Credentials");
-    
-    
-    const { lastCheckInDate } = user;
-    
-    const date = new Date(lastCheckInDate)
-    const today = new Date();
-    if(date.getFullYear()===today.getFullYear()){
-      if(date.getMonth()===today.getMonth()){
-        if(date.getDate()<today.getDate()){
-          await handelUserCheckIn(user,Date.now());
-        }
+
+  const { lastCheckInDate } = user;
+
+  const date = new Date(lastCheckInDate);
+  const today = new Date();
+  if (date.getFullYear() === today.getFullYear()) {
+    if (date.getMonth() === today.getMonth()) {
+      if (date.getDate() < today.getDate()) {
+        await handelUserCheckIn(user, Date.now());
       }
-      else if(date.getMonth()<today.getMonth()){
-        await handelUserCheckIn(user,Date.now());
-      }
+    } else if (date.getMonth() < today.getMonth()) {
+      await handelUserCheckIn(user, Date.now());
     }
-    else if(date.getFullYear()<today.getFullYear()){
-      await handelUserCheckIn(user,Date.now());
-    }
-    const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
-      user._id
-    );
-    const loggedinUser = await User.findById(user._id).select(
-      "-password -refreshToken"
-  ); 
+  } else if (date.getFullYear() < today.getFullYear()) {
+    await handelUserCheckIn(user, Date.now());
+  }
+  const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
+    user._id
+  );
+  const loggedinUser = await User.findById(user._id).select(
+    "-password -refreshToken"
+  );
   res
-  .status(200)
-  .cookie("accessToken", accessToken, OPTIONS)
+    .status(200)
+    .cookie("accessToken", accessToken, OPTIONS)
     .cookie("refreshToken", refreshToken, OPTIONS)
     .cookie("lastCheckedIn", today, {
       httpOnly: true,
@@ -239,30 +247,34 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const logoutUser = asyncHandler(async (req, res) => {
-  const user = req.user;
-  await User.findByIdAndUpdate(
-    req.user._id,
-    {
-      $unset: {
-        refreshToken: 1,
+  try {
+    const user = req.user;
+    await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        $unset: {
+          refreshToken: 1,
+        },
       },
-    },
-    {
-      new: true,
-    }
-  );
-
-  res
-    .status(200)
-    .clearCookie("accessToken", OPTIONS)
-    .clearCookie("refreshToken", OPTIONS)
-    .clearCookie("lastCheckedIn", {
-      httpOnly: true,
-      secure: true,
-      maxAge: 24 * 60 * 60 * 1000,
-      sameSite: "None",
-    })
-    .json(new ApiResponse(200, {}, "User Logged out Successfully"));
+      {
+        new: true,
+      }
+    );
+  
+    res
+      .status(200)
+      .clearCookie("accessToken", OPTIONS)
+      .clearCookie("refreshToken", OPTIONS)
+      .clearCookie("lastCheckedIn", {
+        httpOnly: true,
+        secure: true,
+        maxAge: 24 * 60 * 60 * 1000,
+        sameSite: "None",
+      })
+      .json(new ApiResponse(200, {}, "User Logged out Successfully"));
+  } catch (error) {
+    console.error(error)
+  }
 });
 
 const editProfile = asyncHandler(async (req, res) => {
@@ -297,18 +309,22 @@ const editProfile = asyncHandler(async (req, res) => {
       },
     },
     { new: true, runValidators: true }
-  ).select(
-    "-password -refreshToken -rollNo -mobileNo"
-  )
-  console.log("Edit Profile: ",updatedUser);
-  
+  ).select("-password -refreshToken -rollNo -mobileNo");
+  console.log("Edit Profile: ", updatedUser);
+
   if (!updatedUser) {
     throw new ApiError(500, "unable to update profile, please try again later");
   }
 
-  return res.status(200).json(new ApiResponse(200, {
-    user:updatedUser
-  }, "profile updated"));
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      {
+        user: updatedUser,
+      },
+      "profile updated"
+    )
+  );
 });
 
 const getLeaderBoardData = asyncHandler(async (req, res) => {

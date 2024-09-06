@@ -105,7 +105,6 @@ const handleShare = async () => {
         text: "Check out this page!",
         url: window.location.href,
       });
-      console.log("Content shared successfully");
     } else {
       alert("Web Share API is not supported in your browser.");
     }
@@ -131,7 +130,6 @@ const handleShare = async () => {
 
     setCombinedItems(addTwoArrays);
   }, [lostItems, foundItems]);
-  console.log("appDetails", appData)
   return (
     <>
       <Header className="fixed w-full " />

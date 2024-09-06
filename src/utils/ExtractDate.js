@@ -6,16 +6,12 @@
     const day = parsedDate.getDate();
     const hours = parsedDate.getHours();
     const min = parsedDate.getMinutes();
-
-
     const today = new Date();
     const currMonth = today.getMonth() + 1;
     const currYear = today.getFullYear();
     const currDay = today.getDate();
     const currHours =today.getHours();
     const currMin = today.getMinutes();
-    // console.log(currHours, hours)
-
     if(year!=currYear){
         return `${currYear-year} years ago`;
     }

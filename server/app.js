@@ -3,8 +3,6 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { userCheckedIn } from "./middlewares/checkIn.middleWare.js";
 
-console.log("tgadwani ", process.env.CORS_ORIGIN);
-
 const app = express();
 
 app.use(express.json({

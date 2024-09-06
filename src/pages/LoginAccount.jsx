@@ -17,9 +17,6 @@ const LoginAccount = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    // console.log(passwordRef.current.value);
-
     const formData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,

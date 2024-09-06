@@ -79,7 +79,6 @@ const Footer = () => {
   const emailRef = useRef("");
   const subscribeHandler = () => {
     const email = emailRef.current.value;
-    console.log("footer email", email);
     
     dispatch(subscribeUser({email}));
   };

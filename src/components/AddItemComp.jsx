@@ -29,7 +29,6 @@ const AddItemComp = ({ isLost }) => {
   const [previewUrls, setPreviewUrls] = useState([]);
 
   const handleChange = (e) => {
-    // setImage(URL.createObjectURL(e.target.files[0]))
     handleFiles(e);
     setPreviewUrls((prev) =>
       prev.concat(
@@ -38,7 +37,6 @@ const AddItemComp = ({ isLost }) => {
         )
       )
     );
-    console.log(previewUrls)
   };
 
   useEffect(() => {
@@ -48,7 +46,6 @@ const AddItemComp = ({ isLost }) => {
   }, [previewUrls]);
 
   const handleUploadFiles = (files) => {
-    // console.log(files,"yash tuhsar loda")
     const uploaded = [...uploadedFiles];
     const readers = [];
     let limitExceeded = false;

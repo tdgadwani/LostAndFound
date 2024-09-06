@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../slices/authSlice";
 import Cookies from "js-cookie";
 import { ROUTES } from "../../utils/constants";
+import { logoutUser } from "../../services/operations/authAPI";
 
 const PrivateRoute = ({ children }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const PrivateRoute = ({ children }) => {
     const expirationTime = payload.exp * 1000;
 
     if (Date.now() >= expirationTime) {
+      dispatch(logoutUser());
       Cookies.remove("accessToken");
       Cookies.remove("refreshToken");
       dispatch(setToken(null));

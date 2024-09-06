@@ -66,8 +66,6 @@ const EditProfileComp = () => {
     };
     dispatch(editProfile(formData,navigate));
   };
-
-  console.log("agbdghfg ", avatar);
   
   return (
     <>

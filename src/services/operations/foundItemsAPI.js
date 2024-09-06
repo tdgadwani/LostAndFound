@@ -44,7 +44,6 @@ const getFoundItems = () => {
                 toast.error(response.data.message);
                 throw new Error(response.data.message);
             }
-            console.log("tgadwani ", response.data.data);
             dispatch(setFoundItems(response.data.data));
             toast.success(response.data.message);
         } catch (error) {

@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const YourProfileComp = () => {
     const { userData } = useSelector((store) => store?.auth);
-    console.log(userData);
     const [rank, setRank] = useState(0);
     const name = userData.fullName.split(" ")[0];
     const credit = userData.coins;

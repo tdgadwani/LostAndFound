@@ -15,7 +15,6 @@ const RollNoPopup = ({ id, onClose }) => {
           retrievedByUser: rollNo,
         };
         dispatch(updateFoundItem(formData,id, navigate));
-        console.log('Submitted Roll No:', rollNo);
         
     };
 
