@@ -29,7 +29,7 @@ const YourProfileComp = () => {
                     Your Profile
                 </div>
                 <div className="flex flex-col sm:flex-row justify-center items-center">
-                    <div className="text-center shadow-2xl w-full sm:w-48 h-auto sm:h-72 m-4">
+                    <div className="text-center shadow-md w-full sm:w-48 h-auto sm:h-72 m-4">
                         <div className='bg-red-500 rounded-t-lg p-2 w-full sm:w-48 h-44 sm:h-52'>
                             <img
                                 src={userData.avatar}
@@ -44,12 +44,17 @@ const YourProfileComp = () => {
                         </div>
                     </div>
 
-                    <div className="text-center shadow-2xl w-full sm:w-48 h-auto sm:h-72 m-4">
+                    <div className="text-center shadow-md w-full sm:w-48 h-auto sm:h-72 m-4">
                         <div className=' rounded-t-lg p-2 w-full sm:w-48 h-48 sm:h-52 ' style={{backgroundImage: `url(${RANKS[rank].badge})`, backgroundSize: "cover"}}>
                         </div>
                         <div className='text-black bg-white h-24 p-4 flex justify-center'>
                             <div className="text-xl sm:text-3xl font-bold">{RANKS[rank].rank}</div>
                         </div>
+                    </div>
+                    <div className="pl-4 shadow-md shadow-white w-full sm:w-48 h-auto sm:h-72 m-4 text-white">
+                           <div className="text-lg font-bold mt-8">FoundItems : {items?.founditems || 0}</div>
+                           <div className="text-lg font-bold mt-10">LostItems : {items?.lostitems || 0}</div>
+                           <div className="text-lg font-bold mt-10 mb-4">ClaimedItems : {items?.claimitems || 0}</div>
                     </div>
                 </div>
             </div>
