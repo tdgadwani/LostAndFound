@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { AVATAR_URLS, RANKS } from "../utils/constants";
 import outline from '../assets/pencil1.png';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getDetails } from "../services/operations/authAPI";
 
 const YourProfileComp = () => {
-    const { userData } = useSelector((store) => store?.auth);
+    const { userData, items } = useSelector((store) => store?.auth);
     const [rank, setRank] = useState(0);
     const name = userData.fullName.split(" ")[0];
     const credit = userData.coins;
+    console.log("yeasrdgfk ", items);
+    const dispatch = useDispatch();
     const college_name = "NIT Patna";
     useEffect(() => {
+        dispatch(getDetails());
         if(credit <  500) {
             setRank(0);
         } else if(credit < 1000) {

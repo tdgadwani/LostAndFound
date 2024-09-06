@@ -157,12 +157,12 @@ const signupUser = asyncHandler(async (req, res) => {
     password,
     fullName,
   });
-  console.log("user ", user);  
+  console.log("user ", user);
   const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
     user._id
   );
   console.log("dcsf", accessToken, refreshToken);
-  
+
   const updatedUser = await User.findByIdAndUpdate(
     user._id,
     { $set: { refreshToken } },
@@ -182,7 +182,13 @@ const signupUser = asyncHandler(async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000,
       sameSite: "None",
     })
-    .json(new ApiResponse(200, {user: updatedUser, refreshToken, accessToken}, "User Registered Successfully"));
+    .json(
+      new ApiResponse(
+        200,
+        { user: updatedUser, refreshToken, accessToken },
+        "User Registered Successfully"
+      )
+    );
 });
 
 const loginUser = asyncHandler(async (req, res) => {
@@ -260,7 +266,7 @@ const logoutUser = asyncHandler(async (req, res) => {
         new: true,
       }
     );
-  
+
     res
       .status(200)
       .clearCookie("accessToken", OPTIONS)
@@ -273,7 +279,7 @@ const logoutUser = asyncHandler(async (req, res) => {
       })
       .json(new ApiResponse(200, {}, "User Logged out Successfully"));
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 });
 
@@ -349,6 +355,18 @@ const getLeaderBoardData = asyncHandler(async (req, res) => {
   );
 });
 
+const getDetails = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  const foundItems = await FoundItem.countDocuments({ userId: _id });
+  const lostItems = await LostItem.countDocuments({ userId: _id });
+  const claimedItems = await FoundItem.countDocuments({ retrievedBy: _id });
+  return res.status(200).json(new ApiResponse(200, {
+    lostItems,
+    foundItems,
+    claimedItems,
+  }, "Details Fetched SuccessFully"));
+});
+
 export {
   subscribeUser,
   appDetails,
@@ -359,4 +377,5 @@ export {
   logoutUser,
   editProfile,
   getLeaderBoardData,
+  getDetails,
 };

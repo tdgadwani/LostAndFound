@@ -1,5 +1,5 @@
 import express from "express";
-import { appDetails, editProfile, getLeaderBoardData, loginUser, logoutUser, resendOTP, sendOTP, signupUser, subscribeUser } from "../controllers/user.controller.js";
+import { appDetails, editProfile, getDetails, getLeaderBoardData, loginUser, logoutUser, resendOTP, sendOTP, signupUser, subscribeUser } from "../controllers/user.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { userCheckedIn } from "../middlewares/checkIn.middleWare.js";
@@ -15,6 +15,7 @@ userRouter.route("/login").post(loginUser);
 userRouter.route("/edit-profile").post(verifyJWT,userCheckedIn,editProfile);
 userRouter.route("/leaderboard").get(verifyJWT,userCheckedIn, getLeaderBoardData);
 userRouter.route("/logout").post(verifyJWT,logoutUser);
+userRouter.route("/getDetails").get(verifyJWT, getDetails);
 
 
 export default userRouter;

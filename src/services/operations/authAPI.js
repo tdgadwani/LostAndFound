@@ -1,7 +1,7 @@
-import { setAppData, setLeaderBoardData, setLeaderBoardLoading, setSignupData, setToken, setUserData } from "../../slices/authSlice.js";
+import { setAppData, setItems, setLeaderBoardData, setLeaderBoardLoading, setSignupData, setToken, setUserData } from "../../slices/authSlice.js";
 import { ROUTES } from "../../utils/constants.js";
 import { apiConnector } from "../apiConnector.js";
-import { SEND_OTP_URL, RESEND_OTP_URL, SIGNUP_URL, LOGIN_URL, LOGOUT_URL, EDIT_PROFILE, LEADERBOARD_URL, APP_DETAILS, SUBSCRIBE_USER, } from "../apis.js";
+import { SEND_OTP_URL, RESEND_OTP_URL, SIGNUP_URL, LOGIN_URL, LOGOUT_URL, EDIT_PROFILE, LEADERBOARD_URL, APP_DETAILS, SUBSCRIBE_USER, GET_DETAILS_URL, } from "../apis.js";
 import { toast } from "react-hot-toast";
 
 
@@ -170,7 +170,6 @@ const getLeaderBoardData = () => {
       if(!response.data.success) {
         throw new Error(response.data.message);
       }
-      console.log("rrgrsf ", response);
       setLeaderBoardLoading(false);
       dispatch(setLeaderBoardData(response.data.data.leaderBoardData));
       toast.success(response.data.message);
@@ -180,6 +179,20 @@ const getLeaderBoardData = () => {
     } finally {
       setLeaderBoardLoading(false);
       toast.dismiss(toastId);
+    }
+  }
+};
+
+const getDetails = () => {
+  return async (dispatch) => {
+    try{
+      const response = await apiConnector("GET", GET_DETAILS_URL);
+      if(!response.data.success) {
+        throw new Error(response.data.message);
+      }
+      dispatch(setItems(response.data.data));
+    } catch(error) {
+      console.error(error.message);
     }
   }
 }
@@ -194,4 +207,5 @@ export {
     logoutUser,
     editProfile,
     getLeaderBoardData,
+    getDetails,
 };
