@@ -9,7 +9,6 @@ const YourProfileComp = () => {
     const [rank, setRank] = useState(0);
     const name = userData.fullName.split(" ")[0];
     const credit = userData.coins;
-    console.log("yeasrdgfk ", items);
     const dispatch = useDispatch();
     const college_name = "NIT Patna";
     useEffect(() => {
@@ -54,7 +53,7 @@ const YourProfileComp = () => {
                     <div className="pl-4 shadow-md shadow-white w-full sm:w-48 h-auto sm:h-72 m-4 text-white">
                            <div className="text-lg font-bold mt-8">FoundItems : {items?.foundItems || 0}</div>
                            <div className="text-lg font-bold mt-10">LostItems : {items?.lostItems || 0}</div>
-                           <div className="text-lg font-bold mt-10 mb-4">ClaimedItems : {items?.claimItems || 0}</div>
+                           <div className="text-lg font-bold mt-10 mb-4">ClaimedItems : {items?.claimedItems || 0}</div>
                     </div>
                 </div>
             </div>
