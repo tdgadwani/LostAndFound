@@ -11,6 +11,7 @@ import persistStore from "redux-persist/es/persistStore";
 import { PersistGate } from "redux-persist/integration/react";
 import { thunk } from "redux-thunk";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const store = configureStore({
   reducer: persistedReducer,
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Toaster />
         </PersistGate>
       </Provider>
+      <SpeedInsights/>
       <Analytics/>
     </BrowserRouter>
   </React.StrictMode>

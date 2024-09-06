@@ -137,58 +137,66 @@ const resendOTP = asyncHandler(async (req, res) => {
 });
 
 const signupUser = asyncHandler(async (req, res) => {
-  const { password, email, otp, fullName } = req.body;
-  // const avatarLocalFilePath = req.file.path;
-  console.log(password, email, otp);
-  if ([email, password, otp].some((field) => field.trim() === ""))
-    throw new ApiError(401, "All fields are required");
-
-  const existingUser = await User.findOne({
-    $or: [{ email }],
-  });
-  if (existingUser)
-    throw new Error(403, "User already Registerd with same Email");
-  const receivedOTP = await OTP.findOne({ email });
-  if (!receivedOTP) throw new ApiError(500, "Something Went Wrong"); // otp message
-  if (receivedOTP.expiresAt > new Date())
-    throw new ApiError(403, " Otp Expired");
-  const user = await User.create({
-    email,
-    password,
-    fullName,
-  });
-  console.log("user ", user);
-  const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
-    user._id
-  );
-  console.log("dcsf", accessToken, refreshToken);
-
-  const updatedUser = await User.findByIdAndUpdate(
-    user._id,
-    { $set: { refreshToken } },
-    { new: true }
-  );
-  if (!updatedUser)
-    throw new ApiError(501, "Something went wrong while registering the user");
-  const today = new Date().toISOString().split("T")[0];
-  return res
-    .status(200)
-    .cookie("accessToken", accessToken, OPTIONS)
-    .cookie("refreshToken", refreshToken, OPTIONS)
-    .cookie("lastCheckedIn", today, {
-      path: "/",
-      httpOnly: true,
-      secure: true,
-      maxAge: 24 * 60 * 60 * 1000,
-      sameSite: "None",
-    })
-    .json(
-      new ApiResponse(
-        200,
-        { user: updatedUser, refreshToken, accessToken },
-        "User Registered Successfully"
-      )
+  try {
+    const { password, email, otp, fullName } = req.body;
+    // const avatarLocalFilePath = req.file.path;
+    console.log(password, email, otp);
+    if ([email, password, otp].some((field) => field.trim() === ""))
+      throw new ApiError(401, "All fields are required");
+  
+    const existingUser = await User.findOne({
+      $or: [{ email }],
+    });
+    if (existingUser)
+      throw new Error(403, "User already Registerd with same Email");
+    const receivedOTP = await OTP.findOne({ email });
+    if (!receivedOTP) throw new ApiError(500, "Something Went Wrong"); // otp message
+    if (receivedOTP.expiresAt > new Date())
+      throw new ApiError(403, " Otp Expired");
+    else if(receivedOTP.otp !== otp) {
+      throw new ApiError( 200,
+        "The OTP you entered is invalid. Please check and re-enter."
+      );
+    }
+    const user = await User.create({
+      email,
+      password,
+      fullName,
+    });
+    const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
+      user._id
     );
+    console.log("dcsf", accessToken, refreshToken);
+  
+    const updatedUser = await User.findByIdAndUpdate(
+      user._id,
+      { $set: { refreshToken } },
+      { new: true }
+    );
+    if (!updatedUser)
+      throw new ApiError(501, "Something went wrong while registering the user");
+    const today = new Date().toISOString().split("T")[0];
+    return res
+      .status(200)
+      .cookie("accessToken", accessToken, OPTIONS)
+      .cookie("refreshToken", refreshToken, OPTIONS)
+      .cookie("lastCheckedIn", today, {
+        path: "/",
+        httpOnly: true,
+        secure: true,
+        maxAge: 24 * 60 * 60 * 1000,
+        sameSite: "None",
+      })
+      .json(
+        new ApiResponse(
+          200,
+          { user: updatedUser, refreshToken, accessToken },
+          "User Registered Successfully"
+        )
+      );
+  } catch (error) {
+    return res.status(error.statusCode || 501).json(new ApiResponse(error.statusCode || 501, {}, error.message || "Something Went Wrong"));
+  }
 });
 
 const loginUser = asyncHandler(async (req, res) => {

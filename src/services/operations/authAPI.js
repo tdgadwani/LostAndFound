@@ -86,9 +86,10 @@ const signupUser = (formData, navigate) => {
       dispatch(setSignupData(null));
       dispatch(setUserData(response.data.data.user));
       dispatch(setToken(response.data.data.accessToken)); 
-        navigate(ROUTES.HOME);
+      navigate(ROUTES.HOME);
     } catch (error) {
       console.log(error.message); 
+      toast.error(error.message);
     } finally {
       toast.dismiss(toastId);
     }
