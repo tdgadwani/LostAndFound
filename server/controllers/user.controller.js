@@ -92,7 +92,7 @@ const sendOTP = asyncHandler(async (req, res) => {
     return res
       .status(200)
       .json(
-        new ApiResponse(200, sentOTP, `OTP Sent Successfully on mail ${email}`)
+        new ApiResponse(200, {}, `OTP Sent Successfully on mail ${email}`)
       );
   } catch (error) {
     return res
@@ -148,7 +148,7 @@ const signupUser = asyncHandler(async (req, res) => {
       $or: [{ email }],
     });
     if (existingUser)
-      throw new Error(403, "User already Registerd with same Email");
+      throw new ApiError(403, "User already Registerd with same Email");
     const receivedOTP = await OTP.findOne({ email });
     if (!receivedOTP) throw new ApiError(500, "Something Went Wrong"); // otp message
     if (receivedOTP.expiresAt > new Date())
